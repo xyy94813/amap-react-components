@@ -1,0 +1,24 @@
+{
+  "name": "amap-react",
+  "version": "0.0.1",
+  "description": "AMap Components for react",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://xyy94813@github.com/xyy94813/amap-react.git"
+  },
+  "keywords": [
+    "amap",
+    "react",
+    "react-amap"
+  ],
+  "author": "xyy94813@sina.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/xyy94813/amap-react/issues"
+  },
+  "homepage": "https://github.com/xyy94813/amap-react#readme"
+}
