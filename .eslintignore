@@ -1,0 +1,9 @@
+node_modules/
+
+coverage/
+
+# output dir
+es/**
+lib/**
+build/**
+dist/**
