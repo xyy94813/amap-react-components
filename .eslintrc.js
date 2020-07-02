@@ -16,6 +16,7 @@ module.exports = {
   rules: {
     'import/extensions': ['error', 'never'],
     'import/no-extraneous-dependencies': ['error', { peerDependencies: true }],
+    'react/state-in-constructor': ['error', 'never'],
   },
   overrides: [
     {
