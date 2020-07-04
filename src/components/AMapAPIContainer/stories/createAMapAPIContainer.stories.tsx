@@ -2,7 +2,6 @@ import React, {
   useRef,
   useEffect,
 } from 'react';
-import ReactDOM from 'react-dom';
 
 import createAMapAPIContainer from '../createAMapAPIContainer';
 import useAMapAPI, { useAMapAPIValue } from '../../../hooks/useAMapAPI';
@@ -20,13 +19,12 @@ const ChildComponent = () => {
   const $map = useRef(null);
   useEffect(() => {
     if (!AMap || !$container.current) {
-      return;
+      return () => { };
     }
     // eslint-disable-next-line react/no-find-dom-node
-    const map = new AMap.Map(ReactDOM.findDOMNode($container.current));
+    const map = new AMap.Map($container.current);
     $map.current = map;
 
-    // eslint-disable-next-line consistent-return
     return () => {
       map.destroy();
     };

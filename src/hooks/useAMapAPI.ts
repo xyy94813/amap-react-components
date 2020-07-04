@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 
-import { AMapAPIContextType, AMapAPIContext } from '../components/APIContainer/AMapAPIContext';
+import { AMapAPIContextType, AMapAPIContext } from '../components/AMapAPIContainer/AMapAPIContext';
 
 export type useAMapAPIValue = AMapAPIContextType;
 
