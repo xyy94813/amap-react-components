@@ -10,7 +10,7 @@ const APIContainer = createAMapAPIContainer({
 
 export const withCenter = () => (
   <APIContainer>
-    <div style={{ height: '100vh' }}>
+    <div style={{ height: 'calc(100vh - 8px * 2)' }}>
       <AMapMap center={[114.021769, 22.530421]} />
     </div>
   </APIContainer>
@@ -18,7 +18,7 @@ export const withCenter = () => (
 
 export const withZoom = () => (
   <APIContainer>
-    <div style={{ height: '100vh' }}>
+    <div style={{ height: 'calc(100vh - 8px * 2)' }}>
       <AMapMap zoom={12} />
     </div>
   </APIContainer>
@@ -26,7 +26,7 @@ export const withZoom = () => (
 
 export const withCityName = () => (
   <APIContainer>
-    <div style={{ height: '100vh' }}>
+    <div style={{ height: 'calc(100vh - 8px * 2)' }}>
       <AMapMap cityName="上海" />
     </div>
   </APIContainer>
