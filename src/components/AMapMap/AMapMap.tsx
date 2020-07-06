@@ -45,8 +45,9 @@ const Map = React.forwardRef<MapInstance, MapProps>(
     const [, setInitialized] = useState(false);
 
     useEffect(() => {
+      let clearEffect;
       if (!$mapConatanier.current || !AMap) {
-        return () => {};
+        return clearEffect;
       }
 
       const initMap = () => {
@@ -56,7 +57,7 @@ const Map = React.forwardRef<MapInstance, MapProps>(
 
       initMap();
 
-      const clearEffect = () => {
+      clearEffect = () => {
         $map.current = null;
         /**
          * 异步的 destroy map，
