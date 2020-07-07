@@ -12,7 +12,7 @@ export interface createAMapAPIContainerOptions {
 }
 
 export interface AMapAPIHocProps {
-  children: React.ReactElement
+  children: React.ReactNode;
 }
 
 export const createAMapAPIContainer = (options: createAMapAPIContainerOptions) => {
@@ -36,7 +36,7 @@ export const createAMapAPIContainer = (options: createAMapAPIContainerOptions) =
             AMap,
           });
         },
-        ((reason) => {
+        (reason) => {
           // eslint-disable-next-line no-console
           console.error(reason);
           if (retryTime > 3) {
@@ -46,7 +46,7 @@ export const createAMapAPIContainer = (options: createAMapAPIContainerOptions) =
           retryTime += 1;
 
           return loadAMapAPI();
-        }),
+        },
       );
     }
 

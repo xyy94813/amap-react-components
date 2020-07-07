@@ -13,7 +13,7 @@ export interface MapProps {
   center?: [number, number];
   cityName?: string;
   zoom?: number;
-  children?: React.ReactElement;
+  children?: React.ReactNode;
 }
 
 export type MapInstance = any;
