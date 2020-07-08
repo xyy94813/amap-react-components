@@ -1,3 +1,7 @@
+# Typescript Output
+build
+storybook-static
+
 # Env files
 .env.local
 .env.development.local
