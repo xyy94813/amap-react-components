@@ -26,6 +26,13 @@ DefinitelyTyped only works because of contributions by users like you!
 
 But, you can ignore the `scope`
 
+### Development Step
+
+1. `npm install`
+2. create a `.env.local` files
+3. set env `STORYBOOK_AMAP_API_KEY={your amap api key}`
+4. run `npm run loadenv -- npm run storybook`
+
 ## LICENSE
 
 [MIT LICENSE](./LICENSE)
