@@ -11,10 +11,12 @@ const useAMapControlBinder = (controlInstance: any) => {
       return clearEffect;
     }
 
-    controlInstance.addTo(map);
     clearEffect = () => {
+      // amap 与 control 进行解绑存在 BUG
       controlInstance.remove(map);
     };
+
+    controlInstance.addTo(map);
 
     return clearEffect;
   }, [map, controlInstance]);

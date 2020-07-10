@@ -18,13 +18,6 @@ export interface MapProps {
 
 export type MapInstance = any;
 
-const safelyDestroyMapInstance = ($ref: React.RefObject<MapInstance>) => {
-  if (!$ref.current) {
-    return;
-  }
-  $ref.current.destroy();
-};
-
 const safelyHandleMapInstance = (mapInstance: MapInstance, method: string, ...args: any[]) => {
   if (!mapInstance || !mapInstance[method]) {
     return;
@@ -39,10 +32,8 @@ const Map = React.forwardRef<MapInstance, MapProps>(
     const { __AMAP__: AMap } = useAMapAPI();
 
     // container ref
-    const $mapConatanier = useRef(null);
-    // map instance ref
-    const $map = useRef(null);
-    const [, setInitialized] = useState(false);
+    const $mapConatanier = useRef<HTMLDivElement>(null);
+    const [curMap, setInstance] = useState<any>(null);
 
     useEffect(() => {
       let clearEffect;
@@ -51,25 +42,29 @@ const Map = React.forwardRef<MapInstance, MapProps>(
       }
 
       const initMap = () => {
-        $map.current = new AMap.Map($mapConatanier.current);
-        setInitialized(true); // fire re-render
+        const newInstance = new AMap.Map($mapConatanier.current);
+        clearEffect = () => {
+          /**
+           * 异步的 destroy map，
+           * 根据 Effect 的执行顺序，先执行父组件的 Effect，后执行子组件 Effect。
+           * 如果此处直接调用 destroy，后面 `useAMapControlBinder` 清除副作用时会导致报错，
+           *
+           * AMap API 会报错，TypeError: Cannot read property 'remove' of undefined
+           * （不太确定）
+           *
+           * 地图对象还存在，如何判断 amap 实例已经 destroy???
+           *
+           */
+          newInstance.destroy();
+          // Promise.resolve(newInstance).then((instance) => instance.destroy());
+        };
+        setInstance(newInstance); // fire re-render
       };
 
       initMap();
 
-      clearEffect = () => {
-        $map.current = null;
-        /**
-         * 异步的 destroy map，
-         * 避免子组件 effect 的 “返回值函数” 中调用组件与 map container 进行解绑
-         */
-        Promise.resolve($map).then(safelyDestroyMapInstance);
-      };
-
       return clearEffect;
     }, [AMap]);
-
-    const curMap = $map.current;
 
     useImperativeHandle(ref, () => curMap, [curMap]);
 

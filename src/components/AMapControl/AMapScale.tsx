@@ -1,6 +1,4 @@
-import React, {
-  useEffect, useState, useRef, useMemo,
-} from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 
 import useAMap from '../../hooks/useAMap';
 import useAMapControlBinder from '../../hooks/useAMapControlBinder';
@@ -24,8 +22,7 @@ const AMapScale = ({
   position, offset, visiable = true, onShow, onHide,
 }: AMapScaleProps) => {
   const { __AMAP__: AMap } = useAMap();
-  const $instance = useRef<any>(null);
-  const [, forceUpdate] = useState(NaN);
+  const [curInstance, setInstance] = useState<any>(null);
 
   const initConfig = useMemo(() => {
     const conf: AMapControlConfig = {};
@@ -37,33 +34,21 @@ const AMapScale = ({
   }, [position, offset]);
 
   useEffect(() => {
-    let clearEffect;
     if (!AMap) {
-      return clearEffect;
+      return;
     }
 
     const initInstance = () => {
-      const instance = new AMap.Scale(initConfig);
-      $instance.current = instance;
-
-      clearEffect = () => {
-        $instance.current = null;
-      };
+      const newInstance = new AMap.Scale(initConfig);
+      setInstance(newInstance);
     };
 
-    if (AMap.AMapScale) {
+    if (AMap.Scale) {
       initInstance();
     } else {
-      AMap.plugin('AMap.Scale', () => {
-        initInstance();
-        forceUpdate(NaN); // NaN !== NaN
-      });
+      AMap.plugin('AMap.Scale', initInstance);
     }
-
-    return clearEffect;
   }, [AMap, position, offset]);
-
-  const curInstance = $instance.current;
 
   useEffect(() => {
     if (curInstance) {

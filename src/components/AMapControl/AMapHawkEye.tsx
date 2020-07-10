@@ -1,6 +1,4 @@
-import React, {
-  useEffect, useState, useRef, useMemo,
-} from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 
 import useAMap from '../../hooks/useAMap';
 import useAMapControlBinder from '../../hooks/useAMapControlBinder';
@@ -36,7 +34,7 @@ export interface AMapHawkEyeProps extends AMapHawkEyeOptions {
 const AMapHawkEye = ({
   autoMove,
   showRectangle,
-  showButton,
+  showButton = true,
   isOpen = true,
   mapStyle,
   width,
@@ -52,8 +50,7 @@ const AMapHawkEye = ({
   onHide,
 }: AMapHawkEyeProps) => {
   const { __AMAP__: AMap } = useAMap();
-  const $instance = useRef<any>(null);
-  const [, forceUpdate] = useState(NaN);
+  const [curInstance, setInstance] = useState<any>(null);
 
   const initConfig = useMemo(() => {
     const conf: AMapHawkEyeOptions = {};
@@ -89,33 +86,21 @@ const AMapHawkEye = ({
   ]);
 
   useEffect(() => {
-    let clearEffect;
     if (!AMap) {
-      return clearEffect;
+      return;
     }
 
     const initInstance = () => {
-      const instance = new AMap.HawkEye(initConfig);
-      $instance.current = instance;
-
-      clearEffect = () => {
-        $instance.current = null;
-      };
+      const newInstance = new AMap.HawkEye(initConfig);
+      setInstance(newInstance);
     };
 
-    if (AMap.AMapHawkEye) {
+    if (AMap.HawkEye) {
       initInstance();
     } else {
-      AMap.plugin('AMap.HawkEye', () => {
-        initInstance();
-        forceUpdate(NaN); // NaN !== NaN
-      });
+      AMap.plugin('AMap.HawkEye', initInstance);
     }
-
-    return clearEffect;
   }, [AMap, initConfig]);
-
-  const curInstance = $instance.current;
 
   // 是否展开
   useEffect(() => {

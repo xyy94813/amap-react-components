@@ -1,6 +1,4 @@
-import React, {
-  useEffect, useState, useRef, useMemo,
-} from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 
 import useAMap from '../../hooks/useAMap';
 import useAMapControlBinder from '../../hooks/useAMapControlBinder';
@@ -30,47 +28,33 @@ const AMapControlBar = ({
   onShow,
 }: AMapControlBarProps) => {
   const { __AMAP__: AMap } = useAMap();
-  const $instance = useRef<any>(null);
-  const [, forceUpdate] = useState(NaN); // forceUpdate after async init
+  const [curInstance, setInstance] = useState<any>(null);
 
   const initConfig = useMemo(() => {
     const conf: AMapControlBarConfig = {};
 
+    if (showControlButton !== undefined) conf.showControlButton = showControlButton;
     if (position !== undefined) conf.position = position;
     if (offset !== undefined) conf.offset = offset;
-    if (showControlButton !== undefined) conf.showControlButton = showControlButton;
-
     return conf;
-  }, [position, offset]);
+  }, [showControlButton, position, offset]);
 
   useEffect(() => {
-    let clearEffect;
     if (!AMap) {
-      return clearEffect;
+      return;
     }
 
     const initInstance = () => {
-      const instance = new AMap.ControlBar(initConfig);
-      $instance.current = instance;
-
-      clearEffect = () => {
-        $instance.current = null;
-      };
+      const newInstance = new AMap.ControlBar(initConfig);
+      setInstance(newInstance);
     };
 
     if (AMap.ControlBar) {
       initInstance();
     } else {
-      AMap.plugin('AMap.ControlBar', () => {
-        initInstance();
-        forceUpdate(NaN); // NaN !== NaN
-      });
+      AMap.plugin('AMap.ControlBar', initInstance);
     }
-
-    return clearEffect;
   }, [AMap, initConfig]);
-
-  const curInstance = $instance.current;
 
   useEffect(() => {
     if (curInstance) {
