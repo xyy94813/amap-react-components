@@ -1,4 +1,7 @@
 namespace AMap {
+  export type AMap = any;
+  export type Map = any;
+
   export interface ControlPositionObject {
     top?: number;
     left?: number;
@@ -35,6 +38,26 @@ namespace AMap {
     borderRadius?: string; // 缩略图的高度，同CSS，如'5px'
     borderWidth?: string; // 缩略图的高度，同CSS，如'2px'
     buttonSize?: string; // 箭头按钮的像素尺寸，同CSS，如'12px'
+  }
+
+  export type OverLayGroup = any; // Todo
+
+  export interface GeoJSONGetOverlayCallBack {
+    (
+      geojson?: GeoJSON.GeoJSON,
+      lnglat?: GeoJSON.Point[] | GeoJSON.Point[][] | GeoJSON.Point[][][],
+    ): any;
+  }
+
+  export interface GeoJSONOptions {
+    geoJSON?: Object;
+    getMarker?: GeoJSONGetOverlayCallBack;
+    getPolyline?: GeoJSONGetOverlayCallBack;
+    getPolygon?: GeoJSONGetOverlayCallBack;
+  }
+
+  export interface GeoJSON extends OverLayGroup {
+    importData: (data: GeoJSON.GeoJSON) => {};
   }
 }
 
