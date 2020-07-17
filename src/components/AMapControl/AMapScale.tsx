@@ -4,13 +4,13 @@ import useAMap from '../../hooks/useAMap';
 import useAMapControlBinder from '../../hooks/useAMapControlBinder';
 import useAMapEventBinder from '../../hooks/useAMapEventBinder';
 
-import { AMapControlConfig } from './types';
+import AMapType from '../../types/AMapType';
 
 /**
  * Origin API see:
  * https://lbs.amap.com/api/jsapi-v2/documentation#hawkeye
  */
-export interface AMapScaleConfig extends AMapControlConfig {}
+export interface AMapScaleConfig extends AMapType.ControlConfig {}
 
 export interface AMapScaleProps extends AMapScaleConfig {
   visiable?: boolean;
@@ -25,7 +25,7 @@ const AMapScale = ({
   const [curInstance, setInstance] = useState<any>(null);
 
   const initConfig = useMemo(() => {
-    const conf: AMapControlConfig = {};
+    const conf: AMapType.ControlConfig = {};
 
     if (position !== undefined) conf.position = position;
     if (offset !== undefined) conf.offset = offset;

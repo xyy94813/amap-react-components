@@ -1,4 +1,3 @@
-export * from './types';
 export * from './AMapScale';
 export * from './AMapToolBar';
 export * from './AMapControlBar';

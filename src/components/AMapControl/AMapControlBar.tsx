@@ -3,13 +3,13 @@ import React, { useEffect, useState, useMemo } from 'react';
 import useAMap from '../../hooks/useAMap';
 import useAMapControlBinder from '../../hooks/useAMapControlBinder';
 import useAMapEventBinder from '../../hooks/useAMapEventBinder';
-import { AMapControlConfig } from './types';
+import AMapType from '../../types/AMapType';
 
 /**
  * Origin API see:
  * https://lbs.amap.com/api/jsapi-v2/documentation#ControlBar
  */
-export interface AMapControlBarConfig extends AMapControlConfig {
+export interface AMapControlBarConfig extends AMapType.ControlConfig {
   showControlButton?: boolean;
 }
 
