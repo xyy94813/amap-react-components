@@ -79,9 +79,9 @@ const getPolygon: AMapGeoJSONGetOverlayCallback = (geojson, lnglat, map, AMap) =
 
 interface AMapAutoFitViewProps {
   delay?: number;
-  overlaysType?: string;
 }
-function AMapAutoFitView({ overlaysType, delay = 2000 }: AMapAutoFitViewProps) {
+
+function AMapAutoFitView({ delay = 2000 }: AMapAutoFitViewProps) {
   const { map } = useAMap();
   const [fitViewed, setFitViewed] = useState(false);
   useEffect(() => {
@@ -90,14 +90,16 @@ function AMapAutoFitView({ overlaysType, delay = 2000 }: AMapAutoFitViewProps) {
       return clearEffect;
     }
     const timeoutKey = setTimeout(() => {
-      map.setFitView(overlaysType);
-      setFitViewed(true);
+      if (map) {
+        map.setFitView();
+        setFitViewed(true);
+      }
     }, delay);
     clearEffect = () => {
       global.clearTimeout(timeoutKey);
     };
     return clearEffect;
-  }, [delay, overlaysType, map, fitViewed]);
+  }, [delay, map, fitViewed]);
 
   return null;
 }

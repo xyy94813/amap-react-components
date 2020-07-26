@@ -15,7 +15,7 @@ export const Async = () => (
   <APIContainer>
     <div style={{ height: 'calc(100vh - 8px * 2)' }}>
       <AMapMap zoom={12}>
-        <AMapToolBar />
+        <AMapToolBar position="RB" />
       </AMapMap>
     </div>
   </APIContainer>
@@ -31,7 +31,7 @@ export const Sync = () => (
   <SyncAPIContainer>
     <div style={{ height: 'calc(100vh - 8px * 2)' }}>
       <AMapMap zoom={12}>
-        <AMapToolBar />
+        <AMapToolBar position="RB" />
       </AMapMap>
     </div>
   </SyncAPIContainer>
@@ -64,6 +64,7 @@ export const ControlVisible = () => {
         <div>
           <AMapMap zoom={12}>
             <AMapToolBar
+              position="RB"
               visiable={visiable}
               onHide={eventHandler.onHide}
               onShow={eventHandler.onShow}

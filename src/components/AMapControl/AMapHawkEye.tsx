@@ -1,7 +1,5 @@
 import React, { useEffect, useState, useMemo } from 'react';
 
-import AMapType from '../../types/AMapType';
-
 import useAMap from '../../hooks/useAMap';
 import useAMapControlBinder from '../../hooks/useAMapControlBinder';
 import useAMapEventBinder from '../../hooks/useAMapEventBinder';
@@ -11,7 +9,7 @@ import useAMapEventBinder from '../../hooks/useAMapEventBinder';
  * https://lbs.amap.com/api/jsapi-v2/documentation#hawkeye
  */
 
-export interface AMapHawkEyeProps extends AMapType.HawkEyeOptions {
+export interface AMapHawkEyeProps extends AMap.HawkEyeOptions {
   visiable?: boolean;
   onShow?: (event: any) => void;
   onHide?: (event: any) => void;
@@ -39,7 +37,7 @@ const AMapHawkEye = ({
   const [curInstance, setInstance] = useState<any>(null);
 
   const initConfig = useMemo(() => {
-    const conf: AMapType.HawkEyeOptions = {};
+    const conf: AMap.HawkEyeOptions = {};
 
     if (autoMove !== undefined) conf.autoMove = autoMove;
     if (showRectangle !== undefined) conf.showRectangle = showRectangle;

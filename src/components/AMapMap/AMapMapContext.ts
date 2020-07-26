@@ -1,11 +1,9 @@
 import * as React from 'react';
 
-export type AMapMapContextType = any;
+export type AMapMapContextValue = AMap.Map | null;
 
-const defaultContext: AMapMapContextType = null;
+const defaultContext = null;
 
-export const AMapMapContext: React.Context<AMapMapContextType> = React.createContext(
-  defaultContext,
-);
+export const AMapMapContext = React.createContext<AMapMapContextValue>(defaultContext);
 
 export default AMapMapContext;

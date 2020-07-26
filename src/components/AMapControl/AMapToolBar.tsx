@@ -4,15 +4,11 @@ import useAMap from '../../hooks/useAMap';
 import useAMapControlBinder from '../../hooks/useAMapControlBinder';
 import useAMapEventBinder from '../../hooks/useAMapEventBinder';
 
-import AMapType from '../../types/AMapType';
-
 /**
  * Origin API see:
  * https://lbs.amap.com/api/jsapi-v2/documentation#hawkeye
  */
-export interface AMapToolBarConfig extends AMapType.ControlConfig {}
-
-export interface AMapToolBarProps extends AMapToolBarConfig {
+export interface AMapToolBarProps extends AMap.ToolBarConfig {
   visiable?: boolean;
   onShow?: (event: any) => void;
   onHide?: (event: any) => void;
@@ -25,9 +21,8 @@ const AMapToolBar = ({
   const [curInstance, setInstance] = useState<any>(null);
 
   const initConfig = useMemo(() => {
-    const conf: AMapType.ControlConfig = {};
+    const conf: AMap.ControlConfig = { position };
 
-    if (position !== undefined) conf.position = position;
     if (offset !== undefined) conf.offset = offset;
 
     return conf;

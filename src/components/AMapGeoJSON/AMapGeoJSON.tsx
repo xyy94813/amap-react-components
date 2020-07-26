@@ -1,18 +1,16 @@
 import { useState, useEffect } from 'react';
 
-import AMapType from '../../types/AMapType';
-
 import useAMap from '../../hooks/useAMap';
 import useAMapContainerBinder from '../../hooks/useAMapContainerBinder';
 
 export type AMapGeoJSONGetOverlayCallback = (
   geojson?: GeoJSON.GeoJSON,
-  lnglat?: any,
-  map?: any,
-  AMap?: AMapType.AMap,
+  lnglat?: GeoJSON.Point[] | GeoJSON.Point[][] | GeoJSON.Point[][][],
+  map?: AMap.Map | null,
+  AMap?: AMap.AMap,
 ) => any;
 
-export interface AMapGeoJSONProps extends AMapType.GeoJSONOptions {
+export interface AMapGeoJSONProps extends AMap.GeoJSONOptions {
   geoJSON: GeoJSON.GeoJSON;
   getMarker?: AMapGeoJSONGetOverlayCallback;
   getPolygon?: AMapGeoJSONGetOverlayCallback;
@@ -24,7 +22,7 @@ function AMapGeoJSON({
   geoJSON, getPolyline, getMarker, getPolygon,
 }: AMapGeoJSONProps) {
   const { __AMAP__: AMap, map } = useAMap();
-  const [curInstance, setInstance] = useState<AMapType.GeoJSON | null>(null);
+  const [curInstance, setInstance] = useState<AMap.GeoJSON | null>(null);
 
   const withMap = (fn?: AMapGeoJSONGetOverlayCallback) => {
     if (typeof fn !== 'function') {

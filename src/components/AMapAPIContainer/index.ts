@@ -1,4 +1,4 @@
-export { AMapAPIContextType, AMapAPIContext } from './AMapAPIContext';
+export { AMapAPIContextValue, AMapAPIContext } from './AMapAPIContext';
 export {
   createAMapAPIContainerOptions,
   AMapAPIHocProps,
