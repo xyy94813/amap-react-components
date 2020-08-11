@@ -12,11 +12,13 @@ module.exports = {
     ecmaVersion: 11,
     sourceType: 'module',
   },
-  plugins: ['react', '@typescript-eslint'],
+  plugins: ['react', 'react-hooks', '@typescript-eslint'],
   rules: {
     'import/extensions': ['error', 'never'],
     'import/no-extraneous-dependencies': ['error', { peerDependencies: true }],
     'react/state-in-constructor': ['error', 'never'],
+    'react-hooks/rules-of-hooks': 'error', // check hook's rule
+    'react-hooks/exhaustive-deps': 'warn', // check effect's dependencies
   },
   overrides: [
     {
