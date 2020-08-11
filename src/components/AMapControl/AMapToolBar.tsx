@@ -43,7 +43,7 @@ const AMapToolBar = ({
     } else {
       AMap.plugin('AMap.ToolBar', initInstance);
     }
-  }, [AMap, position, offset]);
+  }, [AMap, position, offset, initConfig]);
 
   useEffect(() => {
     if (curInstance) {

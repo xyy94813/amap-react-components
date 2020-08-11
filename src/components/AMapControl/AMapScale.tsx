@@ -50,7 +50,7 @@ const AMapScale = ({
     } else {
       AMap.plugin('AMap.Scale', initInstance);
     }
-  }, [AMap, position, offset]);
+  }, [AMap, position, offset, initConfig]);
 
   useEffect(() => {
     if (curInstance) {

@@ -43,7 +43,7 @@ export const SupportedFunctions = () => {
 
   const handleSwitchBtnClick = useCallback(() => {
     setVisiable((v) => !v);
-  }, [visiable]);
+  }, []);
 
   const handleSwitchBtn2Click = useCallback(() => {
     setShowControlBtn((v) => !v);
