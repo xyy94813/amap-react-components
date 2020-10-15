@@ -1,7 +1,7 @@
 import React from 'react';
 
-import createAMapAPIContainer from '../../AMapAPIContainer/createAMapAPIContainer';
-import AMapMap from '../AMapMap';
+import { createAMapAPIContainer } from '../../AMapAPIContainer';
+import AMapMap from '../index';
 
 const APIContainer = createAMapAPIContainer({
   version: '2.0',

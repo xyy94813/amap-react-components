@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react';
 // import { actions } from '@storybook/addon-actions';
 
 import useAMap from '../../../hooks/useAMap';
-import createAMapAPIContainer from '../../AMapAPIContainer/createAMapAPIContainer';
+
+import { createAMapAPIContainer } from '../../AMapAPIContainer';
 import { AMapMap } from '../../AMapMap';
 
-import AMapGeoJSON, { AMapGeoJSONGetOverlayCallback } from '../AMapGeoJSON';
+import AMapGeoJSON, { AMapGeoJSONGetOverlayCallback } from '../index';
 
 const APIContainer = createAMapAPIContainer({
   version: '2.0',

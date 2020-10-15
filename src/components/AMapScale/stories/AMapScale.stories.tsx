@@ -1,10 +1,10 @@
 import React, { useState, useCallback, useMemo } from 'react';
 import { actions } from '@storybook/addon-actions';
 
-import createAMapAPIContainer from '../../AMapAPIContainer/createAMapAPIContainer';
+import { createAMapAPIContainer } from '../../AMapAPIContainer';
 import { AMapMap } from '../../AMapMap';
 
-import AMapScale from '../AMapScale';
+import AMapScale from '../index';
 
 const APIContainer = createAMapAPIContainer({
   version: '2.0',
