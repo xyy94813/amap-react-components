@@ -27,11 +27,6 @@
     "url": "https://github.com/xyy94813/amap-react/issues"
   },
   "homepage": "https://github.com/xyy94813/amap-react#readme",
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "peerDependencies": {
     "react": ">16.8",
     "react-dom": ">16.8"
