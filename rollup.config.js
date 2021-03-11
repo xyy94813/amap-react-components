@@ -20,6 +20,7 @@ const getBasicConf = () => ({
 
 const getDistDir = (moduleType) => {
   switch (moduleType) {
+    case 'umd':
     case 'cjs':
       return OUTPUT_DIR;
     case 'es':
@@ -31,7 +32,7 @@ const getDistDir = (moduleType) => {
 
 const getConf = (env, moduleType) => {
   const distLib = getDistDir(moduleType);
-  const fileName = `${pkg.name}.${env}.js`;
+  const fileName = moduleType === 'umd' ? `${pkg.name}.browser.js` : `${pkg.name}.${env}.js`;
   const outputPath = path.join(distLib, fileName);
 
   const isProd = env === 'production';
@@ -60,6 +61,12 @@ const getConf = (env, moduleType) => {
       file: outputPath,
       format: moduleType,
       sourcemap: true,
+      // for umd
+      name: 'AMapReact',
+      globals: {
+        react: 'React',
+        '@amap/amap-jsapi-loader': 'AMapLoader',
+      },
     },
     plugins,
   };
@@ -68,4 +75,5 @@ const getConf = (env, moduleType) => {
 export default [
   getConf('production', 'cjs'),
   getConf('production', 'es'),
+  getConf('production', 'umd'),
 ];
