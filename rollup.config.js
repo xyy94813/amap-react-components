@@ -1,6 +1,7 @@
 import path from 'path';
 import typescript from 'rollup-plugin-typescript2';
 import { terser } from 'rollup-plugin-terser';
+import filesize from 'rollup-plugin-filesize';
 
 // eslint-disable-next-line import/extensions
 import pkg from './package.json';
@@ -49,6 +50,7 @@ const getConf = (env, moduleType) => {
         },
       },
     }),
+    filesize(),
   ];
 
   if (isProd) {
