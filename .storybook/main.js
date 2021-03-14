@@ -1,6 +1,7 @@
 module.exports = {
-  stories: ['../src/**/*.stories.tsx'],
-  addons: ['@storybook/addon-actions', '@storybook/addon-links'],
+  logLevel: "debug",
+  stories: ["../src/**/*.stories.@(js|jsx|ts|tsx|mdx)"],
+  addons: ["@storybook/addon-essentials"],
   /**
    * storybook with typescript
    * see https://storybook.js.org/docs/configurations/typescript-config/
@@ -10,15 +11,15 @@ module.exports = {
       test: /\.(ts|tsx)$/,
       use: [
         {
-          loader: require.resolve('ts-loader'),
+          loader: require.resolve("ts-loader"),
         },
         // Optional
         {
-          loader: require.resolve('react-docgen-typescript-loader'),
+          loader: require.resolve("react-docgen-typescript-loader"),
         },
       ],
     });
-    config.resolve.extensions.unshift('.ts', '.tsx');
+    config.resolve.extensions.unshift(".ts", ".tsx", ".mdx");
     return config;
   },
 };
