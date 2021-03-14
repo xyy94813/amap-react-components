@@ -10,17 +10,13 @@ import useAMapEventBinder from '../../hooks/useAMapEventBinder';
  */
 
 export interface AMapScaleProps extends AMap.ScaleConfig {
-  visiable?: boolean;
+  visible?: boolean;
   onShow?: (event: any) => void;
   onHide?: (event: any) => void;
 }
 
 const AMapScale = ({
-  position = 'LB',
-  offset,
-  visiable = true,
-  onShow,
-  onHide,
+  position = 'LB', offset, visible = true, onShow, onHide,
 }: AMapScaleProps) => {
   const { __AMAP__: AMap } = useAMap();
   const [curInstance, setInstance] = useState<any>(null);
@@ -54,13 +50,13 @@ const AMapScale = ({
 
   useEffect(() => {
     if (curInstance) {
-      if (visiable) {
+      if (visible) {
         curInstance.show();
       } else {
         curInstance.hide();
       }
     }
-  }, [curInstance, visiable]);
+  }, [curInstance, visible]);
 
   useAMapEventBinder(curInstance, 'show', onShow);
   useAMapEventBinder(curInstance, 'hide', onHide);

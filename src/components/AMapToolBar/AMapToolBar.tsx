@@ -9,13 +9,13 @@ import useAMapEventBinder from '../../hooks/useAMapEventBinder';
  * https://lbs.amap.com/api/jsapi-v2/documentation#hawkeye
  */
 export interface AMapToolBarProps extends AMap.ToolBarConfig {
-  visiable?: boolean;
+  visible?: boolean;
   onShow?: (event: any) => void;
   onHide?: (event: any) => void;
 }
 
 const AMapToolBar = ({
-  position, offset, visiable = true, onShow, onHide,
+  position, offset, visible = true, onShow, onHide,
 }: AMapToolBarProps) => {
   const { __AMAP__: AMap } = useAMap();
   const [curInstance, setInstance] = useState<any>(null);
@@ -47,13 +47,13 @@ const AMapToolBar = ({
 
   useEffect(() => {
     if (curInstance) {
-      if (visiable) {
+      if (visible) {
         curInstance.show();
       } else {
         curInstance.hide();
       }
     }
-  }, [curInstance, visiable]);
+  }, [curInstance, visible]);
 
   useAMapEventBinder(curInstance, 'show', onShow);
   useAMapEventBinder(curInstance, 'hide', onHide);

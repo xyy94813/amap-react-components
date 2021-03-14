@@ -38,12 +38,12 @@ export const Sync = () => (
 );
 
 export const SupportedFunctions = () => {
-  const [visiable, setVisiable] = useState<boolean>(true);
+  const [visible, setVisible] = useState<boolean>(true);
   // const [showRectangle, setShowRectangle] = useState<boolean>(false);
   // const [showMinifyBtn, setShowMinifyBtn] = useState<boolean>(false);
 
   const handleSwitchBtnClick = useCallback(() => {
-    setVisiable((v) => !v);
+    setVisible((v) => !v);
   }, []);
 
   // const handleSwitchBtn1Click = useCallback(() => {
@@ -68,7 +68,7 @@ export const SupportedFunctions = () => {
       >
         <div>
           <button type="button" onClick={handleSwitchBtnClick}>
-            {visiable ? 'Hide' : 'Show'}
+            {visible ? 'Hide' : 'Show'}
           </button>
           {/* &nbsp;
           <button type="button" onClick={handleSwitchBtn1Click}>
@@ -91,7 +91,7 @@ export const SupportedFunctions = () => {
               borderRadius="12px"
               borderWidth="4px"
               buttonSize="4px"
-              visiable={visiable}
+              visible={visible}
               onHide={eventHandler.onHide}
               onShow={eventHandler.onShow}
             />

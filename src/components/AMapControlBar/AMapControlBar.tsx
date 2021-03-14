@@ -10,7 +10,7 @@ import useAMapEventBinder from '../../hooks/useAMapEventBinder';
  */
 
 export interface AMapControlBarProps extends AMap.ControlBarConfig {
-  visiable?: boolean;
+  visible?: boolean;
   onShow?: (event: any) => void;
   onHide?: (event: any) => void;
 }
@@ -19,7 +19,7 @@ const AMapControlBar = ({
   position = 'LT',
   offset,
   showControlButton = true,
-  visiable = true,
+  visible = true,
   onHide,
   onShow,
 }: AMapControlBarProps) => {
@@ -56,13 +56,13 @@ const AMapControlBar = ({
 
   useEffect(() => {
     if (curInstance) {
-      if (visiable) {
+      if (visible) {
         curInstance.show();
       } else {
         curInstance.hide();
       }
     }
-  }, [curInstance, visiable]);
+  }, [curInstance, visible]);
 
   useAMapEventBinder(curInstance, 'show', onShow);
   useAMapEventBinder(curInstance, 'hide', onHide);

@@ -38,11 +38,11 @@ export const Sync = () => (
 );
 
 export const SupportedFunctions = () => {
-  const [visiable, setVisiable] = useState<boolean>(true);
+  const [visible, setVisible] = useState<boolean>(true);
   const [showControlBtn, setShowControlBtn] = useState<boolean>(false);
 
   const handleSwitchBtnClick = useCallback(() => {
-    setVisiable((v) => !v);
+    setVisible((v) => !v);
   }, []);
 
   const handleSwitchBtn2Click = useCallback(() => {
@@ -63,7 +63,7 @@ export const SupportedFunctions = () => {
       >
         <div>
           <button type="button" onClick={handleSwitchBtnClick}>
-            {visiable ? 'hide' : 'show'}
+            {visible ? 'hide' : 'show'}
           </button>
           &nbsp;
           <button type="button" onClick={handleSwitchBtn2Click}>
@@ -75,7 +75,7 @@ export const SupportedFunctions = () => {
             <AMapControlBar
               position="LT"
               showControlButton={showControlBtn}
-              visiable={visiable}
+              visible={visible}
               onHide={eventHandler.onHide}
               onShow={eventHandler.onShow}
             />

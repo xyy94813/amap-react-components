@@ -10,7 +10,7 @@ import useAMapEventBinder from '../../hooks/useAMapEventBinder';
  */
 
 export interface AMapHawkEyeProps extends AMap.HawkEyeOptions {
-  visiable?: boolean;
+  visible?: boolean;
   onShow?: (event: any) => void;
   onHide?: (event: any) => void;
 }
@@ -29,7 +29,7 @@ const AMapHawkEye = ({
   borderRadius,
   borderWidth,
   buttonSize,
-  visiable = true,
+  visible = true,
   onShow,
   onHide,
 }: AMapHawkEyeProps) => {
@@ -99,13 +99,13 @@ const AMapHawkEye = ({
 
   useEffect(() => {
     if (curInstance) {
-      if (visiable) {
+      if (visible) {
         curInstance.show();
       } else {
         curInstance.hide();
       }
     }
-  }, [curInstance, visiable]);
+  }, [curInstance, visible]);
 
   useAMapEventBinder(curInstance, 'show', onShow);
   useAMapEventBinder(curInstance, 'hide', onHide);

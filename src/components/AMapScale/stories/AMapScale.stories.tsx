@@ -38,11 +38,11 @@ export const Sync = () => (
 );
 
 export const ControlVisible = () => {
-  const [visiable, setVisiable] = useState<boolean>(true);
+  const [visible, setVisible] = useState<boolean>(true);
 
   const handleSwitchBtnClick = useCallback(() => {
-    setVisiable((v) => !v);
-  }, [setVisiable]);
+    setVisible((v) => !v);
+  }, [setVisible]);
 
   const eventHandler = useMemo(() => actions('onHide', 'onShow'), []);
 
@@ -58,14 +58,14 @@ export const ControlVisible = () => {
       >
         <div>
           <button type="button" onClick={handleSwitchBtnClick}>
-            {visiable ? 'hide' : 'show'}
+            {visible ? 'hide' : 'show'}
           </button>
         </div>
         <div>
           <AMapMap zoom={12}>
             <AMapScale
               position="LB"
-              visiable={visiable}
+              visible={visible}
               onHide={eventHandler.onHide}
               onShow={eventHandler.onShow}
             />
