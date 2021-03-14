@@ -14,9 +14,14 @@ export interface AMapToolBarProps extends AMap.ToolBarConfig {
   onHide?: (event: any) => void;
 }
 
-const AMapToolBar = ({
-  position, offset, visible = true, onShow, onHide,
-}: AMapToolBarProps) => {
+const defaultProps: AMapToolBarProps = {
+  position: 'LT',
+  visible: true,
+};
+
+const AMapToolBar: React.FC<AMapToolBarProps> = ({
+  position, offset, visible, onShow, onHide,
+}) => {
   const { __AMAP__: AMap } = useAMap();
   const [curInstance, setInstance] = useState<any>(null);
 
@@ -63,4 +68,6 @@ const AMapToolBar = ({
   return null;
 };
 
-export default React.memo<React.ComponentType<AMapToolBarProps>>(AMapToolBar);
+AMapToolBar.defaultProps = defaultProps;
+
+export default React.memo(AMapToolBar);

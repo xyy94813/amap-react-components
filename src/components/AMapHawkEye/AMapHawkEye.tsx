@@ -15,11 +15,17 @@ export interface AMapHawkEyeProps extends AMap.HawkEyeOptions {
   onHide?: (event: any) => void;
 }
 
-const AMapHawkEye = ({
+const defaultProps: AMapHawkEyeProps = {
+  showButton: true,
+  isOpen: true,
+  visible: true,
+};
+
+const AMapHawkEye: React.FC<AMapHawkEyeProps> = ({
   autoMove,
   showRectangle,
-  showButton = true,
-  isOpen = true,
+  showButton,
+  isOpen,
   mapStyle,
   width,
   height,
@@ -29,10 +35,10 @@ const AMapHawkEye = ({
   borderRadius,
   borderWidth,
   buttonSize,
-  visible = true,
+  visible,
   onShow,
   onHide,
-}: AMapHawkEyeProps) => {
+}) => {
   const { __AMAP__: AMap } = useAMap();
   const [curInstance, setInstance] = useState<any>(null);
 
@@ -115,4 +121,6 @@ const AMapHawkEye = ({
   return null;
 };
 
-export default React.memo<React.ComponentType<AMapHawkEyeProps>>(AMapHawkEye);
+AMapHawkEye.defaultProps = defaultProps;
+
+export default React.memo(AMapHawkEye);

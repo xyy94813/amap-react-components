@@ -15,9 +15,14 @@ export interface AMapScaleProps extends AMap.ScaleConfig {
   onHide?: (event: any) => void;
 }
 
-const AMapScale = ({
-  position = 'LB', offset, visible = true, onShow, onHide,
-}: AMapScaleProps) => {
+const defaultProps: AMapScaleProps = {
+  position: 'LB',
+  visible: true,
+};
+
+const AMapScale: React.FC<AMapScaleProps> = ({
+  position, offset, visible, onShow, onHide,
+}) => {
   const { __AMAP__: AMap } = useAMap();
   const [curInstance, setInstance] = useState<any>(null);
 
@@ -66,4 +71,6 @@ const AMapScale = ({
   return null;
 };
 
-export default React.memo<React.ComponentType<AMapScaleProps>>(AMapScale);
+AMapScale.defaultProps = defaultProps;
+
+export default React.memo(AMapScale);

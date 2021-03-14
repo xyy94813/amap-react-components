@@ -15,14 +15,20 @@ export interface AMapControlBarProps extends AMap.ControlBarConfig {
   onHide?: (event: any) => void;
 }
 
-const AMapControlBar = ({
-  position = 'LT',
+const defaultProps: AMapControlBarProps = {
+  position: 'LT',
+  showControlButton: true,
+  visible: true,
+};
+
+const AMapControlBar: React.FC<AMapControlBarProps> = ({
+  position,
   offset,
-  showControlButton = true,
-  visible = true,
+  showControlButton,
+  visible,
   onHide,
   onShow,
-}: AMapControlBarProps) => {
+}) => {
   const { __AMAP__: AMap } = useAMap();
   const [curInstance, setInstance] = useState<any>(null);
 
@@ -72,4 +78,6 @@ const AMapControlBar = ({
   return null;
 };
 
-export default React.memo<React.ComponentType<AMapControlBarProps>>(AMapControlBar);
+AMapControlBar.defaultProps = defaultProps;
+
+export default React.memo(AMapControlBar);
