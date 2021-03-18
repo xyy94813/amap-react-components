@@ -28,6 +28,16 @@ module.exports = {
         'react/jsx-filename-extension': ['error', { extensions: ['.ts', '.tsx', '.js', '.jsx'] }],
       },
     },
+    {
+      files: ['*.stories.ts', '*.stories.tsx'],
+      rules: {
+        'react/jsx-props-no-spreading': ['error', {
+          html: 'enforce',
+          custom: 'ignore',
+          explicitSpread: 'enforce',
+        }],
+      },
+    },
   ],
   settings: {
     'import/resolver': {
