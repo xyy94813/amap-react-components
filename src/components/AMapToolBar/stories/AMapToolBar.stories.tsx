@@ -1,81 +1,70 @@
-import React, { useState, useMemo, useCallback } from 'react';
+import React from 'react';
+import { Story, Meta } from '@storybook/react';
 import { actions } from '@storybook/addon-actions';
 
-import { createAMapAPIContainer } from '../../AMapAPIContainer';
-import { AMapMap } from '../../AMapMap';
+import { withAMapContainer } from '../../AMapMap/stories/AMapMap.stories';
 
-import AMapToolBar from '../index';
+import AMapToolBar, { AMapToolBarProps } from '../index';
 
-const APIContainer = createAMapAPIContainer({
-  version: '2.0',
-  apiKey: process.env.STORYBOOK_AMAP_API_KEY as string,
-});
-
-export const Async = () => (
-  <APIContainer>
-    <div style={{ height: 'calc(100vh - 8px * 2)' }}>
-      <AMapMap zoom={12}>
-        <AMapToolBar position="RB" />
-      </AMapMap>
-    </div>
-  </APIContainer>
-);
-
-const SyncAPIContainer = createAMapAPIContainer({
-  version: '2.0',
-  apiKey: process.env.STORYBOOK_AMAP_API_KEY as string,
-  plugins: ['AMap.ToolBar'],
-});
-
-export const Sync = () => (
-  <SyncAPIContainer>
-    <div style={{ height: 'calc(100vh - 8px * 2)' }}>
-      <AMapMap zoom={12}>
-        <AMapToolBar position="RB" />
-      </AMapMap>
-    </div>
-  </SyncAPIContainer>
-);
-
-export const ControlVisible = () => {
-  const [visible, setVisible] = useState<boolean>(true);
-
-  const handleSwitchBtnClick = useCallback(() => {
-    setVisible((v) => !v);
-  }, []);
-
-  const eventHandler = useMemo(() => actions('onHide', 'onShow'), []);
-
-  return (
-    <SyncAPIContainer>
-      <div
-        style={{
-          height: 'calc(100vh - 8px * 2)',
-          display: 'grid',
-          gridRowGap: 12,
-          gridTemplateRows: 'max-content auto',
-        }}
-      >
-        <div>
-          <button type="button" onClick={handleSwitchBtnClick}>
-            {visible ? 'hide' : 'show'}
-          </button>
-        </div>
-        <div>
-          <AMapMap zoom={12}>
-            <AMapToolBar
-              position="RB"
-              visible={visible}
-              onHide={eventHandler.onHide}
-              onShow={eventHandler.onShow}
-            />
-          </AMapMap>
-        </div>
-      </div>
-    </SyncAPIContainer>
-  );
-};
+const eventHandler = actions('onShow', 'onHide');
 
 export default {
-  title: 'AMapToolBar',
-};
+  title: 'Components/Control/AMapToolBar',
+  component: AMapToolBar,
+  decorators: [withAMapContainer],
+  args: {
+    position: 'LT',
+    offset: [0, 0],
+    showControlButton: true,
+    visible: true,
+    onShow: eventHandler.onShow,
+    onHide: eventHandler.onHide,
+  },
+  argTypes: {
+    position: {
+      description: '控件停靠位置',
+      table: {
+        type: { summary: 'string|object' },
+        defaultValue: { summary: 'LT' },
+      },
+      control: {
+        type: 'select',
+        options: ['LT', 'RT', 'LB', 'RB'],
+      },
+    },
+    offset: {
+      description:
+        '相对于地图容器偏移量，正数代表地图中心，复数向地图外侧(实际现象与高德地图官方文档不一致)。',
+      table: {
+        type: { summary: 'array' },
+      },
+      control: 'array',
+    },
+    showControlButton: {
+      description: '是否显示倾斜、旋转按钮。',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: true },
+      },
+      control: 'boolean',
+    },
+    visible: {
+      description: '显示或隐藏',
+      control: 'boolean',
+    },
+    onShow: {
+      description: '显示时触发此事件',
+    },
+    onHide: {
+      description: '隐藏时触发此事件',
+    },
+  },
+} as Meta;
+
+const Template: Story<AMapToolBarProps> = (args) => <AMapToolBar {...args} />;
+
+export const ChangeOffset = Template.bind({});
+ChangeOffset.args = { offset: [20, 20] };
+
+export const ChangePosition = Template.bind({});
+ChangePosition.args = { position: 'RT' };

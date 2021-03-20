@@ -1,2 +1,2 @@
 export { AMapMapContextValue, AMapMapContext } from './AMapMapContext';
-export { default, default as AMapMap } from './AMapMap';
+export { default, default as AMapMap, MapProps } from './AMapMap';
