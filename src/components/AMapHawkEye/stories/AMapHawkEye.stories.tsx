@@ -1,107 +1,137 @@
-import React, { useState, useMemo, useCallback } from 'react';
+import React from 'react';
+import { Story, Meta } from '@storybook/react';
 import { actions } from '@storybook/addon-actions';
 
-import { createAMapAPIContainer } from '../../AMapAPIContainer';
-import { AMapMap } from '../../AMapMap';
+import { withAMapContainer } from '../../AMapMap/stories/AMapMap.stories';
 
-import AMapHawkEye from '../index';
+import AMapHawkEye, { AMapHawkEyeProps } from '../index';
 
-const APIContainer = createAMapAPIContainer({
-  version: '2.0',
-  apiKey: process.env.STORYBOOK_AMAP_API_KEY as string,
-});
-
-export const Async = () => (
-  <APIContainer>
-    <div style={{ height: 'calc(100vh - 8px * 2)' }}>
-      <AMapMap zoom={12}>
-        <AMapHawkEye />
-      </AMapMap>
-    </div>
-  </APIContainer>
-);
-
-const SyncAPIContainer = createAMapAPIContainer({
-  version: '2.0',
-  apiKey: process.env.STORYBOOK_AMAP_API_KEY as string,
-  plugins: ['AMap.HawkEye'],
-});
-
-export const Sync = () => (
-  <SyncAPIContainer>
-    <div style={{ height: 'calc(100vh - 8px * 2)' }}>
-      <AMapMap zoom={12}>
-        <AMapHawkEye />
-      </AMapMap>
-    </div>
-  </SyncAPIContainer>
-);
-
-export const SupportedFunctions = () => {
-  const [visible, setVisible] = useState<boolean>(true);
-  // const [showRectangle, setShowRectangle] = useState<boolean>(false);
-  // const [showMinifyBtn, setShowMinifyBtn] = useState<boolean>(false);
-
-  const handleSwitchBtnClick = useCallback(() => {
-    setVisible((v) => !v);
-  }, []);
-
-  // const handleSwitchBtn1Click = useCallback(() => {
-  //   setShowRectangle((v) => !v);
-  // }, []);
-
-  // const handleSwitchBtn2Click = useCallback(() => {
-  //   setShowMinifyBtn((v) => !v);
-  // }, []);
-
-  const eventHandler = useMemo(() => actions('onHide', 'onShow'), []);
-
-  return (
-    <SyncAPIContainer>
-      <div
-        style={{
-          height: 'calc(100vh - 8px * 2)',
-          display: 'grid',
-          gridRowGap: 12,
-          gridTemplateRows: 'max-content auto',
-        }}
-      >
-        <div>
-          <button type="button" onClick={handleSwitchBtnClick}>
-            {visible ? 'Hide' : 'Show'}
-          </button>
-          {/* &nbsp;
-          <button type="button" onClick={handleSwitchBtn1Click}>
-            {showRectangle ? 'Hide Rectangle' : 'Show Rectangle'}
-          </button>
-          &nbsp;
-          <button type="button" onClick={handleSwitchBtn2Click}>
-            {showMinifyBtn ? 'Hide Minify Btn' : 'Show Minify Btn'}
-          </button> */}
-        </div>
-        <div>
-          <AMapMap zoom={12}>
-            <AMapHawkEye
-              showRectangle={false}
-              showButton={false}
-              // isOpen
-              mapStyle="amap://styles/dark"
-              borderStyle="dashed dotted solid double"
-              borderColor="#000"
-              borderRadius="12px"
-              borderWidth="4px"
-              buttonSize="4px"
-              visible={visible}
-              onHide={eventHandler.onHide}
-              onShow={eventHandler.onShow}
-            />
-          </AMapMap>
-        </div>
-      </div>
-    </SyncAPIContainer>
-  );
-};
+const eventHandler = actions('onShow', 'onHide', 'onOpen', 'onClose');
 
 export default {
-  title: 'AMapHawkEye',
+  title: 'Components/Control/AMapHawkEye',
+  component: AMapHawkEye,
+  decorators: [withAMapContainer],
+  args: {
+    autoMove: true,
+    showRectangle: true,
+    showButton: true,
+    visible: true,
+    onShow: eventHandler.onShow,
+    onHide: eventHandler.onHide,
+  },
+  argTypes: {
+    offset: {
+      description:
+        '相对于地图容器偏移量，正数代表地图中心，复数向地图外侧(实际现象与高德地图官方文档不一致)。',
+      control: {
+        type: 'object',
+      },
+    },
+    autoMove: {
+      description: '是否随主图视口变化移动',
+      control: {
+        type: 'boolean',
+      },
+    },
+    showRectangle: {
+      description: '是否显示视口矩形',
+      control: {
+        type: 'boolean',
+      },
+    },
+    showButton: {
+      description: '是否显示打开关闭的按钮',
+      control: {
+        type: 'boolean',
+      },
+    },
+    isOpen: {
+      description: '默认是否展开',
+      control: {
+        type: 'boolean',
+      },
+    },
+    mapStyle: {
+      description: '缩略图要显示的地图自定义样式，如 "amap://styles/dark"',
+      control: {
+        type: 'text',
+      },
+    },
+    width: {
+      description: '缩略图的宽度，同CSS，如 "200px"',
+      control: {
+        type: 'text',
+        description: '缩略图的宽度，同CSS，如 "200px"',
+      },
+    },
+    height: {
+      description: '缩略图的高度，同CSS，如"200px"',
+      control: {
+        type: 'text',
+      },
+    },
+    borderStyle: {
+      description: '缩略图的边框样式，同CSS，如 "double solid solid double"',
+      control: {
+        type: 'text',
+      },
+    },
+    borderColor: {
+      description: '缩略图的高度，同CSS，如 "silver"',
+      control: {
+        type: 'color',
+      },
+    },
+    borderRadius: {
+      description: '缩略图的高度，同CSS，如 "5px"',
+      control: {
+        type: 'text',
+      },
+    },
+    borderWidth: {
+      description: '缩略图的高度，同CSS，如 "5px"',
+      control: {
+        type: 'text',
+      },
+    },
+    buttonSize: {
+      description: '箭头按钮的像素尺寸，同CSS，如 "12px"',
+      control: {
+        type: 'text',
+      },
+    },
+    visible: {
+      description: '显示或隐藏',
+      control: {
+        type: 'boolean',
+      },
+    },
+  },
+} as Meta;
+
+const Template: Story<AMapHawkEyeProps> = (args) => <AMapHawkEye {...args} />;
+
+export const ChangePosition = Template.bind({});
+ChangePosition.args = { offset: [10, 10] };
+
+export const ChangeStyle = Template.bind({});
+ChangeStyle.args = {
+  height: '200px',
+  width: '100px',
+  borderStyle: 'dashed',
+  borderColor: 'red',
+  borderRadius: '4px',
+  borderWidth: '5px',
+  buttonSize: '10px',
+};
+
+export const ChangeTheme = Template.bind({});
+ChangeTheme.args = {
+  mapStyle: 'amap://styles/dark',
+};
+
+export const NotAutoMove = Template.bind({});
+ChangeTheme.args = {
+  autoMove: false,
 };

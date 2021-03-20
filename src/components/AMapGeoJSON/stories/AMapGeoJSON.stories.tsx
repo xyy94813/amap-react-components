@@ -1,17 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import { Meta, Story } from '@storybook/react';
 // import { actions } from '@storybook/addon-actions';
+
+import { withAMapContainer } from '../../AMapMap/stories/AMapMap.stories';
 
 import useAMap from '../../../hooks/useAMap';
 
-import { createAMapAPIContainer } from '../../AMapAPIContainer';
-import { AMapMap } from '../../AMapMap';
-
-import AMapGeoJSON, { AMapGeoJSONGetOverlayCallback } from '../index';
-
-const APIContainer = createAMapAPIContainer({
-  version: '2.0',
-  apiKey: process.env.STORYBOOK_AMAP_API_KEY as string,
-});
+import AMapGeoJSON, { AMapGeoJSONGetOverlayCallback, AMapGeoJSONProps } from '../index';
 
 const mockData: GeoJSON.FeatureCollection = {
   type: 'FeatureCollection',
@@ -54,30 +49,6 @@ const mockData: GeoJSON.FeatureCollection = {
   ],
 };
 
-const getMarker: AMapGeoJSONGetOverlayCallback = (geojson, lnglat, map, AMap) => {
-  const options = {
-    position: lnglat,
-    map,
-  };
-  return new AMap.Marker(options);
-};
-
-const getPolyline: AMapGeoJSONGetOverlayCallback = (geojson, lnglat, map, AMap) => {
-  const options = {
-    path: lnglat,
-    map,
-  };
-  return new AMap.Polyline(options);
-};
-
-const getPolygon: AMapGeoJSONGetOverlayCallback = (geojson, lnglat, map, AMap) => {
-  const options = {
-    path: lnglat,
-    map,
-  };
-  return new AMap.Polygon(options);
-};
-
 interface AMapAutoFitViewProps {
   delay?: number;
 }
@@ -105,44 +76,95 @@ function AMapAutoFitView({ delay = 2000 }: AMapAutoFitViewProps) {
   return null;
 }
 
-export const Async = () => (
-  <APIContainer>
-    <div style={{ height: 'calc(100vh - 8px * 2)' }}>
-      <AMapMap>
-        <AMapGeoJSON
-          geoJSON={mockData}
-          getMarker={getMarker}
-          getPolyline={getPolyline}
-          getPolygon={getPolygon}
-        />
-        <AMapAutoFitView />
-      </AMapMap>
-    </div>
-  </APIContainer>
-);
-
-const SyncAPIContainer = createAMapAPIContainer({
-  version: '2.0',
-  apiKey: process.env.STORYBOOK_AMAP_API_KEY as string,
-  plugins: ['AMap.GeoJSON'],
-});
-
-export const Sync = () => (
-  <SyncAPIContainer>
-    <div style={{ height: 'calc(100vh - 8px * 2)' }}>
-      <AMapMap>
-        <AMapGeoJSON
-          geoJSON={mockData}
-          getMarker={getMarker}
-          getPolyline={getPolyline}
-          getPolygon={getPolygon}
-        />
-        <AMapAutoFitView />
-      </AMapMap>
-    </div>
-  </SyncAPIContainer>
-);
-
 export default {
-  title: 'AMapGeoJSON',
+  title: 'Components/Overlay/AMapGeoJSON',
+  decorators: [withAMapContainer],
+  argTypes: {
+    geoJSON: {
+      description: '要加载的标准 GeoJSON 对象',
+      type: { required: true },
+      table: {
+        type: {
+          summary: 'GeoJSON',
+          detail: 'AMap 暂时不支持 `Feature`，需要转换成 `FeatureCollection`',
+        },
+      },
+    },
+    getMarker: {
+      description: '指定点要素的绘制方式，缺省时为 Marker 的默认样式。',
+      table: {
+        type: {
+          summary:
+            '(geojson?: GeoJSON.GeoJSON, lnglat?: GeoJSON.Point, map?: AMap.Map | null, AMap?: AMap.AMap) => AMap.Overlay',
+        },
+      },
+    },
+    getPolyline: {
+      description: '指定点要素的绘制方式，缺省时为 Polyline 的默认样式。',
+      table: {
+        type: {
+          summary:
+            '(geojson?: GeoJSON.GeoJSON, lnglat?: GeoJSON.Point, map?: AMap.Map | null, AMap?: AMap.AMap) => AMap.Overlay',
+        },
+      },
+    },
+    getPolygon: {
+      description: '指定点要素的绘制方式，缺省时为 Polygon 的默认样式。',
+      table: {
+        type: {
+          summary:
+            '(geojson?: GeoJSON.GeoJSON, lnglat?: GeoJSON.Point, map?: AMap.Map | null, AMap?: AMap.AMap) => AMap.Overlay',
+        },
+      },
+    },
+  },
+} as Meta;
+
+const Template: Story<AMapGeoJSONProps> = (args) => (
+  <>
+    <AMapGeoJSON {...args} />
+    <AMapAutoFitView />
+  </>
+);
+
+export const WithGeoJSON = Template.bind({});
+WithGeoJSON.args = {
+  geoJSON: mockData,
+};
+
+const getMarker: AMapGeoJSONGetOverlayCallback = (_, lnglat, map, AMap) => {
+  const options = {
+    position: lnglat,
+    map,
+    label: {
+      content: 'MyMarker',
+    },
+  };
+  return new AMap.Marker(options);
+};
+
+const getPolyline: AMapGeoJSONGetOverlayCallback = (_, lnglat, map, AMap) => {
+  const options = {
+    path: lnglat,
+    map,
+    strokeColor: 'red',
+  };
+  return new AMap.Polyline(options);
+};
+
+const getPolygon: AMapGeoJSONGetOverlayCallback = (_, lnglat, map, AMap) => {
+  const options = {
+    path: lnglat,
+    map,
+    strokeColor: 'yellow',
+  };
+  return new AMap.Polygon(options);
+};
+
+export const CustomOverlay = Template.bind({});
+CustomOverlay.args = {
+  geoJSON: mockData,
+  getMarker,
+  getPolyline,
+  getPolygon,
 };
