@@ -16,13 +16,13 @@ React components for [AMap](https://lbs.amap.com/api/jsapi-v2/summary/).
 
 [Examples of implemented component](https://xyy94813.github.io/amap-react)
 
-## Contruibution
+## Contributing
 
 DefinitelyTyped only works because of contributions by users like you!
 
 ### Git Message
 
-[Follow the Angular git commit message specification](https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#commits)
+[Follow the Conventional Commits v1.0.0](https://www.conventionalcommits.org/en/v1.0.0/)
 
 But, you can ignore the `scope`
 
