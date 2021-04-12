@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meta, Story } from '@storybook/react';
 
-import AMapMap, { MapProps } from '../index';
+import { AMapMap, MapProps } from 'index';
 
 import { AsyncPluginAPIContainer as APIContainer } from '../../AMapAPIContainer/stories/createAMapAPIContainer.stories';
 

@@ -2,9 +2,8 @@ import React from 'react';
 import { Story, Meta } from '@storybook/react';
 import { actions } from '@storybook/addon-actions';
 
+import { AMapScale, AMapScaleProps } from 'index';
 import { withAMapContainer } from '../../AMapMap/stories/AMapMap.stories';
-
-import AMapScale, { AMapScaleProps } from '../index';
 
 const eventHandler = actions('onShow', 'onHide');
 

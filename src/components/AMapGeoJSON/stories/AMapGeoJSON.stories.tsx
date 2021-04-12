@@ -2,11 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { Meta, Story } from '@storybook/react';
 // import { actions } from '@storybook/addon-actions';
 
+import { AMapGeoJSON, AMapGeoJSONGetOverlayCallback, AMapGeoJSONProps } from 'index';
 import { withAMapContainer } from '../../AMapMap/stories/AMapMap.stories';
 
 import useAMap from '../../../hooks/useAMap';
-
-import AMapGeoJSON, { AMapGeoJSONGetOverlayCallback, AMapGeoJSONProps } from '../index';
 
 const mockData: GeoJSON.FeatureCollection = {
   type: 'FeatureCollection',

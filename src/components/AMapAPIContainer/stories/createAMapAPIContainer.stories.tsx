@@ -1,8 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import { Meta } from '@storybook/react';
 
-import useAMapAPI, { useAMapAPIValue } from '../../../hooks/useAMapAPI';
-import { createAMapAPIContainer } from '../index';
+import { createAMapAPIContainer, useAMapAPI, useAMapAPIValue } from 'index';
 
 const AMAP_API_KEY: string = process.env.STORYBOOK_AMAP_API_KEY || '';
 

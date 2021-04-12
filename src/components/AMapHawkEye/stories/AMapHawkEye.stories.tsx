@@ -2,9 +2,8 @@ import React from 'react';
 import { Story, Meta } from '@storybook/react';
 import { actions } from '@storybook/addon-actions';
 
+import { AMapHawkEye, AMapHawkEyeProps } from 'index';
 import { withAMapContainer } from '../../AMapMap/stories/AMapMap.stories';
-
-import AMapHawkEye, { AMapHawkEyeProps } from '../index';
 
 const eventHandler = actions('onShow', 'onHide', 'onOpen', 'onClose');
 
