@@ -16,6 +16,9 @@ module.exports = {
   rules: {
     'import/extensions': ['error', 'never'],
     'import/no-extraneous-dependencies': ['error', { peerDependencies: true }],
+    // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-unused-expressions.md
+    'no-unused-expressions': 'off',
+    '@typescript-eslint/no-unused-expressions': 'error',
     'react/state-in-constructor': ['error', 'never'],
     'react-hooks/rules-of-hooks': 'error', // check hook's rule
     'react-hooks/exhaustive-deps': 'warn', // check effect's dependencies
@@ -31,11 +34,14 @@ module.exports = {
     {
       files: ['*.stories.ts', '*.stories.tsx'],
       rules: {
-        'react/jsx-props-no-spreading': ['error', {
-          html: 'enforce',
-          custom: 'ignore',
-          explicitSpread: 'enforce',
-        }],
+        'react/jsx-props-no-spreading': [
+          'error',
+          {
+            html: 'enforce',
+            custom: 'ignore',
+            explicitSpread: 'enforce',
+          },
+        ],
       },
     },
   ],
