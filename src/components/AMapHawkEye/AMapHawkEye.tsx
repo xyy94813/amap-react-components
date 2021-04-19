@@ -94,22 +94,18 @@ const AMapHawkEye: React.FC<AMapHawkEyeProps> = ({
 
   // 是否展开
   useEffect(() => {
-    if (curInstance) {
-      if (isOpen) {
-        curInstance.open();
-      } else {
-        curInstance.close();
-      }
+    if (isOpen) {
+      curInstance?.open?.();
+    } else {
+      curInstance?.close?.();
     }
   }, [curInstance, isOpen]);
 
   useEffect(() => {
-    if (curInstance) {
-      if (visible) {
-        curInstance.show();
-      } else {
-        curInstance.hide();
-      }
+    if (visible) {
+      curInstance?.show?.();
+    } else {
+      curInstance?.hide?.();
     }
   }, [curInstance, visible]);
 

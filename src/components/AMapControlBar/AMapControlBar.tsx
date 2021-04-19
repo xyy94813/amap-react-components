@@ -61,12 +61,10 @@ const AMapControlBar: React.FC<AMapControlBarProps> = ({
   }, [AMap, initConfig]);
 
   useEffect(() => {
-    if (curInstance) {
-      if (visible) {
-        curInstance.show();
-      } else {
-        curInstance.hide();
-      }
+    if (visible) {
+      curInstance?.show?.();
+    } else {
+      curInstance?.hide?.();
     }
   }, [curInstance, visible]);
 

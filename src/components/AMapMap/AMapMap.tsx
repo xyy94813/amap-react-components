@@ -18,13 +18,6 @@ export interface MapProps {
 
 export type MapInstance = any;
 
-const safelyHandleMapInstance = (mapInstance: MapInstance, method: string, ...args: any[]) => {
-  if (!mapInstance || !mapInstance[method]) {
-    return;
-  }
-  mapInstance[method](...args);
-};
-
 const Map = React.forwardRef<MapInstance, MapProps>(
   ({
     children, center, cityName, zoom,
@@ -71,21 +64,21 @@ const Map = React.forwardRef<MapInstance, MapProps>(
     // set city
     useEffect(() => {
       if (cityName) {
-        safelyHandleMapInstance(curMap, 'setCity', cityName);
+        curMap?.setCity?.(cityName);
       }
     }, [cityName, curMap]);
 
     // set zoom
     useEffect(() => {
       if (zoom) {
-        safelyHandleMapInstance(curMap, 'setZoom', zoom);
+        curMap?.setZoom(zoom);
       }
     }, [zoom, curMap]);
 
     // set center
     useEffect(() => {
       if (center) {
-        safelyHandleMapInstance(curMap, 'setCenter', center);
+        curMap?.setCenter?.(center);
       }
     }, [center, curMap]);
 

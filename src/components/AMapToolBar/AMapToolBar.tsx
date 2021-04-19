@@ -51,12 +51,10 @@ const AMapToolBar: React.FC<AMapToolBarProps> = ({
   }, [AMap, position, offset, initConfig]);
 
   useEffect(() => {
-    if (curInstance) {
-      if (visible) {
-        curInstance.show();
-      } else {
-        curInstance.hide();
-      }
+    if (visible) {
+      curInstance?.show?.();
+    } else {
+      curInstance?.hide?.();
     }
   }, [curInstance, visible]);
 

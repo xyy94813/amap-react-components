@@ -24,12 +24,15 @@ function AMapGeoJSON({
   const { __AMAP__: AMap, map } = useAMap();
   const [curInstance, setInstance] = useState<AMap.GeoJSON | null>(null);
 
-  const withMap = useCallback((fn?: AMapGeoJSONGetOverlayCallback) => {
-    if (typeof fn !== 'function') {
-      return fn;
-    }
-    return (geojson: GeoJSON.GeoJSON, lnglat: any) => fn(geojson, lnglat, map, AMap);
-  }, [AMap, map]);
+  const withMap = useCallback(
+    (fn?: AMapGeoJSONGetOverlayCallback) => {
+      if (typeof fn !== 'function') {
+        return fn;
+      }
+      return (geojson: GeoJSON.GeoJSON, lnglat: any) => fn(geojson, lnglat, map, AMap);
+    },
+    [AMap, map],
+  );
 
   useEffect(() => {
     let clearEffect;
@@ -58,9 +61,7 @@ function AMapGeoJSON({
 
   // change data
   useEffect(() => {
-    if (!curInstance) return;
-
-    curInstance.importData(geoJSON);
+    curInstance?.importData?.(geoJSON);
   }, [geoJSON, curInstance]);
 
   // bind map

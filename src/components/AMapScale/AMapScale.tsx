@@ -54,12 +54,10 @@ const AMapScale: React.FC<AMapScaleProps> = ({
   }, [AMap, position, offset, initConfig]);
 
   useEffect(() => {
-    if (curInstance) {
-      if (visible) {
-        curInstance.show();
-      } else {
-        curInstance.hide();
-      }
+    if (visible) {
+      curInstance?.show?.();
+    } else {
+      curInstance?.hide?.();
     }
   }, [curInstance, visible]);
 
