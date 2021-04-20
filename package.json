@@ -1,5 +1,5 @@
 {
-  "name": "amap-react",
+  "name": "@xyy94813/amap-react",
   "version": "0.0.1",
   "description": "AMap Components for react",
   "main": "dist/amap-react.production.js",
