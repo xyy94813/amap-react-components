@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import { Meta } from '@storybook/react';
 
-import { createAMapAPIContainer, useAMapAPI, useAMapAPIValue } from 'index';
+import { createAMapAPIContainer, useAMapAPI } from 'index';
 
 const AMAP_API_KEY: string = process.env.STORYBOOK_AMAP_API_KEY || '';
 
@@ -32,7 +32,7 @@ const init = (AMap: any, map: any) => {
 };
 
 const AsyncPluginContentDrawer = () => {
-  const { __AMAP__: AMap }: useAMapAPIValue = useAMapAPI();
+  const { __AMAP__: AMap } = useAMapAPI();
   const $container = useRef(null);
   const $map = useRef(null);
   useEffect(() => {
@@ -82,7 +82,7 @@ const SyncPluginAPIContainer = createAMapAPIContainer({
 ${init.toString()}
 
 const AsyncPluginContentDrawer = () => {
-  const { __AMAP__: AMap }: useAMapAPIValue = useAMapAPI();
+  const { __AMAP__: AMap } = useAMapAPI();
   const $container = useRef(null);
   const $map = useRef(null);
   useEffect(() => {
@@ -120,7 +120,7 @@ AsyncPlugin.parameters = {
 };
 
 const SyncPluginContentDrawer = () => {
-  const { __AMAP__: AMap }: useAMapAPIValue = useAMapAPI();
+  const { __AMAP__: AMap } = useAMapAPI();
   const $container = useRef(null);
   const $map = useRef(null);
   useEffect(() => {
@@ -161,7 +161,7 @@ const SyncPluginAPIContainer = createAMapAPIContainer({
 ${init.toString()}
 
 const SyncPluginContentDrawer = () => {
-  const { __AMAP__: AMap }: useAMapAPIValue = useAMapAPI();
+  const { __AMAP__: AMap } = useAMapAPI();
   const $container = useRef(null);
   const $map = useRef(null);
   useEffect(() => {

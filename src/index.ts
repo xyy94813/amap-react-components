@@ -1,4 +1,4 @@
-export { default as useAMapAPI, useAMapAPIValue } from './hooks/useAMapAPI';
+export { default as useAMapAPI } from './hooks/useAMapAPI';
 export { default as useAMap } from './hooks/useAMap';
 export { default as useAMapContainerBinder } from './hooks/useAMapContainerBinder';
 
