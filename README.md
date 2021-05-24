@@ -1,4 +1,4 @@
-# amap-react
+# amap-react-components
 
 React components for [AMap](https://lbs.amap.com/api/jsapi-v2/summary/).
 
@@ -14,7 +14,7 @@ React components for [AMap](https://lbs.amap.com/api/jsapi-v2/summary/).
 
 > This repository is still in processing.
 
-[Examples of implemented component](https://xyy94813.github.io/amap-react)
+[Examples of implemented component](https://xyy94813.github.io/amap-react-components)
 
 ## Contributing
 

@@ -1,9 +1,9 @@
 {
-  "name": "@xyy94813/amap-react",
+  "name": "amap-react-components",
   "version": "0.0.1",
   "description": "AMap Components for react",
-  "main": "dist/amap-react.production.js",
-  "module": "dist/es/amap-react.production.js",
+  "main": "dist/amap-react-components.production.js",
+  "module": "dist/es/amap-react-components.production.js",
   "typings": "dist/types/index.d.ts",
   "scripts": {
     "prebuild": "rm -rf dist",
@@ -18,7 +18,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://xyy94813@github.com/xyy94813/amap-react.git"
+    "url": "git+https://xyy94813@github.com/xyy94813/amap-react-components.git"
   },
   "keywords": [
     "amap",
@@ -28,9 +28,9 @@
   "author": "xyy94813@sina.com",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/xyy94813/amap-react/issues"
+    "url": "https://github.com/xyy94813/amap-react-components/issues"
   },
-  "homepage": "https://github.com/xyy94813/amap-react#readme",
+  "homepage": "https://github.com/xyy94813/amap-react-components#readme",
   "peerDependencies": {
     "react": ">16.8",
     "react-dom": ">16.8"
