@@ -1,38 +1,45 @@
 # amap-react-components
 
-React components for [AMap](https://lbs.amap.com/api/jsapi-v2/summary/).
+[AMap](https://lbs.amap.com/api/jsapi-v2/summary/) 的 React 组件。
 
-> Note: Only support AMap V2 and React >= 16.8.
+> 注意: 仅支持 AMap V2 且 React >= 16.8.
 
 ## Difference with react-amap
 
-- **More active!!!**
-- Support amap v2
-- Base on react hook
+- **更加活跃!!!**
+- 支持 amap v2
+- 基于 react hook
+- 开源
 
-## Usage
+## 使用
 
-> This repository is still in processing.
+### 安装
 
-[Examples of implemented component](https://xyy94813.github.io/amap-react-components)
+```
+yarn add amap-react-components
+// or
+// npm i amap-react-components
+```
 
-## Contributing
+### 示例及 API
 
-DefinitelyTyped only works because of contributions by users like you!
+[各组件示例](https://xyy94813.github.io/amap-react-components)
 
-### Git Message
+### Browser
 
-[Follow the Conventional Commits v1.0.0](https://www.conventionalcommits.org/en/v1.0.0/)
+提供 browser 后缀支持 UMD 模块
 
-But, you can ignore the `scope`
+例如：
 
-### Development Step
+```
+https://cdn.jsdelivr.net/npm/amap-react-components@0.0.1/dist/amap-react-components.browser.js
+```
 
-1. `npm install`
-2. create a `.env.local` files
-3. set env `STORYBOOK_AMAP_API_KEY={your amap api key}`
-4. run `npm run loadenv -- npm run storybook`
+## 其它
+
+- [@amap/amap-react](https://www.npmjs.com/package/@amap/amap-react) （高德官方 react 组件 ）
+- [react-amap](https://github.com/elemefe/react-amap)
 
 ## LICENSE
 
-[MIT LICENSE](./LICENSE)
+[MIT LICENSE](./LICENSE.md)
