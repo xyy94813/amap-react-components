@@ -36,7 +36,7 @@
     "react-dom": ">16.8"
   },
   "devDependencies": {
-    "@amap/amap-jsapi-types": "0.0.4",
+    "@amap/amap-jsapi-types": "0.0.8",
     "@babel/core": "^7.10.3",
     "@commitlint/cli": "^12.0.0",
     "@commitlint/config-conventional": "^12.0.0",

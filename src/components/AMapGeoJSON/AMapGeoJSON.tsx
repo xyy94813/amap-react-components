@@ -7,7 +7,7 @@ export type AMapGeoJSONGetOverlayCallback = (
   geojson?: GeoJSON.GeoJSON,
   lnglat?: GeoJSON.Point[] | GeoJSON.Point[][] | GeoJSON.Point[][][],
   map?: AMap.Map | null,
-  AMap?: AMap.AMap,
+  AMap?: (typeof global.AMap) | null,
 ) => any;
 
 export interface AMapGeoJSONProps extends AMap.GeoJSONOptions {

@@ -1,7 +1,7 @@
 import React from 'react';
 
 export interface AMapAPIContextValue {
-  __AMAP__: AMap.AMap | null;
+  __AMAP__: typeof global.AMap | null;
   __AMAP_UI__?: any;
 }
 

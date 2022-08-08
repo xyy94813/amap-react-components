@@ -35,7 +35,7 @@ const Map = React.forwardRef<MapInstance, MapProps>(
       }
 
       const initMap = () => {
-        const newInstance = new AMap.Map($mapConatanier.current);
+        const newInstance = new AMap.Map($mapConatanier.current!);
         clearEffect = () => {
           /**
            * 异步的 destroy map，

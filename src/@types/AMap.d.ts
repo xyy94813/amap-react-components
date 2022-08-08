@@ -1,18 +1,29 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
+/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable max-classes-per-file */
 import '@amap/amap-jsapi-types';
 
 // 对 amap type 做扩展
 declare global {
   namespace AMap {
-    export type AMap = any;
 
     export interface ControlBarConfig extends AMap.ControlConfig {
       showControlButton?: boolean;
     }
+    export class ControlBar extends AMap.Control {
+      constructor(conf: ControlBarConfig);
+    }
 
     export interface ToolBarConfig extends AMap.ControlConfig {}
 
+    export class ToolBar extends AMap.Control {
+      constructor(conf: ToolBarConfig);
+    }
+
     export interface ScaleConfig extends AMap.ControlConfig {}
+
+    export class Scale extends AMap.Control {
+      constructor(conf: ScaleConfig);
+    }
 
     export interface HawkEyeOptions {
       autoMove?: boolean; // 是否随主图视口变化移动
@@ -31,6 +42,12 @@ declare global {
       buttonSize?: string; // 箭头按钮的像素尺寸，同CSS，如'12px'
     }
 
+    export class HawkEye extends AMap.Control {
+      constructor(options: HawkEyeOptions);
+      open(): void;
+      close(): void;
+    }
+
     export interface GeoJSONGetOverlayCallBack {
       (
         geojson?: GeoJSON.GeoJSON,
@@ -39,16 +56,18 @@ declare global {
     }
 
     export interface GeoJSONOptions {
-      geoJSON?: Object;
+      geoJSON?: GeoJSON.GeoJSON | null;
       getMarker?: GeoJSONGetOverlayCallBack;
       getPolyline?: GeoJSONGetOverlayCallBack;
       getPolygon?: GeoJSONGetOverlayCallBack;
     }
 
-    export interface GeoJSON extends OverlayGroup {
+    export class GeoJSON extends OverlayGroup {
+      constructor(options: GeoJSONOptions);
+
       importData: (data: GeoJSON.GeoJSON) => {};
+
+      toGeoJSON: () => GeoJSON.GeoJSON;
     }
   }
 }
-
-// export default AMap;
