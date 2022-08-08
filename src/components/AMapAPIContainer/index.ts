@@ -1,6 +1,6 @@
-export { AMapAPIContextValue, AMapAPIContext } from './AMapAPIContext';
+export { AMapAPIContextValue, default as AMapAPIContext } from './AMapAPIContext';
 export {
-  createAMapAPIContainerOptions,
+  CreateAMapApiContainerOptions,
   AMapAPIHocProps,
   createAMapAPIContainer,
 } from './createAMapAPIContainer';

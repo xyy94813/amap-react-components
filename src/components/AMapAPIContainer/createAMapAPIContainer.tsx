@@ -5,7 +5,7 @@ import AMapAPIContext from './AMapAPIContext';
 
 const DEFAULT_AMAP_VERSION = '2.0';
 
-export interface createAMapAPIContainerOptions {
+export interface CreateAMapApiContainerOptions {
   apiKey: string; // 首次调用load必须填写key
   version: string; // JSAPI 版本号
   plugins?: Array<string>; // 同步加载的插件列表
@@ -15,7 +15,7 @@ export interface AMapAPIHocProps {
   children: React.ReactNode;
 }
 
-export const createAMapAPIContainer = (options: createAMapAPIContainerOptions) => {
+export const createAMapAPIContainer = (options: CreateAMapApiContainerOptions) => {
   const { apiKey, version = DEFAULT_AMAP_VERSION, plugins = [] } = options;
   const loadAMapAPI = () => AMapLoader.load({
     key: apiKey,

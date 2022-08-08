@@ -1,18 +1,12 @@
+const path = require('path');
+
 module.exports = {
   env: {
     browser: true,
     es2020: true,
   },
   extends: ['plugin:react/recommended', 'airbnb'],
-  parser: '@typescript-eslint/parser',
-  parserOptions: {
-    ecmaFeatures: {
-      jsx: true,
-    },
-    ecmaVersion: 11,
-    sourceType: 'module',
-  },
-  plugins: ['react', 'react-hooks', '@typescript-eslint'],
+  plugins: ['react', 'react-hooks'],
   rules: {
     'import/extensions': ['error', 'never'],
     'import/no-extraneous-dependencies': ['error', { peerDependencies: true }],
@@ -25,15 +19,35 @@ module.exports = {
   },
   overrides: [
     {
-      files: ['*.ts', '*.tsx'],
+      files: ['./*.js'],
       rules: {
-        '@typescript-eslint/no-unused-vars': ['error', { args: 'none' }],
-        'react/jsx-filename-extension': ['error', { extensions: ['.ts', '.tsx', '.js', '.jsx'] }],
+        'import/no-extraneous-dependencies': [
+          'error',
+          { devDependencies: true, optionalDependencies: true },
+        ],
       },
     },
     {
-      files: ['*.stories.ts', '*.stories.tsx'],
+      files: ['**/*.ts?(x)'],
+      extends: ['airbnb-typescript'],
+      parserOptions: {
+        project: path.join(__dirname, './tsconfig.json'),
+      },
       rules: {
+        '@typescript-eslint/no-unused-vars': ['error', { args: 'none' }],
+        'react/jsx-filename-extension': [
+          'error',
+          { extensions: ['.ts', '.tsx', '.js', '.jsx'] },
+        ],
+      },
+    },
+    {
+      files: ['**/*.stories.ts', '**/*.stories.tsx'],
+      rules: {
+        'import/no-extraneous-dependencies': [
+          'error',
+          { peerDependencies: true },
+        ],
         'react/jsx-props-no-spreading': [
           'error',
           {

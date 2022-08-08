@@ -10,6 +10,6 @@ const defaultContext: AMapAPIContextValue = {
   __AMAP_UI__: null,
 };
 
-export const AMapAPIContext = React.createContext<AMapAPIContextValue>(defaultContext);
+const AMapAPIContext = React.createContext<AMapAPIContextValue>(defaultContext);
 
 export default AMapAPIContext;

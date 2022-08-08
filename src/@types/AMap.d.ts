@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 import '@amap/amap-jsapi-types';
 
 // 对 amap type 做扩展
