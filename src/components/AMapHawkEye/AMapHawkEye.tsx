@@ -1,4 +1,7 @@
-import React, { useEffect, useState, useMemo } from 'react';
+import type { FC } from 'react';
+import {
+  useEffect, useState, useMemo, memo,
+} from 'react';
 
 import useAMap from '../../hooks/useAMap';
 import useAMapControlBinder from '../../hooks/useAMapControlBinder';
@@ -9,19 +12,19 @@ import useAMapEventBinder from '../../hooks/useAMapEventBinder';
  * https://lbs.amap.com/api/jsapi-v2/documentation#hawkeye
  */
 
-export interface AMapHawkEyeProps extends AMap.HawkEyeOptions {
+export type AMapHawkEyeProps = AMap.HawkEyeOptions & {
   visible?: boolean;
   onShow?: (event: any) => void;
   onHide?: (event: any) => void;
-}
+};
 
-const defaultProps: AMapHawkEyeProps = {
+const defaultProps = {
   showButton: true,
   isOpen: true,
   visible: true,
 };
 
-const AMapHawkEye: React.FC<AMapHawkEyeProps> = ({
+const AMapHawkEye: FC<AMapHawkEyeProps> = ({
   autoMove,
   showRectangle,
   showButton,
@@ -119,4 +122,4 @@ const AMapHawkEye: React.FC<AMapHawkEyeProps> = ({
 
 AMapHawkEye.defaultProps = defaultProps;
 
-export default React.memo(AMapHawkEye);
+export default memo(AMapHawkEye);

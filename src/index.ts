@@ -4,7 +4,7 @@ export { default as useAMapContainerBinder } from './hooks/useAMapContainerBinde
 
 export * from './components/AMapAPIContainer';
 export {
-  AMapMap, MapProps, AMapMapContextValue, AMapMapContext,
+  AMapMap, AMapMapProps, AMapMapContextValue, AMapMapContext,
 } from './components/AMapMap';
 
 export { default as AMapControlBar, AMapControlBarProps } from './components/AMapControlBar';

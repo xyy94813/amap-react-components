@@ -1,4 +1,7 @@
-import React, { useEffect, useState, useMemo } from 'react';
+import type { FC } from 'react';
+import {
+  useEffect, useState, useMemo, memo,
+} from 'react';
 
 import useAMap from '../../hooks/useAMap';
 import useAMapControlBinder from '../../hooks/useAMapControlBinder';
@@ -9,19 +12,20 @@ import useAMapEventBinder from '../../hooks/useAMapEventBinder';
  * https://lbs.amap.com/api/jsapi-v2/documentation#ControlBar
  */
 
-export interface AMapControlBarProps extends AMap.ControlBarConfig {
+export type AMapControlBarProps = Pick<AMap.ControlBarConfig, 'offset' | 'showControlButton'> & {
+  position?: AMap.ControlBarConfig['position'];
   visible?: boolean;
   onShow?: (event: any) => void;
   onHide?: (event: any) => void;
-}
+};
 
-const defaultProps: AMapControlBarProps = {
-  position: 'LT',
+const defaultProps = {
+  position: 'LT' as AMapControlBarProps['position'],
   showControlButton: true,
   visible: true,
 };
 
-const AMapControlBar: React.FC<AMapControlBarProps> = ({
+const AMapControlBar: FC<AMapControlBarProps> = ({
   position,
   offset,
   showControlButton,
@@ -34,7 +38,7 @@ const AMapControlBar: React.FC<AMapControlBarProps> = ({
 
   const initConfig = useMemo(() => {
     const conf: AMap.ControlBarConfig = {
-      position,
+      position: position!,
     };
 
     if (showControlButton !== undefined) conf.showControlButton = showControlButton;
@@ -78,4 +82,4 @@ const AMapControlBar: React.FC<AMapControlBarProps> = ({
 
 AMapControlBar.defaultProps = defaultProps;
 
-export default React.memo(AMapControlBar);
+export default memo(AMapControlBar);

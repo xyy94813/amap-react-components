@@ -1,3 +1,4 @@
+import type { FC } from 'react';
 import { useState, useEffect, useCallback } from 'react';
 
 import useAMap from '../../hooks/useAMap';
@@ -10,17 +11,20 @@ export type AMapGeoJSONGetOverlayCallback = (
   AMap?: (typeof global.AMap) | null,
 ) => any;
 
-export interface AMapGeoJSONProps extends AMap.GeoJSONOptions {
+export type AMapGeoJSONProps = AMap.GeoJSONOptions & {
   geoJSON: GeoJSON.GeoJSON;
   getMarker?: AMapGeoJSONGetOverlayCallback;
   getPolygon?: AMapGeoJSONGetOverlayCallback;
   getPolyline?: AMapGeoJSONGetOverlayCallback;
-}
+};
 
 // more see
-function AMapGeoJSON({
-  geoJSON, getPolyline, getMarker, getPolygon,
-}: AMapGeoJSONProps) {
+const AMapGeoJSON: FC<AMapGeoJSONProps> = ({
+  geoJSON,
+  getPolyline,
+  getMarker,
+  getPolygon,
+}) => {
   const { __AMAP__: AMap, map } = useAMap();
   const [curInstance, setInstance] = useState<AMap.GeoJSON | null>(null);
 
@@ -68,6 +72,6 @@ function AMapGeoJSON({
   useAMapContainerBinder(curInstance);
 
   return null;
-}
+};
 
 export default AMapGeoJSON;

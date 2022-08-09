@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meta, Story } from '@storybook/react';
 
-import { AMapMap, MapProps } from 'index';
+import { AMapMap, AMapMapProps } from 'index';
 
 import { AsyncPluginAPIContainer as APIContainer } from '../../AMapAPIContainer/stories/createAMapAPIContainer.stories';
 
@@ -49,7 +49,7 @@ export default {
   excludeStories: ['withAMapContainer'],
 } as Meta;
 
-const Template: Story<MapProps> = (args) => <AMapMap {...args} />;
+const Template: Story<AMapMapProps> = (args) => <AMapMap {...args} />;
 
 export const SetCenter = Template.bind({});
 SetCenter.args = {

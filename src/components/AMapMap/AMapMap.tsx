@@ -1,5 +1,11 @@
+import type { PropsWithChildren } from 'react';
 import React, {
-  useEffect, useRef, useState, useImperativeHandle,
+  useEffect,
+  useRef,
+  useState,
+  useImperativeHandle,
+  forwardRef,
+  memo,
 } from 'react';
 
 import useAMapAPI from '../../hooks/useAMapAPI';
@@ -9,33 +15,30 @@ import AMapMapContext from './AMapMapContext';
 const CONTAINER_STYLE = { width: '100%', height: '100%' };
 
 // More DOC see: https://a.amap.com/jsapi/static/doc/index.html?v=2#map
-export interface MapProps {
+export type AMapMapProps = PropsWithChildren<{
   center?: [number, number];
   cityName?: string;
   zoom?: number;
-  children?: React.ReactNode;
-}
+}>;
 
-export type MapInstance = any;
-
-const Map = React.forwardRef<MapInstance, MapProps>(
+const AMapMap = forwardRef<any, AMapMapProps>(
   ({
     children, center, cityName, zoom,
-  }: MapProps, ref) => {
+  }: AMapMapProps, ref) => {
     const { __AMAP__: AMap } = useAMapAPI();
 
     // container ref
-    const $mapConatanier = useRef<HTMLDivElement>(null);
-    const [curMap, setInstance] = useState<any>(null);
+    const $mapContainer = useRef<HTMLDivElement>(null);
+    const [curMap, setInstance] = useState<AMap.Map | null>(null);
 
     useEffect(() => {
       let clearEffect;
-      if (!$mapConatanier.current || !AMap) {
+      if (!$mapContainer.current || !AMap) {
         return clearEffect;
       }
 
       const initMap = () => {
-        const newInstance = new AMap.Map($mapConatanier.current!);
+        const newInstance = new AMap.Map($mapContainer.current!);
         clearEffect = () => {
           /**
            * 异步的 destroy map，
@@ -49,7 +52,6 @@ const Map = React.forwardRef<MapInstance, MapProps>(
            *
            */
           newInstance.destroy();
-          // Promise.resolve(newInstance).then((instance) => instance.destroy());
         };
         setInstance(newInstance); // fire re-render
       };
@@ -64,7 +66,7 @@ const Map = React.forwardRef<MapInstance, MapProps>(
     // set city
     useEffect(() => {
       if (cityName) {
-        curMap?.setCity?.(cityName);
+        curMap?.setCity?.(cityName, () => {});
       }
     }, [cityName, curMap]);
 
@@ -83,11 +85,11 @@ const Map = React.forwardRef<MapInstance, MapProps>(
     }, [center, curMap]);
 
     return (
-      <div style={CONTAINER_STYLE} ref={$mapConatanier}>
+      <div style={CONTAINER_STYLE} ref={$mapContainer}>
         <AMapMapContext.Provider value={curMap}>{children}</AMapMapContext.Provider>
       </div>
     );
   },
 );
 
-export default React.memo(Map);
+export default memo(AMapMap);
