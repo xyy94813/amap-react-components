@@ -21,6 +21,12 @@ export type AMapMapProps = PropsWithChildren<{
   zoom?: number;
 }>;
 
+const defaultProps = {
+  center: undefined,
+  cityName: undefined,
+  zoom: undefined,
+};
+
 const AMapMap = forwardRef<any, AMapMapProps>(
   ({
     children, center, cityName, zoom,
@@ -91,5 +97,7 @@ const AMapMap = forwardRef<any, AMapMapProps>(
     );
   },
 );
+
+AMapMap.defaultProps = defaultProps;
 
 export default memo(AMapMap);

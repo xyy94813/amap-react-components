@@ -21,6 +21,8 @@ export type AMapToolBarProps = Pick<AMap.ToolBarConfig, 'offset'> & {
 const defaultProps = {
   position: 'LT' as AMapToolBarProps['position'],
   visible: true,
+  onShow: undefined,
+  onHide: undefined,
 };
 
 const AMapToolBar: FC<AMapToolBarProps> = ({

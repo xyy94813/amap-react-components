@@ -18,6 +18,12 @@ export type AMapGeoJSONProps = AMap.GeoJSONOptions & {
   getPolyline?: AMapGeoJSONGetOverlayCallback;
 };
 
+const defaultProps = {
+  getMarker: undefined,
+  getPolygon: undefined,
+  getPolyline: undefined,
+};
+
 // more see
 const AMapGeoJSON: FC<AMapGeoJSONProps> = ({
   geoJSON,
@@ -73,5 +79,7 @@ const AMapGeoJSON: FC<AMapGeoJSONProps> = ({
 
   return null;
 };
+
+AMapGeoJSON.defaultProps = defaultProps;
 
 export default AMapGeoJSON;

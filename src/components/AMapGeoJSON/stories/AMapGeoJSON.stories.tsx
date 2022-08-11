@@ -1,3 +1,4 @@
+import type { FC } from 'react';
 import React, { useEffect, useState } from 'react';
 import { Meta, Story } from '@storybook/react';
 // import { actions } from '@storybook/addon-actions';
@@ -48,11 +49,9 @@ const mockData: GeoJSON.FeatureCollection = {
   ],
 };
 
-interface AMapAutoFitViewProps {
+const AMapAutoFitView: FC<{
   delay?: number;
-}
-
-function AMapAutoFitView({ delay = 2000 }: AMapAutoFitViewProps) {
+}> = ({ delay }) => {
   const { map } = useAMap();
   const [fitViewed, setFitViewed] = useState(false);
   useEffect(() => {
@@ -73,7 +72,11 @@ function AMapAutoFitView({ delay = 2000 }: AMapAutoFitViewProps) {
   }, [delay, map, fitViewed]);
 
   return null;
-}
+};
+
+AMapAutoFitView.defaultProps = {
+  delay: 2000,
+};
 
 export default {
   title: 'Components/Overlay/AMapGeoJSON',

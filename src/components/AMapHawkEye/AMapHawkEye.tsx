@@ -13,6 +13,8 @@ import useAMapEventBinder from '../../hooks/useAMapEventBinder';
  */
 
 export type AMapHawkEyeProps = AMap.HawkEyeOptions & {
+  showButton?: boolean;
+  isOpen?: boolean;
   visible?: boolean;
   onShow?: (event: any) => void;
   onHide?: (event: any) => void;
@@ -22,6 +24,8 @@ const defaultProps = {
   showButton: true,
   isOpen: true,
   visible: true,
+  onShow: undefined,
+  onHide: undefined,
 };
 
 const AMapHawkEye: FC<AMapHawkEyeProps> = ({

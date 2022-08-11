@@ -12,8 +12,9 @@ import useAMapEventBinder from '../../hooks/useAMapEventBinder';
  * https://lbs.amap.com/api/jsapi-v2/documentation#ControlBar
  */
 
-export type AMapControlBarProps = Pick<AMap.ControlBarConfig, 'offset' | 'showControlButton'> & {
+export type AMapControlBarProps = Pick<AMap.ControlBarConfig, 'offset'> & {
   position?: AMap.ControlBarConfig['position'];
+  showControlButton?: boolean;
   visible?: boolean;
   onShow?: (event: any) => void;
   onHide?: (event: any) => void;
@@ -23,6 +24,8 @@ const defaultProps = {
   position: 'LT' as AMapControlBarProps['position'],
   showControlButton: true,
   visible: true,
+  onShow: undefined,
+  onHide: undefined,
 };
 
 const AMapControlBar: FC<AMapControlBarProps> = ({

@@ -22,6 +22,8 @@ export type AMapScaleProps = Pick<AMap.ScaleConfig, 'offset'> & {
 const defaultProps = {
   position: 'LB' as AMapScaleProps['position'],
   visible: true,
+  onShow: undefined,
+  onHide: undefined,
 };
 
 const AMapScale: FC<AMapScaleProps> = ({
