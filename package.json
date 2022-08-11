@@ -71,6 +71,6 @@
     "typescript": "^3.9.5"
   },
   "dependencies": {
-    "@amap/amap-jsapi-loader": "0.0.1"
+    "@amap/amap-jsapi-loader": "^1.0.1"
   }
 }

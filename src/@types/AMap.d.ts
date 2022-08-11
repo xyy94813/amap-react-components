@@ -10,19 +10,19 @@ declare global {
       showControlButton?: boolean;
     }
     export class ControlBar extends AMap.Control {
-      constructor(conf: ControlBarConfig);
+      constructor(conf?: ControlBarConfig);
     }
 
     export interface ToolBarConfig extends AMap.ControlConfig {}
 
     export class ToolBar extends AMap.Control {
-      constructor(conf: ToolBarConfig);
+      constructor(conf?: ToolBarConfig);
     }
 
     export interface ScaleConfig extends AMap.ControlConfig {}
 
     export class Scale extends AMap.Control {
-      constructor(conf: ScaleConfig);
+      constructor(conf?: ScaleConfig);
     }
 
     export interface HawkEyeOptions {
@@ -43,7 +43,7 @@ declare global {
     }
 
     export class HawkEye extends AMap.Control {
-      constructor(options: HawkEyeOptions);
+      constructor(options?: HawkEyeOptions);
       open(): void;
       close(): void;
     }

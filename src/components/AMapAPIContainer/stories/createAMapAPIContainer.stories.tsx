@@ -11,30 +11,44 @@ export default {
 } as Meta;
 
 const SyncPluginAPIContainer = createAMapAPIContainer({
+  key: AMAP_API_KEY,
   version: '2.0',
-  apiKey: AMAP_API_KEY,
   plugins: ['ControlBar', 'ToolBar', 'Scale', 'MapType', 'HawkEye'].map(
     (pluginName) => `AMap.${pluginName}`,
   ),
+  AMapUI: {
+    version: '1.1',
+    plugins: ['overlay/SimpleMarker'],
+  },
 });
 
 export const AsyncPluginAPIContainer = createAMapAPIContainer({
+  key: AMAP_API_KEY,
   version: '2.0',
-  apiKey: AMAP_API_KEY,
+  AMapUI: {
+    version: '1.1',
+  },
 });
 
-const init = (AMap: any, map: any) => {
+const initPlugin = (AMap: typeof global.AMap, map: AMap.Map) => {
   new AMap.ControlBar().addTo(map);
   new AMap.ToolBar({ position: 'LT', offset: [50, 120] }).addTo(map);
   new AMap.Scale().addTo(map);
-  new AMap.MapType().addTo(map);
   new AMap.HawkEye().addTo(map);
+};
+
+const initUIPlugin = (SimpleMarker: typeof AMapUI.SimpleMarker, map: AMap.Map) => {
+  new SimpleMarker({
+    iconTheme: 'numv1',
+    iconStyle: 'start',
+    position: [116.405285, 39.904989],
+  }).addTo(map);
 };
 
 const AsyncPluginContentDrawer = () => {
   const { __AMAP__: AMap } = useAMapAPI();
   const $container = useRef(null);
-  const $map = useRef(null);
+  const $map = useRef<AMap.Map | null>(null);
   useEffect(() => {
     let clearEffect;
     if (!AMap || !$container.current) {
@@ -48,8 +62,12 @@ const AsyncPluginContentDrawer = () => {
       ['ControlBar', 'ToolBar', 'Scale', 'MapType', 'HawkEye'].map(
         (pluginName) => `AMap.${pluginName}`,
       ),
-      () => init(AMap, map),
+      () => initPlugin(AMap, map),
     );
+
+    AMapUI.loadUI('overlay/SimpleMarker', (SimpleMarker: typeof AMapUI.SimpleMarker) => {
+      initUIPlugin(SimpleMarker, map);
+    });
 
     clearEffect = () => {
       map.destroy();
@@ -71,20 +89,22 @@ export const AsyncPlugin = () => (
  * TODO：更好的自动生成 Code
  */
 const AsyncPluginCode = `
-const SyncPluginAPIContainer = createAMapAPIContainer({
+const AsyncPluginAPIContainer = createAMapAPIContainer({
+  key: AMAP_API_KEY,
   version: '2.0',
-  apiKey: AMAP_API_KEY,
-  plugins: ['ControlBar', 'ToolBar', 'Scale', 'MapType', 'HawkEye'].map(
-    (pluginName) => \`AMap.\${pluginName}\`,
-  ),
+  AMapUI: {
+    version: '1.1',
+  },
 });
 
-${init.toString()}
+${initPlugin.toString()}
+
+${initUIPlugin.toString()}
 
 const AsyncPluginContentDrawer = () => {
   const { __AMAP__: AMap } = useAMapAPI();
   const $container = useRef(null);
-  const $map = useRef(null);
+  const $map = useRef<AMap.Map | null>(null);
   useEffect(() => {
     let clearEffect;
     if (!AMap || !$container.current) {
@@ -98,8 +118,12 @@ const AsyncPluginContentDrawer = () => {
       ['ControlBar', 'ToolBar', 'Scale', 'MapType', 'HawkEye'].map(
         (pluginName) => \`AMap.\${pluginName}\`,
       ),
-      () => init(AMap, map),
+      () => initPlugin(AMap, map),
     );
+
+    AMapUI.loadUI('overlay/SimpleMarker', (SimpleMarker: typeof AMapUI.SimpleMarker) => {
+      initUIPlugin(SimpleMarker, map);
+    });
 
     clearEffect = () => {
       map.destroy();
@@ -120,9 +144,9 @@ AsyncPlugin.parameters = {
 };
 
 const SyncPluginContentDrawer = () => {
-  const { __AMAP__: AMap } = useAMapAPI();
+  const { __AMAP__: AMap, __AMAP_UI__: AMapUI } = useAMapAPI();
   const $container = useRef(null);
-  const $map = useRef(null);
+  const $map = useRef<AMap.Map | null>(null);
   useEffect(() => {
     let clearEffect;
     if (!AMap || !$container.current) {
@@ -132,14 +156,15 @@ const SyncPluginContentDrawer = () => {
     const map = new AMap.Map($container.current);
     $map.current = map;
 
-    init(AMap, map);
+    initPlugin(AMap, map);
+    initUIPlugin(AMapUI!.SimpleMarker, map);
 
     clearEffect = () => {
       map.destroy();
     };
 
     return clearEffect;
-  }, [AMap]);
+  }, [AMap, AMapUI]);
   return <div ref={$container} style={{ height: 400 }} />;
 };
 
@@ -156,14 +181,20 @@ const SyncPluginAPIContainer = createAMapAPIContainer({
   plugins: ['ControlBar', 'ToolBar', 'Scale', 'MapType', 'HawkEye'].map(
     (pluginName) => \`AMap.\${pluginName}\`,
   ),
+  AMapUI: {
+    version: '1.1',
+    plugins: ['overlay/SimpleMarker'],
+  },
 });
 
-${init.toString()}
+${initPlugin.toString()}
+
+${initUIPlugin.toString()}
 
 const SyncPluginContentDrawer = () => {
-  const { __AMAP__: AMap } = useAMapAPI();
+  const { __AMAP__: AMap, __AMAP_UI__: AMapUI } = useAMapAPI();
   const $container = useRef(null);
-  const $map = useRef(null);
+  const $map = useRef<AMap.Map | null>(null);
   useEffect(() => {
     let clearEffect;
     if (!AMap || !$container.current) {
@@ -173,14 +204,15 @@ const SyncPluginContentDrawer = () => {
     const map = new AMap.Map($container.current);
     $map.current = map;
 
-    init(AMap, map);
+    initPlugin(AMap, map);
+    initUIPlugin(AMapUI!.SimpleMarker, map);
 
     clearEffect = () => {
       map.destroy();
     };
 
     return clearEffect;
-  }, [AMap]);
+  }, [AMap, AMapUI]);
   return <div ref={$container} style={{ height: 400 }} />;
 };
 
