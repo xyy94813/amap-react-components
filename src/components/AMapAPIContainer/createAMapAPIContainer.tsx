@@ -1,4 +1,5 @@
-import React, { PureComponent } from 'react';
+import type { FC } from 'react';
+import React, { lazy } from 'react';
 import AMapLoader from '@amap/amap-jsapi-loader';
 
 import AMapAPIContext from './AMapAPIContext';
@@ -17,61 +18,64 @@ export type AMapAPIHocProps = {
 };
 
 export const createAMapAPIContainer = (options: CreateAMapApiContainerOptions) => {
-  const { AMapUI: AMapUIOptions, ...otherProps } = (options || {});
+  const { AMapUI: AMapUIOptions, ...otherOptions } = (options || {});
   const loadAMapAPI = () => AMapLoader.load({
     ...defaultOptions,
-    ...otherProps,
+    ...otherOptions,
     AMapUI: AMapUIOptions && {
       version: DEFAULT_AMAP_UI_VERSION,
       ...AMapUIOptions,
     },
   });
 
-  return class AMapAPIContainer extends PureComponent<AMapAPIHocProps> {
-    state = {
-      AMap: null,
-      AMapUI: null,
+  let { AMap, AMapUI } = global;
+
+  return lazy(async () => {
+    if (!AMap || !AMapUI) {
+      await loadAMapAPI();
+      AMap = global.AMap;
+      AMapUI = global.AMapUI;
+    } else {
+      const promises = [];
+
+      if ((otherOptions?.plugins?.length ?? 0) > 0) {
+        promises.push(
+          new Promise((r) => {
+            AMap.plugin(otherOptions.plugins!, r);
+          }),
+        );
+      }
+
+      /**
+       * AMapUI.loadUI 不会将异步加载的 UI 插件
+       * 添加的 window.AMapUI 对象上
+       * 以下逻辑暂时无意义。
+       */
+      // if ((AMapUIOptions?.plugins?.length ?? 0) > 0) {
+      //   promises.push(
+      //     new Promise((r) => {
+      //       AMapUI.loadUI(AMapUIOptions!.plugins!, r);
+      //     }),
+      //   );
+      // }
+
+      await Promise.all(promises);
+    }
+
+    const AMapAPIContainer: FC = ({ children }) => (
+      <AMapAPIContext.Provider value={{
+        __AMAP__: AMap,
+        __AMAP_UI__: AMapUI,
+      }}
+      >
+        {children}
+      </AMapAPIContext.Provider>
+    );
+
+    return {
+      default: AMapAPIContainer,
     };
-
-    componentDidMount() {
-      let retryTime = 0;
-      loadAMapAPI().then(
-        (AMap) => {
-          this.setState({
-            AMap,
-            AMapUI: global.AMapUI,
-          });
-        },
-        (reason) => {
-          // eslint-disable-next-line no-console
-          console.error(reason);
-          if (retryTime > 3) {
-            throw Error(reason);
-          }
-
-          retryTime += 1;
-
-          return loadAMapAPI();
-        },
-      );
-    }
-
-    render() {
-      const { children } = this.props;
-      const { AMap, AMapUI } = this.state;
-
-      return (
-        <AMapAPIContext.Provider value={{
-          __AMAP__: AMap,
-          __AMAP_UI__: AMapUI,
-        }}
-        >
-          {children}
-
-        </AMapAPIContext.Provider>
-      );
-    }
-  };
+  });
 };
 
 export default createAMapAPIContainer;

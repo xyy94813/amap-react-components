@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, Suspense } from 'react';
 import { Meta } from '@storybook/react';
 
 import { createAMapAPIContainer, useAMapAPI } from 'index';
@@ -80,9 +80,11 @@ const AsyncPluginContentDrawer = () => {
 };
 
 export const AsyncPlugin = () => (
-  <AsyncPluginAPIContainer>
-    <AsyncPluginContentDrawer />
-  </AsyncPluginAPIContainer>
+  <Suspense fallback="loading...">
+    <AsyncPluginAPIContainer>
+      <AsyncPluginContentDrawer />
+    </AsyncPluginAPIContainer>
+  </Suspense>
 );
 
 /**
@@ -169,9 +171,11 @@ const SyncPluginContentDrawer = () => {
 };
 
 export const SyncPlugin = () => (
-  <SyncPluginAPIContainer>
-    <SyncPluginContentDrawer />
-  </SyncPluginAPIContainer>
+  <Suspense fallback="loading...">
+    <SyncPluginAPIContainer>
+      <SyncPluginContentDrawer />
+    </SyncPluginAPIContainer>
+  </Suspense>
 );
 
 const SyncPluginCode = `
