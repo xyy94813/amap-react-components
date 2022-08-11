@@ -84,7 +84,7 @@ export default {
   argTypes: {
     geoJSON: {
       description: '要加载的标准 GeoJSON 对象',
-      type: { required: true },
+      type: { name: 'other', value: '', required: true },
       table: {
         type: {
           summary: 'GeoJSON',
@@ -136,31 +136,33 @@ WithGeoJSON.args = {
 
 const getMarker: AMapGeoJSONGetOverlayCallback = (_, lnglat, map, AMap) => {
   const options = {
-    position: lnglat,
-    map,
+    position: lnglat as AMap.MarkerOptions['position'],
+    map: map!,
     label: {
+      offset: [],
+      direction: 'Top',
       content: 'MyMarker',
     },
   };
-  return new AMap.Marker(options);
+  return new AMap!.Marker(options);
 };
 
 const getPolyline: AMapGeoJSONGetOverlayCallback = (_, lnglat, map, AMap) => {
   const options = {
-    path: lnglat,
+    path: lnglat as AMap.PolylineOptions['path'],
     map,
     strokeColor: 'red',
   };
-  return new AMap.Polyline(options);
+  return new AMap!.Polyline(options);
 };
 
 const getPolygon: AMapGeoJSONGetOverlayCallback = (_, lnglat, map, AMap) => {
   const options = {
-    path: lnglat,
+    path: lnglat as AMap.PolygonOptions['path'],
     map,
     strokeColor: 'yellow',
   };
-  return new AMap.Polygon(options);
+  return new AMap!.Polygon(options);
 };
 
 export const CustomOverlay = Template.bind({});
