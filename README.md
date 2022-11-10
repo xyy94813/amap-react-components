@@ -25,6 +25,23 @@ yarn add amap-react-components
 
 [各组件示例](https://xyy94813.github.io/amap-react-components)
 
+### Typescript
+
+安装官方的 jsapi 的 ts 声明
+
+```shell
+npm install @amap/amap-jsapi-types
+```
+
+由于官方 ts 声明存在声明错误、缺漏，以及缺少 AMapUI 相关接口声明等问题，
+本项目在官方声明上对接口声明做了改动。
+
+因此，需要将此[声明文件](./src/@types/AMap.d.ts) 复制进您的项目。
+当使用了本项目暂时不支持的组件，您需要自定义组件时，可以在您的项目自行维护。
+
+> 如过，有人知道如何将这部分声明文件在构建时一同打包进最终的输出中，麻烦告知我。
+> 如果能看到您的 PR 那就更好了。
+
 ### Browser
 
 提供 browser 后缀支持 UMD 模块
