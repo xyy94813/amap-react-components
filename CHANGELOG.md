@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.1.0](https://github.com/xyy94813/amap-react-components/compare/v0.0.1...v0.1.0) (2022-11-22)
+
+
+### ⚠ BREAKING CHANGES
+
+* 变更 `AMapAPIContextValue.__AMAP__` 的类型
+
+### Features
+
+* 创建的 AMapAPIContainer 改为 lazy component ([ea83a3f](https://github.com/xyy94813/amap-react-components/commit/ea83a3f20a88b6d5a93913e5881644b702f4b92b))
+* 支持加载 AMapUI sdk ([201d7cf](https://github.com/xyy94813/amap-react-components/commit/201d7cfea1f3b3c8421fc586205b7e8d6375f19d))
+
+
+### Bug Fixes
+
+* 处理类型声明错误 ([4187830](https://github.com/xyy94813/amap-react-components/commit/418783092a4f3ba0838fa8b190c1238e7ebcbffa))
+
+
+* 完善类型声明 ([dc5c153](https://github.com/xyy94813/amap-react-components/commit/dc5c15342ec18bef70f0aee8c7cb5f7216d53c78))
+
 ### 0.0.1 (2021-05-25)
 
 ### Features
