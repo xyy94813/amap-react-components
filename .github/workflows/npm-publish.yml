@@ -16,7 +16,7 @@ jobs:
         with:
           node-version: 16
       - run: npm ci
-#     - run: npm test
+      #     - run: npm test
       - run: npm run build
       - uses: actions/upload-artifact@v3
         with:
@@ -36,6 +36,8 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
           name: output
+          path: |
+            dist
       - run: npm ci
       - run: npm publish
         env:
