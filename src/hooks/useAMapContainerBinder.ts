@@ -13,7 +13,7 @@ const useAMapContainerBinder = (curInstance: any) => {
     map.add(curInstance);
 
     clearEffect = () => {
-      map.remove(curInstance);
+      map?.remove(curInstance);
     };
     return clearEffect;
   }, [curInstance, map]);
