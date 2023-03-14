@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.2](https://github.com/xyy94813/amap-react-components/compare/v0.1.1...v0.1.2) (2023-03-14)
+
+
+### Bug Fixes
+
+* 切换地图时报错 ([274a970](https://github.com/xyy94813/amap-react-components/commit/274a970ea1ca05e8098a6c3d8ab629d81ce140bd))
+
 ### [0.1.1](https://github.com/xyy94813/amap-react-components/compare/v0.1.0...v0.1.1) (2022-11-22)
 
 
