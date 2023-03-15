@@ -10,11 +10,17 @@ const useAMapContainerBinder = (curInstance: any) => {
       return clearEffect;
     }
 
+    clearEffect = () => {
+      try {
+        // trick way
+        map.remove(curInstance);
+      } catch (error) {
+        // undo anything
+      }
+    };
+
     map.add(curInstance);
 
-    clearEffect = () => {
-      map?.remove(curInstance);
-    };
     return clearEffect;
   }, [curInstance, map]);
 };
