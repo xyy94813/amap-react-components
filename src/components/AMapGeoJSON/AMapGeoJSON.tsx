@@ -16,13 +16,14 @@ export type AMapGeoJSONProps = AMap.GeoJSONOptions & {
   getMarker?: AMapGeoJSONGetOverlayCallback;
   getPolygon?: AMapGeoJSONGetOverlayCallback;
   getPolyline?: AMapGeoJSONGetOverlayCallback;
-  options: any;
+  options?: { [k: string]: any };
 };
 
 const defaultProps = {
   getMarker: undefined,
   getPolygon: undefined,
   getPolyline: undefined,
+  options: undefined,
 };
 
 // more see
