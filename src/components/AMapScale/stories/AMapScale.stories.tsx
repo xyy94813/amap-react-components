@@ -33,9 +33,7 @@ export default {
     offset: {
       description:
         '相对于地图容器偏移量，正数代表地图中心，复数向地图外侧(实际现象与高德地图官方文档不一致)。',
-      table: {
-        type: { summary: 'array' },
-      },
+      type: { summary: 'array', required: false },
       control: 'array',
     },
     visible: {
