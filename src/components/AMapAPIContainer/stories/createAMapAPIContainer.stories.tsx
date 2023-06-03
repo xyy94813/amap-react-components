@@ -55,7 +55,7 @@ const AsyncPluginContentDrawer = () => {
       return clearEffect;
     }
 
-    const map = new AMap.Map($container.current);
+    const map = new AMap.Map($container.current!);
     $map.current = map;
 
     AMap.plugin(
@@ -155,7 +155,7 @@ const SyncPluginContentDrawer = () => {
       return clearEffect;
     }
 
-    const map = new AMap.Map($container.current);
+    const map = new AMap.Map($container.current!);
     $map.current = map;
 
     initPlugin(AMap, map);

@@ -157,12 +157,13 @@ const getPolyline: AMapGeoJSONGetOverlayCallback = (_, lnglat, map, AMap) => {
 };
 
 const getPolygon: AMapGeoJSONGetOverlayCallback = (_, lnglat, map, AMap) => {
-  const options = {
-    path: lnglat as AMap.PolygonOptions['path'],
-    map,
+  const polygon = new AMap!.Polygon();
+  polygon.setPath(lnglat as AMap.PolygonOptions['path']);
+  polygon.setOptions({
     strokeColor: 'yellow',
-  };
-  return new AMap!.Polygon(options);
+  });
+  polygon.setMap(map!);
+  return polygon;
 };
 
 export const CustomOverlay = Template.bind({});
