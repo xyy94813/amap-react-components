@@ -92,6 +92,16 @@ export default {
         },
       },
     },
+    options: {
+      description: '修改覆盖物属性(包括线样式、样色等等)',
+      type: { name: 'other', value: '', required: false },
+      table: {
+        type: {
+          summary: 'Object',
+          detail: '具体字段参考高德 JS API 文档',
+        },
+      },
+    },
     getMarker: {
       description: '指定点要素的绘制方式，缺省时为 Marker 的默认样式。',
       table: {
@@ -151,7 +161,6 @@ const getPolyline: AMapGeoJSONGetOverlayCallback = (_, lnglat, map, AMap) => {
   const options = {
     path: lnglat as AMap.PolylineOptions['path'],
     map,
-    strokeColor: 'red',
   };
   return new AMap!.Polyline(options);
 };
@@ -169,6 +178,10 @@ const getPolygon: AMapGeoJSONGetOverlayCallback = (_, lnglat, map, AMap) => {
 export const CustomOverlay = Template.bind({});
 CustomOverlay.args = {
   geoJSON: mockData,
+  options: {
+    strokeColor: 'red',
+    strokeWeight: 4,
+  },
   getMarker,
   getPolyline,
   getPolygon,

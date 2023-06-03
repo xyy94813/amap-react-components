@@ -16,6 +16,7 @@ export type AMapGeoJSONProps = AMap.GeoJSONOptions & {
   getMarker?: AMapGeoJSONGetOverlayCallback;
   getPolygon?: AMapGeoJSONGetOverlayCallback;
   getPolyline?: AMapGeoJSONGetOverlayCallback;
+  options: any;
 };
 
 const defaultProps = {
@@ -30,6 +31,7 @@ const AMapGeoJSON: FC<AMapGeoJSONProps> = ({
   getPolyline,
   getMarker,
   getPolygon,
+  options,
 }) => {
   const { __AMAP__: AMap, map } = useAMap();
   const [curInstance, setInstance] = useState<AMap.GeoJSON | null>(null);
@@ -73,6 +75,13 @@ const AMapGeoJSON: FC<AMapGeoJSONProps> = ({
   useEffect(() => {
     curInstance?.importData?.(geoJSON);
   }, [geoJSON, curInstance]);
+
+  // change data
+  useEffect(() => {
+    if (options) {
+      curInstance?.setOptions?.(options);
+    }
+  }, [options, curInstance]);
 
   // bind map
   useAMapContainerBinder(curInstance);
