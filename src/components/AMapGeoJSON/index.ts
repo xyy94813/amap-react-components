@@ -1,2 +1,2 @@
-export * from './AMapGeoJSON';
+export * from './interface';
 export { default } from './AMapGeoJSON';
