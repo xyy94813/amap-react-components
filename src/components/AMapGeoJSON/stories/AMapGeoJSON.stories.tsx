@@ -1,12 +1,81 @@
 import type { FC } from 'react';
 import React, { useEffect, useState } from 'react';
 import { Meta, Story } from '@storybook/react';
-// import { actions } from '@storybook/addon-actions';
 
-import { AMapGeoJSON, AMapGeoJSONGetOverlayCallback, AMapGeoJSONProps } from 'index';
+import type { AMapGeoJSONGetOverlayCallback, AMapGeoJSONProps } from 'index';
+import { AMapGeoJSON, coordsOfGeoJSON2AMapPolygonPath } from 'index';
 import { withAMapContainer } from '../../AMapMap/stories/AMapMap.stories';
 
 import useAMap from '../../../hooks/useAMap';
+
+const point: GeoJSON.Point = {
+  type: 'Point',
+  coordinates: [116.39, 39.9],
+};
+
+const line: GeoJSON.LineString = {
+  type: 'LineString',
+  coordinates: [
+    [116.388904, 39.903423],
+    [116.392122, 39.901176],
+  ],
+};
+
+const commonPolygon: GeoJSON.Polygon = {
+  type: 'Polygon',
+  coordinates: [
+    [
+      [116.386069, 39.898857],
+      [116.386023, 39.897477],
+      [116.387719, 39.897539],
+      [116.386069, 39.898857],
+    ],
+  ],
+};
+const polygonWithHole: GeoJSON.Polygon = {
+  type: 'Polygon',
+  coordinates: [
+    [
+      [116.384595, 39.901321],
+      [116.383526, 39.899865],
+      [116.386284, 39.900917],
+      [116.384595, 39.901321],
+    ],
+    [
+      [116.384594, 39.901],
+      [116.384, 39.9003],
+      [116.3861, 39.900917],
+      [116.384594, 39.901],
+    ],
+  ],
+};
+const multiPolygon: GeoJSON.MultiPolygon = {
+  type: 'MultiPolygon',
+  coordinates: [
+    [
+      [
+        [116.388624, 39.900055],
+        [116.390452, 39.898583],
+        [116.391294, 39.900003],
+        [116.388624, 39.900055],
+      ],
+      [
+        [116.389113, 39.899924],
+        [116.390251, 39.898962],
+        [116.391055, 39.899899],
+        [116.389113, 39.899924],
+      ],
+    ],
+    [
+      [
+        [116.387884, 39.899645],
+        [116.38796, 39.898347],
+        [116.390175, 39.898394],
+        [116.387884, 39.899645],
+      ],
+    ],
+  ],
+};
 
 const mockData: GeoJSON.FeatureCollection = {
   type: 'FeatureCollection',
@@ -17,32 +86,11 @@ const mockData: GeoJSON.FeatureCollection = {
       geometry: {
         type: 'GeometryCollection',
         geometries: [
-          {
-            type: 'Point',
-            coordinates: [116.39, 39.9],
-          },
-          {
-            type: 'Polygon',
-            coordinates: [
-              [
-                [116.384595, 39.901321],
-                [116.383526, 39.899865],
-                [116.386284, 39.900917],
-              ],
-              [
-                [116.384594, 39.901],
-                [116.384, 39.9003],
-                [116.3861, 39.900917],
-              ],
-            ],
-          },
-          {
-            type: 'LineString',
-            coordinates: [
-              [116.388904, 39.903423],
-              [116.392122, 39.901176],
-            ],
-          },
+          point,
+          line,
+          commonPolygon,
+          polygonWithHole,
+          multiPolygon,
         ],
       },
     },
@@ -167,7 +215,8 @@ const getPolyline: AMapGeoJSONGetOverlayCallback = (_, lnglat, map, AMap) => {
 
 const getPolygon: AMapGeoJSONGetOverlayCallback = (_, lnglat, map, AMap) => {
   const polygon = new AMap!.Polygon();
-  polygon.setPath(lnglat as AMap.PolygonOptions['path']);
+  const path = coordsOfGeoJSON2AMapPolygonPath(lnglat!);
+  polygon.setPath(path as AMap.PolygonOptions['path']);
   polygon.setOptions({
     strokeColor: 'yellow',
   });

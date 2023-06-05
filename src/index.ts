@@ -19,3 +19,7 @@ export {
 } from './components/AMapGeoJSON';
 
 export { default as AMapMouseTool, AMapMouseToolProps } from './components/AMapMouseTool';
+
+// helpers
+export { default as coordsOfGeoJSON2AMapPolygonPath } from './helpers/coordsOfGeoJSON2AMapPolygonPath';
+export { default as amapPolygonPath2GeoJSONCoords } from './helpers/amapPolygonPath2GeoJSONCoords';
