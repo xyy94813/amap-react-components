@@ -68,7 +68,7 @@ SetZoom.args = {
 
 export const withAMapContainer = (renderStory: Story, context: any) => (
   <APIContainer>
-    <div style={{ height: '400px' }}>
+    <div style={{ height: 'calc(100vh - 70px)' }}>
       <AMapMap>{renderStory({}, context)}</AMapMap>
     </div>
   </APIContainer>
