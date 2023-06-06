@@ -3,17 +3,10 @@ import { Meta, Story } from '@storybook/react';
 import { actions } from '@storybook/addon-actions';
 
 import { AMapCircle, AMapCircleProps } from 'index';
-import AMapAutoFitView from '../../AMapAutoFitView';
 import { withAMapContainer } from '../../AMapMap/stories/AMapMap.stories';
+import withAutoFitView from '../../AMapAutoFitView/stories/withAutoFitView';
 
 const eventHandler = actions('onShow', 'onHide');
-
-const withAutoFitView = (renderStory: Story, context: any) => (
-  <>
-    {renderStory({}, context)}
-    <AMapAutoFitView />
-  </>
-);
 
 export default {
   title: 'Components/Overlay/AMapCircle',

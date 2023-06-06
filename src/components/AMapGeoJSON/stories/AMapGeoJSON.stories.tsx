@@ -1,12 +1,10 @@
-import type { FC } from 'react';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Meta, Story } from '@storybook/react';
 
 import type { AMapGeoJSONGetOverlayCallback, AMapGeoJSONProps } from 'index';
 import { AMapGeoJSON, coordsOfGeoJSON2AMapPolygonPath } from 'index';
 import { withAMapContainer } from '../../AMapMap/stories/AMapMap.stories';
-
-import useAMap from '../../../hooks/useAMap';
+import withAutoFitView from '../../AMapAutoFitView/stories/withAutoFitView';
 
 const point: GeoJSON.Point = {
   type: 'Point',
@@ -97,38 +95,9 @@ const mockData: GeoJSON.FeatureCollection = {
   ],
 };
 
-const AMapAutoFitView: FC<{
-  delay?: number;
-}> = ({ delay }) => {
-  const { map } = useAMap();
-  const [fitViewed, setFitViewed] = useState(false);
-  useEffect(() => {
-    let clearEffect;
-    if (fitViewed) {
-      return clearEffect;
-    }
-    const timeoutKey = setTimeout(() => {
-      if (map) {
-        map.setFitView();
-        setFitViewed(true);
-      }
-    }, delay);
-    clearEffect = () => {
-      global.clearTimeout(timeoutKey);
-    };
-    return clearEffect;
-  }, [delay, map, fitViewed]);
-
-  return null;
-};
-
-AMapAutoFitView.defaultProps = {
-  delay: 2000,
-};
-
 export default {
   title: 'Components/Overlay/AMapGeoJSON',
-  decorators: [withAMapContainer],
+  decorators: [withAutoFitView, withAMapContainer],
   argTypes: {
     geoJSON: {
       description: '要加载的标准 GeoJSON 对象',
@@ -181,10 +150,7 @@ export default {
 } as Meta;
 
 const Template: Story<AMapGeoJSONProps> = (args) => (
-  <>
-    <AMapGeoJSON {...args} />
-    <AMapAutoFitView />
-  </>
+  <AMapGeoJSON {...args} />
 );
 
 export const WithGeoJSON = Template.bind({});
