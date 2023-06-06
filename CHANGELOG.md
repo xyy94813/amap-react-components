@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.2.0](https://github.com/xyy94813/amap-react-components/compare/v0.1.3...v0.2.0) (2023-06-06)
+
+
+### Features
+
+* 提供新的 hook, `useAMapEventBinder` ([c6e0e46](https://github.com/xyy94813/amap-react-components/commit/c6e0e466a3b97d366e611290ccccc0848ca8d1de))
+* 新增 helper 处理 geojson coords 到 amap path 到转换 ([0ba0312](https://github.com/xyy94813/amap-react-components/commit/0ba03127c2ca0ae2e0a390fd62cb2d7919555cca))
+* 新增组件 AMapCircle ([8ccb685](https://github.com/xyy94813/amap-react-components/commit/8ccb685471a3d14ab3bb3401e774e16c3e4d2bcd))
+* 新增组件 AMapMouseTool ([0946959](https://github.com/xyy94813/amap-react-components/commit/0946959f5c345c5edf8017fb18db43db10ee72b3))
+* 组件 AMapGeoJSON 支持设置样式 ([c3f01ce](https://github.com/xyy94813/amap-react-components/commit/c3f01ce5fdb8f54d73cc37e4fd4c7885bbf3c572))
+
+
+### Bug Fixes
+
+* 第一打开 storybook 时，缺少 Suspense 的问题 ([ae26c24](https://github.com/xyy94813/amap-react-components/commit/ae26c24c13b5b7554a57c9ce312c20d9a35a46dc))
+* 类型错误 ([ee7b36d](https://github.com/xyy94813/amap-react-components/commit/ee7b36de6b108baca6b59a879d7e196e88f32245))
+* 自动部署 gh-pages 失败 ([2d13bf8](https://github.com/xyy94813/amap-react-components/commit/2d13bf811d8aeed57c986dead5bcd475d03d1a9f))
+
 ### [0.1.3](https://github.com/xyy94813/amap-react-components/compare/v0.1.2...v0.1.3) (2023-03-15)
 
 
