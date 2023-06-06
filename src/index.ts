@@ -1,6 +1,7 @@
 export { default as useAMapAPI } from './hooks/useAMapAPI';
 export { default as useAMap } from './hooks/useAMap';
 export { default as useAMapContainerBinder } from './hooks/useAMapContainerBinder';
+export { default as useAMapEventBinder } from './hooks/useAMapEventBinder';
 
 export * from './components/AMapAPIContainer';
 export {
