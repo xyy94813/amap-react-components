@@ -18,6 +18,7 @@ export {
   AMapGeoJSONGetOverlayCallback,
   AMapGeoJSONProps,
 } from './components/AMapGeoJSON';
+export { default as AMapCircle, AMapCircleProps } from './components/AMapCircle';
 
 export { default as AMapMouseTool, AMapMouseToolProps } from './components/AMapMouseTool';
 
