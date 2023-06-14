@@ -51,7 +51,7 @@ declare global {
     export interface GeoJSONGetOverlayCallBack {
       (
         geojson?: GeoJSON.GeoJSON,
-        lnglat?: GeoJSON.Point[] | GeoJSON.Point[][] | GeoJSON.Point[][][],
+        lnglat?: GeoJSON.Position[] | GeoJSON.Position[][] | GeoJSON.Position[][][],
       ): any;
     }
 
