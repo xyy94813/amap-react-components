@@ -10,7 +10,7 @@ jobs:
     concurrency: ci-${{ github.ref }} # Recommended if you intend to make multiple deployments in quick succession.
     runs-on: ubuntu-latest
     env:
-      STORYBOOK_AMAP_API_KEY: ${{ vars.STORYBOOK_AMAP_API_KEY }}
+      STORYBOOK_AMAP_API_KEY: ${{ secrets.AMAP_JS_API_KEY }}
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v3
