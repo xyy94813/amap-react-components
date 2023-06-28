@@ -96,7 +96,7 @@ const mockData: GeoJSON.FeatureCollection = {
 };
 
 export default {
-  title: 'Components/Overlay/AMapGeoJSON',
+  title: '组件(Components)/覆盖物(Overlay)/AMapGeoJSON',
   decorators: [withAutoFitView, withAMapContainer],
   argTypes: {
     geoJSON: {
@@ -153,8 +153,9 @@ const Template: Story<AMapGeoJSONProps> = (args) => (
   <AMapGeoJSON {...args} />
 );
 
-export const WithGeoJSON = Template.bind({});
-WithGeoJSON.args = {
+export const CommonUse: typeof Template = Template.bind({});
+CommonUse.storyName = '基本使用';
+CommonUse.args = {
   geoJSON: mockData,
 };
 
@@ -190,7 +191,8 @@ const getPolygon: AMapGeoJSONGetOverlayCallback = (_, lnglat, map, AMap) => {
   return polygon;
 };
 
-export const CustomOverlay = Template.bind({});
+export const CustomOverlay: typeof Template = Template.bind({});
+CustomOverlay.storyName = '自定义覆盖物';
 CustomOverlay.args = {
   geoJSON: mockData,
   options: {

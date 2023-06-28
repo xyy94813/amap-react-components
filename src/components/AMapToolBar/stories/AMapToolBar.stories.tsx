@@ -8,7 +8,7 @@ import { withAMapContainer } from '../../AMapMap/stories/AMapMap.stories';
 const eventHandler = actions('onShow', 'onHide');
 
 export default {
-  title: 'Components/Control/AMapToolBar',
+  title: '组件(Components)/地图控件(Control)/AMapToolBar',
   component: AMapToolBar,
   decorators: [withAMapContainer],
   args: {
@@ -60,8 +60,10 @@ export default {
 
 const Template: Story<AMapToolBarProps> = (args) => <AMapToolBar {...args} />;
 
-export const ChangeOffset = Template.bind({});
+export const ChangeOffset: typeof Template = Template.bind({});
+ChangeOffset.storyName = '设置偏移量';
 ChangeOffset.args = { offset: [20, 20] };
 
-export const ChangePosition = Template.bind({});
+export const ChangePosition: typeof Template = Template.bind({});
+ChangePosition.storyName = '指定位置';
 ChangePosition.args = { position: 'RT' };

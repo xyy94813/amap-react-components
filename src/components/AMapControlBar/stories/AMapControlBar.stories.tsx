@@ -8,7 +8,7 @@ import { withAMapContainer } from '../../AMapMap/stories/AMapMap.stories';
 const eventHandler = actions('onShow', 'onHide');
 
 export default {
-  title: 'Components/Control/AMapControlBar',
+  title: '组件(Components)/地图控件(Control)/AMapControlBar',
   component: AMapControlBar,
   decorators: [withAMapContainer],
   args: {
@@ -60,11 +60,14 @@ export default {
 
 const Template: Story<AMapControlBarProps> = (args) => <AMapControlBar {...args} />;
 
-export const ChangeOffset = Template.bind({});
+export const ChangeOffset: typeof Template = Template.bind({});
+ChangeOffset.storyName = '设置偏移量';
 ChangeOffset.args = { offset: [20, 20] };
 
-export const ChangePosition = Template.bind({});
+export const ChangePosition: typeof Template = Template.bind({});
 ChangePosition.args = { position: 'RT' };
+ChangePosition.storyName = '指定位置';
 
-export const HideControlButton = Template.bind({ showControlButton: false });
+export const HideControlButton: typeof Template = Template.bind({});
 HideControlButton.args = { showControlButton: false };
+HideControlButton.storyName = '显示/隐藏';

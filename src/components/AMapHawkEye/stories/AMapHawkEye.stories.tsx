@@ -8,7 +8,7 @@ import { withAMapContainer } from '../../AMapMap/stories/AMapMap.stories';
 const eventHandler = actions('onShow', 'onHide', 'onOpen', 'onClose');
 
 export default {
-  title: 'Components/Control/AMapHawkEye',
+  title: '组件(Components)/地图控件(Control)/AMapHawkEye',
   component: AMapHawkEye,
   decorators: [withAMapContainer],
   args: {
@@ -111,10 +111,11 @@ export default {
 
 const Template: Story<AMapHawkEyeProps> = (args) => <AMapHawkEye {...args} />;
 
-export const ChangePosition = Template.bind({});
+export const ChangePosition: typeof Template = Template.bind({});
 ChangePosition.args = { offset: [10, 10] };
+ChangePosition.storyName = '设置偏移量';
 
-export const ChangeStyle = Template.bind({});
+export const ChangeStyle: typeof Template = Template.bind({});
 ChangeStyle.args = {
   height: '200px',
   width: '100px',
@@ -124,13 +125,16 @@ ChangeStyle.args = {
   borderWidth: '5px',
   buttonSize: '10px',
 };
+ChangeStyle.storyName = '设置样式';
 
-export const ChangeTheme = Template.bind({});
+export const ChangeTheme: typeof Template = Template.bind({});
 ChangeTheme.args = {
   mapStyle: 'amap://styles/dark',
 };
+ChangeTheme.storyName = '设置主题';
 
-export const NotAutoMove = Template.bind({});
+export const NotAutoMove: typeof Template = Template.bind({});
 ChangeTheme.args = {
   autoMove: false,
 };
+NotAutoMove.storyName = '不随主视图变化';

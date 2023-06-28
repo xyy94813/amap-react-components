@@ -1,12 +1,12 @@
 import React, { useRef, useEffect, Suspense } from 'react';
-import { Meta } from '@storybook/react';
+import { Meta, Story } from '@storybook/react';
 
 import { createAMapAPIContainer, useAMapAPI } from 'index';
 
 const AMAP_API_KEY: string = process.env.STORYBOOK_AMAP_API_KEY || '';
 
 export default {
-  title: 'Components/Basic/AMapAPIContainer',
+  title: '组件(Components)/基础组件(Basic)/AMapAPIContainer',
   excludeStories: ['AsyncPluginAPIContainer'],
 } as Meta;
 
@@ -79,13 +79,14 @@ const AsyncPluginContentDrawer = () => {
   return <div ref={$container} style={{ height: 400 }} />;
 };
 
-export const AsyncPlugin = () => (
+export const AsyncPlugin: Story = () => (
   <Suspense fallback="loading...">
     <AsyncPluginAPIContainer>
       <AsyncPluginContentDrawer />
     </AsyncPluginAPIContainer>
   </Suspense>
 );
+AsyncPlugin.storyName = '异步加载插件';
 
 /**
  * TODO：更好的自动生成 Code
@@ -170,13 +171,14 @@ const SyncPluginContentDrawer = () => {
   return <div ref={$container} style={{ height: 400 }} />;
 };
 
-export const SyncPlugin = () => (
+export const SyncPlugin: Story = () => (
   <Suspense fallback="loading...">
     <SyncPluginAPIContainer>
       <SyncPluginContentDrawer />
     </SyncPluginAPIContainer>
   </Suspense>
 );
+SyncPlugin.storyName = '同步加载插件';
 
 const SyncPluginCode = `
 const SyncPluginAPIContainer = createAMapAPIContainer({

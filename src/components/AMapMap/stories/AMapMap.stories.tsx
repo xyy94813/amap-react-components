@@ -14,7 +14,7 @@ const withAPIContainer = (renderStory: Story, context: any) => (
 );
 
 export default {
-  title: 'Components/Basic/AMapMap',
+  title: '组件(Components)/基础组件(Basic)/AMapMap',
   component: AMapMap,
   decorators: [withAPIContainer],
   args: {
@@ -51,20 +51,23 @@ export default {
 
 const Template: Story<AMapMapProps> = (args) => <AMapMap {...args} />;
 
-export const SetCenter = Template.bind({});
+export const SetCenter: typeof Template = Template.bind({});
 SetCenter.args = {
   center: [114.021769, 22.530421],
 };
+SetCenter.storyName = '设置中心点';
 
-export const SetCityName = Template.bind({});
+export const SetCityName: typeof Template = Template.bind({});
 SetCityName.args = {
   cityName: '深圳',
 };
+SetCityName.storyName = '设置城市名称';
 
-export const SetZoom = Template.bind({});
+export const SetZoom: typeof Template = Template.bind({});
 SetZoom.args = {
   zoom: 12,
 };
+SetZoom.storyName = '设置缩放比例';
 
 export const withAMapContainer = (renderStory: Story, context: any) => (
   <APIContainer>

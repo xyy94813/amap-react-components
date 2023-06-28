@@ -9,7 +9,7 @@ import withAutoFitView from '../../AMapAutoFitView/stories/withAutoFitView';
 const eventHandler = actions('onShow', 'onHide');
 
 export default {
-  title: 'Components/Overlay/AMapCircle',
+  title: '组件(Components)/覆盖物(Overlay)/AMapCircle',
   decorators: [withAutoFitView, withAMapContainer],
   args: {
     center: [116.39, 39.9],
@@ -139,14 +139,17 @@ export default {
   },
 } as Meta;
 
-const Template: Story<AMapCircleProps> = (args) => (
+type AMapCircleStory = Story<AMapCircleProps>;
+const Template: AMapCircleStory = (args) => (
   <AMapCircle {...args} />
 );
 
-export const CommonUse = Template.bind({});
+export const CommonUse: typeof Template = Template.bind({});
+CommonUse.storyName = '基本使用';
 CommonUse.args = {};
 
-export const CustomStyle = Template.bind({});
+export const CustomStyle: typeof Template = Template.bind({});
+CustomStyle.storyName = '自定义样式';
 CustomStyle.args = {
   fillColor: 'yellow',
   fillOpacity: 0.5,

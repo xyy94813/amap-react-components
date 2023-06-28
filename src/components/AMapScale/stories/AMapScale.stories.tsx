@@ -8,7 +8,7 @@ import { withAMapContainer } from '../../AMapMap/stories/AMapMap.stories';
 const eventHandler = actions('onShow', 'onHide');
 
 export default {
-  title: 'Components/Control/AMapScale',
+  title: '组件(Components)/地图控件(Control)/AMapScale',
   component: AMapScale,
   decorators: [withAMapContainer],
   args: {
@@ -49,10 +49,14 @@ export default {
   },
 } as Meta;
 
-const Template: Story<AMapScaleProps> = (args) => <AMapScale {...args} />;
+type AMapScaleStory = Story<AMapScaleProps>;
 
-export const ChangeOffset = Template.bind({});
+const Template: AMapScaleStory = (args) => <AMapScale {...args} />;
+
+export const ChangeOffset: AMapScaleStory = Template.bind({});
+ChangeOffset.storyName = '设置偏移量';
 ChangeOffset.args = { offset: [10, 10] };
 
-export const ChangePosition = Template.bind({});
+export const ChangePosition: AMapScaleStory = Template.bind({});
+ChangePosition.storyName = '指定位置';
 ChangePosition.args = { position: 'LT' };

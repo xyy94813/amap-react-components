@@ -8,7 +8,7 @@ import { withAMapContainer } from '../../AMapMap/stories/AMapMap.stories';
 const eventHandler = actions('onCompleted');
 
 export default {
-  title: 'Components/Tools/AMapMouseTool',
+  title: '组件(Components)/工具(Tools)/AMapMouseTool',
   decorators: [withAMapContainer],
   args: {
     type: 'polygon',
@@ -53,6 +53,7 @@ const Template: Story<AMapMouseToolProps> = (args) => (
 );
 
 export const CommonUse = Template.bind({});
+CommonUse.storyName = '基本使用';
 CommonUse.args = {
   type: 'polygon',
   options: {
