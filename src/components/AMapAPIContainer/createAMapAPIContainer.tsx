@@ -2,6 +2,7 @@ import type { FC } from 'react';
 import React, { lazy } from 'react';
 import AMapLoader from '@amap/amap-jsapi-loader';
 
+import getGlobalObject from '../../helpers/getGlobalObject';
 import AMapAPIContext from './AMapAPIContext';
 
 const DEFAULT_AMAP_VERSION = '2.0';
@@ -28,13 +29,13 @@ export const createAMapAPIContainer = (options: CreateAMapApiContainerOptions) =
     },
   });
 
-  let { AMap, AMapUI } = global;
+  let { AMap, AMapUI } = getGlobalObject();
 
   return lazy(async () => {
     if (!AMap || !AMapUI) {
       await loadAMapAPI();
-      AMap = global.AMap;
-      AMapUI = global.AMapUI;
+      AMap = getGlobalObject().AMap;
+      AMapUI = getGlobalObject().AMapUI;
     } else {
       const promises = [];
 
