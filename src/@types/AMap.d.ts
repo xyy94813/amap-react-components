@@ -69,6 +69,38 @@ declare global {
 
       toGeoJSON: () => GeoJSON.GeoJSON;
     }
+
+    export type MapTypeLayerInfo = {
+      id: string;
+      enable: string;
+      name: string;
+      type: 'base' | 'overlay';
+      // layer: AMap.Layer;
+      layer: any; // AMap.Layer 未暴露出来;
+      show: boolean
+    };
+
+    export type MapTypeOptions = {
+      defaultType?: number;
+      showTraffic?: boolean;
+      showRoad?: boolean;
+    };
+
+    export class MapType {
+      constructor(options?: MapTypeOptions);
+
+      addLayer:(layerInfo: MapTypeLayerInfo) => void;
+
+      removeLayer: (id: string) => void;
+
+      addTo: (map: AMap.Map) => void;
+
+      show: () => void;
+
+      hide: () => void;
+
+      remove: () => void;
+    }
   }
 
   namespace AMapUI {

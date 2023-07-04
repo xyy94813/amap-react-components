@@ -2,6 +2,7 @@ export { default as useAMapAPI } from './hooks/useAMapAPI';
 export { default as useAMap } from './hooks/useAMap';
 export { default as useAMapContainerBinder } from './hooks/useAMapContainerBinder';
 export { default as useAMapEventBinder } from './hooks/useAMapEventBinder';
+export { default as useAMapPluginInstance } from './hooks/useAMapPluginInstance';
 
 export * from './components/AMapAPIContainer';
 export {
@@ -12,6 +13,7 @@ export { default as AMapControlBar, AMapControlBarProps } from './components/AMa
 export { default as AMapHawkEye, AMapHawkEyeProps } from './components/AMapHawkEye';
 export { default as AMapScale, AMapScaleProps } from './components/AMapScale';
 export { default as AMapToolBar, AMapToolBarProps } from './components/AMapToolBar';
+export { default as AMapMapType, AMapMapTypeProps } from './components/AMapMapType';
 
 export {
   default as AMapGeoJSON,
