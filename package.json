@@ -1,6 +1,6 @@
 {
   "name": "amap-react-components",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "AMap Components for react",
   "main": "dist/amap-react-components.production.js",
   "module": "dist/es/amap-react-components.production.js",

@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.1](https://github.com/xyy94813/amap-react-components/compare/v0.2.0...v0.2.1) (2023-07-04)
+
+
+### Features
+
+* 兼容 nopack 框架 ([83fbddb](https://github.com/xyy94813/amap-react-components/commit/83fbddb49948e32fcf8973693a21dd4f6bb24af7))
+
+
+### Bug Fixes
+
+* 类型错误 ([84f4c24](https://github.com/xyy94813/amap-react-components/commit/84f4c24d24686d563e6fec795ae0325d28243296))
+
 ## [0.2.0](https://github.com/xyy94813/amap-react-components/compare/v0.1.3...v0.2.0) (2023-06-06)
 
 
