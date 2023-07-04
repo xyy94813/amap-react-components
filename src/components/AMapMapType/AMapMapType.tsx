@@ -1,0 +1,62 @@
+/* eslint-disable react/default-props-match-prop-types */
+import type { FC } from 'react';
+import {
+  useEffect,
+  useCallback,
+} from 'react';
+
+import useAMapPluginInstance from '../../hooks/useAMapPluginInstance';
+// import useAMap from '../../hooks/useAMap';
+import useAMapControlBinder from '../../hooks/useAMapControlBinder';
+import useAMapEventBinder from '../../hooks/useAMapEventBinder';
+
+import type { AMapMapTypeProps } from './interface';
+
+/**
+ * Origin API see:
+ * https://lbs.amap.com/api/jsapi-v2/documentation#hawkeye
+ */
+
+const defaultProps = {
+  defaultType: 0,
+  showTraffic: false,
+  showRoad: false,
+  visible: true,
+  onShow: undefined,
+  onHide: undefined,
+};
+
+const AMapMapType: FC<AMapMapTypeProps> = ({
+  defaultType,
+  showTraffic,
+  showRoad,
+  visible,
+  onHide,
+  onShow,
+}) => {
+  const initInstance = useCallback((AMap) => new AMap!.MapType({
+    defaultType,
+    showTraffic,
+    showRoad,
+  }), [defaultType, showRoad, showTraffic]);
+  const curInstance = useAMapPluginInstance<AMap.MapType>('MapType', initInstance);
+
+  useEffect(() => {
+    if (visible) {
+      curInstance?.show?.();
+    } else {
+      curInstance?.hide?.();
+    }
+  }, [curInstance, visible]);
+
+  useAMapEventBinder(curInstance, 'show', onShow);
+  useAMapEventBinder(curInstance, 'hide', onHide);
+
+  useAMapControlBinder(curInstance);
+
+  return null;
+};
+
+AMapMapType.defaultProps = defaultProps;
+
+export default AMapMapType;
