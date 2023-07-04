@@ -6,7 +6,6 @@ import {
 } from 'react';
 
 import useAMapPluginInstance from '../../hooks/useAMapPluginInstance';
-// import useAMap from '../../hooks/useAMap';
 import useAMapControlBinder from '../../hooks/useAMapControlBinder';
 import useAMapEventBinder from '../../hooks/useAMapEventBinder';
 
@@ -14,7 +13,7 @@ import type { AMapMapTypeProps } from './interface';
 
 /**
  * Origin API see:
- * https://lbs.amap.com/api/jsapi-v2/documentation#hawkeye
+ * https://lbs.amap.com/api/javascript-api-v2/documentation#maptype
  */
 
 const defaultProps = {
