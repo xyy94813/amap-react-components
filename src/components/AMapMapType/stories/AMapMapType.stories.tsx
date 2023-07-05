@@ -74,4 +74,4 @@ DefaultShowTraffic.args = { showTraffic: true };
 
 export const DefaultShowRoad: typeof Template = Template.bind({});
 DefaultShowRoad.storyName = '默认叠加路网图层';
-DefaultShowRoad.args = { showTraffic: true };
+DefaultShowRoad.args = { showRoad: true };
