@@ -16,8 +16,8 @@ export type AMapHawkEyeProps = AMap.HawkEyeOptions & {
   showButton?: boolean;
   isOpen?: boolean;
   visible?: boolean;
-  onShow?: (event: any) => void;
-  onHide?: (event: any) => void;
+  onShow?: (event?: any) => void;
+  onHide?: (event?: any) => void;
 };
 
 const defaultProps = {

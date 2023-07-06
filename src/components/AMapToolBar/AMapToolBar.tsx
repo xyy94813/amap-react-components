@@ -14,8 +14,8 @@ import useAMapEventBinder from '../../hooks/useAMapEventBinder';
 export type AMapToolBarProps = Pick<AMap.ToolBarConfig, 'offset'> & {
   position?: AMap.ControlBarConfig['position'];
   visible?: boolean;
-  onShow?: (event: any) => void;
-  onHide?: (event: any) => void;
+  onShow?: (event?: any) => void;
+  onHide?: (event?: any) => void;
 };
 
 const defaultProps = {
