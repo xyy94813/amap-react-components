@@ -61,6 +61,14 @@ https://cdn.jsdelivr.net/npm/amap-react-components@0.0.1/dist/amap-react-compone
 - [@amap/amap-react](https://www.npmjs.com/package/@amap/amap-react) （高德官方 react 组件 ）
 - [react-amap](https://github.com/elemefe/react-amap)
 
+## 贡献指南
+
+查看[贡献指南](./Contributing.md)
+
+## 变更日志
+
+查看[变更日志](./CHANGELOG.md)
+
 ## LICENSE
 
 [MIT LICENSE](./LICENSE.md)
