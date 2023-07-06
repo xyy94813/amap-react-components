@@ -21,6 +21,7 @@ export {
   AMapGeoJSONProps,
 } from './components/AMapGeoJSON';
 export { default as AMapCircle, AMapCircleProps } from './components/AMapCircle';
+export { default as AMapEllipse, AMapEllipseProps } from './components/AMapEllipse';
 
 export { default as AMapMouseTool, AMapMouseToolProps } from './components/AMapMouseTool';
 
