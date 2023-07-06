@@ -143,11 +143,63 @@ export default {
     },
     onShow: {
       description: '显示，回调函数',
-      type: { required: false, summary: '(event: AMap.Event<"show">) => void' },
+      type: { required: false, summary: '(event: any) => void' },
+      control: false,
     },
     onHide: {
       description: '隐藏，回调函数',
-      type: { required: false, summary: '(event: AMap.Event<"hide">) => void' },
+      type: { required: false, summary: '(event: any) => void' },
+      control: false,
+    },
+    onClick: {
+      description: '左键单击，回调函数',
+      type: { required: false, summary: '(event: any) => void' },
+      control: false,
+    },
+    onDBLClick: {
+      description: '左键双击，回调函数',
+      type: { required: false, summary: '(event: any) => void' },
+      control: false,
+    },
+    onRightClick: {
+      description: '右键单击，回调函数',
+      type: { required: false, summary: '(event: any) => void' },
+      control: false,
+    },
+    onMousedown: {
+      description: '鼠标按下，回调函数',
+      type: { required: false, summary: '(event: any) => void' },
+      control: false,
+    },
+    onMouseup: {
+      description: '鼠标抬起，回调函数',
+      type: { required: false, summary: '(event: any) => void' },
+      control: false,
+    },
+    onMouseover: {
+      description: '鼠标经过，回调函数',
+      type: { required: false, summary: '(event: any) => void' },
+      control: false,
+    },
+    onMouseout: {
+      description: '鼠标移出，回调函数',
+      type: { required: false, summary: '(event: any) => void' },
+      control: false,
+    },
+    onTouchstart: {
+      description: '触摸开始，回调函数，仅移动设备有效',
+      type: { required: false, summary: '(event: any) => void' },
+      control: false,
+    },
+    onTouchmove: {
+      description: '触摸移动，回调函数，仅移动设备有效',
+      type: { required: false, summary: '(event: any) => void' },
+      control: false,
+    },
+    onTouchend: {
+      description: '触摸结束，回调函数，仅移动设备有效',
+      type: { required: false, summary: '(event: any) => void' },
+      control: false,
     },
   },
 } as Meta;
