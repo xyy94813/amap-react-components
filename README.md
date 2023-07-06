@@ -1,5 +1,9 @@
 # amap-react-components
 
+[![deploy-to-gh-pages](https://github.com/xyy94813/amap-react-components/actions/workflows/deploy-to-gh-pages.yml/badge.svg?branch=main)](https://github.com/xyy94813/amap-react-components/actions/workflows/deploy-to-gh-pages.yml)
+[![package version](https://img.shields.io/npm/v/amap-react-components.svg?style=flat-square)](https://www.npmjs.org/package/amap-react-components)
+[![npm downloads](https://img.shields.io/npm/dm/amap-react-components.svg?style=flat-square)](http://npmjs.com/amap-react-components)
+
 [AMap](https://lbs.amap.com/api/jsapi-v2/summary/) 的 React 组件。
 
 > 注意: 仅支持 AMap V2 且 React >= 16.8.
