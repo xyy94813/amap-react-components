@@ -1,5 +1,5 @@
 export type AMapMapTypeProps = AMap.MapTypeOptions & {
-  visible: boolean,
-  onHide: () => void,
-  onShow: () => void,
+  visible: boolean;
+  onHide: (event?: any) => void;
+  onShow: (event?: any) => void;
 };
