@@ -5,7 +5,6 @@ import '@amap/amap-jsapi-types';
 // 对 amap type 做扩展
 declare global {
   namespace AMap {
-
     export interface ControlBarConfig extends AMap.ControlConfig {
       showControlButton?: boolean;
     }
@@ -51,7 +50,7 @@ declare global {
     export interface GeoJSONGetOverlayCallBack {
       (
         geojson?: GeoJSON.GeoJSON,
-        lnglat?: GeoJSON.Position[] | GeoJSON.Position[][] | GeoJSON.Position[][][],
+        lnglat?: GeoJSON.Position[] | GeoJSON.Position[][] | GeoJSON.Position[][][]
       ): any;
     }
 
@@ -77,7 +76,7 @@ declare global {
       type: 'base' | 'overlay';
       // layer: AMap.Layer;
       layer: any; // AMap.Layer 未暴露出来;
-      show: boolean
+      show: boolean;
     };
 
     export type MapTypeOptions = {
@@ -89,7 +88,7 @@ declare global {
     export class MapType {
       constructor(options?: MapTypeOptions);
 
-      addLayer:(layerInfo: MapTypeLayerInfo) => void;
+      addLayer: (layerInfo: MapTypeLayerInfo) => void;
 
       removeLayer: (id: string) => void;
 
@@ -114,10 +113,10 @@ declare global {
 
     export class SimpleMarker extends AMap.Marker {
       constructor(opts?: SimpleMarkerOptions);
-      setIconStyle(iconStyle:string):void;
-      setIconThemeAndStyle(iconTheme:string, iconStyle:string):void;
-      setIconLabel(iconLabel:string | object): void;
-      setContainerClassNames(containerClassNames:string): void;
+      setIconStyle(iconStyle: string): void;
+      setIconThemeAndStyle(iconTheme: string, iconStyle: string): void;
+      setIconLabel(iconLabel: string | object): void;
+      setContainerClassNames(containerClassNames: string): void;
       showPositionPoint(): void;
       hidePositionPoint(): void;
     }
