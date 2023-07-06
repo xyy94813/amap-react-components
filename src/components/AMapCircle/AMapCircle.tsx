@@ -35,6 +35,16 @@ const AMapCircle = forwardRef<AMap.Circle, AMapCircleProps>(
       visible,
       onShow,
       onHide,
+      onClick,
+      onDBLClick,
+      onRightClick,
+      onMousedown,
+      onMouseup,
+      onMouseover,
+      onMouseout,
+      onTouchstart,
+      onTouchmove,
+      onTouchend,
     },
     ref,
   ) => {
@@ -106,6 +116,16 @@ const AMapCircle = forwardRef<AMap.Circle, AMapCircleProps>(
 
     useAMapEventBinder(curInstance, 'show', onShow);
     useAMapEventBinder(curInstance, 'hide', onHide);
+    useAMapEventBinder(curInstance, 'click', onClick);
+    useAMapEventBinder(curInstance, 'dblclick', onDBLClick);
+    useAMapEventBinder(curInstance, 'rightclick', onRightClick);
+    useAMapEventBinder(curInstance, 'mousedown', onMousedown);
+    useAMapEventBinder(curInstance, 'mouseup', onMouseup);
+    useAMapEventBinder(curInstance, 'mouseover', onMouseover);
+    useAMapEventBinder(curInstance, 'mouseout', onMouseout);
+    useAMapEventBinder(curInstance, 'touchstart', onTouchstart);
+    useAMapEventBinder(curInstance, 'touchmove', onTouchmove);
+    useAMapEventBinder(curInstance, 'touchend', onTouchend);
 
     return null;
   },
