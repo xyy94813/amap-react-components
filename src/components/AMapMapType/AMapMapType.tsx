@@ -1,13 +1,13 @@
 /* eslint-disable react/default-props-match-prop-types */
 import type { FC } from 'react';
 import {
-  useEffect,
   useCallback,
 } from 'react';
 
 import useAMapPluginInstance from '../../hooks/useAMapPluginInstance';
 import useAMapControlBinder from '../../hooks/useAMapControlBinder';
 import useAMapEventBinder from '../../hooks/useAMapEventBinder';
+import useVisible from '../../hooks/useVisible';
 
 import type { AMapMapTypeProps } from './interface';
 
@@ -40,13 +40,7 @@ const AMapMapType: FC<AMapMapTypeProps> = ({
   }), [defaultType, showRoad, showTraffic]);
   const curInstance = useAMapPluginInstance<AMap.MapType>('MapType', initInstance);
 
-  useEffect(() => {
-    if (visible) {
-      curInstance?.show?.();
-    } else {
-      curInstance?.hide?.();
-    }
-  }, [curInstance, visible]);
+  useVisible(curInstance, !!visible);
 
   useAMapEventBinder(curInstance, 'show', onShow);
   useAMapEventBinder(curInstance, 'hide', onHide);
