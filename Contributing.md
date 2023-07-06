@@ -2,9 +2,14 @@
 
 👏👏 欢迎参与贡献该项目 👏👏。
 
-## Git Message
+## 交流语言
 
-Git msg 格式基于 [Conventional Commits v1.0.0](https://www.conventionalcommits.org/en/v1.0.0/)
+鉴于 AMap 的特殊性，此仓库基于中文进行沟通交流。
+无论是 issue、Commit Message 还是代码注释，尽量使用中文语言。
+
+## Commit Message
+
+Commit msg 格式基于 [Conventional Commits v1.0.0](https://www.conventionalcommits.org/en/v1.0.0/)
 
 ## 安装依赖
 
