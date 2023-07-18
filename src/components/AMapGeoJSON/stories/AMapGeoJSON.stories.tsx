@@ -98,6 +98,10 @@ const mockData: GeoJSON.FeatureCollection = {
 export default {
   title: '组件(Components)/覆盖物(Overlay)/AMapGeoJSON',
   decorators: [withAutoFitView, withAMapContainer],
+  args: {
+    geoJSON: mockData,
+    visible: true,
+  },
   argTypes: {
     geoJSON: {
       description: '要加载的标准 GeoJSON 对象',
@@ -107,6 +111,14 @@ export default {
           summary: 'GeoJSON',
           detail: 'AMap 暂时不支持 `Feature`，需要转换成 `FeatureCollection`',
         },
+      },
+    },
+    visible: {
+      description: '显示或隐藏',
+      type: { required: false, summary: 'boolean', defaultValue: true },
+      table: { defaultValue: true },
+      control: {
+        type: 'boolean',
       },
     },
     options: {
@@ -155,9 +167,6 @@ const Template: Story<AMapGeoJSONProps> = (args) => (
 
 export const CommonUse: typeof Template = Template.bind({});
 CommonUse.storyName = '基本使用';
-CommonUse.args = {
-  geoJSON: mockData,
-};
 
 const getMarker: AMapGeoJSONGetOverlayCallback = (_, lnglat, map, AMap) => {
   const options = {
@@ -191,10 +200,18 @@ const getPolygon: AMapGeoJSONGetOverlayCallback = (_, lnglat, map, AMap) => {
   return polygon;
 };
 
+export const CustomStyle: typeof Template = Template.bind({});
+CustomStyle.storyName = '自定义样式';
+CustomStyle.args = {
+  options: {
+    strokeColor: 'red',
+    strokeWeight: 4,
+  },
+};
+
 export const CustomOverlay: typeof Template = Template.bind({});
 CustomOverlay.storyName = '自定义覆盖物';
 CustomOverlay.args = {
-  geoJSON: mockData,
   options: {
     strokeColor: 'red',
     strokeWeight: 4,

@@ -3,13 +3,17 @@ import { useState, useEffect, useCallback } from 'react';
 
 import useAMap from '../../hooks/useAMap';
 import useAMapContainerBinder from '../../hooks/useAMapContainerBinder';
+import useVisible from '../../hooks/useVisible';
 
 import type {
   AMapGeoJSONGetOverlayCallback,
   AMapGeoJSONProps,
 } from './interface';
 
-const defaultProps = {};
+const defaultProps = {
+  // eslint-disable-next-line react/default-props-match-prop-types
+  visible: true,
+};
 
 // more see
 const AMapGeoJSON: FC<AMapGeoJSONProps> = ({
@@ -17,6 +21,7 @@ const AMapGeoJSON: FC<AMapGeoJSONProps> = ({
   getPolyline,
   getMarker,
   getPolygon,
+  visible,
   options,
 }) => {
   const { __AMAP__: AMap, map } = useAMap();
@@ -68,6 +73,8 @@ const AMapGeoJSON: FC<AMapGeoJSONProps> = ({
       curInstance?.setOptions?.(options);
     }
   }, [options, curInstance]);
+
+  useVisible(curInstance, visible!);
 
   // bind map
   useAMapContainerBinder(curInstance);

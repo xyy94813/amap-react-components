@@ -10,5 +10,6 @@ export type AMapGeoJSONProps = AMap.GeoJSONOptions & {
   getMarker?: AMapGeoJSONGetOverlayCallback;
   getPolygon?: AMapGeoJSONGetOverlayCallback;
   getPolyline?: AMapGeoJSONGetOverlayCallback;
+  visible?: boolean;
   options?: { [k: string]: any };
 };
