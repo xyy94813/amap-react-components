@@ -1,8 +1,5 @@
-import type { ReactNode } from 'react';
-
 export type AMapOverlayGroupProps = {
   options?: AMap.PolygonSharedOptions;
-  children: ReactNode;
   visible?: Boolean;
   onShow?: (event?: any) => void;
   onHide?: (event?: any) => void;
