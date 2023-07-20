@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.3.0](https://github.com/xyy94813/amap-react-components/compare/v0.2.1...v0.3.0) (2023-07-20)
+
+
+### Features
+
+* 新增 Marker 组件 ([cb19683](https://github.com/xyy94813/amap-react-components/commit/cb196833a0c72cdeb26db78ca407b9403db99e21))
+* 新增控制组件 AMapMapType ([63068be](https://github.com/xyy94813/amap-react-components/commit/63068beb2fac3439fce594d79f2dd95face6414c))
+* 新增组件 AMapEllipse ([710e5f7](https://github.com/xyy94813/amap-react-components/commit/710e5f7d9f91511b5721cd111e12bf7e2697fd40))
+* 新增组件 AMapOverlayGroup ([b565022](https://github.com/xyy94813/amap-react-components/commit/b5650220560f892dc853b2328b0fc6bc51e2ecc3))
+* 支持隐藏或显示 GeoJSON ([be37ac2](https://github.com/xyy94813/amap-react-components/commit/be37ac272dc276ba614062de9119e81857df6335))
+* 组件 AMapCircle 支持更多回调事件 ([20e25d1](https://github.com/xyy94813/amap-react-components/commit/20e25d164fa1c4eb5dc4727e0c739aa0b05ba94a))
+
+
+### Bug Fixes
+
+* 修正 AMapMapTypeProps 回调函数类型 ([03a381a](https://github.com/xyy94813/amap-react-components/commit/03a381a6cd6204897d0cca11c9479412fa581de9))
+* 修正回调函数类型 ([623a18b](https://github.com/xyy94813/amap-react-components/commit/623a18b4c9088dd63ac589c718dd8ead84298a00))
+* 组件 AMapEllipseProps 错误的类型声明 ([2d61188](https://github.com/xyy94813/amap-react-components/commit/2d61188185a2996210d579e54231c1bc7e52310c))
+
 ### [0.2.1](https://github.com/xyy94813/amap-react-components/compare/v0.2.0...v0.2.1) (2023-07-04)
 
 
