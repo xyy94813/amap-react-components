@@ -46,7 +46,7 @@ export default {
       },
     },
     options: {
-      description: '修改覆盖物属性(包括线样式、样色等等)',
+      description: '修改覆盖物属性(包括线样式、样色等等)。注意：当前实现，嵌套使用时，父级组件会覆盖子组件的样式。',
       type: { name: 'other', value: '', required: false },
       table: {
         type: {
