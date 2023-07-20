@@ -7,7 +7,7 @@ import {
 
 import useAMapPluginInstance from '../../hooks/useAMapPluginInstance';
 import useSetter from '../../hooks/useSetter';
-import useAMapContainerBinder from '../../hooks/useAMapContainerBinder';
+import useAMapOverlayBinder from '../../hooks/useAMapOverlayBinder';
 import useAMapEventBinder from '../../hooks/useAMapEventBinder';
 import useVisible from '../../hooks/useVisible';
 
@@ -117,7 +117,7 @@ const AMapEllipse: FC<AMapEllipseProps> = ({
   useAMapEventBinder(curInstance, 'touchmove', onTouchmove);
   useAMapEventBinder(curInstance, 'touchend', onTouchend);
 
-  useAMapContainerBinder(curInstance);
+  useAMapOverlayBinder(curInstance);
 
   return null;
 };

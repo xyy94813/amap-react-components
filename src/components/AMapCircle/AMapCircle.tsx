@@ -7,7 +7,7 @@ import {
 } from 'react';
 
 import useAMap from '../../hooks/useAMap';
-import useAMapContainerBinder from '../../hooks/useAMapContainerBinder';
+import useAMapOverlayBinder from '../../hooks/useAMapOverlayBinder';
 import useAMapEventBinder from '../../hooks/useAMapEventBinder';
 import useVisible from '../../hooks/useVisible';
 import useSetter from '../../hooks/useSetter';
@@ -112,8 +112,6 @@ const AMapCircle = forwardRef<AMap.Circle, AMapCircleProps>(
 
     useVisible(curInstance, !!visible);
 
-    useAMapContainerBinder(curInstance);
-
     useAMapEventBinder(curInstance, 'show', onShow);
     useAMapEventBinder(curInstance, 'hide', onHide);
     useAMapEventBinder(curInstance, 'click', onClick);
@@ -126,6 +124,8 @@ const AMapCircle = forwardRef<AMap.Circle, AMapCircleProps>(
     useAMapEventBinder(curInstance, 'touchstart', onTouchstart);
     useAMapEventBinder(curInstance, 'touchmove', onTouchmove);
     useAMapEventBinder(curInstance, 'touchend', onTouchend);
+
+    useAMapOverlayBinder(curInstance);
 
     return null;
   },

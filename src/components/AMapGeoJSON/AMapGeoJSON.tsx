@@ -2,7 +2,7 @@ import type { FC } from 'react';
 import { useState, useEffect, useCallback } from 'react';
 
 import useAMap from '../../hooks/useAMap';
-import useAMapContainerBinder from '../../hooks/useAMapContainerBinder';
+import useAMapOverlayBinder from '../../hooks/useAMapOverlayBinder';
 import useVisible from '../../hooks/useVisible';
 
 import type {
@@ -77,7 +77,7 @@ const AMapGeoJSON: FC<AMapGeoJSONProps> = ({
   useVisible(curInstance, visible!);
 
   // bind map
-  useAMapContainerBinder(curInstance);
+  useAMapOverlayBinder(curInstance);
 
   return null;
 };
