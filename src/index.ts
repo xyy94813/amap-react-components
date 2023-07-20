@@ -1,6 +1,7 @@
 export { default as useAMapAPI } from './hooks/useAMapAPI';
 export { default as useAMap } from './hooks/useAMap';
 export { default as useAMapContainerBinder } from './hooks/useAMapContainerBinder';
+export { default as useAMapOverlayBinder } from './hooks/useAMapOverlayBinder';
 export { default as useAMapEventBinder } from './hooks/useAMapEventBinder';
 export { default as useAMapPluginInstance } from './hooks/useAMapPluginInstance';
 
@@ -15,6 +16,7 @@ export { default as AMapScale, AMapScaleProps } from './components/AMapScale';
 export { default as AMapToolBar, AMapToolBarProps } from './components/AMapToolBar';
 export { default as AMapMapType, AMapMapTypeProps } from './components/AMapMapType';
 
+export { default as AMapOverlayGroup, AMapOverlayGroupProps } from './components/AMapOverlayGroup';
 export {
   default as AMapGeoJSON,
   AMapGeoJSONGetOverlayCallback,

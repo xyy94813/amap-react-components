@@ -5,7 +5,7 @@ import {
 } from 'react';
 
 import useAMapPluginInstance from '../../hooks/useAMapPluginInstance';
-import useAMapControlBinder from '../../hooks/useAMapControlBinder';
+import useAMapOverlayBinder from '../../hooks/useAMapOverlayBinder';
 import useAMapEventBinder from '../../hooks/useAMapEventBinder';
 import useSetter from '../../hooks/useSetter';
 import useVisible from '../../hooks/useVisible';
@@ -114,7 +114,7 @@ const AMapMarker: FC<AMapMarkerProps> = ({
   useAMapEventBinder(curInstance, 'moveend', onMoveEnd);
   useAMapEventBinder(curInstance, 'movealong', onMoveAlong);
 
-  useAMapControlBinder(curInstance);
+  useAMapOverlayBinder(curInstance);
 
   return null;
 };
