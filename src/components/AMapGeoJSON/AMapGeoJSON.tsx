@@ -1,9 +1,10 @@
 import type { FC } from 'react';
-import { useState, useEffect, useCallback } from 'react';
+import { useEffect, useCallback } from 'react';
 
 import useAMap from '../../hooks/useAMap';
 import useAMapOverlayBinder from '../../hooks/useAMapOverlayBinder';
 import useVisible from '../../hooks/useVisible';
+import useAMapPluginInstance from '../../hooks/useAMapPluginInstance';
 
 import type {
   AMapGeoJSONGetOverlayCallback,
@@ -15,6 +16,19 @@ const defaultProps = {
   visible: true,
 };
 
+const useWithAMap = () => {
+  const { __AMAP__: AMap, map } = useAMap();
+  return useCallback(
+    (fn?: AMapGeoJSONGetOverlayCallback) => {
+      if (typeof fn !== 'function') {
+        return fn;
+      }
+      return (geojson: GeoJSON.GeoJSON, lnglat: any) => fn(geojson, lnglat, map, AMap);
+    },
+    [AMap, map],
+  );
+};
+
 // more see
 const AMapGeoJSON: FC<AMapGeoJSONProps> = ({
   geoJSON,
@@ -24,50 +38,40 @@ const AMapGeoJSON: FC<AMapGeoJSONProps> = ({
   visible,
   options,
 }) => {
-  const { __AMAP__: AMap, map } = useAMap();
-  const [curInstance, setInstance] = useState<AMap.GeoJSON | null>(null);
+  const initInstance = useCallback((AMap) => new AMap!.GeoJSON({}), []);
+  const curInstance = useAMapPluginInstance<AMap.GeoJSON>('GeoJSON', initInstance);
+  const withMap = useWithAMap();
 
-  const withMap = useCallback(
-    (fn?: AMapGeoJSONGetOverlayCallback) => {
-      if (typeof fn !== 'function') {
-        return fn;
-      }
-      return (geojson: GeoJSON.GeoJSON, lnglat: any) => fn(geojson, lnglat, map, AMap);
-    },
-    [AMap, map],
-  );
-
+  // change getPolyline function
   useEffect(() => {
-    let clearEffect;
-    if (!AMap) {
-      return clearEffect;
-    }
+    if (!curInstance) return;
+    // 绕过 API 文档提供接口，不确定是否存在问题
+    // eslint-disable-next-line no-underscore-dangle
+    (curInstance as any)._opts.getPolyline = withMap(getPolyline);
+  }, [curInstance, getPolyline, withMap]);
 
-    const initInstance = () => {
-      const newInstance = new AMap.GeoJSON({
-        // geoJSON,
-        getMarker: withMap(getMarker),
-        getPolygon: withMap(getPolygon),
-        getPolyline: withMap(getPolyline),
-      });
-      setInstance(newInstance);
-    };
+  // change getMarker function
+  useEffect(() => {
+    if (!curInstance) return;
+    // 绕过 API 文档提供接口，不确定是否存在问题
+    // eslint-disable-next-line no-underscore-dangle
+    (curInstance as any)._opts.getMarker = withMap(getMarker);
+  }, [curInstance, getMarker, withMap]);
 
-    if (AMap.GeoJSON) {
-      initInstance();
-    } else {
-      AMap.plugin('AMap.GeoJSON', initInstance);
-    }
-
-    return clearEffect;
-  }, [AMap, geoJSON, getPolyline, getMarker, getPolygon, withMap]);
+  // change getPolygon function
+  useEffect(() => {
+    if (!curInstance) return;
+    // 绕过 API 文档提供接口，不确定是否存在问题
+    // eslint-disable-next-line no-underscore-dangle
+    (curInstance as any)._opts.getPolygon = withMap(getPolygon);
+  }, [curInstance, getPolygon, withMap]);
 
   // change data
   useEffect(() => {
     curInstance?.importData?.(geoJSON);
   }, [geoJSON, curInstance]);
 
-  // change data
+  // change options
   useEffect(() => {
     if (options) {
       curInstance?.setOptions?.(options);
