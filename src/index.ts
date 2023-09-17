@@ -25,6 +25,10 @@ export {
 export { default as AMapCircle, AMapCircleProps } from './components/AMapCircle';
 export { default as AMapEllipse, AMapEllipseProps } from './components/AMapEllipse';
 export { default as AMapMarker, AMapMarkerProps } from './components/AMapMarker';
+export {
+  default as AMapPolygonEditor,
+  AMapPolygonEditorProps,
+} from './components/AMapPolygonEditor';
 
 export { default as AMapMouseTool, AMapMouseToolProps } from './components/AMapMouseTool';
 
