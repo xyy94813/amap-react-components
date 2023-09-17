@@ -45,6 +45,32 @@ const AMapMap = forwardRef<any, AMapMapProps>(
 
       const initMap = () => {
         const newInstance = new AMap.Map($mapContainer.current!);
+
+        // 使用代理调整 map 实例的实现
+        // 添加和删除时，发布事件通知
+        const mapProxy = new Proxy(newInstance, {
+          get(target, p) {
+            if (p === 'add') {
+              const newAddFunc: typeof target.add = (features) => {
+                const result = target.add(features);
+                newInstance.emit('overlaysAdded' as AMap.EventType, features);
+                return result;
+              };
+              return newAddFunc;
+            }
+
+            if (p === 'remove') {
+              const newRemoveFunc: typeof target.remove = (features) => {
+                const result = target.remove(features);
+                newInstance.emit('overlaysRemoved' as AMap.EventType, features);
+                return result;
+              };
+              return newRemoveFunc;
+            }
+            return target[p];
+          },
+        });
+
         clearEffect = () => {
           /**
            * 异步的 destroy map，
@@ -59,7 +85,7 @@ const AMapMap = forwardRef<any, AMapMapProps>(
            */
           newInstance.destroy();
         };
-        setInstance(newInstance); // fire re-render
+        setInstance(mapProxy); // fire re-render
       };
 
       initMap();
