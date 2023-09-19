@@ -56,6 +56,13 @@ npm install @amap/amap-jsapi-types
 https://cdn.jsdelivr.net/npm/amap-react-components@0.0.1/dist/amap-react-components.browser.js
 ```
 
+### Polyfill
+
+使用者可能需要自行处理以下兼容性
+
+- [Proxy](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Proxy)
+  --> [Proxy Polyfill](https://github.com/GoogleChrome/proxy-polyfill)
+
 ## 其它
 
 - [@amap/amap-react](https://www.npmjs.com/package/@amap/amap-react) （高德官方 react 组件 ）
