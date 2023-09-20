@@ -1,0 +1,20 @@
+name: release-please
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write # to create release commit (google-github-actions/release-please-action)
+  pull-requests: write # to create release PR (google-github-actions/release-please-action)
+
+jobs:
+  release-please:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: google-github-actions/release-please-action@v3
+        id: release
+        with:
+          release-type: node
+          package-name: amap-react-components
