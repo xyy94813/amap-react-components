@@ -58,7 +58,7 @@ const AMapEllipse: FC<AMapEllipseProps> = ({
   onTouchend,
 }) => {
   const initInstance = useCallback((AMap) => new AMap!.Ellipse(), []);
-  const curInstance = useAMapPluginInstance<AMap.MapType>('MapType', initInstance);
+  const curInstance = useAMapPluginInstance<AMap.Ellipse>('Ellipse', initInstance);
 
   useSetter<Parameters<AMap.Ellipse['setCenter']>>(curInstance, 'setCenter', center!);
   useSetter<Parameters<AMap.Ellipse['setRadius']>>(curInstance, 'setRadius', radius!);
