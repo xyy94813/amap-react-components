@@ -13,7 +13,7 @@ export default {
   decorators: [withAMapContainer],
   args: {
     position: 'LB',
-    offset: [0, 0],
+    offset: [10, 10],
     visible: true,
     onShow: eventHandler.onShow,
     onHide: eventHandler.onHide,
@@ -55,7 +55,7 @@ const Template: AMapScaleStory = (args) => <AMapScale {...args} />;
 
 export const ChangeOffset: AMapScaleStory = Template.bind({});
 ChangeOffset.storyName = '设置偏移量';
-ChangeOffset.args = { offset: [10, 10] };
+ChangeOffset.args = { offset: [100, 100] };
 
 export const ChangePosition: AMapScaleStory = Template.bind({});
 ChangePosition.storyName = '指定位置';

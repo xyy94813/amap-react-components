@@ -13,7 +13,7 @@ export default {
   decorators: [withAMapContainer],
   args: {
     position: 'LT',
-    offset: [0, 0],
+    offset: [10, 10],
     visible: true,
     onShow: eventHandler.onShow,
     onHide: eventHandler.onHide,

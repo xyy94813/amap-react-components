@@ -13,7 +13,7 @@ export default {
   decorators: [withAMapContainer],
   args: {
     position: 'LT',
-    offset: [0, 0],
+    offset: [10, 10],
     showControlButton: true,
     visible: true,
     onShow: eventHandler.onShow,
@@ -62,7 +62,7 @@ const Template: Story<AMapControlBarProps> = (args) => <AMapControlBar {...args}
 
 export const ChangeOffset: typeof Template = Template.bind({});
 ChangeOffset.storyName = '设置偏移量';
-ChangeOffset.args = { offset: [20, 20] };
+ChangeOffset.args = { offset: [200, 200] };
 
 export const ChangePosition: typeof Template = Template.bind({});
 ChangePosition.args = { position: 'RT' };
