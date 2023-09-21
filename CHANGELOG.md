@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.4.0](https://github.com/xyy94813/amap-react-components/compare/v0.3.0...v0.4.0) (2023-09-21)
+
+
+### Features
+
+* 新增组件 AMapPolygonEditor ([a686580](https://github.com/xyy94813/amap-react-components/commit/a6865800879e174d4250d86026c81f2059c29365))
+
+
+### Bug Fixes
+
+* 组件 AMapEllipse 异步加载了错误的插件 ([c6edeee](https://github.com/xyy94813/amap-react-components/commit/c6edeee120adaefa79f74e3a4d14c8b907c28e6f))
+
 ## [0.3.0](https://github.com/xyy94813/amap-react-components/compare/v0.2.1...v0.3.0) (2023-07-20)
 
 
