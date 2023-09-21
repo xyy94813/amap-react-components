@@ -1,11 +1,14 @@
 import type { FC } from 'react';
 import {
-  useEffect, useState, useMemo, memo,
+  useCallback,
+  memo,
 } from 'react';
 
-import useAMap from '../../hooks/useAMap';
+import useAMapPluginInstance from '../../hooks/useAMapPluginInstance';
 import useAMapControlBinder from '../../hooks/useAMapControlBinder';
+import useControlContainerUpdater from '../../hooks/useControlContainerUpdater';
 import useAMapEventBinder from '../../hooks/useAMapEventBinder';
+import useVisible from '../../hooks/useVisible';
 
 /**
  * Origin API see:
@@ -28,41 +31,14 @@ const defaultProps = {
 const AMapToolBar: FC<AMapToolBarProps> = ({
   position, offset, visible, onShow, onHide,
 }) => {
-  const { __AMAP__: AMap } = useAMap();
-  const [curInstance, setInstance] = useState<any>(null);
+  const initInstance = useCallback((AMap) => new AMap.ToolBar(), []);
+  const curInstance = useAMapPluginInstance<AMap.ToolBar>('ToolBar', initInstance);
 
-  const initConfig = useMemo(() => {
-    const conf: AMap.ControlConfig = { position: position! };
+  // 自行控制 Control container dom
+  // 避免多起创建实例
+  useControlContainerUpdater(curInstance, position!, offset);
 
-    if (offset !== undefined) conf.offset = offset;
-
-    return conf;
-  }, [position, offset]);
-
-  useEffect(() => {
-    if (!AMap) {
-      return;
-    }
-
-    const initInstance = () => {
-      const newInstance = new AMap.ToolBar(initConfig);
-      setInstance(newInstance);
-    };
-
-    if (AMap.ToolBar) {
-      initInstance();
-    } else {
-      AMap.plugin('AMap.ToolBar', initInstance);
-    }
-  }, [AMap, position, offset, initConfig]);
-
-  useEffect(() => {
-    if (visible) {
-      curInstance?.show?.();
-    } else {
-      curInstance?.hide?.();
-    }
-  }, [curInstance, visible]);
+  useVisible(curInstance, visible!);
 
   useAMapEventBinder(curInstance, 'show', onShow);
   useAMapEventBinder(curInstance, 'hide', onHide);

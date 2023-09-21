@@ -14,7 +14,6 @@ export default {
   args: {
     position: 'LT',
     offset: [0, 0],
-    showControlButton: true,
     visible: true,
     onShow: eventHandler.onShow,
     onHide: eventHandler.onHide,
@@ -36,14 +35,6 @@ export default {
         '相对于地图容器偏移量，正数代表地图中心，复数向地图外侧(实际现象与高德地图官方文档不一致)。',
       type: { summary: 'array', required: false },
       control: 'array',
-    },
-    showControlButton: {
-      description: '是否显示倾斜、旋转按钮。',
-      table: {
-        type: { summary: 'boolean' },
-        defaultValue: { summary: true },
-      },
-      control: 'boolean',
     },
     visible: {
       description: '显示或隐藏',
