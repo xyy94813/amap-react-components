@@ -1,9 +1,13 @@
 import type { FC } from 'react';
 import {
-  useEffect, useState, useMemo, memo,
+  useEffect,
+  useMemo,
+  useCallback,
+  memo,
 } from 'react';
 
-import useAMap from '../../hooks/useAMap';
+import useAMapPluginInstance from '../../hooks/useAMapPluginInstance';
+import useVisible from '../../hooks/useVisible';
 import useAMapControlBinder from '../../hooks/useAMapControlBinder';
 import useAMapEventBinder from '../../hooks/useAMapEventBinder';
 
@@ -46,9 +50,6 @@ const AMapHawkEye: FC<AMapHawkEyeProps> = ({
   onShow,
   onHide,
 }) => {
-  const { __AMAP__: AMap } = useAMap();
-  const [curInstance, setInstance] = useState<any>(null);
-
   const initConfig = useMemo(() => {
     const conf: AMap.HawkEyeOptions = {};
 
@@ -82,22 +83,8 @@ const AMapHawkEye: FC<AMapHawkEyeProps> = ({
     buttonSize,
   ]);
 
-  useEffect(() => {
-    if (!AMap) {
-      return;
-    }
-
-    const initInstance = () => {
-      const newInstance = new AMap.HawkEye(initConfig);
-      setInstance(newInstance);
-    };
-
-    if (AMap.HawkEye) {
-      initInstance();
-    } else {
-      AMap.plugin('AMap.HawkEye', initInstance);
-    }
-  }, [AMap, initConfig]);
+  const initInstance = useCallback((AMap) => new AMap!.HawkEye(initConfig), [initConfig]);
+  const curInstance = useAMapPluginInstance<AMap.HawkEye>('HawkEye', initInstance);
 
   // 是否展开
   useEffect(() => {
@@ -108,13 +95,7 @@ const AMapHawkEye: FC<AMapHawkEyeProps> = ({
     }
   }, [curInstance, isOpen]);
 
-  useEffect(() => {
-    if (visible) {
-      curInstance?.show?.();
-    } else {
-      curInstance?.hide?.();
-    }
-  }, [curInstance, visible]);
+  useVisible(curInstance, !!visible);
 
   useAMapEventBinder(curInstance, 'show', onShow);
   useAMapEventBinder(curInstance, 'hide', onHide);
