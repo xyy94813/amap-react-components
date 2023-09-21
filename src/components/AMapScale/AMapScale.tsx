@@ -1,11 +1,13 @@
 import type { FC } from 'react';
 import {
-  useEffect, useState, useMemo, memo,
+  memo,
 } from 'react';
 
-import useAMap from '../../hooks/useAMap';
+import useAMapPluginInstance from 'hooks/useAMapPluginInstance';
+import useControlContainerUpdater from '../../hooks/useControlContainerUpdater';
 import useAMapControlBinder from '../../hooks/useAMapControlBinder';
 import useAMapEventBinder from '../../hooks/useAMapEventBinder';
+import useVisible from '../../hooks/useVisible';
 
 /**
  * Origin API see:
@@ -26,46 +28,16 @@ const defaultProps = {
   onHide: undefined,
 };
 
+const initInstance = (AMap: any) => new AMap.Scale();
+
 const AMapScale: FC<AMapScaleProps> = ({
   position, offset, visible, onShow, onHide,
 }) => {
-  const { __AMAP__: AMap } = useAMap();
-  const [curInstance, setInstance] = useState<any>(null);
+  const curInstance = useAMapPluginInstance('Scale', initInstance);
 
-  const initConfig = useMemo(() => {
-    const conf: AMap.ControlConfig = {
-      position: position!,
-    };
+  useControlContainerUpdater(curInstance, position!, offset);
 
-    if (offset !== undefined) conf.offset = offset;
-
-    return conf;
-  }, [position, offset]);
-
-  useEffect(() => {
-    if (!AMap) {
-      return;
-    }
-
-    const initInstance = () => {
-      const newInstance = new AMap.Scale(initConfig);
-      setInstance(newInstance);
-    };
-
-    if (AMap.Scale) {
-      initInstance();
-    } else {
-      AMap.plugin('AMap.Scale', initInstance);
-    }
-  }, [AMap, position, offset, initConfig]);
-
-  useEffect(() => {
-    if (visible) {
-      curInstance?.show?.();
-    } else {
-      curInstance?.hide?.();
-    }
-  }, [curInstance, visible]);
+  useVisible(curInstance, visible!);
 
   useAMapEventBinder(curInstance, 'show', onShow);
   useAMapEventBinder(curInstance, 'hide', onHide);
