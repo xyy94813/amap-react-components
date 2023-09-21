@@ -70,4 +70,4 @@ ChangePosition.storyName = '指定位置';
 
 export const HideControlButton: typeof Template = Template.bind({});
 HideControlButton.args = { showControlButton: false };
-HideControlButton.storyName = '显示/隐藏';
+HideControlButton.storyName = '显示/隐藏控制按钮';
