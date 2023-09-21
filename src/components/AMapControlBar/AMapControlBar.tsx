@@ -1,11 +1,16 @@
 import type { FC } from 'react';
 import {
-  useEffect, useState, useMemo, memo,
+  useCallback,
+  memo,
 } from 'react';
 
-import useAMap from '../../hooks/useAMap';
+import useAMapPluginInstance from '../../hooks/useAMapPluginInstance';
+import useControlContainerUpdater from '../../hooks/useControlContainerUpdater';
 import useAMapControlBinder from '../../hooks/useAMapControlBinder';
 import useAMapEventBinder from '../../hooks/useAMapEventBinder';
+import useVisible from '../../hooks/useVisible';
+
+import useControlButtonUpdater from './useControlButtonUpdater';
 
 /**
  * Origin API see:
@@ -30,50 +35,24 @@ const defaultProps = {
 
 const AMapControlBar: FC<AMapControlBarProps> = ({
   position,
-  offset,
+  offset: propOffset,
   showControlButton,
   visible,
   onHide,
   onShow,
 }) => {
-  const { __AMAP__: AMap } = useAMap();
-  const [curInstance, setInstance] = useState<any>(null);
+  const initInstance = useCallback((AMap) => new AMap!.ControlBar(), []);
+  const curInstance = useAMapPluginInstance<AMap.ControlBar>('ControlBar', initInstance);
 
-  const initConfig = useMemo(() => {
-    const conf: AMap.ControlBarConfig = {
-      position: position!,
-    };
+  // 避免重新创建 ControlBar 实例，自行修改 dom 节点
+  // position 改变
+  useControlContainerUpdater(curInstance, position!, propOffset ?? [10, 10]);
 
-    if (showControlButton !== undefined) conf.showControlButton = showControlButton;
-    if (offset !== undefined) conf.offset = offset;
+  // 避免重新创建 ControlBar 实例，自行修改 dom 节点
+  // controlButtons 显示/隐藏
+  useControlButtonUpdater(curInstance!, !!showControlButton);
 
-    return conf;
-  }, [showControlButton, position, offset]);
-
-  useEffect(() => {
-    if (!AMap) {
-      return;
-    }
-
-    const initInstance = () => {
-      const newInstance = new AMap.ControlBar(initConfig);
-      setInstance(newInstance);
-    };
-
-    if (AMap.ControlBar) {
-      initInstance();
-    } else {
-      AMap.plugin('AMap.ControlBar', initInstance);
-    }
-  }, [AMap, initConfig]);
-
-  useEffect(() => {
-    if (visible) {
-      curInstance?.show?.();
-    } else {
-      curInstance?.hide?.();
-    }
-  }, [curInstance, visible]);
+  useVisible(curInstance, visible!);
 
   useAMapEventBinder(curInstance, 'show', onShow);
   useAMapEventBinder(curInstance, 'hide', onHide);

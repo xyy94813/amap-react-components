@@ -10,6 +10,20 @@ declare global {
     }
     export class ControlBar extends AMap.Control {
       constructor(conf?: ControlBarConfig);
+
+      _config: ControlBarConfig;
+
+      _pitchUp: HTMLDivElement;
+
+      _pitchDown: HTMLDivElement;
+
+      _rotateLeft: HTMLDivElement;
+
+      _rotateRight: HTMLDivElement;
+
+      _compass: HTMLDivElement;
+
+      _luopan: HTMLDivElement;
     }
 
     export interface ToolBarConfig extends AMap.ControlConfig {}
