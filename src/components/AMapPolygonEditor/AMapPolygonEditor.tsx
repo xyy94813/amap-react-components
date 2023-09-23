@@ -9,7 +9,7 @@ import {
 import useAMap from '../../hooks/useAMap';
 import useAMapPluginInstance from '../../hooks/useAMapPluginInstance';
 
-import type { AMapPolygonEditorProps } from './interface.d';
+import type { AMapPolygonEditorProps } from './interface';
 
 const isPolygonFeature = (feature: any) => feature.className === 'Overlay.Polygon';
 

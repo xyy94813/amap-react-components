@@ -1,2 +1,2 @@
-export type { AMapPolygonEditorProps } from './interface.d';
+export type { AMapPolygonEditorProps } from './interface';
 export { default } from './AMapPolygonEditor';
