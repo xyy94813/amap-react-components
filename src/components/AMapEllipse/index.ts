@@ -1,2 +1,2 @@
-export { AMapEllipseProps } from './interface';
+export type { AMapEllipseProps } from './interface';
 export { default } from './AMapEllipse';

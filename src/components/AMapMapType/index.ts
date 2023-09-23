@@ -1,3 +1,3 @@
-export { AMapMapTypeProps } from './interface';
+export type { AMapMapTypeProps } from './interface';
 
 export { default } from './AMapMapType';

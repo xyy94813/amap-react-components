@@ -1,3 +1,3 @@
-export { AMapMarkerProps } from './interface';
+export type { AMapMarkerProps } from './interface';
 
 export { default } from './AMapMarker';
