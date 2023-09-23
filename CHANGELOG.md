@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.4.1](https://github.com/xyy94813/amap-react-components/compare/v0.4.0...v0.4.1) (2023-09-23)
+
+
+### Bug Fixes
+
+* 输出的包里丢失ts类型信息 ([f420a2e](https://github.com/xyy94813/amap-react-components/commit/f420a2edf8ce8fdfdbbf5e158491b4816f1377b9))
+* 输出的包里丢失类型信息 ([b553d9a](https://github.com/xyy94813/amap-react-components/commit/b553d9a91b614f7365f4dd61910fc04fc8c23052))
+
 ## [0.4.0](https://github.com/xyy94813/amap-react-components/compare/v0.3.0...v0.4.0) (2023-09-21)
 
 
