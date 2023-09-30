@@ -41,7 +41,7 @@
   "devDependencies": {
     "@amap/amap-jsapi-types": "0.0.13",
     "@babel/core": "^7.23.0",
-    "@commitlint/cli": "^17.7.1",
+    "@commitlint/cli": "^12.1.4",
     "@commitlint/config-conventional": "^12.0.0",
     "@storybook/addon-actions": "^6.1.21",
     "@storybook/addon-essentials": "^6.1.21",
