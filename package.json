@@ -49,10 +49,8 @@
     "@storybook/storybook-deployer": "^2.8.6",
     "@testing-library/react": "^12.1.5",
     "@testing-library/react-hooks": "^8.0.1",
-    "@types/babel__traverse": "^7.0.0",
     "@types/geojson": "^7946.0.7",
     "@types/jest": "^26.0.3",
-    "@types/node": "^16.18.55",
     "@types/react-dom": "^16.9.8",
     "babel-loader": "^8.1.0",
     "dotenv-load": "^2.0.0",
@@ -77,6 +75,11 @@
     "ts-jest": "^26.1.1",
     "ts-loader": "^7.0.5",
     "typescript": "^3.9.5"
+  },
+  "resolutions": {
+    "node": "16",
+    "@types/babel__traverse": "7.0.0",
+    "@types/node": "16.18.55"
   },
   "dependencies": {
     "@amap/amap-jsapi-loader": "^1.0.1"
