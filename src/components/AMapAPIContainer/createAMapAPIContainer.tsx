@@ -12,14 +12,16 @@ const defaultOptions = {
   version: DEFAULT_AMAP_VERSION,
 };
 
-export type CreateAMapApiContainerOptions = Parameters<typeof AMapLoader.load>[0];
+export type CreateAMapApiContainerOptions = (Omit<Parameters<typeof AMapLoader.load>[0], 'version'>) & {
+  version?: string
+};
 
 export type AMapAPIHocProps = {
   children: React.ReactNode;
 };
 
 export const createAMapAPIContainer = (options: CreateAMapApiContainerOptions) => {
-  const { AMapUI: AMapUIOptions, ...otherOptions } = (options || {});
+  const { AMapUI: AMapUIOptions, ...otherOptions } = options;
   const loadAMapAPI = () => AMapLoader.load({
     ...defaultOptions,
     ...otherOptions,
@@ -39,7 +41,7 @@ export const createAMapAPIContainer = (options: CreateAMapApiContainerOptions) =
     } else {
       const promises = [];
 
-      if ((otherOptions?.plugins?.length ?? 0) > 0) {
+      if ((otherOptions.plugins?.length ?? 0) > 0) {
         promises.push(
           new Promise((r) => {
             AMap.plugin(otherOptions.plugins!, r);
