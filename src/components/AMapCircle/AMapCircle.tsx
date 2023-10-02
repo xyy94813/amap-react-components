@@ -1,18 +1,20 @@
 import {
   forwardRef,
-  useState,
-  useEffect,
   useMemo,
   useImperativeHandle,
 } from 'react';
 
-import useAMap from '../../hooks/useAMap';
+import useAMapPluginInstance from '../../hooks/useAMapPluginInstance';
 import useAMapOverlayBinder from '../../hooks/useAMapOverlayBinder';
 import useAMapEventBinder from '../../hooks/useAMapEventBinder';
 import useVisible from '../../hooks/useVisible';
 import useSetter from '../../hooks/useSetter';
 
 import type { AMapCircleProps } from './interface';
+
+const init = (AMap: Parameters<
+Parameters<typeof useAMapPluginInstance>[1]
+>[0]) => new AMap!.Circle();
 
 // https://lbs.amap.com/api/javascript-api/reference/overlay#Circle
 const AMapCircle = forwardRef<AMap.Circle, AMapCircleProps>(
@@ -48,25 +50,7 @@ const AMapCircle = forwardRef<AMap.Circle, AMapCircleProps>(
     },
     ref,
   ) => {
-    const { __AMAP__: AMap } = useAMap();
-    const [curInstance, setInstance] = useState<AMap.Circle | null>(null);
-
-    useEffect(() => {
-      let clearEffect;
-      if (!AMap) return clearEffect;
-
-      const initInstance = () => {
-        const newInstance = new AMap.Circle();
-        setInstance(newInstance);
-      };
-
-      if (AMap.Circle) {
-        initInstance();
-      } else {
-        AMap.plugin('AMap.Circle', initInstance);
-      }
-      return clearEffect;
-    }, [AMap]);
+    const curInstance = useAMapPluginInstance<AMap.Circle>('Circle', init);
 
     useImperativeHandle(ref, () => curInstance!, [curInstance]);
 
