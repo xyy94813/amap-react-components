@@ -3,7 +3,7 @@ import {
   memo,
 } from 'react';
 
-import useAMapPluginInstance from 'hooks/useAMapPluginInstance';
+import useAMapPluginInstance from '../../hooks/useAMapPluginInstance';
 import useControlContainerUpdater from '../../hooks/useControlContainerUpdater';
 import useAMapControlBinder from '../../hooks/useAMapControlBinder';
 import useAMapEventBinder from '../../hooks/useAMapEventBinder';
