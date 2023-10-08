@@ -1,5 +1,6 @@
 import type { PropsWithChildren } from 'react';
-import React, {
+import * as React from 'react';
+import {
   useEffect,
   useRef,
   useState,
@@ -98,7 +99,7 @@ const AMapMap = forwardRef<any, AMapMapProps>(
     // set city
     useEffect(() => {
       if (cityName) {
-        curMap?.setCity?.(cityName, () => {});
+        curMap?.setCity(cityName, () => {});
       }
     }, [cityName, curMap]);
 
@@ -112,7 +113,7 @@ const AMapMap = forwardRef<any, AMapMapProps>(
     // set center
     useEffect(() => {
       if (center) {
-        curMap?.setCenter?.(center);
+        curMap?.setCenter(center);
       }
     }, [center, curMap]);
 
