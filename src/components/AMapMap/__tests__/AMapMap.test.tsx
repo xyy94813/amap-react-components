@@ -25,6 +25,10 @@ jest.mock('../../../hooks/useAMapAPI', () => ({
 }));
 
 describe('AMapMap', () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
   afterEach(cleanup);
 
   test('render without error', () => {
