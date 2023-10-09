@@ -1,15 +1,15 @@
 import {
   forwardRef,
   useEffect,
-  useState,
   useImperativeHandle,
 } from 'react';
 
-import useAMap from '../../hooks/useAMap';
 import useAMapEventBinder from '../../hooks/useAMapEventBinder';
+import useAMapPluginInstance from '../../hooks/useAMapPluginInstance';
 
 import type { AMapMouseToolProps } from './interface';
 
+const initInstance = (AMap: typeof global.AMap, map: AMap.Map) => new AMap!.MouseTool(map!);
 /**
  *
  * Origin Docs See:
@@ -18,25 +18,14 @@ import type { AMapMouseToolProps } from './interface';
  */
 const AMapMouseTool = forwardRef<AMap.MouseTool, AMapMouseToolProps>(
   ({
-    type, options, onCompleted,
+    type,
+    options,
+    onCompleted,
   }, ref) => {
-    const { __AMAP__: AMap, map } = useAMap();
-    const [curInstance, setInstance] = useState<AMap.MouseTool | null>(null);
-
-    useEffect(() => {
-      if (!AMap || !map) return;
-
-      const init = () => {
-        const instance = new AMap.MouseTool(map);
-        setInstance(instance);
-      };
-
-      if (AMap.MouseTool) {
-        init();
-      } else {
-        AMap.plugin(['AMap.MouseTool'], init);
-      }
-    }, [AMap, map]);
+    const curInstance = useAMapPluginInstance<AMap.MouseTool>(
+      'MouseTool',
+      initInstance,
+    );
 
     useImperativeHandle(ref, () => curInstance!, [curInstance]);
 
