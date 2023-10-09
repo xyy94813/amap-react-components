@@ -1,5 +1,6 @@
 import type { PropsWithChildren } from 'react';
-import React, {
+import * as React from 'react';
+import {
   forwardRef,
   useCallback,
   useImperativeHandle,
@@ -61,7 +62,7 @@ const AMapOverlayGroup = forwardRef<AMap.OverlayGroup, PropsWithChildren<AMapOve
     // change options
     useEffect(() => {
       if (!options) return;
-      curInstance?.setOptions?.(options);
+      curInstance?.setOptions(options);
     }, [options, curInstance]);
 
     useVisible(curInstance, !!visible);
