@@ -5,12 +5,20 @@ import { render, cleanup } from '@testing-library/react';
 import useAMapPluginInstance from '../../../hooks/useAMapPluginInstance';
 import AMapGeoJSON from '../AMapGeoJSON';
 
+const mockInstance = {
+  _opts: {} as any,
+  importData: jest.fn(),
+  setOptions: jest.fn(),
+  show: jest.fn(),
+  hide: jest.fn(),
+};
 jest.mock('../../../hooks/useAMapPluginInstance', () => ({
   esModule: true,
   default: jest.fn((__, cb) => {
     cb({
       GeoJSON: jest.fn(),
     }, {});
+    return mockInstance;
   }),
 }));
 
@@ -128,11 +136,6 @@ describe('AMapGeoJSON', () => {
   });
 
   test('import data correctly', () => {
-    const mockInstance = {
-      _opts: {},
-      importData: jest.fn(),
-    };
-    (useAMapPluginInstance as jest.Mock).mockReturnValue(mockInstance);
     const { rerender } = render(<AMapGeoJSON geoJSON={mockData} />);
 
     expect(mockInstance.importData).toHaveBeenCalledTimes(1);
@@ -147,10 +150,6 @@ describe('AMapGeoJSON', () => {
   });
 
   test('custom render function', () => {
-    const mockInstance = {
-      _opts: {} as any,
-    };
-    (useAMapPluginInstance as jest.Mock).mockReturnValueOnce(mockInstance);
     const getMarker = jest.fn();
     const getPolyline = jest.fn();
     const getPolygon = jest.fn();
@@ -170,11 +169,6 @@ describe('AMapGeoJSON', () => {
   });
 
   test('should set options', () => {
-    const mockInstance = {
-      _opts: {},
-      setOptions: jest.fn(),
-    };
-    (useAMapPluginInstance as jest.Mock).mockReturnValueOnce(mockInstance);
     const options = {};
 
     render(<AMapGeoJSON geoJSON={mockData} options={options} />);
@@ -184,13 +178,6 @@ describe('AMapGeoJSON', () => {
   });
 
   test('set to invisible', () => {
-    const mockInstance = {
-      _opts: {},
-      show: jest.fn(),
-      hide: jest.fn(),
-    };
-    (useAMapPluginInstance as jest.Mock).mockReturnValue(mockInstance);
-
     const { rerender } = render(<AMapGeoJSON geoJSON={mockData} />);
 
     expect(mockInstance.show).toBeCalled();

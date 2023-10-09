@@ -6,6 +6,13 @@ import useAMapPluginInstance from '../../../hooks/useAMapPluginInstance';
 
 import AMapMouseTool from '../AMapMouseTool';
 
+const mockInstance = {
+  close: jest.fn(),
+  polyline: jest.fn(),
+  on: jest.fn(),
+  off: jest.fn(),
+};
+
 jest.mock('../../../hooks/useAMapPluginInstance', () => ({
   esModule: true,
   default: jest.fn((__, cb) => {
@@ -13,11 +20,7 @@ jest.mock('../../../hooks/useAMapPluginInstance', () => ({
       MouseTool: jest.fn(),
     }, {});
 
-    // mock instance
-    return {
-      close: jest.fn(),
-      polyline: jest.fn(),
-    };
+    return mockInstance;
   }),
 }));
 
@@ -42,33 +45,23 @@ describe('AMapMouseTool', () => {
   });
 
   test('custom options', () => {
-    const $ref = createRef<any>();
     const options = {};
-    const { rerender } = render(<AMapMouseTool ref={$ref} type="polyline" options={null as any} />);
-    rerender(<AMapMouseTool ref={$ref} type="polyline" options={options} />);
-    expect($ref.current.polyline).toBeCalledWith(options);
+    const { rerender } = render(<AMapMouseTool type="polyline" options={null as any} />);
+    rerender(<AMapMouseTool type="polyline" options={options} />);
+    expect(mockInstance.polyline).toBeCalledWith(options);
   });
 
   test('support ref to instance', () => {
-    const mockInstance = {
-      close: jest.fn(),
-      polyline: jest.fn(),
-    };
-    (useAMapPluginInstance as jest.Mock).mockReturnValue(mockInstance);
+    (useAMapPluginInstance as jest.Mock)
+      .mockReturnValueOnce(null);
     const $ref = createRef<any>();
-    render(<AMapMouseTool ref={$ref} type="polyline" />);
+    const { rerender } = render(<AMapMouseTool ref={$ref} type="polyline" />);
+    expect($ref.current).toBe(null);
+    rerender(<AMapMouseTool ref={$ref} type="polyline" />);
     expect($ref.current).toBe(mockInstance);
   });
 
   test('bind event correctly', () => {
-    const mockInstance = {
-      close: jest.fn(),
-      polyline: jest.fn(),
-      on: jest.fn(),
-      off: jest.fn(),
-    };
-    (useAMapPluginInstance as jest.Mock).mockReturnValueOnce(mockInstance);
-
     const onCompleted = jest.fn();
 
     const { unmount } = render(

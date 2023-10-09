@@ -6,12 +6,21 @@ import useAMapPluginInstance from '../../../hooks/useAMapPluginInstance';
 
 import AMapToolBar from '../AMapToolBar';
 
+const mockInstance = {
+  _config: {} as any,
+  _container: document.createElement('div'),
+  show: jest.fn(),
+  hide: jest.fn(),
+  on: jest.fn(),
+  off: jest.fn(),
+};
 jest.mock('../../../hooks/useAMapPluginInstance', () => ({
   esModule: true,
   default: jest.fn((__, cb) => {
     cb({
       ToolBar: jest.fn(),
     }, {});
+    return mockInstance;
   }),
 }));
 
@@ -27,16 +36,14 @@ describe('AMapToolBar Component', () => {
     }).not.toThrowError();
     expect(useAMapPluginInstance).toHaveBeenCalledWith('ToolBar', expect.any(Function));
   });
+  test('renders without crashing when instance is null', () => {
+    (useAMapPluginInstance as jest.Mock).mockReturnValueOnce(null);
+    expect(() => {
+      render(<AMapToolBar />);
+    }).not.toThrowError();
+  });
 
   test('change position and offset', () => {
-    const mockInstance = {
-      _config: {} as any,
-      _container: document.createElement('div'),
-      show: jest.fn(),
-      hide: jest.fn(),
-    };
-    (useAMapPluginInstance as jest.Mock).mockReturnValue(mockInstance);
-
     const { rerender } = render(<AMapToolBar />);
 
     expect(mockInstance._container.style.cssText).toBe('left: 10px; top: 10px;');
@@ -49,13 +56,6 @@ describe('AMapToolBar Component', () => {
   });
 
   test('set to invisible', () => {
-    const mockInstance = {
-      _config: {},
-      _container: document.createElement('div'),
-      show: jest.fn(),
-      hide: jest.fn(),
-    };
-    (useAMapPluginInstance as jest.Mock).mockReturnValue(mockInstance);
     const { rerender } = render(<AMapToolBar />);
 
     expect(mockInstance.show).toBeCalled();
@@ -66,14 +66,6 @@ describe('AMapToolBar Component', () => {
   });
 
   test('bind event correctly', () => {
-    const mockInstance = {
-      _config: {},
-      _container: document.createElement('div'),
-      on: jest.fn(),
-      off: jest.fn(),
-    };
-    (useAMapPluginInstance as jest.Mock).mockReturnValue(mockInstance);
-
     const onShow = jest.fn();
     const onHide = jest.fn();
 

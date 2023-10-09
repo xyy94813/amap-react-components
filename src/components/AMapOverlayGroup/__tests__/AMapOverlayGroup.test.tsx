@@ -134,8 +134,12 @@ describe('AMapOverlayGroup Component', () => {
   });
 
   test('support ref to instance', () => {
+    (useAMapPluginInstance as jest.Mock)
+      .mockReturnValueOnce(null);
     const $ref = createRef<any>();
-    render(<AMapOverlayGroup ref={$ref} />);
+    const { rerender } = render(<AMapOverlayGroup ref={$ref} />);
+    expect($ref.current).toBe(null);
+    rerender(<AMapOverlayGroup ref={$ref} />);
     expect($ref.current).toBe(mockInstance);
   });
 });

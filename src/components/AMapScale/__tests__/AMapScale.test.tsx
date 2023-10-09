@@ -6,12 +6,21 @@ import useAMapPluginInstance from '../../../hooks/useAMapPluginInstance';
 
 import AMapScale from '../AMapScale';
 
+const mockInstance = {
+  _config: {} as any,
+  _container: document.createElement('div'),
+  show: jest.fn(),
+  hide: jest.fn(),
+  on: jest.fn(),
+  off: jest.fn(),
+};
 jest.mock('../../../hooks/useAMapPluginInstance', () => ({
   esModule: true,
   default: jest.fn((__, cb) => {
     cb({
       Scale: jest.fn(),
     }, {});
+    return mockInstance;
   }),
 }));
 
@@ -27,16 +36,15 @@ describe('AMapScale Component', () => {
     }).not.toThrowError();
     expect(useAMapPluginInstance).toHaveBeenCalledWith('Scale', expect.any(Function));
   });
+  test('renders without crashing when instance is null', () => {
+    (useAMapPluginInstance as jest.Mock).mockReturnValueOnce(null);
+    expect(() => {
+      render(<AMapScale />);
+    }).not.toThrowError();
+    expect(useAMapPluginInstance).toHaveBeenCalledWith('Scale', expect.any(Function));
+  });
 
   test('change position and offset', () => {
-    const mockInstance = {
-      _config: {} as any,
-      _container: document.createElement('div'),
-      show: jest.fn(),
-      hide: jest.fn(),
-    };
-    (useAMapPluginInstance as jest.Mock).mockReturnValue(mockInstance);
-
     const { rerender } = render(<AMapScale />);
 
     expect(mockInstance._container.style.cssText).toBe('left: 10px; bottom: 10px;');
@@ -49,13 +57,6 @@ describe('AMapScale Component', () => {
   });
 
   test('set to invisible', () => {
-    const mockInstance = {
-      _config: {},
-      _container: document.createElement('div'),
-      show: jest.fn(),
-      hide: jest.fn(),
-    };
-    (useAMapPluginInstance as jest.Mock).mockReturnValue(mockInstance);
     const { rerender } = render(<AMapScale />);
 
     expect(mockInstance.show).toBeCalled();
@@ -66,14 +67,6 @@ describe('AMapScale Component', () => {
   });
 
   test('bind event correctly', () => {
-    const mockInstance = {
-      _config: {},
-      _container: document.createElement('div'),
-      on: jest.fn(),
-      off: jest.fn(),
-    };
-    (useAMapPluginInstance as jest.Mock).mockReturnValue(mockInstance);
-
     const onShow = jest.fn();
     const onHide = jest.fn();
 

@@ -5,12 +5,24 @@ import useAMapPluginInstance from '../../../hooks/useAMapPluginInstance';
 
 import AMapEllipse from '../AMapEllipse';
 
+const mockInstance = {
+  setCenter: jest.fn(),
+  setRadius: jest.fn(),
+  setOptions: jest.fn(),
+  setExtData: jest.fn(),
+  show: jest.fn(),
+  hide: jest.fn(),
+  on: jest.fn(),
+  off: jest.fn(),
+};
+
 jest.mock('../../../hooks/useAMapPluginInstance', () => ({
   esModule: true,
   default: jest.fn((__, cb) => {
     cb({
       Ellipse: jest.fn(),
     }, {});
+    return mockInstance;
   }),
 }));
 
@@ -28,19 +40,13 @@ describe('AMapEllipse Component', () => {
   });
 
   test('renders without crashing when instance is null', () => {
-    (useAMapPluginInstance as jest.Mock).mockReturnValue(null);
+    (useAMapPluginInstance as jest.Mock).mockReturnValueOnce(null);
     expect(() => {
       render(<AMapEllipse />);
     }).not.toThrowError();
   });
 
   test('sets the circle center and radius', () => {
-    const mockInstance = {
-      setCenter: jest.fn(),
-      setRadius: jest.fn(),
-      setOptions: jest.fn(),
-    };
-    (useAMapPluginInstance as jest.Mock).mockReturnValue(mockInstance);
     const center:[number, number] = [116.397428, 39.90923];
     const radius:[number, number] = [1000, 500];
 
@@ -51,10 +57,6 @@ describe('AMapEllipse Component', () => {
   });
 
   test('sets the extra data', () => {
-    const mockInstance = {
-      setExtData: jest.fn(),
-    };
-    (useAMapPluginInstance as jest.Mock).mockReturnValue(mockInstance);
     const extData = { id: 1 };
     render(<AMapEllipse extData={extData} />);
 
@@ -62,11 +64,6 @@ describe('AMapEllipse Component', () => {
   });
 
   test('set to invisible', () => {
-    const mockInstance = {
-      show: jest.fn(),
-      hide: jest.fn(),
-    };
-    (useAMapPluginInstance as jest.Mock).mockReturnValue(mockInstance);
     const { rerender } = render(<AMapEllipse />);
 
     expect(mockInstance.show).toBeCalled();
@@ -77,10 +74,6 @@ describe('AMapEllipse Component', () => {
   });
 
   test('updates options when props change', () => {
-    const mockInstance = {
-      setOptions: jest.fn(),
-    };
-    (useAMapPluginInstance as jest.Mock).mockReturnValue(mockInstance);
     const zIndex = 1;
     const bubble = false;
     const cursor = '1';
@@ -158,12 +151,6 @@ describe('AMapEllipse Component', () => {
   });
 
   test('bind event correctly', () => {
-    const mockInstance = {
-      on: jest.fn(),
-      off: jest.fn(),
-    };
-    (useAMapPluginInstance as jest.Mock).mockReturnValue(mockInstance);
-
     const onShow = jest.fn();
     const onHide = jest.fn();
     const onClick = jest.fn();

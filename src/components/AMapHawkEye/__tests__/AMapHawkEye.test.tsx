@@ -6,12 +6,22 @@ import useAMapPluginInstance from '../../../hooks/useAMapPluginInstance';
 
 import AMapHawkEye from '../AMapHawkEye';
 
+const mockInstance = {
+  show: jest.fn(),
+  hide: jest.fn(),
+  open: jest.fn(),
+  close: jest.fn(),
+  on: jest.fn(),
+  off: jest.fn(),
+};
+
 jest.mock('../../../hooks/useAMapPluginInstance', () => ({
   esModule: true,
   default: jest.fn((__, cb) => {
     cb({
       HawkEye: jest.fn(),
     }, {});
+    return mockInstance;
   }),
 }));
 
@@ -55,18 +65,14 @@ describe('AMapHawkEye Component', () => {
   });
 
   test('renders without crashing when instance is null', () => {
-    (useAMapPluginInstance as jest.Mock).mockReturnValue(null);
+    (useAMapPluginInstance as jest.Mock).mockReturnValueOnce(null).mockReturnValueOnce(null);
     expect(() => {
-      render(<AMapHawkEye isOpen={false} />);
+      const { rerender } = render(<AMapHawkEye isOpen />);
+      rerender(<AMapHawkEye isOpen={false} />);
     }).not.toThrowError();
   });
 
   test('set to invisible', () => {
-    const mockInstance = {
-      show: jest.fn(),
-      hide: jest.fn(),
-    };
-    (useAMapPluginInstance as jest.Mock).mockReturnValue(mockInstance);
     const { rerender } = render(<AMapHawkEye />);
 
     expect(mockInstance.show).toBeCalled();
@@ -77,12 +83,7 @@ describe('AMapHawkEye Component', () => {
   });
 
   test('open and close', () => {
-    const mockInstance = {
-      open: jest.fn(),
-      close: jest.fn(),
-    };
-    (useAMapPluginInstance as jest.Mock).mockReturnValue(mockInstance);
-    const { rerender } = render(<AMapHawkEye />);
+    const { rerender } = render(<AMapHawkEye isOpen />);
 
     expect(mockInstance.open).toBeCalled();
 
@@ -92,20 +93,10 @@ describe('AMapHawkEye Component', () => {
   });
 
   test('bind event correctly', () => {
-    const mockInstance = {
-      on: jest.fn(),
-      off: jest.fn(),
-    };
-    (useAMapPluginInstance as jest.Mock).mockReturnValue(mockInstance);
-
     const onShow = jest.fn();
     const onHide = jest.fn();
 
-    const { unmount } = render(<AMapHawkEye
-      onShow={onShow}
-      onHide={onHide}
-
-    />);
+    const { unmount } = render(<AMapHawkEye onShow={onShow} onHide={onHide} />);
 
     expect(mockInstance.on).toBeCalledTimes(2);
     expect(mockInstance.on).toHaveBeenCalledWith('show', onShow);

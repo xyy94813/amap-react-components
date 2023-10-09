@@ -5,12 +5,33 @@ import useAMapPluginInstance from '../../../hooks/useAMapPluginInstance';
 
 import AMapMarker from '../AMapMarker';
 
+const mockInstance = {
+  setTitle: jest.fn(),
+  setIcon: jest.fn(),
+  setLabel: jest.fn(),
+  setClickable: jest.fn(),
+  setDraggable: jest.fn(),
+  setCursor: jest.fn(),
+  setExtData: jest.fn(),
+  setAnchor: jest.fn(),
+  setOffset: jest.fn(),
+  setAngle: jest.fn(),
+  setSize: jest.fn(),
+  setzIndex: jest.fn(),
+  setContent: jest.fn(),
+  show: jest.fn(),
+  hide: jest.fn(),
+  on: jest.fn(),
+  off: jest.fn(),
+};
+
 jest.mock('../../../hooks/useAMapPluginInstance', () => ({
   esModule: true,
   default: jest.fn((__, cb) => {
     cb({
       Marker: jest.fn(),
     }, {});
+    return mockInstance;
   }),
 }));
 
@@ -29,27 +50,19 @@ describe('AMapMarker Component', () => {
   });
 
   test('renders without crashing when instance is null', () => {
-    (useAMapPluginInstance as jest.Mock).mockReturnValue(null);
+    (useAMapPluginInstance as jest.Mock).mockReturnValueOnce(null);
     expect(() => {
       render(<AMapMarker position={mockPosition} />);
     }).not.toThrowError();
   });
 
   test('set title', () => {
-    const mockInstance = {
-      setTitle: jest.fn(),
-    };
-    (useAMapPluginInstance as jest.Mock).mockReturnValue(mockInstance);
     render(<AMapMarker position={mockPosition} title="123" />);
 
     expect(mockInstance.setTitle).toHaveBeenCalledWith('123');
   });
 
   test('set icon', () => {
-    const mockInstance = {
-      setIcon: jest.fn(),
-    };
-    (useAMapPluginInstance as jest.Mock).mockReturnValue(mockInstance);
     const icon = '';
     render(<AMapMarker position={mockPosition} icon={icon} />);
 
@@ -57,10 +70,6 @@ describe('AMapMarker Component', () => {
   });
 
   test('set label', () => {
-    const mockInstance = {
-      setLabel: jest.fn(),
-    };
-    (useAMapPluginInstance as jest.Mock).mockReturnValue(mockInstance);
     const label = {
       content: '123',
       offset: [0, 10],
@@ -72,40 +81,24 @@ describe('AMapMarker Component', () => {
   });
 
   test('set clickable', () => {
-    const mockInstance = {
-      setClickable: jest.fn(),
-    };
-    (useAMapPluginInstance as jest.Mock).mockReturnValue(mockInstance);
     render(<AMapMarker position={mockPosition} clickable />);
 
     expect(mockInstance.setClickable).toHaveBeenCalledWith(true);
   });
 
   test('set draggable', () => {
-    const mockInstance = {
-      setDraggable: jest.fn(),
-    };
-    (useAMapPluginInstance as jest.Mock).mockReturnValue(mockInstance);
     render(<AMapMarker position={mockPosition} draggable />);
 
     expect(mockInstance.setDraggable).toHaveBeenCalledWith(true);
   });
 
   test('set cursor', () => {
-    const mockInstance = {
-      setCursor: jest.fn(),
-    };
-    (useAMapPluginInstance as jest.Mock).mockReturnValue(mockInstance);
     render(<AMapMarker position={mockPosition} cursor="" />);
 
     expect(mockInstance.setCursor).toHaveBeenCalledWith('');
   });
 
   test('set ext-data', () => {
-    const mockInstance = {
-      setExtData: jest.fn(),
-    };
-    (useAMapPluginInstance as jest.Mock).mockReturnValue(mockInstance);
     const extData = { id: 1 };
     render(<AMapMarker position={mockPosition} extData={extData} />);
 
@@ -113,20 +106,12 @@ describe('AMapMarker Component', () => {
   });
 
   test('set anchor', () => {
-    const mockInstance = {
-      setAnchor: jest.fn(),
-    };
-    (useAMapPluginInstance as jest.Mock).mockReturnValue(mockInstance);
     render(<AMapMarker position={mockPosition} anchor="center" />);
 
     expect(mockInstance.setAnchor).toHaveBeenCalledWith('center');
   });
 
   test('set offset', () => {
-    const mockInstance = {
-      setOffset: jest.fn(),
-    };
-    (useAMapPluginInstance as jest.Mock).mockReturnValue(mockInstance);
     const offset: [number, number] = [1, 1];
     render(<AMapMarker position={mockPosition} offset={offset} />);
 
@@ -134,20 +119,12 @@ describe('AMapMarker Component', () => {
   });
 
   test('set angle', () => {
-    const mockInstance = {
-      setAngle: jest.fn(),
-    };
-    (useAMapPluginInstance as jest.Mock).mockReturnValue(mockInstance);
     render(<AMapMarker position={mockPosition} angle={45} />);
 
     expect(mockInstance.setAngle).toHaveBeenCalledWith(45);
   });
 
   test('set size', () => {
-    const mockInstance = {
-      setSize: jest.fn(),
-    };
-    (useAMapPluginInstance as jest.Mock).mockReturnValue(mockInstance);
     const size: [number, number] = [1, 1];
     render(<AMapMarker position={mockPosition} size={size} />);
 
@@ -155,31 +132,18 @@ describe('AMapMarker Component', () => {
   });
 
   test('set z-index', () => {
-    const mockInstance = {
-      setzIndex: jest.fn(),
-    };
-    (useAMapPluginInstance as jest.Mock).mockReturnValue(mockInstance);
     render(<AMapMarker position={mockPosition} zIndex={2} />);
 
     expect(mockInstance.setzIndex).toHaveBeenCalledWith(2);
   });
 
   test('set content', () => {
-    const mockInstance = {
-      setContent: jest.fn(),
-    };
-    (useAMapPluginInstance as jest.Mock).mockReturnValue(mockInstance);
     render(<AMapMarker position={mockPosition} content="content" />);
 
     expect(mockInstance.setContent).toHaveBeenCalledWith('content');
   });
 
   test('set to invisible', () => {
-    const mockInstance = {
-      show: jest.fn(),
-      hide: jest.fn(),
-    };
-    (useAMapPluginInstance as jest.Mock).mockReturnValue(mockInstance);
     const { rerender } = render(<AMapMarker position={mockPosition} />);
 
     expect(mockInstance.show).toBeCalled();
@@ -190,12 +154,6 @@ describe('AMapMarker Component', () => {
   });
 
   test('bind event correctly', () => {
-    const mockInstance = {
-      on: jest.fn(),
-      off: jest.fn(),
-    };
-    (useAMapPluginInstance as jest.Mock).mockReturnValue(mockInstance);
-
     const onShow = jest.fn();
     const onHide = jest.fn();
     const onClick = jest.fn();

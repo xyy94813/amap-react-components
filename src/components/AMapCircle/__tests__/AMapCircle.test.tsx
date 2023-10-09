@@ -1,9 +1,21 @@
 import * as React from 'react';
+import { createRef } from 'react';
 import { render, cleanup } from '@testing-library/react';
 
 import useAMapPluginInstance from '../../../hooks/useAMapPluginInstance';
 
 import AMapCircle from '../AMapCircle';
+
+const mockInstance = {
+  setCenter: jest.fn(),
+  setRadius: jest.fn(),
+  setOptions: jest.fn(),
+  setExtData: jest.fn(),
+  show: jest.fn(),
+  hide: jest.fn(),
+  on: jest.fn(),
+  off: jest.fn(),
+};
 
 jest.mock('../../../hooks/useAMapPluginInstance', () => ({
   esModule: true,
@@ -11,6 +23,7 @@ jest.mock('../../../hooks/useAMapPluginInstance', () => ({
     cb({
       Circle: jest.fn(),
     }, {});
+    return mockInstance;
   }),
 }));
 
@@ -28,19 +41,23 @@ describe('AMapCircle Component', () => {
   });
 
   test('renders without crashing when instance is null', () => {
-    (useAMapPluginInstance as jest.Mock).mockReturnValue(null);
+    (useAMapPluginInstance as jest.Mock).mockReturnValueOnce(null);
     expect(() => {
       render(<AMapCircle />);
     }).not.toThrowError();
   });
 
+  test('support ref to instance', () => {
+    (useAMapPluginInstance as jest.Mock)
+      .mockReturnValueOnce(null);
+    const $ref = createRef<any>();
+    const { rerender } = render(<AMapCircle ref={$ref} />);
+    expect($ref.current).toBe(null);
+    rerender(<AMapCircle ref={$ref} />);
+    expect($ref.current).toBe(mockInstance);
+  });
+
   test('sets the circle center and radius', () => {
-    const mockInstance = {
-      setCenter: jest.fn(),
-      setRadius: jest.fn(),
-      setOptions: jest.fn(),
-    };
-    (useAMapPluginInstance as jest.Mock).mockReturnValue(mockInstance);
     const center: [number, number] = [116.397428, 39.90923];
     const radius = 1000;
 
@@ -51,10 +68,6 @@ describe('AMapCircle Component', () => {
   });
 
   test('sets the extra data', () => {
-    const mockInstance = {
-      setExtData: jest.fn(),
-    };
-    (useAMapPluginInstance as jest.Mock).mockReturnValue(mockInstance);
     const extData = { id: 1 };
     render(<AMapCircle extData={extData} />);
 
@@ -62,11 +75,6 @@ describe('AMapCircle Component', () => {
   });
 
   test('set to invisible', () => {
-    const mockInstance = {
-      show: jest.fn(),
-      hide: jest.fn(),
-    };
-    (useAMapPluginInstance as jest.Mock).mockReturnValue(mockInstance);
     const { rerender } = render(<AMapCircle />);
 
     expect(mockInstance.show).toBeCalled();
@@ -77,10 +85,6 @@ describe('AMapCircle Component', () => {
   });
 
   test('updates options when props change', () => {
-    const mockInstance = {
-      setOptions: jest.fn(),
-    };
-    (useAMapPluginInstance as jest.Mock).mockReturnValue(mockInstance);
     const zIndex = 1;
     const bubble = false;
     const cursor = '1';
@@ -158,12 +162,6 @@ describe('AMapCircle Component', () => {
   });
 
   test('bind event correctly', () => {
-    const mockInstance = {
-      on: jest.fn(),
-      off: jest.fn(),
-    };
-    (useAMapPluginInstance as jest.Mock).mockReturnValue(mockInstance);
-
     const onShow = jest.fn();
     const onHide = jest.fn();
     const onClick = jest.fn();

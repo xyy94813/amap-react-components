@@ -5,12 +5,20 @@ import useAMapPluginInstance from '../../../hooks/useAMapPluginInstance';
 
 import AMapMapType from '../AMapMapType';
 
+const mockInstance = {
+  show: jest.fn(),
+  hide: jest.fn(),
+  on: jest.fn(),
+  off: jest.fn(),
+};
+
 jest.mock('../../../hooks/useAMapPluginInstance', () => ({
   esModule: true,
   default: jest.fn((__, cb) => {
     cb({
       MapType: jest.fn(),
     }, {});
+    return mockInstance;
   }),
 }));
 
@@ -27,12 +35,15 @@ describe('AMapMapType Component', () => {
     expect(useAMapPluginInstance).toHaveBeenCalledWith('MapType', expect.any(Function));
   });
 
+  test('renders without crashing when instance is null', () => {
+    (useAMapPluginInstance as jest.Mock).mockReturnValueOnce(null);
+    expect(() => {
+      render(<AMapMapType />);
+    }).not.toThrowError();
+    expect(useAMapPluginInstance).toHaveBeenCalledWith('MapType', expect.any(Function));
+  });
+
   test('set to invisible', () => {
-    const mockInstance = {
-      show: jest.fn(),
-      hide: jest.fn(),
-    };
-    (useAMapPluginInstance as jest.Mock).mockReturnValue(mockInstance);
     const { rerender } = render(<AMapMapType />);
 
     expect(mockInstance.show).toBeCalled();
@@ -43,12 +54,6 @@ describe('AMapMapType Component', () => {
   });
 
   test('bind event correctly', () => {
-    const mockInstance = {
-      on: jest.fn(),
-      off: jest.fn(),
-    };
-    (useAMapPluginInstance as jest.Mock).mockReturnValue(mockInstance);
-
     const onShow = jest.fn();
     const onHide = jest.fn();
 

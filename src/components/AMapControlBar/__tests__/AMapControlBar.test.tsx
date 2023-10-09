@@ -6,12 +6,27 @@ import useAMapPluginInstance from '../../../hooks/useAMapPluginInstance';
 
 import AMapControlBar from '../AMapControlBar';
 
+const mockInstance = {
+  _config: {} as any,
+  _container: document.createElement('div'),
+  _pitchUp: document.createElement('div'),
+  _pitchDown: document.createElement('div'),
+  _rotateLeft: document.createElement('div'),
+  _rotateRight: document.createElement('div'),
+  _compass: document.createElement('div'),
+  _luopan: document.createElement('div'),
+  show: jest.fn(),
+  hide: jest.fn(),
+  on: jest.fn(),
+  off: jest.fn(),
+};
 jest.mock('../../../hooks/useAMapPluginInstance', () => ({
   esModule: true,
   default: jest.fn((__, cb) => {
     cb({
       ControlBar: jest.fn(),
     }, {});
+    return mockInstance;
   }),
 }));
 
@@ -29,26 +44,13 @@ describe('AMapControlBar Component', () => {
   });
 
   test('renders without crashing when instance is null', () => {
-    (useAMapPluginInstance as jest.Mock).mockReturnValue(null);
+    (useAMapPluginInstance as jest.Mock).mockReturnValueOnce(null);
     expect(() => {
       render(<AMapControlBar />);
     }).not.toThrowError();
   });
 
   test('set to invisible', () => {
-    const mockInstance = {
-      _config: {},
-      _container: document.createElement('div'),
-      _pitchUp: document.createElement('div'),
-      _pitchDown: document.createElement('div'),
-      _rotateLeft: document.createElement('div'),
-      _rotateRight: document.createElement('div'),
-      _compass: document.createElement('div'),
-      _luopan: document.createElement('div'),
-      show: jest.fn(),
-      hide: jest.fn(),
-    };
-    (useAMapPluginInstance as jest.Mock).mockReturnValue(mockInstance);
     const { rerender } = render(<AMapControlBar />);
 
     expect(mockInstance.show).toBeCalled();
@@ -59,20 +61,6 @@ describe('AMapControlBar Component', () => {
   });
 
   test('change position and offset', () => {
-    const mockInstance = {
-      _config: {} as any,
-      _container: document.createElement('div'),
-      _pitchUp: document.createElement('div'),
-      _pitchDown: document.createElement('div'),
-      _rotateLeft: document.createElement('div'),
-      _rotateRight: document.createElement('div'),
-      _compass: document.createElement('div'),
-      _luopan: document.createElement('div'),
-      show: jest.fn(),
-      hide: jest.fn(),
-    };
-    (useAMapPluginInstance as jest.Mock).mockReturnValue(mockInstance);
-
     const { rerender } = render(<AMapControlBar />);
 
     expect(mockInstance._container.style.cssText).toBe('left: 10px; top: 10px;');
@@ -85,20 +73,6 @@ describe('AMapControlBar Component', () => {
   });
 
   test('switch show control bar', () => {
-    const mockInstance = {
-      _config: {} as any,
-      _container: document.createElement('div'),
-      _pitchUp: document.createElement('div'),
-      _pitchDown: document.createElement('div'),
-      _rotateLeft: document.createElement('div'),
-      _rotateRight: document.createElement('div'),
-      _compass: document.createElement('div'),
-      _luopan: document.createElement('div'),
-      show: jest.fn(),
-      hide: jest.fn(),
-    };
-    (useAMapPluginInstance as jest.Mock).mockReturnValue(mockInstance);
-
     const { rerender } = render(<AMapControlBar />);
 
     expect(mockInstance._config.showControlButton).toBe(true);
@@ -111,20 +85,6 @@ describe('AMapControlBar Component', () => {
   });
 
   test('bind event correctly', () => {
-    const mockInstance = {
-      _config: {},
-      _container: document.createElement('div'),
-      _pitchUp: document.createElement('div'),
-      _pitchDown: document.createElement('div'),
-      _rotateLeft: document.createElement('div'),
-      _rotateRight: document.createElement('div'),
-      _compass: document.createElement('div'),
-      _luopan: document.createElement('div'),
-      on: jest.fn(),
-      off: jest.fn(),
-    };
-    (useAMapPluginInstance as jest.Mock).mockReturnValue(mockInstance);
-
     const onShow = jest.fn();
     const onHide = jest.fn();
 
