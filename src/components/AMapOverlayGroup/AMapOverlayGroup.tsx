@@ -1,3 +1,4 @@
+import type { PropsWithChildren } from 'react';
 import React, {
   forwardRef,
   useCallback,
@@ -14,7 +15,7 @@ import AMapOverlayGroupContext from './AMapOverlayGroupContext';
 import type { AMapOverlayGroupProps } from './interface';
 
 // https://lbs.amap.com/api/javascript-api/reference/overlay#overlaygroup
-const AMapOverlayGroup = forwardRef<AMap.OverlayGroup, AMapOverlayGroupProps>(
+const AMapOverlayGroup = forwardRef<AMap.OverlayGroup, PropsWithChildren<AMapOverlayGroupProps>>(
   (
     {
       children,
@@ -89,6 +90,7 @@ const AMapOverlayGroup = forwardRef<AMap.OverlayGroup, AMapOverlayGroupProps>(
 );
 
 AMapOverlayGroup.defaultProps = {
+  // eslint-disable-next-line react/default-props-match-prop-types
   visible: true,
 };
 
