@@ -16,7 +16,7 @@
 |                  | amap-react-components | @amap/amap-react   | react-amap         |
 | ---------------- | --------------------- | ------------------ | ------------------ |
 | 官方             | :x:                   | :white_check_mark: | :x: （饿了么团队） |
-| 开源             | :white_check_mark:    | :x:                | :x:                |
+| 开源             | :white_check_mark:    | :x:                | :white_check_mark: |
 | 活跃度           | 较高                  | 低                 | 低                 |
 | 使用文档         | :white_check_mark:    | :white_check_mark: | :white_check_mark: |
 | 单元测试覆盖率   | 高                    | :question:         | :x:                |
