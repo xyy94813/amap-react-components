@@ -1,4 +1,4 @@
-import { isLineCoords } from './geoJSONHelper';
+import { isLineCoords, isRingLineCoords } from './geoJSONHelper';
 
 const coordsOfGeoJSONRingLine2AMapPolygonPath = (coords: GeoJSON.Position[]): typeof coords => {
   const len = coords.length;
@@ -12,8 +12,12 @@ const coordsOfGeoJSONRingLine2AMapPolygonPath = (coords: GeoJSON.Position[]): ty
 const coordsOfGeoJSON2AMapPolygonPath = (
   coords: GeoJSON.Position[] | GeoJSON.Polygon['coordinates'] | GeoJSON.MultiPolygon['coordinates'],
 ): typeof coords => {
+  if (isRingLineCoords(coords as GeoJSON.Position[])) {
+    return coordsOfGeoJSONRingLine2AMapPolygonPath(coords as GeoJSON.Position[]);
+  }
+
   if (isLineCoords(coords)) {
-    return coordsOfGeoJSONRingLine2AMapPolygonPath(coords);
+    return coords;
   }
 
   // trick way
