@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.4.2](https://github.com/xyy94813/amap-react-components/compare/v0.4.1...v0.4.2) (2023-10-14)
+
+
+### Bug Fixes
+
+* **amapPolygonPath2GeoJSONCoords:** 传空数组时抛异常 ([7be6f83](https://github.com/xyy94813/amap-react-components/commit/7be6f834d0afa5a05502588f597d73503843f433))
+* 传入的 coods 是 line 格式时也会删除最后一个点 ([0c01879](https://github.com/xyy94813/amap-react-components/commit/0c01879431f22299d0c04a6ca1d54f07612822f1))
+* 组件 AMapOverlayGroupProps 传入 children 时报类型错误 ([7cc8832](https://github.com/xyy94813/amap-react-components/commit/7cc8832a43794371040f9bf7e09db56f69d6a4ec))
+* 错误的类型声明 ([646b654](https://github.com/xyy94813/amap-react-components/commit/646b65405e286ea52f92ed5d8290996556d9e87b))
+
 ## [0.4.1](https://github.com/xyy94813/amap-react-components/compare/v0.4.0...v0.4.1) (2023-09-23)
 
 
