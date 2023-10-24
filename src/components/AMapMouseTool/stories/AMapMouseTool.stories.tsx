@@ -1,15 +1,22 @@
 import React from 'react';
-import { Meta, Story } from '@storybook/react';
+import type { Meta, Story } from '@storybook/react';
 import { actions } from '@storybook/addon-actions';
 
-import { AMapMouseTool, AMapMouseToolProps } from 'index';
-import { withAMapContainer } from '../../AMapMap/stories/AMapMap.stories';
+import { AMapMouseTool, AMapMouseToolProps } from '../../../index';
+
+import withAMap from '../../../storybook-decorators/withAMap';
+import withAMapContainer from '../../../storybook-decorators/withAMapContainer';
+import withAPIContainer from '../../../storybook-decorators/withAPIContainer';
 
 const eventHandler = actions('onCompleted');
 
 export default {
   title: '组件(Components)/工具(Tools)/AMapMouseTool',
-  decorators: [withAMapContainer],
+  decorators: [
+    withAMap,
+    withAMapContainer,
+    withAPIContainer,
+  ],
   args: {
     type: 'polygon',
     options: {

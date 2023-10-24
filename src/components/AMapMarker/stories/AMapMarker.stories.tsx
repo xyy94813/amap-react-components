@@ -1,10 +1,18 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
-import { Story, Meta } from '@storybook/react';
+import type { Story, Meta } from '@storybook/react';
 import { actions } from '@storybook/addon-actions';
 
-import { AMapToolBar, AMapMarker, AMapMarkerProps } from 'index';
-import { withAMapContainer } from '../../AMapMap/stories/AMapMap.stories';
+import {
+  AMapToolBar,
+  AMapMarker,
+  AMapMarkerProps,
+} from '../../../index';
+
+import withAutoFitView from '../../../storybook-decorators/withAutoFitView';
+import withAMap from '../../../storybook-decorators/withAMap';
+import withAMapContainer from '../../../storybook-decorators/withAMapContainer';
+import withAPIContainer from '../../../storybook-decorators/withAPIContainer';
 
 const eventHandler = actions(
   'onHide',
@@ -31,7 +39,12 @@ const eventHandler = actions(
 export default {
   title: '组件(Components)/覆盖物(Overlay)/AMapMarker',
   component: AMapMarker,
-  decorators: [withAMapContainer],
+  decorators: [
+    withAutoFitView,
+    withAMap,
+    withAMapContainer,
+    withAPIContainer,
+  ],
   args: {
     position: [116.39, 39.9],
     title: '自定义的 Title',

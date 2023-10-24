@@ -1,10 +1,13 @@
 import React from 'react';
-import { Meta, Story } from '@storybook/react';
+import type { Meta, Story } from '@storybook/react';
 
-import type { AMapGeoJSONGetOverlayCallback, AMapGeoJSONProps } from 'index';
-import { AMapGeoJSON, coordsOfGeoJSON2AMapPolygonPath } from 'index';
-import { withAMapContainer } from '../../AMapMap/stories/AMapMap.stories';
-import withAutoFitView from '../../AMapAutoFitView/stories/withAutoFitView';
+import type { AMapGeoJSONGetOverlayCallback, AMapGeoJSONProps } from '../../../index';
+import { AMapGeoJSON, coordsOfGeoJSON2AMapPolygonPath } from '../../../index';
+
+import withAutoFitView from '../../../storybook-decorators/withAutoFitView';
+import withAMap from '../../../storybook-decorators/withAMap';
+import withAMapContainer from '../../../storybook-decorators/withAMapContainer';
+import withAPIContainer from '../../../storybook-decorators/withAPIContainer';
 
 const point: GeoJSON.Point = {
   type: 'Point',
@@ -97,7 +100,12 @@ const mockData: GeoJSON.FeatureCollection = {
 
 export default {
   title: '组件(Components)/覆盖物(Overlay)/AMapGeoJSON',
-  decorators: [withAutoFitView, withAMapContainer],
+  decorators: [
+    withAutoFitView,
+    withAMap,
+    withAMapContainer,
+    withAPIContainer,
+  ],
   args: {
     geoJSON: mockData,
     visible: true,

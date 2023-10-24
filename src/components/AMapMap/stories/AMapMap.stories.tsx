@@ -1,22 +1,20 @@
 import React from 'react';
-import { Meta, Story } from '@storybook/react';
+import type { Meta, Story } from '@storybook/react';
 
-import { AMapMap, AMapMapProps } from 'index';
+import { AMapMap, AMapMapProps } from '../../../index';
 
-import { AsyncPluginAPIContainer as APIContainer } from '../../AMapAPIContainer/stories/createAMapAPIContainer.stories';
+import withAMapContainer from '../../../storybook-decorators/withAMapContainer';
+import withAPIContainer from '../../../storybook-decorators/withAPIContainer';
 
 AMapMap.displayName = 'AMapMap';
-
-const withAPIContainer = (renderStory: Story, context: any) => (
-  <APIContainer>
-    <div style={{ height: '400px' }}>{renderStory({}, context)}</div>
-  </APIContainer>
-);
 
 export default {
   title: '组件(Components)/基础组件(Basic)/AMapMap',
   component: AMapMap,
-  decorators: [withAPIContainer],
+  decorators: [
+    withAMapContainer,
+    withAPIContainer,
+  ],
   args: {
     center: undefined,
     cityName: undefined,
@@ -46,7 +44,6 @@ export default {
       },
     },
   },
-  excludeStories: ['withAMapContainer'],
 } as Meta;
 
 const Template: Story<AMapMapProps> = (args) => <AMapMap {...args} />;
@@ -68,11 +65,3 @@ SetZoom.args = {
   zoom: 12,
 };
 SetZoom.storyName = '设置缩放比例';
-
-export const withAMapContainer = (renderStory: Story, context: any) => (
-  <APIContainer>
-    <div style={{ height: 'calc(100vh - 70px)' }}>
-      <AMapMap>{renderStory({}, context)}</AMapMap>
-    </div>
-  </APIContainer>
-);

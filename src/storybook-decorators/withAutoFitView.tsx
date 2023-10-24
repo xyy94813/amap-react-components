@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Story } from '@storybook/react';
 
-import AMapAutoFitView from '..';
+import AMapAutoFitView from '../components/AMapAutoFitView';
 
 const withAutoFitView = (renderStory: Story, context: any) => (
   <>

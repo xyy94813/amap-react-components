@@ -1,13 +1,12 @@
 import React, { useRef, useEffect, Suspense } from 'react';
-import { Meta, Story } from '@storybook/react';
+import type { Meta, Story } from '@storybook/react';
 
-import { createAMapAPIContainer, useAMapAPI } from 'index';
+import { createAMapAPIContainer, useAMapAPI } from '../../../index';
 
 const AMAP_API_KEY: string = process.env.STORYBOOK_AMAP_API_KEY || '';
 
 export default {
   title: '组件(Components)/基础组件(Basic)/AMapAPIContainer',
-  excludeStories: ['AsyncPluginAPIContainer'],
 } as Meta;
 
 const SyncPluginAPIContainer = createAMapAPIContainer({
@@ -22,7 +21,7 @@ const SyncPluginAPIContainer = createAMapAPIContainer({
   },
 });
 
-export const AsyncPluginAPIContainer = createAMapAPIContainer({
+const AsyncPluginAPIContainer = createAMapAPIContainer({
   key: AMAP_API_KEY,
   version: '2.0',
   AMapUI: {

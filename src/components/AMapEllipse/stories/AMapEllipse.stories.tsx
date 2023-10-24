@@ -1,10 +1,13 @@
 import React from 'react';
-import { Meta, Story } from '@storybook/react';
+import type { Meta, Story } from '@storybook/react';
 import { actions } from '@storybook/addon-actions';
 
-import { AMapEllipse, AMapEllipseProps } from 'index';
-import { withAMapContainer } from '../../AMapMap/stories/AMapMap.stories';
-import withAutoFitView from '../../AMapAutoFitView/stories/withAutoFitView';
+import { AMapEllipse, AMapEllipseProps } from '../../../index';
+
+import withAutoFitView from '../../../storybook-decorators/withAutoFitView';
+import withAMap from '../../../storybook-decorators/withAMap';
+import withAMapContainer from '../../../storybook-decorators/withAMapContainer';
+import withAPIContainer from '../../../storybook-decorators/withAPIContainer';
 
 const eventHandler = actions(
   'onShow',
@@ -23,7 +26,12 @@ const eventHandler = actions(
 
 export default {
   title: '组件(Components)/覆盖物(Overlay)/AMapEllipse',
-  decorators: [withAutoFitView, withAMapContainer],
+  decorators: [
+    withAutoFitView,
+    withAMap,
+    withAMapContainer,
+    withAPIContainer,
+  ],
   args: {
     center: [116.39, 39.9],
     radius: [10_000, 5_000],

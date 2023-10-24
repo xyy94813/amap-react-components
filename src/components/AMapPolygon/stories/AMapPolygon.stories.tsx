@@ -1,16 +1,20 @@
 import React, {
   createRef,
 } from 'react';
-import { Meta, Story } from '@storybook/react';
+import type { Meta, Story } from '@storybook/react';
 import { actions } from '@storybook/addon-actions';
 
 import {
-  AMapPolygon, AMapPolygonProps,
+  AMapPolygon,
+  AMapPolygonProps,
   AMapPolygonEditor,
   AMapPolygonEditorProps,
-} from 'index';
-import { withAMapContainer } from '../../AMapMap/stories/AMapMap.stories';
-import withAutoFitView from '../../AMapAutoFitView/stories/withAutoFitView';
+} from '../../../index';
+
+import withAutoFitView from '../../../storybook-decorators/withAutoFitView';
+import withAMap from '../../../storybook-decorators/withAMap';
+import withAMapContainer from '../../../storybook-decorators/withAMapContainer';
+import withAPIContainer from '../../../storybook-decorators/withAPIContainer';
 
 const eventHandler = actions(
   'onHide',
@@ -32,7 +36,12 @@ const eventHandler = actions(
 
 export default {
   title: '组件(Components)/覆盖物(Overlay)/AMapPolygon',
-  decorators: [withAutoFitView, withAMapContainer],
+  decorators: [
+    withAutoFitView,
+    withAMap,
+    withAMapContainer,
+    withAPIContainer,
+  ],
   args: {
     path: [
       [116.386069, 39.898857],

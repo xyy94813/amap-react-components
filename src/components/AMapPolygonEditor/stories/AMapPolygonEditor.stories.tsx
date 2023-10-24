@@ -1,11 +1,17 @@
 import React from 'react';
-import { Meta, Story } from '@storybook/react';
-
-import type { AMapPolygonEditorProps } from 'index';
-import { AMapGeoJSON, AMapPolygonEditor } from 'index';
+import type { Meta, Story } from '@storybook/react';
 import { actions } from '@storybook/addon-actions';
-import { withAMapContainer } from '../../AMapMap/stories/AMapMap.stories';
-import withAutoFitView from '../../AMapAutoFitView/stories/withAutoFitView';
+
+import {
+  AMapGeoJSON,
+  AMapPolygonEditor,
+  AMapPolygonEditorProps,
+} from '../../../index';
+
+import withAutoFitView from '../../../storybook-decorators/withAutoFitView';
+import withAMap from '../../../storybook-decorators/withAMap';
+import withAMapContainer from '../../../storybook-decorators/withAMapContainer';
+import withAPIContainer from '../../../storybook-decorators/withAPIContainer';
 
 const eventHandler = actions(
   'onChange',
@@ -91,7 +97,12 @@ const mockData: GeoJSON.FeatureCollection = {
 
 export default {
   title: '组件(Components)/工具(Tools)/AMapPolygonEditor',
-  decorators: [withAutoFitView, withAMapContainer],
+  decorators: [
+    withAutoFitView,
+    withAMap,
+    withAMapContainer,
+    withAPIContainer,
+  ],
   args: {
     computeTarget: (polygons: Parameters<AMapPolygonEditorProps['computeTarget']>[0]) => polygons[0],
     onChange: eventHandler.onChange,

@@ -1,16 +1,23 @@
 import React from 'react';
-import { Story, Meta } from '@storybook/react';
+import type { Story, Meta } from '@storybook/react';
 import { actions } from '@storybook/addon-actions';
 
-import { AMapHawkEye, AMapHawkEyeProps } from 'index';
-import { withAMapContainer } from '../../AMapMap/stories/AMapMap.stories';
+import { AMapHawkEye, AMapHawkEyeProps } from '../../../index';
+
+import withAMap from '../../../storybook-decorators/withAMap';
+import withAMapContainer from '../../../storybook-decorators/withAMapContainer';
+import withAPIContainer from '../../../storybook-decorators/withAPIContainer';
 
 const eventHandler = actions('onShow', 'onHide', 'onOpen', 'onClose');
 
 export default {
   title: '组件(Components)/地图控件(Control)/AMapHawkEye',
   component: AMapHawkEye,
-  decorators: [withAMapContainer],
+  decorators: [
+    withAMap,
+    withAMapContainer,
+    withAPIContainer,
+  ],
   args: {
     autoMove: true,
     showRectangle: true,
