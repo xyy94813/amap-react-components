@@ -48,6 +48,16 @@ const getConf = (env, moduleType) => {
           declaration: outputDeclaration, // only es format output declaration
           declarationDir: path.join(OUTPUT_DIR, 'types'),
         },
+        exclude: [
+          // exclude test files
+          '**/__tests__/**',
+          '**/*.test.*',
+          '**/*.spec.*',
+          // exclude stories files
+          '**/stories/**',
+          '**/*.stories.*',
+          '**/storybook-decorators/**',
+        ],
       },
     }),
     filesize(),
