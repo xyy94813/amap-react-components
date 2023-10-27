@@ -1,6 +1,7 @@
 import {
   isLatLng,
   isLatLngArr,
+  isPolyline,
 } from '../amapHelper';
 
 describe('isLatLng', () => {
@@ -41,4 +42,16 @@ describe('isLatLngArr', () => {
   });
 
   // Add more test cases as needed
+});
+
+describe('isPolyline', () => {
+  test('should return true for a valid Polyline object', () => {
+    const polyline = { className: 'Overlay.Polyline' };
+    expect(isPolyline(polyline)).toBe(true);
+  });
+
+  test('should return false for an invalid object', () => {
+    const notPolyline = { className: 'SomeOtherClass' };
+    expect(isPolyline(notPolyline)).toBe(false);
+  });
 });
