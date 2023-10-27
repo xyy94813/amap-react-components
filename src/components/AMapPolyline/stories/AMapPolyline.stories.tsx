@@ -5,6 +5,8 @@ import { actions } from '@storybook/addon-actions';
 import {
   AMapPolyline,
   AMapPolylineProps,
+  AMapPolylineEditor,
+  AMapPolylineEditorProps,
 } from '../../../index';
 
 import withAutoFitView from '../../../storybook-decorators/withAutoFitView';
@@ -278,6 +280,21 @@ const Template: AMapPolylineStory = (args) => <AMapPolyline {...args} />;
 export const CommonUse: typeof Template = Template.bind({});
 CommonUse.storyName = '一般使用';
 CommonUse.args = {};
+
+const { onChange } = actions('onChange');
+const $polyline = React.createRef<AMap.Polyline>();
+const computeTarget: AMapPolylineEditorProps['computeTarget'] = (polygons) => polygons?.find(
+  (polygon) => polygon === $polyline.current,
+);
+
+export const Editable: Story<AMapPolylineEditorProps> = (args) => (
+  <>
+    <AMapPolyline {...args} ref={$polyline} />
+    <AMapPolylineEditor computeTarget={computeTarget} onChange={onChange} />
+  </>
+);
+Editable.storyName = '支持编辑';
+Editable.args = {};
 
 export const Draggable: typeof Template = Template.bind({});
 Draggable.storyName = '可拖拽';
