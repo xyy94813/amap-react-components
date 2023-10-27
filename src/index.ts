@@ -31,6 +31,10 @@ export {
   default as AMapPolygonEditor,
   AMapPolygonEditorProps,
 } from './components/AMapPolygonEditor';
+export {
+  default as AMapPolylineEditor,
+  AMapPolylineEditorProps,
+} from './components/AMapPolylineEditor';
 
 export { default as AMapMouseTool, AMapMouseToolProps } from './components/AMapMouseTool';
 
