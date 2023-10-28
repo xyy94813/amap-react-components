@@ -207,4 +207,15 @@ describe('AMapPolygonEditor', () => {
 
     expect(mockInstance.clearAdsorbPolygons).toBeCalled();
   });
+
+  test('set computeAdsorbPolygons to null', () => {
+    const computeTarget = jest.fn();
+
+    render(<AMapPolygonEditor
+      computeTarget={computeTarget}
+      computeAdsorbPolygons={null}
+    />);
+
+    expect(mockInstance.clearAdsorbPolygons).toBeCalled();
+  });
 });
