@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.5.0](https://github.com/xyy94813/amap-react-components/compare/v0.4.2...v0.5.0) (2023-10-28)
+
+
+### Features
+
+* 新增组件 AMapPolygon ([ef8dee9](https://github.com/xyy94813/amap-react-components/commit/ef8dee96087511a06f8881997b7f6996b38c263e))
+* 新增组件 AMapPolyline ([dd292de](https://github.com/xyy94813/amap-react-components/commit/dd292deb9b94adff48eb96bb97ccfc9570281ed1))
+* 新增组件 AMapPolylineEditor ([19b442b](https://github.com/xyy94813/amap-react-components/commit/19b442b6e31d81e61a1ea9521dd7a3734e7deafc))
+
+
+### Bug Fixes
+
+* **AMapPolygonEditor:** ts 中无法设置 computeAdsorbPolygons 为 null ([3285e54](https://github.com/xyy94813/amap-react-components/commit/3285e54d557e5c0b3e62ca16ee0ed8ed21337fe5))
+* **PolylineEditor:** 类型错误 ([615f627](https://github.com/xyy94813/amap-react-components/commit/615f627dc185cd7527cf996344aab869cc50c0b7))
+
 ## [0.4.2](https://github.com/xyy94813/amap-react-components/compare/v0.4.1...v0.4.2) (2023-10-14)
 
 
