@@ -3,7 +3,6 @@ import {
   useCallback,
   useEffect,
   useRef,
-  // useState,
 } from 'react';
 
 import useAMap from '../../hooks/useAMap';
@@ -27,8 +26,9 @@ const AMapPolygonEditor: FC<AMapPolygonEditorProps> = ({
   const { map } = useAMap();
 
   const reSetTarget = useCallback(() => {
+    if (!map) return;
     if (!curInstance) return;
-    const allPolygons: AMap.Polygon[] = map?.getAllOverlays('polygon') || [];
+    const allPolygons: AMap.Polygon[] = map.getAllOverlays('polygon') || [];
     const newTarget = computeTarget(allPolygons) ?? null;
     curInstance.setTarget(newTarget);
   }, [map, computeTarget, curInstance]);
@@ -37,7 +37,6 @@ const AMapPolygonEditor: FC<AMapPolygonEditorProps> = ({
   // computeTarget 更新 => reSetTarget 更新
   // 更新后重新计算并执行
   useEffect(() => {
-    if (!map) return;
     reSetTarget();
   }, [map, reSetTarget]);
 
@@ -67,9 +66,10 @@ const AMapPolygonEditor: FC<AMapPolygonEditorProps> = ({
   }, [map, reSetTarget]);
 
   const reSetAdsorbPolygons = useCallback(() => {
+    if (!map) return;
     if (!curInstance) return;
-    const allPolygons: AMap.Polygon[] = map?.getAllOverlays('polygon') || [];
-    const adsorbPolygons = computeAdsorbPolygons?.(allPolygons) || [];
+    const allPolygons: AMap.Polygon[] = map.getAllOverlays('polygon') || [];
+    const adsorbPolygons = computeAdsorbPolygons?.(allPolygons);
     if (adsorbPolygons) {
       curInstance.setAdsorbPolygons(adsorbPolygons);
     } else {
@@ -81,7 +81,6 @@ const AMapPolygonEditor: FC<AMapPolygonEditorProps> = ({
   // computeAdsorbPolygons 更新 => reSetAdsorbPolygons 更新
   // 更新后重新计算并执行
   useEffect(() => {
-    if (!map) return;
     reSetAdsorbPolygons();
   }, [map, reSetAdsorbPolygons]);
 
@@ -119,27 +118,31 @@ const AMapPolygonEditor: FC<AMapPolygonEditorProps> = ({
       $lastOnChange.current?.(obj);
     };
 
+    const memoInstance = curInstance;
+
     clearEffect = () => {
-      curInstance?.off('add', triggerChangeHandler);
-      curInstance?.off('addnode', triggerChangeHandler);
-      curInstance?.off('adjust', triggerChangeHandler);
-      curInstance?.off('removenode', triggerChangeHandler);
+      memoInstance.off('add', triggerChangeHandler);
+      memoInstance.off('addnode', triggerChangeHandler);
+      memoInstance.off('adjust', triggerChangeHandler);
+      memoInstance.off('removenode', triggerChangeHandler);
     };
 
-    curInstance.on('add', triggerChangeHandler);
-    curInstance.on('addnode', triggerChangeHandler);
-    curInstance.on('adjust', triggerChangeHandler);
-    curInstance.on('removenode', triggerChangeHandler);
+    memoInstance.on('add', triggerChangeHandler);
+    memoInstance.on('addnode', triggerChangeHandler);
+    memoInstance.on('adjust', triggerChangeHandler);
+    memoInstance.on('removenode', triggerChangeHandler);
 
     return clearEffect;
   }, [curInstance]);
 
   // 是否打开
   useEffect(() => {
+    if (!curInstance) return;
+
     if (disabled) {
-      curInstance?.close();
+      curInstance.close();
     } else {
-      curInstance?.open();
+      curInstance.open();
     }
   }, [curInstance, disabled]);
 
