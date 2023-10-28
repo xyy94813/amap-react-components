@@ -57,6 +57,17 @@ export default {
         },
       },
     },
+    mapStyle: {
+      description: [
+        '设置地图样式：',
+        '官方样式模版，如 "amap://styles/grey"',
+        '地图自定义平台定制地图样式，如 "amap://styles/d6bf8c1d69cea9f5c696185ad4ac4c86"',
+      ].join('<br/>'),
+      table: {
+        type: { summary: 'string' },
+      },
+      control: 'text',
+    },
   },
 } as Meta;
 
@@ -85,3 +96,9 @@ SetFeatures.args = {
   features: ['bg', 'point'],
 };
 SetFeatures.storyName = '设置地图上显示的元素种类';
+
+export const setMapStyle: typeof Template = Template.bind({});
+setMapStyle.args = {
+  mapStyle: 'amap://styles/grey',
+};
+setMapStyle.storyName = '自定义地图样式';

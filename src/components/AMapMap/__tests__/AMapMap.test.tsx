@@ -14,6 +14,7 @@ const mockMapInstance = {
   setZoom: jest.fn(),
   setCenter: jest.fn(),
   setFeatures: jest.fn(),
+  setMapStyle: jest.fn(),
   on: jest.fn(),
 };
 
@@ -112,5 +113,10 @@ describe('AMapMap', () => {
     const customFeatures = ['bg'];
     render(<AMapMap features={customFeatures} />);
     expect(mockMapInstance.setFeatures).toBeCalledWith(customFeatures);
+  });
+
+  test('sets custom map style', () => {
+    render(<AMapMap mapStyle="amap://styles/grey" />);
+    expect(mockMapInstance.setMapStyle).toBeCalledWith('amap://styles/grey');
   });
 });
