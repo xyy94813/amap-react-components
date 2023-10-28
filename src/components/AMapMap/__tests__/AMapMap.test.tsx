@@ -13,6 +13,7 @@ const mockMapInstance = {
   setCity: jest.fn(),
   setZoom: jest.fn(),
   setCenter: jest.fn(),
+  setFeatures: jest.fn(),
   on: jest.fn(),
 };
 
@@ -105,5 +106,11 @@ describe('AMapMap', () => {
   test('has children', () => {
     const { getByText } = render(<AMapMap><div>123</div></AMapMap>);
     getByText('123');
+  });
+
+  test('sets features', () => {
+    const customFeatures = ['bg'];
+    render(<AMapMap features={customFeatures} />);
+    expect(mockMapInstance.setFeatures).toBeCalledWith(customFeatures);
   });
 });
