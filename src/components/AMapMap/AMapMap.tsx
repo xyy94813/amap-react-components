@@ -1,5 +1,5 @@
-import type { PropsWithChildren } from 'react';
 import * as React from 'react';
+import type { PropsWithChildren } from 'react';
 import {
   useEffect,
   useRef,
@@ -11,27 +11,22 @@ import {
 
 import useAMapAPI from '../../hooks/useAMapAPI';
 
+import { AMapMapProps } from './interface';
 import AMapMapContext from './AMapMapContext';
 
 const CONTAINER_STYLE = { width: '100%', height: '100%' };
 
 // More DOC see: https://a.amap.com/jsapi/static/doc/index.html?v=2#map
-export type AMapMapProps = PropsWithChildren<{
-  center?: [number, number];
-  cityName?: string;
-  zoom?: number;
-}>;
 
-const defaultProps = {
-  center: undefined,
-  cityName: undefined,
-  zoom: undefined,
-};
+const defaultProps = {};
 
-const AMapMap = forwardRef<any, AMapMapProps>(
+const AMapMap = forwardRef<any, PropsWithChildren<AMapMapProps>>(
   ({
-    children, center, cityName, zoom,
-  }: AMapMapProps, ref) => {
+    children,
+    center,
+    cityName,
+    zoom,
+  }, ref) => {
     const { __AMAP__: AMap } = useAMapAPI();
 
     // container ref
