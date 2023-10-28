@@ -1,6 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable max-classes-per-file */
-import { _PolylineEditor } from '@amap/amap-jsapi-types/plugins/PolylineEditor';
 import '@amap/amap-jsapi-types';
 // 对 amap type 做扩展
 declare global {
@@ -115,7 +114,7 @@ declare global {
       remove: () => void;
     }
 
-    export class PolylineEditor2 extends _PolylineEditor {}
+    // export class PolylineEditor2 extends _PolylineEditor {}
   }
 
   namespace AMapUI {
