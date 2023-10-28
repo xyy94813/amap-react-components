@@ -30,6 +30,7 @@ const AMapMap = forwardRef<any, PropsWithChildren<AMapMapProps>>(
     cityName,
     zoom,
     features,
+    mapStyle,
   }, ref) => {
     const { __AMAP__: AMap } = useAMapAPI();
 
@@ -94,6 +95,8 @@ const AMapMap = forwardRef<any, PropsWithChildren<AMapMapProps>>(
     }, [AMap]);
 
     useImperativeHandle(ref, () => curMap, [curMap]);
+
+    useSetter<Parameters<AMap.Map['setMapStyle']>>(curMap, 'setMapStyle', mapStyle!);
 
     // set city
     useEffect(() => {
