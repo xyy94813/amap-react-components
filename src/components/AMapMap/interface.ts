@@ -4,4 +4,5 @@ export type AMapMapProps = {
   center?: [number, number];
   cityName?: string;
   zoom?: number;
+  features?: AMap.MapOptions['features'];
 };

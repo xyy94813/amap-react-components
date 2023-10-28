@@ -16,9 +16,7 @@ export default {
     withAPIContainer,
   ],
   args: {
-    center: undefined,
-    cityName: undefined,
-    zoom: undefined,
+    features: ['bg', 'point', 'road', 'building'],
   },
   argTypes: {
     center: {
@@ -26,7 +24,7 @@ export default {
       table: {
         type: { summary: 'array' },
       },
-      control: 'array',
+      control: 'object',
     },
     cityName: {
       description:
@@ -41,6 +39,22 @@ export default {
         min: 2,
         max: 20,
         step: 1,
+      },
+    },
+    features: {
+      description: '设置地图上显示的元素种类',
+      table: {
+        type: { summary: 'string[]' },
+        defaultValue: { summary: "['bg', 'point', 'road', 'building']" },
+      },
+      control: {
+        type: 'check',
+        options: {
+          地图背景: 'bg',
+          POI: 'point',
+          道路: 'road',
+          建筑物: 'building',
+        },
       },
     },
   },
@@ -65,3 +79,9 @@ SetZoom.args = {
   zoom: 12,
 };
 SetZoom.storyName = '设置缩放比例';
+
+export const SetFeatures: typeof Template = Template.bind({});
+SetFeatures.args = {
+  features: ['bg', 'point'],
+};
+SetFeatures.storyName = '设置地图上显示的元素种类';

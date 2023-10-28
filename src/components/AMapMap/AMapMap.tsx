@@ -10,22 +10,26 @@ import {
 } from 'react';
 
 import useAMapAPI from '../../hooks/useAMapAPI';
+import useSetter from '../../hooks/useSetter';
 
 import { AMapMapProps } from './interface';
 import AMapMapContext from './AMapMapContext';
 
 const CONTAINER_STYLE = { width: '100%', height: '100%' };
 
+const defaultProps = {
+  // eslint-disable-next-line react/default-props-match-prop-types
+  features: ['bg', 'point', 'road', 'building'],
+};
+
 // More DOC see: https://a.amap.com/jsapi/static/doc/index.html?v=2#map
-
-const defaultProps = {};
-
 const AMapMap = forwardRef<any, PropsWithChildren<AMapMapProps>>(
   ({
     children,
     center,
     cityName,
     zoom,
+    features,
   }, ref) => {
     const { __AMAP__: AMap } = useAMapAPI();
 
@@ -47,18 +51,18 @@ const AMapMap = forwardRef<any, PropsWithChildren<AMapMapProps>>(
         const mapProxy = new Proxy(newInstance, {
           get(target, p) {
             if (p === 'add') {
-              const newAddFunc: typeof target.add = (features) => {
-                const result = target.add(features);
-                newInstance.emit('overlaysAdded' as AMap.EventType, features);
+              const newAddFunc: typeof target.add = (overlays) => {
+                const result = target.add(overlays);
+                newInstance.emit('overlaysAdded' as AMap.EventType, overlays);
                 return result;
               };
               return newAddFunc;
             }
 
             if (p === 'remove') {
-              const newRemoveFunc: typeof target.remove = (features) => {
-                const result = target.remove(features);
-                newInstance.emit('overlaysRemoved' as AMap.EventType, features);
+              const newRemoveFunc: typeof target.remove = (overlays) => {
+                const result = target.remove(overlays);
+                newInstance.emit('overlaysRemoved' as AMap.EventType, overlays);
                 return result;
               };
               return newRemoveFunc;
@@ -111,6 +115,8 @@ const AMapMap = forwardRef<any, PropsWithChildren<AMapMapProps>>(
         curMap?.setCenter(center);
       }
     }, [center, curMap]);
+
+    useSetter<Parameters<AMap.Map['setFeatures']>>(curMap, 'setFeatures', features!);
 
     return (
       <div style={CONTAINER_STYLE} ref={$mapContainer}>
