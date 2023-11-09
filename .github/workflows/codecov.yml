@@ -1,9 +1,10 @@
 name: Codecov
 
 on:
-  # pull_request:
-  #   types: [opened]
   push:
+    branches:
+      - main
+  pull_request:
     branches:
       - main
 
