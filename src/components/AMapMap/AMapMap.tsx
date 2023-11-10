@@ -19,6 +19,8 @@ const CONTAINER_STYLE = { width: '100%', height: '100%' };
 
 const defaultProps = {
   // eslint-disable-next-line react/default-props-match-prop-types
+  viewMode: '2D',
+  // eslint-disable-next-line react/default-props-match-prop-types
   features: ['bg', 'point', 'road', 'building'],
 };
 
@@ -31,6 +33,7 @@ const AMapMap = forwardRef<any, PropsWithChildren<AMapMapProps>>(
     zoom,
     features,
     mapStyle,
+    viewMode,
   }, ref) => {
     const { __AMAP__: AMap } = useAMapAPI();
 
@@ -45,7 +48,7 @@ const AMapMap = forwardRef<any, PropsWithChildren<AMapMapProps>>(
       }
 
       const initMap = () => {
-        const newInstance = new AMap.Map($mapContainer.current!);
+        const newInstance = new AMap.Map($mapContainer.current!, { viewMode });
 
         // 使用代理调整 map 实例的实现
         // 添加和删除时，发布事件通知
@@ -92,7 +95,7 @@ const AMapMap = forwardRef<any, PropsWithChildren<AMapMapProps>>(
       initMap();
 
       return clearEffect;
-    }, [AMap]);
+    }, [AMap, viewMode]);
 
     useImperativeHandle(ref, () => curMap, [curMap]);
 

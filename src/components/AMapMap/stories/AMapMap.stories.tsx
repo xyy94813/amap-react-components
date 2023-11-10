@@ -19,6 +19,17 @@ export default {
     features: ['bg', 'point', 'road', 'building'],
   },
   argTypes: {
+    viewMode: {
+      description: '地图视图模式。注意，切换地图模式会创建新的地图实例，同时销毁原有地图实例。',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: '2D' },
+      },
+      control: {
+        type: 'select',
+        options: ['2D', '3D'],
+      },
+    },
     center: {
       description: '中心经纬度',
       table: {
@@ -102,3 +113,9 @@ setMapStyle.args = {
   mapStyle: 'amap://styles/grey',
 };
 setMapStyle.storyName = '自定义地图样式';
+
+export const ViewModeIs3D: typeof Template = Template.bind({});
+ViewModeIs3D.storyName = '3D 模式';
+ViewModeIs3D.args = {
+  viewMode: '3D',
+};
