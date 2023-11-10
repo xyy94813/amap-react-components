@@ -15,6 +15,7 @@ const mockMapInstance = {
   setCenter: jest.fn(),
   setFeatures: jest.fn(),
   setMapStyle: jest.fn(),
+  setPitch: jest.fn(),
   on: jest.fn(),
 };
 
@@ -120,13 +121,14 @@ describe('AMapMap', () => {
     expect(mockMapInstance.setMapStyle).toBeCalledWith('amap://styles/grey');
   });
 
-  test('sets view mode to 3D', () => {
+  test('sets view mode and pitch', () => {
     const { __AMAP__: AMap } = useAMapAPI();
     const $div = document.createElement('div');
     $div.setAttribute('style', 'width: 100%; height: 100%;');
 
-    const { rerender } = render(<AMapMap viewMode="3D" />);
+    const { rerender } = render(<AMapMap viewMode="3D" pitch={60} />);
     expect(AMap!.Map).toBeCalledWith($div, { viewMode: '3D' });
+    expect(mockMapInstance.setPitch).toBeCalledWith(60);
 
     rerender(<AMapMap />);
 

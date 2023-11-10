@@ -7,4 +7,5 @@ export type AMapMapProps = {
   features?: AMap.MapOptions['features'];
   mapStyle?: AMap.MapOptions['mapStyle'];
   viewMode?: AMap.MapOptions['viewMode'];
+  pitch?: AMap.MapOptions['pitch'];
 };
