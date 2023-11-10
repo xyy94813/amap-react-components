@@ -119,4 +119,18 @@ describe('AMapMap', () => {
     render(<AMapMap mapStyle="amap://styles/grey" />);
     expect(mockMapInstance.setMapStyle).toBeCalledWith('amap://styles/grey');
   });
+
+  test('sets view mode to 3D', () => {
+    const { __AMAP__: AMap } = useAMapAPI();
+    const $div = document.createElement('div');
+    $div.setAttribute('style', 'width: 100%; height: 100%;');
+
+    const { rerender } = render(<AMapMap viewMode="3D" />);
+    expect(AMap!.Map).toBeCalledWith($div, { viewMode: '3D' });
+
+    rerender(<AMapMap />);
+
+    expect(mockMapInstance.destroy).toBeCalledTimes(1); // 销毁，并重新创建实例
+    expect(AMap!.Map).toBeCalledWith($div, { viewMode: '2D' });
+  });
 });

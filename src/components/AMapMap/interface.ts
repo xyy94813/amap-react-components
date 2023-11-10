@@ -6,4 +6,5 @@ export type AMapMapProps = {
   zoom?: number;
   features?: AMap.MapOptions['features'];
   mapStyle?: AMap.MapOptions['mapStyle'];
+  viewMode?: AMap.MapOptions['viewMode'];
 };
