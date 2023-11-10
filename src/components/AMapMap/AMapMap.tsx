@@ -34,6 +34,7 @@ const AMapMap = forwardRef<any, PropsWithChildren<AMapMapProps>>(
     features,
     mapStyle,
     viewMode,
+    pitch,
   }, ref) => {
     const { __AMAP__: AMap } = useAMapAPI();
 
@@ -123,6 +124,7 @@ const AMapMap = forwardRef<any, PropsWithChildren<AMapMapProps>>(
     }, [center, curMap]);
 
     useSetter<Parameters<AMap.Map['setFeatures']>>(curMap, 'setFeatures', features!);
+    useSetter<Parameters<AMap.Map['setPitch']>>(curMap, 'setPitch', pitch!);
 
     return (
       <div style={CONTAINER_STYLE} ref={$mapContainer}>

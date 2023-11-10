@@ -79,6 +79,19 @@ export default {
       },
       control: 'text',
     },
+    pitch: {
+      description: '俯仰角度，值范围：0-90。2D地图下无效 。',
+      table: {
+        type: { summary: 'number' },
+        defaultValue: { summary: '0' },
+      },
+      control: {
+        type: 'number',
+        min: 0,
+        max: 90,
+        step: 15,
+      },
+    },
   },
 } as Meta;
 
@@ -118,4 +131,6 @@ export const ViewModeIs3D: typeof Template = Template.bind({});
 ViewModeIs3D.storyName = '3D 模式';
 ViewModeIs3D.args = {
   viewMode: '3D',
+  pitch: 75,
+  zoom: 18,
 };
