@@ -36,7 +36,7 @@ export default {
   title: '组件(Components)/覆盖物(Overlay)/AMapPolyline',
   decorators: [
     withAutoFitView,
-    withAMap,
+    withAMap(),
     withAMapContainer,
     withAPIContainer,
   ],

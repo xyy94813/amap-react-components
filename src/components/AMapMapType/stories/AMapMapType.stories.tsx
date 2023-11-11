@@ -14,7 +14,7 @@ export default {
   title: '组件(Components)/地图控件(Control)/AMapMapType',
   component: AMapMapType,
   decorators: [
-    withAMap,
+    withAMap(),
     withAMapContainer,
     withAPIContainer,
   ],

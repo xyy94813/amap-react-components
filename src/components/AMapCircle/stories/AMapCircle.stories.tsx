@@ -28,7 +28,7 @@ export default {
   title: '组件(Components)/覆盖物(Overlay)/AMapCircle',
   decorators: [
     withAutoFitView,
-    withAMap,
+    withAMap(),
     withAMapContainer,
     withAPIContainer,
   ],

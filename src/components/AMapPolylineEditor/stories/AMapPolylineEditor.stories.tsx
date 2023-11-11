@@ -41,7 +41,7 @@ export default {
   title: '组件(Components)/工具(Tools)/AMapPolylineEditor',
   decorators: [
     withAutoFitView,
-    withAMap,
+    withAMap(),
     withAMapContainer,
     withAPIContainer,
   ],

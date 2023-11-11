@@ -14,7 +14,7 @@ export default {
   title: '组件(Components)/地图控件(Control)/AMapHawkEye',
   component: AMapHawkEye,
   decorators: [
-    withAMap,
+    withAMap(),
     withAMapContainer,
     withAPIContainer,
   ],
