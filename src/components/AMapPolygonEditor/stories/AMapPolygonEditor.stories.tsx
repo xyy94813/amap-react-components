@@ -99,7 +99,7 @@ export default {
   title: '组件(Components)/工具(Tools)/AMapPolygonEditor',
   decorators: [
     withAutoFitView,
-    withAMap,
+    withAMap(),
     withAMapContainer,
     withAPIContainer,
   ],

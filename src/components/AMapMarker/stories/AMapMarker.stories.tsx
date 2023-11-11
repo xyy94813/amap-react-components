@@ -41,7 +41,7 @@ export default {
   component: AMapMarker,
   decorators: [
     withAutoFitView,
-    withAMap,
+    withAMap(),
     withAMapContainer,
     withAPIContainer,
   ],

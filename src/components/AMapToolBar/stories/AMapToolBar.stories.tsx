@@ -14,7 +14,7 @@ export default {
   title: '组件(Components)/地图控件(Control)/AMapToolBar',
   component: AMapToolBar,
   decorators: [
-    withAMap,
+    withAMap(),
     withAMapContainer,
     withAPIContainer,
   ],

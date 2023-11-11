@@ -13,7 +13,7 @@ const eventHandler = actions('onCompleted');
 export default {
   title: '组件(Components)/工具(Tools)/AMapMouseTool',
   decorators: [
-    withAMap,
+    withAMap(),
     withAMapContainer,
     withAPIContainer,
   ],
