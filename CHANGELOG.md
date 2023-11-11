@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.6.0](https://github.com/xyy94813/amap-react-components/compare/v0.5.0...v0.6.0) (2023-11-11)
+
+
+### Features
+
+* **AMapMap:** 3D 视图下支持设置	俯仰角度 ([de4c4da](https://github.com/xyy94813/amap-react-components/commit/de4c4da320e102c8e741f48695e7145b1008420c))
+* **AMapMap:** 支持设置 3D 视图 ([c878854](https://github.com/xyy94813/amap-react-components/commit/c87885461813eeecfd6ce7018653477a41d7a174))
+* **AMapMap:** 自定义地图样式 ([2262565](https://github.com/xyy94813/amap-react-components/commit/2262565257cbebb27aa5c5ff6f018f16fcb367f8))
+* **AMapMap:** 自定义设置地图上显示的元素种类 ([32e87ad](https://github.com/xyy94813/amap-react-components/commit/32e87ade5533bde6f5d54aea1fa371b27272e8a1))
+
 ## [0.5.0](https://github.com/xyy94813/amap-react-components/compare/v0.4.2...v0.5.0) (2023-10-28)
 
 
