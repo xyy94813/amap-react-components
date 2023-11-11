@@ -38,7 +38,7 @@ export default {
   title: '组件(Components)/覆盖物(Overlay)/AMapPolygon',
   decorators: [
     withAutoFitView,
-    withAMap(),
+    withAMap({ viewMode: '3D', pitch: 30 }),
     withAMapContainer,
     withAPIContainer,
   ],
@@ -380,6 +380,14 @@ CustomStyle.args = {
   strokeOpacity: 0.1,
   strokeWeight: 20,
   strokeDasharray: [10, 40],
+};
+
+export const In3DMode: typeof Template = Template.bind({});
+In3DMode.storyName = '3D 模式';
+In3DMode.args = {
+  extrusionHeight: 300,
+  roofColor: 'red',
+  wallColor: 'yellow',
 };
 
 export const ClickEvent: typeof Template = Template.bind({});
