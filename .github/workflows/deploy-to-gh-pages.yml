@@ -18,9 +18,13 @@ jobs:
         with:
           node-version: 16
       - name: Install and Build 🔧 # This example project is built using npm and outputs the result to the 'build' folder. Replace with the commands required to build your project, or remove this step entirely if your site is pre-built.
+        # 创建 `.nojekyll` 解决资源 404 的问题，
+        # 参考相关 issue 和 comment: https://github.com/storybookjs/storybook/issues/21711#issuecomment-1496464011
+        # https://github.blog/2009-12-29-bypassing-jekyll-on-github-pages/
         run: |
           npm ci
           npm run build-storybook
+          touch ./storybook-static/.nojekyll
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
