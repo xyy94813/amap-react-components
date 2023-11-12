@@ -5,7 +5,7 @@ module.exports = {
     browser: true,
     es2020: true,
   },
-  extends: ['plugin:react/recommended', 'airbnb'],
+  extends: ['plugin:react/recommended', 'airbnb', 'plugin:storybook/recommended'],
   plugins: ['react', 'react-hooks'],
   rules: {
     'import/extensions': ['error', 'never'],
