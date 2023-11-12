@@ -1,8 +1,5 @@
-import React, { Suspense } from "react";
+import withSuspense from './decorators/withSuspense';
 
-const withSuspense = (renderStory, context) => (
-  <Suspense fallback="loading">{renderStory({}, context)}</Suspense>
-);
 
 export const decorators = [withSuspense];
 
