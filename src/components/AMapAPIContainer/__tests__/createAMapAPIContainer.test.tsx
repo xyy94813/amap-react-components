@@ -2,7 +2,7 @@ import * as React from 'react';
 import { render, cleanup } from '@testing-library/react';
 
 import AMapLoader from '@amap/amap-jsapi-loader';
-import type { AMapAPIHocProps } from '../createAMapAPIContainer';
+import type { AMapAPIHocProps } from '../interface';
 import { createAMapAPIContainer } from '../createAMapAPIContainer';
 
 import getGlobalObject from '../../../helpers/getGlobalObject';

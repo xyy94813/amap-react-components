@@ -1,3 +1,4 @@
+/* eslint-disable react/default-props-match-prop-types */
 import type { FC } from 'react';
 import {
   useEffect,
@@ -11,18 +12,11 @@ import useVisible from '../../hooks/useVisible';
 import useAMapControlBinder from '../../hooks/useAMapControlBinder';
 import useAMapEventBinder from '../../hooks/useAMapEventBinder';
 
+import type { AMapHawkEyeProps } from './interface';
 /**
  * Origin API see:
  * https://lbs.amap.com/api/jsapi-v2/documentation#hawkeye
  */
-
-export type AMapHawkEyeProps = AMap.HawkEyeOptions & {
-  showButton?: boolean;
-  isOpen?: boolean;
-  visible?: boolean;
-  onShow?: (event?: any) => void;
-  onHide?: (event?: any) => void;
-};
 
 const defaultProps = {
   showButton: true,

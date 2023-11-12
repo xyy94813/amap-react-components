@@ -1,2 +1,2 @@
-export * from './AMapHawkEye';
+export * from './interface';
 export { default } from './AMapHawkEye';

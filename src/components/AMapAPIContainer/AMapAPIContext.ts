@@ -1,9 +1,6 @@
 import { createContext } from 'react';
 
-export type AMapAPIContextValue = {
-  __AMAP__: typeof global.AMap | null;
-  __AMAP_UI__: typeof global.AMapUI | null;
-};
+import type { AMapAPIContextValue } from './interface';
 
 const defaultContext: AMapAPIContextValue = {
   __AMAP__: null,

@@ -3,7 +3,7 @@ import type { Meta, Story } from '@storybook/react';
 
 import { createAMapAPIContainer, useAMapAPI } from '../../../index';
 
-const AMAP_API_KEY: string = process.env.STORYBOOK_AMAP_API_KEY || '';
+const AMAP_API_KEY: string = (import.meta as any).env.STORYBOOK_AMAP_API_KEY || '';
 
 export default {
   title: '组件(Components)/基础组件(Basic)/AMapAPIContainer',

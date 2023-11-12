@@ -1,3 +1,4 @@
+/* eslint-disable react/default-props-match-prop-types */
 import type { FC } from 'react';
 import {
   useCallback,
@@ -10,16 +11,11 @@ import useControlContainerUpdater from '../../hooks/useControlContainerUpdater';
 import useAMapEventBinder from '../../hooks/useAMapEventBinder';
 import useVisible from '../../hooks/useVisible';
 
+import type { AMapToolBarProps } from './interface';
 /**
  * Origin API see:
  * https://lbs.amap.com/api/jsapi-v2/documentation#hawkeye
  */
-export type AMapToolBarProps = Pick<AMap.ToolBarConfig, 'offset'> & {
-  position?: AMap.ControlBarConfig['position'];
-  visible?: boolean;
-  onShow?: (event?: any) => void;
-  onHide?: (event?: any) => void;
-};
 
 const defaultProps = {
   position: 'LT' as AMapToolBarProps['position'],

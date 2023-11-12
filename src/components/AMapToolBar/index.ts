@@ -1,2 +1,2 @@
-export * from './AMapToolBar';
+export * from './interface';
 export { default } from './AMapToolBar';

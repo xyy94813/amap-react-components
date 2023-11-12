@@ -1,4 +1,4 @@
-import type { StorybookConfig } from '@storybook/react-webpack5';
+import type { StorybookConfig } from '@storybook/react-vite';
 
 const config: StorybookConfig = {
   logLevel: 'debug',
@@ -9,7 +9,7 @@ const config: StorybookConfig = {
    * see https://storybook.js.org/docs/configurations/typescript-config/
    */
   framework: {
-    name: '@storybook/react-webpack5',
+    name: '@storybook/react-vite',
     options: {},
   },
   docs: {
