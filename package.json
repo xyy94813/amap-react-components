@@ -68,7 +68,8 @@
     "eslint-plugin-react-hooks": "^4.0.4",
     "eslint-plugin-storybook": "^0.6.15",
     "husky": "^8.0.1",
-    "jest": "^26.1.0",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
     "lint-staged": "^13.0.3",
     "prettier": "^2.0.5",
     "react-docgen-typescript-loader": "^3.7.2",
@@ -76,12 +77,12 @@
     "rollup": "^2.40.0",
     "rollup-plugin-filesize": "^10.0.0",
     "rollup-plugin-terser": "^7.0.2",
-    "rollup-plugin-typescript2": "^0.30.0",
+    "rollup-plugin-typescript2": "^0.36.0",
     "standard-version": "^9.5.0",
     "storybook": "^7.5.3",
-    "ts-jest": "^26.1.1",
+    "ts-jest": "^29.1.1",
     "ts-loader": "^7.0.5",
-    "typescript": "^3.9.5"
+    "typescript": "^5.2.2"
   },
   "resolutions": {
     "node": "16",
