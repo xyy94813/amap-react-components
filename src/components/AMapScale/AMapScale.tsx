@@ -1,3 +1,4 @@
+/* eslint-disable react/default-props-match-prop-types */
 import type { FC } from 'react';
 import {
   memo,
@@ -9,17 +10,11 @@ import useAMapControlBinder from '../../hooks/useAMapControlBinder';
 import useAMapEventBinder from '../../hooks/useAMapEventBinder';
 import useVisible from '../../hooks/useVisible';
 
+import type { AMapScaleProps } from './interface';
 /**
  * Origin API see:
  * https://lbs.amap.com/api/jsapi-v2/documentation#hawkeye
  */
-
-export type AMapScaleProps = Pick<AMap.ScaleConfig, 'offset'> & {
-  position?: AMap.ScaleConfig['position'];
-  visible?: boolean;
-  onShow?: (event?: any) => void;
-  onHide?: (event?: any) => void;
-};
 
 const defaultProps = {
   position: 'LB' as AMapScaleProps['position'],

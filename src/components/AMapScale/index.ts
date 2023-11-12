@@ -1,2 +1,2 @@
-export * from './AMapScale';
+export * from './interface';
 export { default } from './AMapScale';

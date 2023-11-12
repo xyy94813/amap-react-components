@@ -6,37 +6,41 @@ export { default as useAMapEventBinder } from './hooks/useAMapEventBinder';
 export { default as useAMapPluginInstance } from './hooks/useAMapPluginInstance';
 
 export * from './components/AMapAPIContainer';
-export {
-  AMapMap, AMapMapProps, AMapMapContextValue, AMapMapContext,
-} from './components/AMapMap';
+export type { AMapMapProps, AMapMapContextValue } from './components/AMapMap';
+export { AMapMap, AMapMapContext } from './components/AMapMap';
 
-export { default as AMapControlBar, AMapControlBarProps } from './components/AMapControlBar';
-export { default as AMapHawkEye, AMapHawkEyeProps } from './components/AMapHawkEye';
-export { default as AMapScale, AMapScaleProps } from './components/AMapScale';
-export { default as AMapToolBar, AMapToolBarProps } from './components/AMapToolBar';
-export { default as AMapMapType, AMapMapTypeProps } from './components/AMapMapType';
+export type { AMapControlBarProps } from './components/AMapControlBar';
+export { default as AMapControlBar } from './components/AMapControlBar';
+export type { AMapHawkEyeProps } from './components/AMapHawkEye';
+export { default as AMapHawkEye } from './components/AMapHawkEye';
+export type { AMapScaleProps } from './components/AMapScale';
+export { default as AMapScale } from './components/AMapScale';
+export type { AMapToolBarProps } from './components/AMapToolBar';
+export { default as AMapToolBar } from './components/AMapToolBar';
+export type { AMapMapTypeProps } from './components/AMapMapType';
+export { default as AMapMapType } from './components/AMapMapType';
 
-export { default as AMapOverlayGroup, AMapOverlayGroupProps } from './components/AMapOverlayGroup';
-export {
-  default as AMapGeoJSON,
-  AMapGeoJSONGetOverlayCallback,
-  AMapGeoJSONProps,
-} from './components/AMapGeoJSON';
-export { default as AMapCircle, AMapCircleProps } from './components/AMapCircle';
-export { default as AMapEllipse, AMapEllipseProps } from './components/AMapEllipse';
-export { default as AMapPolygon, AMapPolygonProps } from './components/AMapPolygon';
-export { default as AMapPolyline, AMapPolylineProps } from './components/AMapPolyline';
-export { default as AMapMarker, AMapMarkerProps } from './components/AMapMarker';
-export {
-  default as AMapPolygonEditor,
-  AMapPolygonEditorProps,
-} from './components/AMapPolygonEditor';
-export {
-  default as AMapPolylineEditor,
-  AMapPolylineEditorProps,
-} from './components/AMapPolylineEditor';
+export type { AMapOverlayGroupProps } from './components/AMapOverlayGroup';
+export { default as AMapOverlayGroup } from './components/AMapOverlayGroup';
+export type { AMapGeoJSONGetOverlayCallback, AMapGeoJSONProps } from './components/AMapGeoJSON';
+export { default as AMapGeoJSON } from './components/AMapGeoJSON';
+export type { AMapCircleProps } from './components/AMapCircle';
+export { default as AMapCircle } from './components/AMapCircle';
+export type { AMapEllipseProps } from './components/AMapEllipse';
+export { default as AMapEllipse } from './components/AMapEllipse';
+export type { AMapPolygonProps } from './components/AMapPolygon';
+export { default as AMapPolygon } from './components/AMapPolygon';
+export type { AMapPolylineProps } from './components/AMapPolyline';
+export { default as AMapPolyline } from './components/AMapPolyline';
+export type { AMapMarkerProps } from './components/AMapMarker';
+export { default as AMapMarker } from './components/AMapMarker';
+export type { AMapPolygonEditorProps } from './components/AMapPolygonEditor';
+export { default as AMapPolygonEditor } from './components/AMapPolygonEditor';
+export type { AMapPolylineEditorProps } from './components/AMapPolylineEditor';
+export { default as AMapPolylineEditor } from './components/AMapPolylineEditor';
 
-export { default as AMapMouseTool, AMapMouseToolProps } from './components/AMapMouseTool';
+export type { AMapMouseToolProps } from './components/AMapMouseTool';
+export { default as AMapMouseTool } from './components/AMapMouseTool';
 
 // helpers
 export { default as coordsOfGeoJSON2AMapPolygonPath } from './helpers/coordsOfGeoJSON2AMapPolygonPath';

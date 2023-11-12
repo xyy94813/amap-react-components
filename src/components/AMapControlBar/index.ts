@@ -1,2 +1,2 @@
-export * from './AMapControlBar';
+export * from './interface';
 export { default } from './AMapControlBar';

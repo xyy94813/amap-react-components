@@ -12,12 +12,8 @@ const defaultOptions = {
   version: DEFAULT_AMAP_VERSION,
 };
 
-export type CreateAMapApiContainerOptions = (Omit<Parameters<typeof AMapLoader.load>[0], 'version'>) & {
+type CreateAMapApiContainerOptions = (Omit<Parameters<typeof AMapLoader.load>[0], 'version'>) & {
   version?: string
-};
-
-export type AMapAPIHocProps = {
-  children: React.ReactNode;
 };
 
 export const createAMapAPIContainer = (options: CreateAMapApiContainerOptions) => {
