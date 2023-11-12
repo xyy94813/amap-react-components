@@ -121,11 +121,11 @@ SetFeatures.args = {
 };
 SetFeatures.storyName = '设置地图上显示的元素种类';
 
-export const setMapStyle: typeof Template = Template.bind({});
-setMapStyle.args = {
+export const SetsMapStyle: typeof Template = Template.bind({});
+SetsMapStyle.args = {
   mapStyle: 'amap://styles/grey',
 };
-setMapStyle.storyName = '自定义地图样式';
+SetsMapStyle.storyName = '自定义地图样式';
 
 export const ViewModeIs3D: typeof Template = Template.bind({});
 ViewModeIs3D.storyName = '3D 模式';
