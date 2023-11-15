@@ -1,10 +1,15 @@
 # amap-react-components
 
-[![deploy-to-gh-pages](https://github.com/xyy94813/amap-react-components/actions/workflows/deploy-to-gh-pages.yml/badge.svg?branch=main)](https://github.com/xyy94813/amap-react-components/actions/workflows/deploy-to-gh-pages.yml)
-[![package version](https://img.shields.io/npm/v/amap-react-components.svg?style=flat-square)](https://www.npmjs.org/package/amap-react-components)
-[![npm downloads](https://img.shields.io/npm/dm/amap-react-components.svg?style=flat-square)](http://npmjs.com/amap-react-components)
+[![latest version](https://img.shields.io/npm/v/amap-react-components.svg?label=latest%20%20version)](https://www.npmjs.org/package/amap-react-components)
+[![License](https://img.shields.io/npm/l/amap-react-components?label=latest%20%20version%20%20license)](https://www.npmjs.org/package/amap-react-components)
+[![npm downloads](https://img.shields.io/npm/dm/amap-react-components.svg)](http://npmjs.com/amap-react-components)
+[![minimized gzipped size](https://img.shields.io/bundlejs/size/amap-react-components)](http://npmjs.com/amap-react-components)
 
-[![Codecov](https://github.com/xyy94813/amap-react-components/actions/workflows/codecov.yml/badge.svg?branch=main)](https://github.com/xyy94813/amap-react-components/actions/workflows/codecov.yml)
+[![GitHub Repo stars](https://img.shields.io/github/stars/xyy94813/amap-react-components?label=github%20%20stars)](https://github.com/xyy94813/amap-react-components)
+[![last commit (branch)](https://img.shields.io/github/last-commit/xyy94813/amap-react-components/main)](https://github.com/xyy94813/amap-react-components)
+
+[![deploy-to-gh-pages](https://github.com/xyy94813/amap-react-components/actions/workflows/deploy-to-gh-pages.yml/badge.svg?branch=main)](https://github.com/xyy94813/amap-react-components/actions/workflows/deploy-to-gh-pages.yml)
+[![Codecov workflow](https://github.com/xyy94813/amap-react-components/actions/workflows/codecov.yml/badge.svg?branch=main)](https://github.com/xyy94813/amap-react-components/actions/workflows/codecov.yml)
 [![codecov](https://codecov.io/gh/xyy94813/amap-react-components/branch/main/graph/badge.svg?token=DCC845JGZW)](https://codecov.io/gh/xyy94813/amap-react-components)
 
 [AMap](https://lbs.amap.com/api/jsapi-v2/summary/) 的 React 组件。
