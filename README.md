@@ -94,4 +94,4 @@ npm install @amap/amap-jsapi-types
 
 ## LICENSE
 
-[MIT LICENSE](./LICENSE.md)
+[MIT LICENSE](./LICENSE)
