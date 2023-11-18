@@ -1,0 +1,66 @@
+import { Meta } from "@storybook/blocks";
+
+<Meta title="Hooks/useAMapAPI" />
+
+# useAMapAPI
+
+如果你想访问高德相关的 API，你可以在函数组件内使用 `useAMapAPI` 从上下文中获取高德 jsapi `AMap` 和 `AMapUI`。
+以便于自定义当前库未提供的组件。
+
+> _不建议通过 `globalThis`和`window` 对象获取 API。_ > _因为未来可能会在原始 API 上套一层 Proxy 以满足更多的需求。例如，AMap.plugin 多次加载的问题。_
+
+类型声明：
+
+```ts
+const useAMapAPI = () =>
+  React.Context<{
+    __AMAP__: typeof global.AMap | null;
+    __AMAP_UI__: typeof global.AMapUI | null;
+  }>;
+```
+
+基于 `useAMapAPI` 构建自定义组件：
+
+```tsx
+const MyAMapComp = () => {
+  const {
+    __AMAP__: AMap,
+    // __AMAP_UI__: AMapUI,
+  } = useAMapAPI();
+
+  // 做任何你想做的事情～
+  useEffect(() => {
+    const getLocationByIP = async () => {
+      const ipInfo = await new Promise((resolve, reject) => {
+        AMap!.WebService.get(
+          "/v3/ip",
+          {
+            key: "您的key",
+          },
+          (error, result) => {
+            if (error) {
+              reject(error);
+            }
+            resolve(result);
+          }
+        );
+      });
+
+      console.log(ipInfo);
+    };
+
+    getLocationByIP();
+  }, []);
+
+  return null;
+};
+
+// How to use
+const APP = () => {
+  return (
+    <AMapAPIContainer>
+      <MyAMapComp />
+    </AMapAPIContainer>
+  );
+};
+```
