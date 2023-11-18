@@ -99,9 +99,9 @@ const AsyncPluginAPIContainer = createAMapAPIContainer({
   },
 });
 
-${initPlugin.toString()}
+const initPlugin = ${initPlugin.toString()}
 
-${initUIPlugin.toString()}
+const initUIPlugin = ${initUIPlugin.toString()}
 
 const AsyncPluginContentDrawer = () => {
   const { __AMAP__: AMap } = useAMapAPI();
@@ -192,9 +192,9 @@ const SyncPluginAPIContainer = createAMapAPIContainer({
   },
 });
 
-${initPlugin.toString()}
+const initPlugin = ${initPlugin.toString()}
 
-${initUIPlugin.toString()}
+const initUIPlugin = ${initUIPlugin.toString()}
 
 const SyncPluginContentDrawer = () => {
   const { __AMAP__: AMap, __AMAP_UI__: AMapUI } = useAMapAPI();
