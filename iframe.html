@@ -19,7 +19,7 @@
     window.FRAMEWORK_OPTIONS = {};
     window.CHANNEL_OPTIONS = {};
     window.FEATURES = {"warnOnLegacyHierarchySeparator":true,"buildStoriesJson":false,"storyStoreV7":true,"argTypeTargetsV7":true,"legacyDecoratorFileOrder":false};
-    window.STORIES = [{"titlePrefix":"","directory":"./src","files":"**/*.stories.@(js|jsx|ts|tsx|mdx)","importPathMatcher":"^\\.[\\\\/](?:src(?:\\/(?!\\.)(?:(?:(?!(?:^|\\/)\\.).)*?)\\/|\\/|$)(?!\\.)(?=.)[^/]*?\\.stories\\.(js|jsx|ts|tsx|mdx))$"}];
+    window.STORIES = [{"titlePrefix":"","directory":"./src","files":"**/*.mdx","importPathMatcher":"^\\.[\\\\/](?:src(?:\\/(?!\\.)(?:(?:(?!(?:^|\\/)\\.).)*?)\\/|\\/|$)(?!\\.)(?=.)[^/]*?\\.mdx)$"},{"titlePrefix":"","directory":"./src","files":"**/*.stories.@(js|jsx|mjs|ts|tsx)","importPathMatcher":"^\\.[\\\\/](?:src(?:\\/(?!\\.)(?:(?:(?!(?:^|\\/)\\.).)*?)\\/|\\/|$)(?!\\.)(?=.)[^/]*?\\.stories\\.(js|jsx|mjs|ts|tsx))$"}];
     window.DOCS_OPTIONS = {"defaultName":"Docs","autodocs":true};
 
     // We do this so that "module && module.hot" etc. in Storybook source code
@@ -357,7 +357,7 @@
   }
 </script>
 
-  <script type="module" crossorigin src="./assets/iframe-8f647b25.js"></script>
+  <script type="module" crossorigin src="./assets/iframe-c8d7250a.js"></script>
 </head>
 
 <body>
