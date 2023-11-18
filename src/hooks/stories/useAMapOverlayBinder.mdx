@@ -1,0 +1,46 @@
+import { Meta } from "@storybook/blocks";
+
+<Meta title="Hooks/useAMapOverlayBinder" />
+
+# useAMapOverlayBinder
+
+`useAMapOverlayBinder` 用于绑定 Overlay 至最近的容器上。
+
+类型声明：
+
+```ts
+const useAMapOverlayBinder: (overlay: any) => void;
+```
+
+示例：
+
+```tsx
+const MyAMapComp = () => {
+  const initInstance = useCallback((AMap) => new AMap!.Rectangle(), []);
+  const curInstance = useAMapPluginInstance<AMap.Rectangle>(
+    "Rectangle",
+    initInstance
+  );
+
+  useAMapOverlayBinder(curInstance);
+
+  return null;
+};
+
+const APP = () => {
+  return (
+    <AMapAPIContainer>
+      <AMapMap>
+        {/* 以下使用会直接绑定到 AMapMap */}
+        <MyAMapComp />
+        <AMapOverlayGroup>
+          {/* 以下使用会直接绑定最近的 OverlayGroup 上 */}
+          <AMapOverlayGroup>
+            <MyAMapComp />
+          </AMapOverlayGroup>
+        </AMapOverlayGroup>
+      </AMapMap>
+    </AMapAPIContainer>
+  );
+};
+```
