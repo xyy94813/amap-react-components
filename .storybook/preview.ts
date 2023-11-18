@@ -14,6 +14,11 @@ export const parameters = {
           "覆盖物(Overlay)",
           "工具(Tools)",
         ],
+        "Hooks",
+        [
+          "useAMapAPI",
+          "useAMap",
+        ],
       ],
     },
   },

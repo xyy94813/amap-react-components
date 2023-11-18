@@ -1,0 +1,72 @@
+import { Meta } from "@storybook/blocks";
+
+<Meta title="Hooks/useAMap" />
+
+# useAMap
+
+你可以在函数组件内使用 `useAMap` 从上下文中获取以及 `map` 实例。
+以便于自定义当前库未提供的组件。
+
+考虑到 大多数情况需要同时获取 API 和 map 实例，所以该 Hooks 同时返回了 `AMap` 和 `AMapUI`
+
+类型声明：
+
+```ts
+const useAMap = () =>
+  React.Context<{
+    __AMAP__: typeof global.AMap | null;
+    __AMAP_UI__: typeof global.AMapUI | null;
+    map: AMap.Map | null;
+  }>;
+```
+
+基于 `useAMap` 构建自定义组件：
+
+```tsx
+const MyAMapComp = () => {
+  const {
+    map,
+    __AMAP__: AMap,
+    // __AMAP_UI__: AMapUI,
+  } = useAMap();
+
+  // 做任何你想做的事情～
+  useEffect(() => {
+    const getLocationByIP = async () =>
+      new Promise((resolve, reject) => {
+        AMap!.WebService.get(
+          "/v3/ip",
+          {
+            key: "您的key",
+          },
+          (error, result) => {
+            if (error) {
+              reject(error);
+            }
+            resolve(result);
+          }
+        );
+      });
+
+    const autoSetCity = async () => {
+      const location = await getLocationByIP();
+      map.setCity(location.city);
+    };
+
+    autoSetCity();
+  }, [AMap, map]); // AMap 更新 => map 也要更新 => 需要重新 setCity
+
+  return null;
+};
+
+// How to use
+const APP = () => {
+  return (
+    <AMapAPIContainer>
+      <AMapMap>
+        <MyAMapComp />
+      </AMapMap>
+    </AMapAPIContainer>
+  );
+};
+```
