@@ -10,7 +10,7 @@ import withAPIContainer from '../../../storybook-decorators/withAPIContainer';
 
 const eventHandler = actions('onCompleted');
 
-export default {
+const meta: Meta<typeof AMapMouseTool> = {
   title: '组件(Components)/工具(Tools)/AMapMouseTool',
   decorators: [
     withAMap(),
@@ -28,10 +28,10 @@ export default {
   argTypes: {
     type: {
       description: '工具类型',
-      type: { required: true, summary: 'string ' },
-      control: {
-        type: 'select',
-        options: [
+      type: {
+        required: true,
+        name: 'enum',
+        value: [
           'marker',
           'circle',
           'rectangle',
@@ -43,17 +43,56 @@ export default {
           'rectZoomOut',
         ],
       },
+      table: {
+        type: {
+          summary: [
+            'marker',
+            'circle',
+            'rectangle',
+            'polyline',
+            'polygon',
+            'measureArea',
+            'rule',
+            'rectZoomIn',
+            'rectZoomOut',
+          ].join('|'),
+        },
+        // defaultValue: { summary: '' },
+      },
+      options: [
+        'marker',
+        'circle',
+        'rectangle',
+        'polyline',
+        'polygon',
+        'measureArea',
+        'rule',
+        'rectZoomIn',
+        'rectZoomOut',
+      ],
+      control: 'select',
     },
     options: {
       description: '额外参数',
-      type: { summary: 'object' },
+      type: { required: false, name: 'object', value: {} },
+      table: {
+        type: { summary: 'object', detail: '具体字段参考高德 JS API 文档' },
+      },
+      control: 'object',
     },
     onCompleted: {
-      description: '鼠标工具绘制覆盖物结束时触发此事件，obj对象为绘制出来的覆盖物对象',
-      type: { summary: '(event: AMap.Event<"draw">) => void' },
+      description: '鼠标工具绘制覆盖物结束时触发此事件，obj 对象为绘制出来的覆盖物对象',
+      type: { required: false, name: 'function' },
+      table: {
+        type: {
+          summary: '(event: AMap.Event<"draw">) => void',
+        },
+      },
     },
   },
-} as Meta;
+};
+
+export default meta;
 
 const Template: Story<AMapMouseToolProps> = (args) => (
   <AMapMouseTool {...args} />

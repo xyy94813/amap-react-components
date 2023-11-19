@@ -24,7 +24,9 @@ const eventHandler = actions(
   'onTouchend',
 );
 
-export default {
+const presetColors = ['#ff0000', '#00ff00', '#0000ff'];
+
+const meta: Meta<typeof AMapCircle> = {
   title: '组件(Components)/覆盖物(Overlay)/AMapCircle',
   decorators: [
     withAutoFitView,
@@ -42,11 +44,18 @@ export default {
   argTypes: {
     center: {
       description: '圆心位置',
-      type: { required: true, summary: 'LngLatLike' },
+      type: { required: true, name: 'array', value: { name: 'number' } },
+      table: {
+        type: { summary: 'LngLatLike' },
+      },
+      control: 'object',
     },
     radius: {
       description: '圆半径，单位:米',
-      type: { required: true, summary: 'number' },
+      type: { required: true, name: 'number' },
+      table: {
+        type: { summary: 'AMap.LngLatLike' },
+      },
       control: {
         type: 'number',
         min: 0,
@@ -55,8 +64,11 @@ export default {
     },
     zIndex: {
       description: '多边形覆盖物的叠加顺序',
-      type: { required: false, summary: 'number', defaultValue: 10 },
-      table: { defaultValue: 10 },
+      type: { required: false, name: 'number' },
+      table: {
+        type: { summary: 'number' },
+        defaultValue: { summary: 10 },
+      },
       control: {
         type: 'number',
         step: 1,
@@ -64,51 +76,76 @@ export default {
     },
     fillColor: {
       description: '多边形填充颜色',
-      type: { required: false, summary: 'color', defaultValue: '#00B2D5' },
-      table: { defaultValue: '#00B2D5' },
-      control: { type: 'color' },
+      type: { required: false, name: 'string' },
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: '#00B2D5' },
+      },
+      control: {
+        type: 'color',
+        presetColors,
+      },
     },
     fillOpacity: {
       description: '多边形填充透明度，取值范围 [0,1]',
-      type: { required: false, summary: 'number', defaultValue: 0.5 },
-      table: { defaultValue: 0.5 },
+      type: { required: false, name: 'number' },
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 0.5 },
+      },
       control: {
-        type: 'number',
+        type: 'range',
         min: 0,
         max: 1,
-        step: 0.01,
+        step: 0.1,
       },
     },
     strokeColor: {
       description: '轮廓线颜色，使用16进制颜色代码赋值。',
-      type: { required: false, summary: 'color', defaultValue: '#00D3FC' },
-      table: { defaultValue: '#00D3FC' },
-      control: { type: 'color' },
+      type: { required: false, name: 'string' },
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: '#00D3FC' },
+      },
+      control: {
+        type: 'color',
+        presetColors,
+      },
     },
     strokeStyle: {
       description: '轮廓线样式',
-      type: { required: false, summary: 'solid | dashed', defaultValue: 'solid' },
-      table: { defaultValue: 'solid' },
-      control: {
-        type: 'select',
-        options: ['solid', 'dashed'],
+      type: { required: false, name: 'enum', value: ['solid', 'dashed'] },
+      table: {
+        type: { summary: ['solid', 'dashed'].join('|') },
+        defaultValue: { summary: 'solid' },
       },
+      options: {
+        'solid(实线)': 'solid',
+        'dashed(虚线)': 'dashed',
+      },
+      control: 'select',
     },
     strokeOpacity: {
       description: '轮廓线透明度，取值范围 [0,1]',
-      type: { required: false, summary: 'number', defaultValue: 0.9 },
-      table: { defaultValue: 0.9 },
+      type: { required: false, name: 'number' },
+      table: {
+        type: { summary: 'number' },
+        defaultValue: { summary: 0.9 },
+      },
       control: {
-        type: 'number',
+        type: 'range',
         min: 0,
         max: 1,
-        step: 0.01,
+        step: 0.1,
       },
     },
     strokeWeight: {
       description: '轮廓线宽度',
-      type: { required: false, summary: 'number', defaultValue: 2 },
-      table: { defaultValue: 2 },
+      type: { required: false, name: 'number' },
+      table: {
+        type: { summary: 'number' },
+        defaultValue: { summary: 2 },
+      },
       control: {
         type: 'number',
         min: 0,
@@ -116,101 +153,168 @@ export default {
       },
     },
     strokeDasharray: {
-      description: '勾勒形状轮廓的虚线和间隙的样式',
-      type: { required: false, summary: 'Array<number>' },
+      description: '勾勒形状轮廓的虚线和间隙的样式，此属性在strokeStyle 为dashed 时有效',
+      type: { required: false, name: 'array', value: { name: 'number' } },
+      table: {
+        type: { summary: 'number[]' },
+      },
+      control: 'object',
     },
     cursor: {
-      description: '指定鼠标悬停时的鼠标样式',
-      type: { required: false, summary: 'string' },
+      description: '指定鼠标悬停时的鼠标样式，自定义cursor，IE仅支持cur/ani/ico格式，Opera不支持自定义cursor',
+      type: { required: false, name: 'string' },
+      table: {
+        type: { summary: 'string' },
+      },
+      control: 'text',
     },
     extData: {
       description: '设置用户自定义属性',
-      type: { required: false, summary: 'Object' },
+      type: { required: false, name: 'object', value: {} },
+      table: {
+        type: { summary: 'object' },
+      },
+      control: 'object',
     },
     draggable: {
       description: '是否可拖动',
-      type: { required: false, summary: 'type', defaultValue: false },
-      table: { defaultValue: false },
-      control: {
-        type: 'boolean',
+      type: { required: false, name: 'boolean' },
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: false },
       },
+      control: 'boolean',
     },
     visible: {
       description: '显示或隐藏',
-      type: { required: false, summary: 'boolean', defaultValue: true },
-      table: { defaultValue: true },
-      control: {
-        type: 'boolean',
+      type: { required: false, name: 'boolean' },
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: true },
       },
+      control: 'boolean',
     },
     bubble: {
       description: '是否将覆盖物的鼠标或touch等事件冒泡到地图上',
-      type: { required: false, summary: 'boolean', defaultValue: false },
-      table: { defaultValue: false },
-      control: { type: 'boolean' },
+      type: { required: false, name: 'boolean' },
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: false },
+      },
+      control: 'boolean',
     },
     onShow: {
       description: '显示，回调函数',
-      type: { required: false, summary: '(event: any) => void' },
+      type: { required: false, name: 'function' },
+      table: {
+        category: '事件',
+        type: { summary: '(event: any) => void' },
+      },
       control: false,
     },
     onHide: {
       description: '隐藏，回调函数',
-      type: { required: false, summary: '(event: any) => void' },
+      type: { required: false, name: 'function' },
+      table: {
+        category: '事件',
+        type: { summary: '(event: any) => void' },
+      },
       control: false,
     },
     onClick: {
       description: '左键单击，回调函数',
-      type: { required: false, summary: '(event: any) => void' },
+      type: { required: false, name: 'function' },
+      table: {
+        category: '事件',
+        type: { summary: '(event: any) => void' },
+      },
       control: false,
     },
     onDBLClick: {
       description: '左键双击，回调函数',
-      type: { required: false, summary: '(event: any) => void' },
+      type: { required: false, name: 'function' },
+      table: {
+        category: '事件',
+        type: { summary: '(event: any) => void' },
+      },
       control: false,
     },
     onRightClick: {
       description: '右键单击，回调函数',
-      type: { required: false, summary: '(event: any) => void' },
+      type: { required: false, name: 'function' },
+      table: {
+        category: '事件',
+        type: { summary: '(event: any) => void' },
+      },
       control: false,
     },
     onMousedown: {
       description: '鼠标按下，回调函数',
-      type: { required: false, summary: '(event: any) => void' },
+      type: { required: false, name: 'function' },
+      table: {
+        category: '事件',
+        type: { summary: '(event: any) => void' },
+      },
       control: false,
     },
     onMouseup: {
       description: '鼠标抬起，回调函数',
-      type: { required: false, summary: '(event: any) => void' },
+      type: { required: false, name: 'function' },
+      table: {
+        category: '事件',
+        type: { summary: '(event: any) => void' },
+      },
       control: false,
     },
     onMouseover: {
       description: '鼠标经过，回调函数',
-      type: { required: false, summary: '(event: any) => void' },
+      type: { required: false, name: 'function' },
+      table: {
+        category: '事件',
+        type: { summary: '(event: any) => void' },
+      },
       control: false,
     },
     onMouseout: {
       description: '鼠标移出，回调函数',
-      type: { required: false, summary: '(event: any) => void' },
+      type: { required: false, name: 'function' },
+      table: {
+        category: '事件',
+        type: { summary: '(event: any) => void' },
+      },
       control: false,
     },
     onTouchstart: {
       description: '触摸开始，回调函数，仅移动设备有效',
-      type: { required: false, summary: '(event: any) => void' },
+      type: { required: false, name: 'function' },
+      table: {
+        category: '事件',
+        type: { summary: '(event: any) => void' },
+      },
       control: false,
     },
     onTouchmove: {
       description: '触摸移动，回调函数，仅移动设备有效',
-      type: { required: false, summary: '(event: any) => void' },
+      type: { required: false, name: 'function' },
+      table: {
+        category: '事件',
+        type: { summary: '(event: any) => void' },
+      },
       control: false,
     },
     onTouchend: {
       description: '触摸结束，回调函数，仅移动设备有效',
-      type: { required: false, summary: '(event: any) => void' },
+      type: { required: false, name: 'function' },
+      table: {
+        category: '事件',
+        type: { summary: '(event: any) => void' },
+      },
       control: false,
     },
   },
-} as Meta;
+};
+
+export default meta;
 
 type AMapCircleStory = Story<AMapCircleProps>;
 const Template: AMapCircleStory = (args) => (

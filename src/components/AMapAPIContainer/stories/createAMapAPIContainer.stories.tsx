@@ -5,9 +5,11 @@ import { createAMapAPIContainer, useAMapAPI } from '../../../index';
 
 const AMAP_API_KEY: string = (import.meta as any).env.STORYBOOK_AMAP_API_KEY || '';
 
-export default {
+const meta: Meta = {
   title: '组件(Components)/基础组件(Basic)/AMapAPIContainer',
-} as Meta;
+};
+
+export default meta;
 
 const SyncPluginAPIContainer = createAMapAPIContainer({
   key: AMAP_API_KEY,

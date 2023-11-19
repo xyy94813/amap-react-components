@@ -98,7 +98,7 @@ const mockData: GeoJSON.FeatureCollection = {
   ],
 };
 
-export default {
+const meta: Meta<typeof AMapGeoJSON> = {
   title: '组件(Components)/覆盖物(Overlay)/AMapGeoJSON',
   decorators: [
     withAutoFitView,
@@ -113,34 +113,34 @@ export default {
   argTypes: {
     geoJSON: {
       description: '要加载的标准 GeoJSON 对象',
-      type: { name: 'other', value: '', required: true },
+      type: { required: true, name: 'object', value: {} },
       table: {
         type: {
-          summary: 'GeoJSON',
+          summary: 'GeoJSON.FeatureCollection',
           detail: 'AMap 暂时不支持 `Feature`，需要转换成 `FeatureCollection`',
         },
       },
     },
     visible: {
       description: '显示或隐藏',
-      type: { required: false, summary: 'boolean', defaultValue: true },
-      table: { defaultValue: true },
-      control: {
-        type: 'boolean',
+      type: { required: false, name: 'boolean' },
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: true },
       },
+      control: 'boolean',
     },
     options: {
       description: '修改覆盖物属性(包括线样式、样色等等)',
-      type: { name: 'other', value: '', required: false },
+      type: { required: false, name: 'object', value: {} },
       table: {
-        type: {
-          summary: 'Object',
-          detail: '具体字段参考高德 JS API 文档',
-        },
+        type: { summary: 'object', detail: '具体字段参考高德 JS API 文档' },
       },
+      control: 'object',
     },
     getMarker: {
       description: '指定点要素的绘制方式，缺省时为 Marker 的默认样式。',
+      type: { required: false, name: 'function' },
       table: {
         type: {
           summary:
@@ -150,6 +150,7 @@ export default {
     },
     getPolyline: {
       description: '指定点要素的绘制方式，缺省时为 Polyline 的默认样式。',
+      type: { required: false, name: 'function' },
       table: {
         type: {
           summary:
@@ -159,6 +160,7 @@ export default {
     },
     getPolygon: {
       description: '指定点要素的绘制方式，缺省时为 Polygon 的默认样式。',
+      type: { required: false, name: 'function' },
       table: {
         type: {
           summary:
@@ -167,7 +169,9 @@ export default {
       },
     },
   },
-} as Meta;
+};
+
+export default meta;
 
 const Template: Story<AMapGeoJSONProps> = (args) => (
   <AMapGeoJSON {...args} />

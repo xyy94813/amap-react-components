@@ -31,7 +31,7 @@ const eventHandler = actions(
   'onTouchend',
 );
 
-export default {
+const meta: Meta<typeof AMapOverlayGroup> = {
   title: '组件(Components)/覆盖物(Overlay)/AMapOverlayGroup',
   decorators: [
     withAutoFitView,
@@ -47,84 +47,135 @@ export default {
   argTypes: {
     visible: {
       description: '显示或隐藏',
-      type: { required: false, summary: 'boolean', defaultValue: true },
-      table: { defaultValue: true },
-      control: {
-        type: 'boolean',
+      type: { required: false, name: 'boolean' },
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: true },
       },
+      control: 'boolean',
     },
     options: {
       description: '修改覆盖物属性(包括线样式、样色等等)。注意：当前实现，嵌套使用时，父级组件会覆盖子组件的样式。',
-      type: { name: 'other', value: '', required: false },
+      type: { required: false, name: 'object', value: {} },
       table: {
         type: {
-          summary: 'Object',
+          summary: 'object',
           detail: '具体字段参考高德 JS API 文档',
         },
       },
     },
     onShow: {
       description: '显示，回调函数',
-      type: { required: false, summary: '(event: any) => void' },
+      type: { required: false, name: 'function' },
+      table: {
+        category: '事件',
+        type: { summary: '(event: any) => void' },
+      },
       control: false,
     },
     onHide: {
       description: '隐藏，回调函数',
-      type: { required: false, summary: '(event: any) => void' },
+      type: { required: false, name: 'function' },
+      table: {
+        category: '事件',
+        type: { summary: '(event: any) => void' },
+      },
       control: false,
     },
     onClick: {
       description: '左键单击，回调函数',
-      type: { required: false, summary: '(event: any) => void' },
+      type: { required: false, name: 'function' },
+      table: {
+        category: '事件',
+        type: { summary: '(event: any) => void' },
+      },
       control: false,
     },
     onDBLClick: {
       description: '左键双击，回调函数',
-      type: { required: false, summary: '(event: any) => void' },
+      type: { required: false, name: 'function' },
+      table: {
+        category: '事件',
+        type: { summary: '(event: any) => void' },
+      },
       control: false,
     },
     onRightClick: {
       description: '右键单击，回调函数',
-      type: { required: false, summary: '(event: any) => void' },
+      type: { required: false, name: 'function' },
+      table: {
+        category: '事件',
+        type: { summary: '(event: any) => void' },
+      },
       control: false,
     },
     onMousedown: {
       description: '鼠标按下，回调函数',
-      type: { required: false, summary: '(event: any) => void' },
+      type: { required: false, name: 'function' },
+      table: {
+        category: '事件',
+        type: { summary: '(event: any) => void' },
+      },
       control: false,
     },
     onMouseup: {
       description: '鼠标抬起，回调函数',
-      type: { required: false, summary: '(event: any) => void' },
+      type: { required: false, name: 'function' },
+      table: {
+        category: '事件',
+        type: { summary: '(event: any) => void' },
+      },
       control: false,
     },
     onMouseover: {
       description: '鼠标经过，回调函数',
-      type: { required: false, summary: '(event: any) => void' },
+      type: { required: false, name: 'function' },
+      table: {
+        category: '事件',
+        type: { summary: '(event: any) => void' },
+      },
       control: false,
     },
     onMouseout: {
       description: '鼠标移出，回调函数',
-      type: { required: false, summary: '(event: any) => void' },
+      type: { required: false, name: 'function' },
+      table: {
+        category: '事件',
+        type: { summary: '(event: any) => void' },
+      },
       control: false,
     },
     onTouchstart: {
       description: '触摸开始，回调函数，仅移动设备有效',
-      type: { required: false, summary: '(event: any) => void' },
+      type: { required: false, name: 'function' },
+      table: {
+        category: '事件',
+        type: { summary: '(event: any) => void' },
+      },
       control: false,
     },
     onTouchmove: {
       description: '触摸移动，回调函数，仅移动设备有效',
-      type: { required: false, summary: '(event: any) => void' },
+      type: { required: false, name: 'function' },
+      table: {
+        category: '事件',
+        type: { summary: '(event: any) => void' },
+      },
       control: false,
     },
     onTouchend: {
       description: '触摸结束，回调函数，仅移动设备有效',
-      type: { required: false, summary: '(event: any) => void' },
+      type: { required: false, name: 'function' },
+      table: {
+        category: '事件',
+        type: { summary: '(event: any) => void' },
+      },
       control: false,
     },
   },
-} as Meta;
+};
+
+export default meta;
 
 type AMapOverlayGroupStory = Story<AMapOverlayGroupProps>;
 const Template: AMapOverlayGroupStory = (args) => (

@@ -36,7 +36,7 @@ const eventHandler = actions(
   'onMoveAlong',
 );
 
-export default {
+const meta: Meta<typeof AMapMarker> = {
   title: '组件(Components)/覆盖物(Overlay)/AMapMarker',
   component: AMapMarker,
   decorators: [
@@ -55,64 +55,104 @@ export default {
   argTypes: {
     position: {
       description: '点标记在地图上显示的位置',
-      type: { required: true, summary: 'LngLatLike' },
-      control: 'array',
+      type: { required: true, name: 'array', value: { name: 'number' } },
+      table: {
+        type: { summary: 'LngLatLike' },
+      },
+      control: 'object',
     },
     title: {
       description: '鼠标滑过点标记时的文字提示。不设置则鼠标滑过点标无文字提示。',
-      type: { required: false, summary: 'string' },
+      type: { required: false, name: 'string' },
+      table: {
+        type: { summary: 'string' },
+      },
       control: 'text',
     },
     content: {
       description: '点标记显示内容。可以是HTML要素字符串或者HTML DOM对象。content有效时，icon属性将被覆盖。',
-      type: { required: false, summary: 'string | HTMLElement' },
+      type: { required: false, name: 'string' },
+      table: {
+        type: { summary: 'string | HTMLElement' },
+      },
       control: 'text',
     },
     icon: {
       description: '在点标记中显示的图标。有合法的 content 内容设置时，此属性无效。',
-      type: { required: false, summary: 'AMap.Icon | string' },
+      type: { required: false, name: 'string' },
+      table: {
+        type: { summary: ['AMap.Icon', 'string'].join('|') },
+      },
       control: 'text',
     },
     label: {
       description: '设置点标记文本标签内容',
-      type: { required: false, summary: 'LabelOptions' },
+      type: {
+        required: false,
+        name: 'object',
+        value: {
+          content: { name: 'string' },
+          direction: { name: 'string' },
+          offset: { name: 'array', value: { name: 'number' } },
+        },
+      },
+      table: {
+        type: {
+          summary: 'LabelOptions',
+          detail: '具体字段参考高德 JS API 文档',
+        },
+      },
       control: false,
     },
     zooms: {
       description: '设置显示级别范围。注意：当前实现变更 zooms 时会触发重新创建实例。',
-      type: { required: false, summary: 'Vector2', defaultValue: [2, 20] },
-      table: { defaultValue: [2, 20] },
+      type: { required: false, name: 'array', value: { name: 'number' } },
+      table: {
+        type: { summary: 'number[]' },
+        defaultValue: { summary: '[2, 20]' },
+      },
       control: 'array',
     },
     clickable: {
       description: '点标记是否可点击',
-      type: { required: false, summary: 'boolean', defaultValue: true },
-      table: { defaultValue: true },
+      type: { required: false, name: 'boolean' },
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: true },
+      },
       control: 'boolean',
     },
     draggable: {
       description: '点标记是否可拖拽',
-      type: { required: false, summary: 'boolean', defaultValue: false },
-      table: { defaultValue: false },
+      type: { required: false, name: 'boolean' },
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: false },
+      },
       control: 'boolean',
     },
     cursor: {
       description: '指定鼠标悬停时的鼠标样式',
-      type: { required: false, summary: 'string' },
+      type: { required: false, name: 'string' },
+      table: {
+        type: { summary: 'string' },
+      },
       control: 'text',
     },
     extData: {
       description: '设置用户自定义属性',
-      type: { required: false, summary: 'Object' },
-      control: false,
+      type: { required: false, name: 'object', value: {} },
+      table: {
+        type: { summary: 'object' },
+      },
+      control: 'object',
     },
     anchor: {
       description: '设置点标记锚点',
-      type: { required: false, summary: 'boolean', defaultValue: 'center' },
-      table: { defaultValue: 'center' },
-      control: {
-        type: 'select',
-        options: [
+      type: {
+        required: false,
+        name: 'enum',
+        value: [
           'top-left',
           'top-center',
           'top-right',
@@ -124,29 +164,95 @@ export default {
           'bottom-right',
         ],
       },
+      table: {
+        type: {
+          summary: [
+            'top-left',
+            'top-center',
+            'top-right',
+            'middle-left',
+            'center',
+            'middle-right',
+            'bottom-left',
+            'bottom-center',
+            'bottom-right',
+          ].join('|'),
+        },
+        defaultValue: { summary: 'center' },
+      },
+      options: [
+        'top-left',
+        'top-center',
+        'top-right',
+        'middle-left',
+        'center',
+        'middle-right',
+        'bottom-left',
+        'bottom-center',
+        'bottom-right',
+      ],
+      control: 'select',
     },
     offset: {
       description: '覆盖物偏移量',
-      type: { required: false, summary: 'Pixel | Vector2', defaultValue: [0, 0] },
-      table: { defaultValue: [0, 0] },
-      control: 'array',
+      type: {
+        required: false,
+        name: 'union',
+        value: [
+          { name: 'array', value: { name: 'number' } },
+          {
+            name: 'object',
+            value: {
+              x: { name: 'number' },
+              y: { name: 'number' },
+            },
+          },
+        ],
+      },
+      table: {
+        type: { summary: ['Vector2', 'Pixel'].join('|') },
+        defaultValue: { summary: '[0, 0]' },
+      },
+      control: 'object',
     },
     angle: {
       description: '点标记的旋转角度',
-      type: { required: false, summary: 'number', defaultValue: 0 },
-      table: { defaultValue: 0 },
+      type: { required: false, name: 'number' },
+      table: {
+        type: { summary: 'number' },
+        defaultValue: { summary: 0 },
+      },
       control: { type: 'number', min: 0, max: 360 },
     },
     size: {
       description: '尺寸',
-      type: { required: false, summary: 'Size | Vector2' },
-      // table: { defaultValue: [36, 36] },
-      control: 'array',
+      type: {
+        required: false,
+        name: 'union',
+        value: [
+          { name: 'array', value: { name: 'number' } },
+          {
+            name: 'object',
+            value: {
+              width: { name: 'number' },
+              height: { name: 'number' },
+            },
+          },
+        ],
+      },
+      table: {
+        type: { summary: ['AMap.Size', 'AMap.Vector2'].join('|') },
+        defaultValue: { summary: '[36, 36]' },
+      },
+      control: 'object',
     },
     zIndex: {
       description: '多边形覆盖物的叠加顺序',
-      type: { required: false, summary: 'number', defaultValue: 12 },
-      table: { defaultValue: 12 },
+      type: { required: false, name: 'number' },
+      table: {
+        type: { summary: 'number' },
+        defaultValue: { summary: 10 },
+      },
       control: {
         type: 'number',
         step: 1,
@@ -155,108 +261,189 @@ export default {
     //
     visible: {
       description: '显示或隐藏',
-      type: { required: false, summary: 'boolean', defaultValue: true },
-      table: { defaultValue: true },
+      type: { required: false, name: 'boolean' },
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: true },
+      },
       control: 'boolean',
     },
     //
     onShow: {
       description: '显示，回调函数',
-      type: { required: false, summary: '(event: any) => void' },
+      type: { required: false, name: 'function' },
+      table: {
+        category: '事件',
+        type: { summary: '(event: any) => void' },
+      },
       control: false,
     },
     onHide: {
       description: '隐藏，回调函数',
-      type: { required: false, summary: '(event: any) => void' },
+      type: { required: false, name: 'function' },
+      table: {
+        category: '事件',
+        type: { summary: '(event: any) => void' },
+      },
       control: false,
     },
     onClick: {
       description: '左键单击，回调函数',
-      type: { required: false, summary: '(event: any) => void' },
+      type: { required: false, name: 'function' },
+      table: {
+        category: '事件',
+        type: { summary: '(event: any) => void' },
+      },
       control: false,
     },
     onDBLClick: {
       description: '左键双击，回调函数',
-      type: { required: false, summary: '(event: any) => void' },
+      type: { required: false, name: 'function' },
+      table: {
+        category: '事件',
+        type: { summary: '(event: any) => void' },
+      },
       control: false,
     },
     onRightClick: {
       description: '右键单击，回调函数',
-      type: { required: false, summary: '(event: any) => void' },
+      type: { required: false, name: 'function' },
+      table: {
+        category: '事件',
+        type: { summary: '(event: any) => void' },
+      },
       control: false,
     },
     onMousemove: {
       description: '鼠标移动',
-      type: { required: false, summary: '(event: any) => void' },
+      type: { required: false, name: 'function' },
+      table: {
+        category: '事件',
+        type: { summary: '(event: any) => void' },
+      },
       control: false,
     },
     onMousedown: {
       description: '鼠标按下，回调函数',
-      type: { required: false, summary: '(event: any) => void' },
+      type: { required: false, name: 'function' },
+      table: {
+        category: '事件',
+        type: { summary: '(event: any) => void' },
+      },
       control: false,
     },
     onMouseup: {
       description: '鼠标抬起，回调函数',
-      type: { required: false, summary: '(event: any) => void' },
+      type: { required: false, name: 'function' },
+      table: {
+        category: '事件',
+        type: { summary: '(event: any) => void' },
+      },
       control: false,
     },
     onMouseover: {
       description: '鼠标经过，回调函数',
-      type: { required: false, summary: '(event: any) => void' },
+      type: { required: false, name: 'function' },
+      table: {
+        category: '事件',
+        type: { summary: '(event: any) => void' },
+      },
       control: false,
     },
     onMouseout: {
       description: '鼠标移出，回调函数',
-      type: { required: false, summary: '(event: any) => void' },
+      type: { required: false, name: 'function' },
+      table: {
+        category: '事件',
+        type: { summary: '(event: any) => void' },
+      },
       control: false,
     },
     onTouchstart: {
       description: '触摸开始，回调函数，仅移动设备有效',
-      type: { required: false, summary: '(event: any) => void' },
+      type: { required: false, name: 'function' },
+      table: {
+        category: '事件',
+        type: { summary: '(event: any) => void' },
+      },
       control: false,
     },
     onTouchmove: {
       description: '触摸移动，回调函数，仅移动设备有效',
-      type: { required: false, summary: '(event: any) => void' },
+      type: { required: false, name: 'function' },
+      table: {
+        category: '事件',
+        type: { summary: '(event: any) => void' },
+      },
       control: false,
     },
     onTouchend: {
       description: '触摸结束，回调函数，仅移动设备有效',
-      type: { required: false, summary: '(event: any) => void' },
+      type: { required: false, name: 'function' },
+      table: {
+        category: '事件',
+        type: { summary: '(event: any) => void' },
+      },
       control: false,
     },
     onDragstart: {
       description: '开始拖拽点标记时触发事件',
-      type: { required: false, summary: '(event: any) => void' },
+      type: { required: false, name: 'function' },
+      table: {
+        category: '事件',
+        type: { summary: '(event: any) => void' },
+      },
       control: false,
     },
     onDragging: {
       description: '鼠标拖拽移动点标记时触发事件',
-      type: { required: false, summary: '(event: any) => void' },
+      type: { required: false, name: 'function' },
+      table: {
+        category: '事件',
+        type: { summary: '(event: any) => void' },
+      },
       control: false,
     },
     onDragend: {
       description: '点标记拖拽移动结束触发事件',
-      type: { required: false, summary: '(event: any) => void' },
+      type: { required: false, name: 'function' },
+      table: {
+        category: '事件',
+        type: { summary: '(event: any) => void' },
+      },
       control: false,
     },
     onMoving: {
       description: '点标记在执行 `moveTo`，`moveAlong` 动画时触发事件',
-      type: { required: false, summary: '(event: any) => void' },
+      type: { required: false, name: 'function' },
+      table: {
+        category: '事件',
+        type: { summary: '(event: any) => void' },
+      },
       control: false,
     },
     onMoveEnd: {
       description: '点标记在执行 `moveTo`，`moveAlong` 动画时触发事件',
-      type: { required: false, summary: '(event: any) => void' },
+      type: { required: false, name: 'function' },
+      table: {
+        category: '事件',
+        type: { summary: '(event: any) => void' },
+      },
       control: false,
     },
     onMoveAlong: {
       description: '点标记执行 moveAlong 动画一次后触发事件',
-      type: { required: false, summary: '(event: any) => void' },
+      type: { required: false, name: 'function' },
+      table: {
+        category: '事件',
+        type: { summary: '(event: any) => void' },
+      },
       control: false,
     },
   },
-} as Meta;
+};
+
+export default meta;
 
 const Template: Story<AMapMarkerProps> = (args) => <AMapMarker {...args} />;
 

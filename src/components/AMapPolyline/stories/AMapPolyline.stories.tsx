@@ -32,7 +32,9 @@ const eventHandler = actions(
   'onTouchend',
 );
 
-export default {
+const presetColors = ['#ff0000', '#00ff00', '#0000ff'];
+
+const meta: Meta<typeof AMapPolyline> = {
   title: '组件(Components)/覆盖物(Overlay)/AMapPolyline',
   decorators: [
     withAutoFitView,
@@ -53,29 +55,51 @@ export default {
   },
   argTypes: {
     path: {
-      description: '多边形轮廓线的节点坐标数组',
-      type: { name: 'other', required: true, summary: 'LngLatLike[] | LngLatLike[][] | LngLatLike[][][]' },
+      description: '多边形轮廓线的节点坐标数组。支持 lineString 和 MultiLineString 类型。',
+      type: {
+        required: true,
+        name: 'union',
+        value: [
+          { name: 'array', value: { name: 'array', value: { name: 'number' } } }, // [number, number][]
+          { name: 'array', value: { name: 'array', value: { name: 'array', value: { name: 'number' } } } }, // [number, number][][]
+          { name: 'array', value: { name: 'object', value: { lng: { name: 'number' }, lat: { name: 'number' } } } }, // { lng, lat }[]
+          { name: 'array', value: { name: 'array', value: { name: 'object', value: { lng: { name: 'number' }, lat: { name: 'number' } } } } }, // { lng, lat }[][]
+        ],
+      },
+      table: {
+        type: {
+          summary: [
+            'Array<LngLatLike>',
+            'Array<Array<LngLatLike>>',
+          ].join(' | '),
+        },
+      },
     },
     visible: {
       description: '显示或隐藏',
-      type: { required: false, summary: 'boolean', defaultValue: true },
-      table: { defaultValue: true },
-      control: {
-        type: 'boolean',
+      type: { required: false, name: 'boolean' },
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: true },
       },
+      control: 'boolean',
     },
     draggable: {
       description: '是否可拖动',
-      type: { required: false, summary: 'type', defaultValue: false },
-      table: { defaultValue: false },
-      control: {
-        type: 'boolean',
+      type: { required: false, name: 'boolean' },
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: false },
       },
+      control: 'boolean',
     },
     zIndex: {
       description: '多边形覆盖物的叠加顺序',
-      type: { required: false, summary: 'number', defaultValue: 10 },
-      table: { defaultValue: 10 },
+      type: { required: false, name: 'number' },
+      table: {
+        type: { summary: 'number' },
+        defaultValue: { summary: 10 },
+      },
       control: {
         type: 'number',
         step: 1,
@@ -83,34 +107,50 @@ export default {
     },
     strokeColor: {
       description: '轮廓线颜色，使用16进制颜色代码赋值。',
-      type: { required: false, summary: 'color', defaultValue: '#00D3FC' },
-      table: { defaultValue: '#00D3FC' },
-      control: { type: 'color' },
+      type: { required: false, name: 'string' },
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: '#00D3FC' },
+      },
+      control: {
+        type: 'color',
+        presetColors,
+      },
     },
     strokeStyle: {
       description: '轮廓线样式',
-      type: { required: false, summary: 'solid | dashed', defaultValue: 'solid' },
-      table: { defaultValue: 'solid' },
-      control: {
-        type: 'select',
-        options: ['solid', 'dashed'],
+      type: { required: false, name: 'enum', value: ['solid', 'dashed'] },
+      table: {
+        type: { summary: ['solid', 'dashed'].join('|') },
+        defaultValue: { summary: 'solid' },
       },
+      options: {
+        'solid(实线)': 'solid',
+        'dashed(虚线)': 'dashed',
+      },
+      control: 'select',
     },
     strokeOpacity: {
       description: '轮廓线透明度，取值范围 [0,1]',
-      type: { required: false, summary: 'number', defaultValue: 0.9 },
-      table: { defaultValue: 0.9 },
+      type: { required: false, name: 'number' },
+      table: {
+        type: { summary: 'number' },
+        defaultValue: { summary: 0.9 },
+      },
       control: {
-        type: 'number',
+        type: 'range',
         min: 0,
         max: 1,
-        step: 0.01,
+        step: 0.1,
       },
     },
     strokeWeight: {
       description: '轮廓线宽度',
-      type: { required: false, summary: 'number', defaultValue: 2 },
-      table: { defaultValue: 2 },
+      type: { required: false, name: 'number' },
+      table: {
+        type: { summary: 'number' },
+        defaultValue: { summary: 2 },
+      },
       control: {
         type: 'number',
         min: 0,
@@ -119,12 +159,19 @@ export default {
     },
     strokeDasharray: {
       description: '勾勒形状轮廓的虚线和间隙的样式',
-      type: { required: false, summary: 'Array<number>' },
+      type: { required: false, name: 'array', value: { name: 'number' } },
+      table: {
+        type: { summary: 'number[]' },
+      },
+      control: 'object',
     },
     borderWeight: {
       description: '描边的宽度',
-      type: { required: false, summary: 'number', defaultValue: 2 },
-      table: { defaultValue: 2 },
+      type: { required: false, name: 'number' },
+      table: {
+        type: { summary: 'number' },
+        defaultValue: { summary: 2 },
+      },
       control: {
         type: 'number',
         min: 0,
@@ -133,145 +180,231 @@ export default {
     },
     isOutline: {
       description: '是否显示描边',
-      type: { required: false, summary: 'type', defaultValue: false },
-      table: { defaultValue: false },
-      control: {
-        type: 'boolean',
+      type: { required: false, name: 'boolean' },
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: false },
       },
+      control: 'boolean',
     },
     outlineColor: {
-      description: '线条描边颜色，此项仅在isOutline为true时有效',
-      type: { required: false, summary: 'string', defaultValue: '#00B2D5' },
-      table: { defaultValue: '#00B2D5' },
-      control: { type: 'color' },
+      description: '线条描边颜色，此项仅在 isOutline 为true时有效',
+      type: { required: false, name: 'string' },
+      table: {
+        defaultValue: { summary: '#00B2D5' },
+      },
+      control: 'color',
     },
     lineJoin: {
       description: '折线拐点的绘制样式',
-      type: { required: false, summary: 'miter|round|bevel', defaultValue: 'miter' },
-      table: { defaultValue: 'miter' },
-      control: {
-        type: 'select',
-        options: ['miter', 'round', 'bevel'],
+      type: { required: false, name: 'enum', value: ['miter', 'round', 'bevel'] },
+      table: {
+        type: { summary: ['miter', 'round', 'bevel'].join('|') },
+        defaultValue: { summary: 'miter' },
       },
+      options: {
+        'miter(尖角)': 'miter',
+        'round(圆角)': 'round',
+        'bevel(斜角)': 'bevel',
+      },
+      control: 'select',
     },
     lineCap: {
       description: '折线拐点的绘制样式',
-      type: { required: false, summary: 'butt|round|square', defaultValue: 'butt' },
-      table: { defaultValue: 'butt' },
-      control: {
-        type: 'select',
-        options: ['butt', 'round', 'square'],
+      type: { required: false, name: 'enum', value: ['butt', 'round', 'square'] },
+      table: {
+        type: { summary: ['butt', 'round', 'square'].join('|') },
+        defaultValue: { summary: 'butt' },
       },
+      options: {
+        'butt(无头)': 'butt',
+        'round(圆头)': 'round',
+        'square(方头)': 'square',
+      },
+      control: 'select',
     },
     geodesic: {
       description: '是否绘制成大地线',
-      type: { required: false, summary: 'type', defaultValue: false },
-      table: { defaultValue: false },
-      control: {
-        type: 'boolean',
+      type: { required: false, name: 'boolean' },
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: false },
       },
+      control: 'boolean',
     },
     cursor: {
-      description: '指定鼠标悬停时的鼠标样式',
-      type: { required: false, summary: 'string' },
+      description: '指定鼠标悬停时的鼠标样式。同 CSS 中的 cursor 属性',
+      type: { required: false, name: 'string' },
+      table: {
+        type: { summary: 'string' },
+      },
+      control: 'text',
     },
     extData: {
       description: '设置用户自定义属性',
-      type: { required: false, summary: 'Object' },
+      type: { required: false, name: 'object', value: {} },
+      table: {
+        type: { summary: 'object' },
+      },
+      control: 'object',
     },
     bubble: {
       description: '是否将覆盖物的鼠标或touch等事件冒泡到地图上',
-      type: { required: false, summary: 'boolean', defaultValue: false },
-      table: { defaultValue: false },
-      control: { type: 'boolean' },
+      type: { required: false, name: 'boolean' },
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: false },
+      },
+      control: 'boolean',
     },
     zooms: {
       description: '此缩放范围内 polyline 可见',
-      type: {
-        name: 'other',
-        required: false,
-        summary: '[number, number]',
-        defaultValue: undefined,
+      type: { required: false, name: 'array', value: { name: 'number' } },
+      table: {
+        type: { summary: 'number[]' },
+        defaultValue: { summary: '[2, 20]' },
       },
-      table: { defaultValue: undefined },
+      control: 'array',
     },
     onShow: {
       description: '显示，回调函数',
-      type: { required: false, summary: '(event: any) => void' },
+      type: { required: false, name: 'function' },
+      table: {
+        category: '事件',
+        type: { summary: '(event: any) => void' },
+      },
       control: false,
     },
     onHide: {
       description: '隐藏，回调函数',
-      type: { required: false, summary: '(event: any) => void' },
+      type: { required: false, name: 'function' },
+      table: {
+        category: '事件',
+        type: { summary: '(event: any) => void' },
+      },
       control: false,
     },
     onClick: {
       description: '左键单击，回调函数',
-      type: { required: false, summary: '(event: any) => void' },
+      type: { required: false, name: 'function' },
+      table: {
+        category: '事件',
+        type: { summary: '(event: any) => void' },
+      },
       control: false,
     },
     onDBLClick: {
       description: '左键双击，回调函数',
-      type: { required: false, summary: '(event: any) => void' },
+      type: { required: false, name: 'function' },
+      table: {
+        category: '事件',
+        type: { summary: '(event: any) => void' },
+      },
       control: false,
     },
     onRightClick: {
       description: '右键单击，回调函数',
-      type: { required: false, summary: '(event: any) => void' },
+      type: { required: false, name: 'function' },
+      table: {
+        category: '事件',
+        type: { summary: '(event: any) => void' },
+      },
       control: false,
     },
     onMousedown: {
       description: '鼠标按下，回调函数',
-      type: { required: false, summary: '(event: any) => void' },
+      type: { required: false, name: 'function' },
+      table: {
+        category: '事件',
+        type: { summary: '(event: any) => void' },
+      },
       control: false,
     },
     onMouseup: {
       description: '鼠标抬起，回调函数',
-      type: { required: false, summary: '(event: any) => void' },
+      type: { required: false, name: 'function' },
+      table: {
+        category: '事件',
+        type: { summary: '(event: any) => void' },
+      },
       control: false,
     },
     onMouseover: {
       description: '鼠标经过，回调函数',
-      type: { required: false, summary: '(event: any) => void' },
+      type: { required: false, name: 'function' },
+      table: {
+        category: '事件',
+        type: { summary: '(event: any) => void' },
+      },
       control: false,
     },
     onMouseout: {
       description: '鼠标移出，回调函数',
-      type: { required: false, summary: '(event: any) => void' },
+      type: { required: false, name: 'function' },
+      table: {
+        category: '事件',
+        type: { summary: '(event: any) => void' },
+      },
       control: false,
     },
     onDragstart: {
       description: '开始拖拽=时触发事件',
-      type: { required: false, summary: '(event: any) => void' },
+      type: { required: false, name: 'function' },
+      table: {
+        category: '事件',
+        type: { summary: '(event: any) => void' },
+      },
       control: false,
     },
     onDragging: {
       description: '鼠标拖拽移动=时触发事件',
-      type: { required: false, summary: '(event: any) => void' },
+      type: { required: false, name: 'function' },
+      table: {
+        category: '事件',
+        type: { summary: '(event: any) => void' },
+      },
       control: false,
     },
     onDragend: {
       description: '拖拽移动结束触发事件',
-      type: { required: false, summary: '(event: any) => void' },
+      type: { required: false, name: 'function' },
+      table: {
+        category: '事件',
+        type: { summary: '(event: any) => void' },
+      },
       control: false,
     },
     onTouchstart: {
       description: '触摸开始，回调函数，仅移动设备有效',
-      type: { required: false, summary: '(event: any) => void' },
+      type: { required: false, name: 'function' },
+      table: {
+        category: '事件',
+        type: { summary: '(event: any) => void' },
+      },
       control: false,
     },
     onTouchmove: {
       description: '触摸移动，回调函数，仅移动设备有效',
-      type: { required: false, summary: '(event: any) => void' },
+      type: { required: false, name: 'function' },
+      table: {
+        category: '事件',
+        type: { summary: '(event: any) => void' },
+      },
       control: false,
     },
     onTouchend: {
       description: '触摸结束，回调函数，仅移动设备有效',
-      type: { required: false, summary: '(event: any) => void' },
+      type: { required: false, name: 'function' },
+      table: {
+        category: '事件',
+        type: { summary: '(event: any) => void' },
+      },
       control: false,
     },
   },
-} as Meta;
+};
+
+export default meta;
 
 type AMapPolylineStory = Story<AMapPolylineProps>;
 

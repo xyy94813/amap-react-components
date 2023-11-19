@@ -95,7 +95,7 @@ const mockData: GeoJSON.FeatureCollection = {
   ],
 };
 
-export default {
+const meta: Meta<typeof AMapPolygonEditor> = {
   title: '组件(Components)/工具(Tools)/AMapPolygonEditor',
   decorators: [
     withAutoFitView,
@@ -110,25 +110,26 @@ export default {
   argTypes: {
     computeTarget: {
       description: '设置编辑对象',
-      type: { required: true, summary: '(allPolygons: AMap.Polygon[]): AMap.Polygon[] | null | undefined' },
+      type: { required: true, name: 'function' },
+      table: {
+        type: { summary: '(allPolygons: AMap.Polygon[]) => AMap.Polygon[] | null | undefined' },
+      },
       control: false,
     },
     disabled: {
       description: '禁用 PolygonEditor',
-      type: { required: false, summary: 'boolean', defaultValue: true },
+      type: { required: false, name: 'boolean' },
       table: {
-        defaultValue: {
-          summary: false,
-        },
+        type: { summary: 'boolean' },
+        defaultValue: { summary: false },
       },
-      control: {
-        type: 'boolean',
-      },
+      control: 'boolean',
     },
     computeAdsorbPolygons: {
       description: '设置吸附多边形。默认地图上所有多边形都可吸附',
-      type: { required: false, summary: '(allPolygons: AMap.Polygon[]): AMap.Polygon[] | null | undefined' },
+      type: { required: false, name: 'function' },
       table: {
+        type: { summary: '(allPolygons: AMap.Polygon[]) => AMap.Polygon[] | null | undefined' },
         defaultValue: {
           summary: '(allPolygons: AMap.Polygon[]) => allPolygons',
         },
@@ -137,11 +138,16 @@ export default {
     },
     onChange: {
       description: 'Target 变化时的回调',
-      type: { required: false, summary: '(event: any) => void' },
+      type: { required: true, name: 'function' },
+      table: {
+        type: { summary: '(event: any) => void' },
+      },
       control: false,
     },
   },
-} as Meta;
+};
+
+export default meta;
 
 const Template: Story<AMapPolygonEditorProps> = (args) => (
   <>

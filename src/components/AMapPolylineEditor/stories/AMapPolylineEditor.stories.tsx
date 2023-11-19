@@ -37,7 +37,7 @@ const mockData: GeoJSON.FeatureCollection = {
   ],
 };
 
-export default {
+const meta: Meta<typeof AMapPolylineEditor> = {
   title: '组件(Components)/工具(Tools)/AMapPolylineEditor',
   decorators: [
     withAutoFitView,
@@ -52,26 +52,33 @@ export default {
   argTypes: {
     computeTarget: {
       description: '设置编辑对象',
-      type: { required: true, summary: '(allPolyline: AMap.Polyline[]): AMap.Polyline | null | undefined' },
+      type: { required: true, name: 'function' },
+      table: {
+        type: { summary: '(allPolyline: AMap.Polyline[]) => AMap.Polyline | null | undefined' },
+      },
       control: false,
     },
     disabled: {
       description: '禁用 PolylineEditor',
-      type: { required: false, summary: 'boolean', defaultValue: true },
+      type: { required: false, name: 'boolean' },
       table: {
-        defaultValue: {
-          summary: false,
-        },
+        type: { summary: 'boolean' },
+        defaultValue: { summary: false },
       },
-      control: { type: 'boolean' },
+      control: 'boolean',
     },
     onChange: {
       description: 'Target 变化时的回调',
-      type: { required: false, summary: '(event: any) => void' },
+      type: { required: true, name: 'function' },
+      table: {
+        type: { summary: '(event: any) => void' },
+      },
       control: false,
     },
   },
-} as Meta;
+};
+
+export default meta;
 
 const Template: Story<AMapPolylineEditorProps> = (args) => (
   <>

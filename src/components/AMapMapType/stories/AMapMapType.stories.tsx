@@ -10,7 +10,7 @@ import withAPIContainer from '../../../storybook-decorators/withAPIContainer';
 
 const eventHandler = actions('onShow', 'onHide');
 
-export default {
+const meta: Meta<typeof AMapMapType> = {
   title: '组件(Components)/地图控件(Control)/AMapMapType',
   component: AMapMapType,
   decorators: [
@@ -27,17 +27,20 @@ export default {
   argTypes: {
     defaultType: {
       description: '初始化默认图层类型。 默认底图: 0; 卫星图: 1。',
+      type: { required: false, name: 'enum', value: [0, 1] },
       table: {
         type: { summary: '0|1' },
         defaultValue: { summary: '0' },
       },
-      control: {
-        type: 'select',
-        options: [0, 1],
+      options: {
+        '0(默认底图)': 0,
+        '1(卫星图)': 1,
       },
+      control: { type: 'select' },
     },
     showTraffic: {
       description: '叠加实时交通图层',
+      type: { required: false, name: 'boolean' },
       table: {
         type: { summary: 'boolean' },
         defaultValue: { summary: false },
@@ -46,6 +49,7 @@ export default {
     },
     showRoad: {
       description: '叠加路网图层',
+      type: { required: false, name: 'boolean' },
       table: {
         type: { summary: 'boolean' },
         defaultValue: { summary: false },
@@ -54,16 +58,35 @@ export default {
     },
     visible: {
       description: '显示或隐藏',
+      type: { required: false, name: 'boolean' },
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: true },
+      },
       control: 'boolean',
     },
     onShow: {
       description: '显示时触发此事件',
+      type: { required: false, name: 'function' },
+      table: {
+        category: '事件',
+        type: { summary: '(event: any) => void' },
+      },
+      control: false,
     },
     onHide: {
       description: '隐藏时触发此事件',
+      type: { required: false, name: 'function' },
+      table: {
+        category: '事件',
+        type: { summary: '(event: any) => void' },
+      },
+      control: false,
     },
   },
-} as Meta;
+};
+
+export default meta;
 
 const Template: Story<AMapMapTypeProps> = (args) => <AMapMapType {...args} />;
 
