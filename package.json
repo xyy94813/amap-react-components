@@ -85,7 +85,6 @@
   },
   "resolutions": {
     "node": "16",
-    "@types/babel__traverse": "7.0.0",
     "@types/node": "16.18.55"
   },
   "dependencies": {
