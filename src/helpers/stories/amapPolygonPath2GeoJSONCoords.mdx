@@ -1,0 +1,18 @@
+import { Meta } from "@storybook/blocks";
+
+<Meta title="Helpers/amapPolygonPath2GeoJSONCoords" />
+
+# amapPolygonPath2GeoJSONCoords
+
+将 `AMap.Polygon` 的 `path` 数据转换成 `GeoJSON.Polygon` 的 coords。
+
+由于 `AMap.Polygon` 的 `path` 允许最后一个点与起始点不需要一致，这不符合 `GeoJSON` 规范中对 `RingLine` 的定义。
+因此在实际使用时需要进行数据转换。
+
+类型声明：
+
+```ts
+const amapPolygonPath2GeoJSONCoords: (
+    path: ReturnType<AMap.Polygon['getPath']>
+) => GeoJSON.Position[] | GeoJSON.Position[][] | GeoJSON.Position[][][]
+```
