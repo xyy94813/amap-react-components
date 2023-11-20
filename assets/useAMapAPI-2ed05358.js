@@ -1,4 +1,4 @@
-import{j as e,a as r,F as a}from"./jsx-runtime-91db03d0.js";import{M as i}from"./index-de8af43c.js";import{u as c}from"./index-97715faa.js";import"./index-4139ccbc.js";import"./iframe-60813c16.js";import"../sb-preview/runtime.js";import"./index-defb0cf9.js";import"./index-356e4a49.js";function t(o){const n=Object.assign({h1:"h1",p:"p",code:"code",blockquote:"blockquote",em:"em",pre:"pre"},c(),o.components);return r(a,{children:[e(i,{title:"Hooks/useAMapAPI"}),`
+import{j as e,a as r,F as a}from"./jsx-runtime-91db03d0.js";import{M as i}from"./index-65ebfc32.js";import{u as c}from"./index-97715faa.js";import"./index-4139ccbc.js";import"./iframe-7da92604.js";import"../sb-preview/runtime.js";import"./index-defb0cf9.js";import"./index-356e4a49.js";function t(o){const n=Object.assign({h1:"h1",p:"p",code:"code",blockquote:"blockquote",em:"em",pre:"pre"},c(),o.components);return r(a,{children:[e(i,{title:"Hooks/useAMapAPI"}),`
 `,e(n.h1,{id:"useamapapi",children:"useAMapAPI"}),`
 `,r(n.p,{children:["如果你想访问高德相关的 API，你可以在函数组件内使用 ",e(n.code,{children:"useAMapAPI"})," 从上下文中获取高德 jsapi ",e(n.code,{children:"AMap"})," 和 ",e(n.code,{children:"AMapUI"}),`。
 以便于自定义当前库未提供的组件。`]}),`
@@ -55,4 +55,4 @@ const APP = () => {
   );
 };
 `})})]})}function h(o={}){const{wrapper:n}=Object.assign({},c(),o.components);return n?e(n,Object.assign({},o,{children:e(t,o)})):t(o)}export{h as default};
-//# sourceMappingURL=useAMapAPI-dedcabe7.js.map
+//# sourceMappingURL=useAMapAPI-2ed05358.js.map

@@ -1,4 +1,4 @@
-import{j as e,a,F as c}from"./jsx-runtime-91db03d0.js";import{M as p}from"./index-de8af43c.js";import{u as r}from"./index-97715faa.js";import"./index-4139ccbc.js";import"./iframe-60813c16.js";import"../sb-preview/runtime.js";import"./index-defb0cf9.js";import"./index-356e4a49.js";function o(t){const n=Object.assign({h1:"h1",p:"p",code:"code",pre:"pre"},r(),t.components);return a(c,{children:[e(p,{title:"Hooks/useAMap"}),`
+import{j as e,a,F as c}from"./jsx-runtime-91db03d0.js";import{M as p}from"./index-65ebfc32.js";import{u as r}from"./index-97715faa.js";import"./index-4139ccbc.js";import"./iframe-7da92604.js";import"../sb-preview/runtime.js";import"./index-defb0cf9.js";import"./index-356e4a49.js";function o(t){const n=Object.assign({h1:"h1",p:"p",code:"code",pre:"pre"},r(),t.components);return a(c,{children:[e(p,{title:"Hooks/useAMap"}),`
 `,e(n.h1,{id:"useamap",children:"useAMap"}),`
 `,a(n.p,{children:["你可以在函数组件内使用 ",e(n.code,{children:"useAMap"})," 从上下文中获取以及 ",e(n.code,{children:"map"}),` 实例。
 以便于自定义当前库未提供的组件。`]}),`
@@ -59,4 +59,4 @@ const APP = () => {
   );
 };
 `})})]})}function _(t={}){const{wrapper:n}=Object.assign({},r(),t.components);return n?e(n,Object.assign({},t,{children:e(o,t)})):o(t)}export{_ as default};
-//# sourceMappingURL=useAMap-f5269fb7.js.map
+//# sourceMappingURL=useAMap-58911b8e.js.map

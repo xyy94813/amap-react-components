@@ -1,4 +1,4 @@
-import{j as e,a as r,F as o}from"./jsx-runtime-91db03d0.js";import{M as c}from"./index-de8af43c.js";import{u as p}from"./index-97715faa.js";import"./index-4139ccbc.js";import"./iframe-60813c16.js";import"../sb-preview/runtime.js";import"./index-defb0cf9.js";import"./index-356e4a49.js";function t(a){const n=Object.assign({h1:"h1",p:"p",code:"code",pre:"pre"},p(),a.components);return r(o,{children:[e(c,{title:"Hooks/useAMapOverlayBinder"}),`
+import{j as e,a as r,F as o}from"./jsx-runtime-91db03d0.js";import{M as c}from"./index-65ebfc32.js";import{u as p}from"./index-97715faa.js";import"./index-4139ccbc.js";import"./iframe-7da92604.js";import"../sb-preview/runtime.js";import"./index-defb0cf9.js";import"./index-356e4a49.js";function t(a){const n=Object.assign({h1:"h1",p:"p",code:"code",pre:"pre"},p(),a.components);return r(o,{children:[e(c,{title:"Hooks/useAMapOverlayBinder"}),`
 `,e(n.h1,{id:"useamapoverlaybinder",children:"useAMapOverlayBinder"}),`
 `,r(n.p,{children:[e(n.code,{children:"useAMapOverlayBinder"})," 用于绑定 Overlay 至最近的容器上。"]}),`
 `,e(n.p,{children:"类型声明："}),`
@@ -34,4 +34,4 @@ const APP = () => {
   );
 };
 `})})]})}function y(a={}){const{wrapper:n}=Object.assign({},p(),a.components);return n?e(n,Object.assign({},a,{children:e(t,a)})):t(a)}export{y as default};
-//# sourceMappingURL=useAMapOverlayBinder-18fd9eb9.js.map
+//# sourceMappingURL=useAMapOverlayBinder-0051fb61.js.map
