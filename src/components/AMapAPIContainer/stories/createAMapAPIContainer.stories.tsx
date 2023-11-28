@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, Suspense } from 'react';
-import type { Meta, Story } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 
 import { createAMapAPIContainer, useAMapAPI } from '../../../index';
 
@@ -10,26 +10,6 @@ const meta: Meta = {
 };
 
 export default meta;
-
-const SyncPluginAPIContainer = createAMapAPIContainer({
-  key: AMAP_API_KEY,
-  version: '2.0',
-  plugins: ['ControlBar', 'ToolBar', 'Scale', 'MapType', 'HawkEye'].map(
-    (pluginName) => `AMap.${pluginName}`,
-  ),
-  AMapUI: {
-    version: '1.1',
-    plugins: ['overlay/SimpleMarker'],
-  },
-});
-
-const AsyncPluginAPIContainer = createAMapAPIContainer({
-  key: AMAP_API_KEY,
-  version: '2.0',
-  AMapUI: {
-    version: '1.1',
-  },
-});
 
 const initPlugin = (AMap: typeof global.AMap, map: AMap.Map) => {
   new AMap.ControlBar().addTo(map);
@@ -45,6 +25,14 @@ const initUIPlugin = (SimpleMarker: typeof AMapUI.SimpleMarker, map: AMap.Map) =
     position: [116.405285, 39.904989],
   }).addTo(map);
 };
+
+const AsyncPluginAPIContainer = createAMapAPIContainer({
+  key: AMAP_API_KEY,
+  version: '2.0',
+  AMapUI: {
+    version: '1.1',
+  },
+});
 
 const AsyncPluginContentDrawer = () => {
   const { __AMAP__: AMap } = useAMapAPI();
@@ -79,15 +67,6 @@ const AsyncPluginContentDrawer = () => {
 
   return <div ref={$container} style={{ height: 400 }} />;
 };
-
-export const AsyncPlugin: Story = () => (
-  <Suspense fallback="loading...">
-    <AsyncPluginAPIContainer>
-      <AsyncPluginContentDrawer />
-    </AsyncPluginAPIContainer>
-  </Suspense>
-);
-AsyncPlugin.storyName = '异步加载插件';
 
 /**
  * TODO：更好的自动生成 Code
@@ -139,13 +118,36 @@ const AsyncPluginContentDrawer = () => {
   return <div ref={$container} style={{ height: 400 }} />;
 };
 `;
-AsyncPlugin.parameters = {
-  docs: {
-    source: {
-      code: AsyncPluginCode,
+
+export const AsyncPlugin: StoryObj = {
+  name: '异步加载插件',
+  render: () => (
+    <Suspense fallback="loading...">
+      <AsyncPluginAPIContainer>
+        <AsyncPluginContentDrawer />
+      </AsyncPluginAPIContainer>
+    </Suspense>
+  ),
+  parameters: {
+    docs: {
+      source: {
+        code: AsyncPluginCode,
+      },
     },
   },
 };
+
+const SyncPluginAPIContainer = createAMapAPIContainer({
+  key: AMAP_API_KEY,
+  version: '2.0',
+  plugins: ['ControlBar', 'ToolBar', 'Scale', 'MapType', 'HawkEye'].map(
+    (pluginName) => `AMap.${pluginName}`,
+  ),
+  AMapUI: {
+    version: '1.1',
+    plugins: ['overlay/SimpleMarker'],
+  },
+});
 
 const SyncPluginContentDrawer = () => {
   const { __AMAP__: AMap, __AMAP_UI__: AMapUI } = useAMapAPI();
@@ -171,15 +173,6 @@ const SyncPluginContentDrawer = () => {
   }, [AMap, AMapUI]);
   return <div ref={$container} style={{ height: 400 }} />;
 };
-
-export const SyncPlugin: Story = () => (
-  <Suspense fallback="loading...">
-    <SyncPluginAPIContainer>
-      <SyncPluginContentDrawer />
-    </SyncPluginAPIContainer>
-  </Suspense>
-);
-SyncPlugin.storyName = '同步加载插件';
 
 const SyncPluginCode = `
 const SyncPluginAPIContainer = createAMapAPIContainer({
@@ -229,10 +222,21 @@ const SyncPluginContentDrawer = () => {
   </SyncPluginAPIContainer>
 )
 `;
-SyncPlugin.parameters = {
-  docs: {
-    source: {
-      code: SyncPluginCode,
+
+export const SyncPlugin: StoryObj = {
+  name: '同步加载插件',
+  render: () => (
+    <Suspense fallback="loading...">
+      <SyncPluginAPIContainer>
+        <SyncPluginContentDrawer />
+      </SyncPluginAPIContainer>
+    </Suspense>
+  ),
+  parameters: {
+    docs: {
+      source: {
+        code: SyncPluginCode,
+      },
     },
   },
 };

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import type { FC } from 'react';
 import { useRef } from 'react';
-import type { Story } from '@storybook/react';
+import type { StoryFn } from '@storybook/react';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { useInView } from 'react-intersection-observer';
 
@@ -26,7 +26,7 @@ const AMapContainer: FC = ({ children }) => {
   );
 };
 
-const withAMapContainer = (renderStory: Story, context: any) => (
+const withAMapContainer = (renderStory: StoryFn, context: any) => (
   <AMapContainer>
     {renderStory({}, context)}
   </AMapContainer>

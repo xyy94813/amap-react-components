@@ -1,8 +1,7 @@
-import React from 'react';
-import type { Meta, Story } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 import { actions } from '@storybook/addon-actions';
 
-import { AMapMouseTool, AMapMouseToolProps } from '../../../index';
+import { AMapMouseTool } from '../../../index';
 
 import withAMap from '../../../storybook-decorators/withAMap';
 import withAMapContainer from '../../../storybook-decorators/withAMapContainer';
@@ -12,6 +11,7 @@ const eventHandler = actions('onCompleted');
 
 const meta: Meta<typeof AMapMouseTool> = {
   title: '组件(Components)/工具(Tools)/AMapMouseTool',
+  component: AMapMouseTool,
   decorators: [
     withAMap(),
     withAMapContainer,
@@ -94,17 +94,16 @@ const meta: Meta<typeof AMapMouseTool> = {
 
 export default meta;
 
-const Template: Story<AMapMouseToolProps> = (args) => (
-  <AMapMouseTool {...args} />
-);
+type AMapMouseToolStory = StoryObj<typeof AMapMouseTool>;
 
-export const CommonUse = Template.bind({});
-CommonUse.storyName = '基本使用';
-CommonUse.args = {
-  type: 'polygon',
-  options: {
-    strokeColor: 'red',
-    strokeWeight: 4,
+export const CommonUse: AMapMouseToolStory = {
+  name: '基本使用',
+  args: {
+    type: 'polygon',
+    options: {
+      strokeColor: 'red',
+      strokeWeight: 4,
+    },
+    onCompleted: eventHandler.onCompleted,
   },
-  onCompleted: eventHandler.onCompleted,
 };

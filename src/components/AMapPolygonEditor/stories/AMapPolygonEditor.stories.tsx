@@ -1,11 +1,13 @@
 import React from 'react';
-import type { Meta, Story } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 import { actions } from '@storybook/addon-actions';
 
 import {
   AMapGeoJSON,
+  AMapPolygon,
   AMapPolygonEditor,
   AMapPolygonEditorProps,
+  coordsOfGeoJSON2AMapPolygonPath,
 } from '../../../index';
 
 import withAutoFitView from '../../../storybook-decorators/withAutoFitView';
@@ -97,6 +99,21 @@ const mockData: GeoJSON.FeatureCollection = {
 
 const meta: Meta<typeof AMapPolygonEditor> = {
   title: '组件(Components)/工具(Tools)/AMapPolygonEditor',
+  component: AMapPolygonEditor,
+  render: (args) => (
+    <>
+      <AMapPolygon
+        path={coordsOfGeoJSON2AMapPolygonPath(commonPolygon.coordinates) as AMap.LngLatLike[]}
+      />
+      <AMapPolygon
+        path={coordsOfGeoJSON2AMapPolygonPath(polygonWithHole.coordinates) as AMap.LngLatLike[][]}
+      />
+      <AMapPolygon
+        path={coordsOfGeoJSON2AMapPolygonPath(multiPolygon.coordinates) as AMap.LngLatLike[][][]}
+      />
+      <AMapPolygonEditor {...args} />
+    </>
+  ),
   decorators: [
     withAutoFitView,
     withAMap(),
@@ -149,27 +166,31 @@ const meta: Meta<typeof AMapPolygonEditor> = {
 
 export default meta;
 
-const Template: Story<AMapPolygonEditorProps> = (args) => (
-  <>
-    <AMapGeoJSON geoJSON={mockData} />
-    <AMapPolygonEditor {...args} />
-  </>
-);
+type AMapPolygonEditorStory = StoryObj<typeof AMapPolygonEditor>;
 
-export const WithGeoJSON: typeof Template = Template.bind({});
-WithGeoJSON.storyName = '与AMapGeoJSON一同使用';
-WithGeoJSON.args = {
-  computeTarget: (polygons) => polygons[1],
+export const WithGeoJSON: AMapPolygonEditorStory = {
+  name: '与AMapGeoJSON一同使用',
+  args: {
+    computeTarget: (polygons) => polygons[1],
+  },
+  render: (args) => (
+    <>
+      <AMapGeoJSON geoJSON={mockData} />
+      <AMapPolygonEditor {...args} />
+    </>
+  ),
 };
 
-export const SetAdsorbPolygons: typeof Template = Template.bind({});
-SetAdsorbPolygons.storyName = '自定义磁吸围栏';
-SetAdsorbPolygons.args = {
-  computeAdsorbPolygons: (polygons) => polygons.filter((_, index) => index === 1),
+export const SetAdsorbPolygons: AMapPolygonEditorStory = {
+  name: '自定义磁吸围栏',
+  args: {
+    computeAdsorbPolygons: (polygons) => polygons.filter((_, index) => index === 1),
+  },
 };
 
-export const DisablePolygonEditor: typeof Template = Template.bind({});
-DisablePolygonEditor.storyName = '禁用编辑器';
-DisablePolygonEditor.args = {
-  disabled: true,
+export const DisablePolygonEditor: AMapPolygonEditorStory = {
+  name: '禁用编辑器',
+  args: {
+    disabled: true,
+  },
 };

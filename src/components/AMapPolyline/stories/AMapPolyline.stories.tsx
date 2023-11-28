@@ -1,10 +1,9 @@
 import * as React from 'react';
-import type { Meta, Story } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 import { actions } from '@storybook/addon-actions';
 
 import {
   AMapPolyline,
-  AMapPolylineProps,
   AMapPolylineEditor,
   AMapPolylineEditorProps,
 } from '../../../index';
@@ -36,6 +35,7 @@ const presetColors = ['#ff0000', '#00ff00', '#0000ff'];
 
 const meta: Meta<typeof AMapPolyline> = {
   title: '组件(Components)/覆盖物(Overlay)/AMapPolyline',
+  component: AMapPolyline,
   decorators: [
     withAutoFitView,
     withAMap(),
@@ -406,13 +406,11 @@ const meta: Meta<typeof AMapPolyline> = {
 
 export default meta;
 
-type AMapPolylineStory = Story<AMapPolylineProps>;
+type AMapPolylineStory = StoryObj<typeof AMapPolyline>;
 
-const Template: AMapPolylineStory = (args) => <AMapPolyline {...args} />;
-
-export const CommonUse: typeof Template = Template.bind({});
-CommonUse.storyName = '一般使用';
-CommonUse.args = {};
+export const CommonUse: AMapPolylineStory = {
+  name: '一般使用',
+};
 
 const { onChange } = actions('onChange');
 const $polyline = React.createRef<AMap.Polyline>();
@@ -420,47 +418,57 @@ const computeTarget: AMapPolylineEditorProps['computeTarget'] = (polygons) => po
   (polygon) => polygon === $polyline.current,
 );
 
-export const Editable: Story<AMapPolylineEditorProps> = (args) => (
-  <>
-    <AMapPolyline {...args} ref={$polyline} />
-    <AMapPolylineEditor computeTarget={computeTarget} onChange={onChange} />
-  </>
-);
-Editable.storyName = '支持编辑';
-Editable.args = {};
-
-export const Draggable: typeof Template = Template.bind({});
-Draggable.storyName = '可拖拽';
-Draggable.args = {
-  draggable: true,
-  strokeWeight: 40,
-  cursor: 'move',
-  onDragstart: eventHandler.onDragstart,
-  onDragging: eventHandler.onDragging,
-  onDragend: eventHandler.onDragend,
+export const Editable: AMapPolylineStory = {
+  name: '支持编辑',
+  render: (args) => (
+    <>
+      <AMapPolyline {...args} ref={$polyline} />
+      <AMapPolylineEditor computeTarget={computeTarget} onChange={onChange} />
+    </>
+  ),
 };
 
-export const CustomStyle: typeof Template = Template.bind({});
-CustomStyle.storyName = '自定义样式';
-CustomStyle.args = {
-  zIndex: 10,
-  strokeColor: 'red',
-  strokeStyle: 'dashed',
-  strokeOpacity: 0.8,
-  strokeWeight: 20,
-  strokeDasharray: [1, 4],
-  borderWeight: 10,
-  lineJoin: 'bevel',
-  showDir: true,
-  dirColor: '#000',
-  lineCap: 'round',
-  // dirImg,
-  isOutline: true,
-  outlineColor: 'yellow',
-  geodesic: true,
+export const Draggable: AMapPolylineStory = {
+  name: '可拖拽',
+  args: {
+    draggable: true,
+    strokeWeight: 40,
+    cursor: 'move',
+    onDragstart: eventHandler.onDragstart,
+    onDragging: eventHandler.onDragging,
+    onDragend: eventHandler.onDragend,
+  },
 };
 
-export const ClickEvent: typeof Template = Template.bind({});
+export const CustomStyle: AMapPolylineStory = {
+  name: '自定义样式',
+  args: {
+    zIndex: 10,
+    strokeColor: 'red',
+    strokeStyle: 'dashed',
+    strokeOpacity: 0.8,
+    strokeWeight: 20,
+    strokeDasharray: [1, 4],
+    borderWeight: 10,
+    lineJoin: 'bevel',
+    showDir: true,
+    dirColor: '#000',
+    lineCap: 'round',
+    // dirImg,
+    isOutline: true,
+    outlineColor: 'yellow',
+    geodesic: true,
+  },
+};
+
+export const ClickEvent: AMapPolylineStory = {
+  name: '点击事件（左单/左双/右单）',
+  args: {
+    onClick: eventHandler.onClick,
+    onDBLClick: eventHandler.onDBLClick,
+    onRightClick: eventHandler.onRightClick,
+  },
+};
 ClickEvent.storyName = '点击事件（左单/左双/右单）';
 ClickEvent.args = {
   onClick: eventHandler.onClick,
@@ -468,19 +476,21 @@ ClickEvent.args = {
   onRightClick: eventHandler.onRightClick,
 };
 
-export const MouseEvent: typeof Template = Template.bind({});
-MouseEvent.storyName = '鼠标事件（按下/抬起/经过/移出）';
-MouseEvent.args = {
-  onMousedown: eventHandler.onMousedown,
-  onMouseup: eventHandler.onMouseup,
-  onMouseover: eventHandler.onMouseover,
-  onMouseout: eventHandler.onMouseout,
+export const MouseEvent : AMapPolylineStory = {
+  name: '鼠标事件（按下/抬起/经过/移出）',
+  args: {
+    onMousedown: eventHandler.onMousedown,
+    onMouseup: eventHandler.onMouseup,
+    onMouseover: eventHandler.onMouseover,
+    onMouseout: eventHandler.onMouseout,
+  },
 };
 
-export const TouchEvent: typeof Template = Template.bind({});
-TouchEvent.storyName = '触摸事件（触摸开始/触摸移动/触摸结束）';
-TouchEvent.args = {
-  onTouchstart: eventHandler.onTouchstart,
-  onTouchmove: eventHandler.onTouchmove,
-  onTouchend: eventHandler.onTouchend,
+export const TouchEvent: AMapPolylineStory = {
+  name: '触摸事件（触摸开始/触摸移动/触摸结束）',
+  args: {
+    onTouchstart: eventHandler.onTouchstart,
+    onTouchmove: eventHandler.onTouchmove,
+    onTouchend: eventHandler.onTouchend,
+  },
 };

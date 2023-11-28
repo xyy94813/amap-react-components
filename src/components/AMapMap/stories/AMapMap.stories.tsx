@@ -1,7 +1,6 @@
-import React from 'react';
-import type { Meta, Story } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 
-import { AMapMap, AMapMapProps } from '../../../index';
+import { AMapMap } from '../../../index';
 
 import withAMapContainer from '../../../storybook-decorators/withAMapContainer';
 import withAPIContainer from '../../../storybook-decorators/withAPIContainer';
@@ -111,42 +110,48 @@ const meta: Meta<typeof AMapMap> = {
 
 export default meta;
 
-const Template: Story<AMapMapProps> = (args) => <AMapMap {...args} />;
+type AMapMapStory = StoryObj<typeof AMapMap>;
 
-export const SetCenter: typeof Template = Template.bind({});
-SetCenter.args = {
-  center: [114.021769, 22.530421],
+export const SetCenter: AMapMapStory = {
+  name: '设置中心点',
+  args: {
+    center: [114.021769, 22.530421],
+  },
 };
-SetCenter.storyName = '设置中心点';
 
-export const SetCityName: typeof Template = Template.bind({});
-SetCityName.args = {
-  cityName: '深圳',
+export const SetCityName: AMapMapStory = {
+  name: '设置城市名称',
+  args: {
+    cityName: '深圳',
+  },
 };
-SetCityName.storyName = '设置城市名称';
 
-export const SetZoom: typeof Template = Template.bind({});
-SetZoom.args = {
-  zoom: 12,
+export const SetZoom: AMapMapStory = {
+  name: '设置缩放比例',
+  args: {
+    zoom: 12,
+  },
 };
-SetZoom.storyName = '设置缩放比例';
 
-export const SetFeatures: typeof Template = Template.bind({});
-SetFeatures.args = {
-  features: ['bg', 'point'],
+export const SetFeatures: AMapMapStory = {
+  name: '设置地图上显示的元素种类',
+  args: {
+    features: ['bg', 'point'],
+  },
 };
-SetFeatures.storyName = '设置地图上显示的元素种类';
 
-export const SetsMapStyle: typeof Template = Template.bind({});
-SetsMapStyle.args = {
-  mapStyle: 'amap://styles/grey',
+export const SetsMapStyle: AMapMapStory = {
+  name: '自定义地图样式',
+  args: {
+    mapStyle: 'amap://styles/grey',
+  },
 };
-SetsMapStyle.storyName = '自定义地图样式';
 
-export const ViewModeIs3D: typeof Template = Template.bind({});
-ViewModeIs3D.storyName = '3D 模式';
-ViewModeIs3D.args = {
-  viewMode: '3D',
-  pitch: 75,
-  zoom: 18,
+export const ViewModeIs3D: AMapMapStory = {
+  name: '3D 模式',
+  args: {
+    viewMode: '3D',
+    pitch: 75,
+    zoom: 18,
+  },
 };

@@ -1,9 +1,9 @@
 import React from 'react';
-import type { Story } from '@storybook/react';
+import type { StoryFn } from '@storybook/react';
 
 import AMapAutoFitView from '../components/AMapAutoFitView';
 
-const withAutoFitView = (renderStory: Story, context: any) => (
+const withAutoFitView = (renderStory: StoryFn, context: any) => (
   <>
     {renderStory({}, context)}
     <AMapAutoFitView />

@@ -1,12 +1,11 @@
 import React, {
   createRef,
 } from 'react';
-import type { Meta, Story } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 import { actions } from '@storybook/addon-actions';
 
 import {
   AMapPolygon,
-  AMapPolygonProps,
   AMapPolygonEditor,
   AMapPolygonEditorProps,
 } from '../../../index';
@@ -38,6 +37,7 @@ const presetColors = ['#ff0000', '#00ff00', '#0000ff'];
 
 const meta: Meta<typeof AMapPolygon> = {
   title: '组件(Components)/覆盖物(Overlay)/AMapPolygon',
+  component: AMapPolygon,
   decorators: [
     withAutoFitView,
     withAMap({ viewMode: '3D', pitch: 30 }),
@@ -398,60 +398,60 @@ const meta: Meta<typeof AMapPolygon> = {
 
 export default meta;
 
-type AMapPolygonStory = Story<AMapPolygonProps>;
+type AMapPolygonStory = StoryObj<typeof AMapPolygon>;
 
-const Template: AMapPolygonStory = (args) => <AMapPolygon {...args} />;
-
-export const CommonUse: typeof Template = Template.bind({});
-CommonUse.storyName = '一般多边形';
-CommonUse.args = {};
-
-export const PolygonWithHole: typeof Template = Template.bind({});
-PolygonWithHole.storyName = '带洞多边形';
-PolygonWithHole.args = {
-  path: [
-    [
-      [116.384595, 39.901321],
-      [116.383526, 39.899865],
-      [116.386284, 39.900917],
-    // [116.384595, 39.901321],
-    ],
-    [
-      [116.384594, 39.901],
-      [116.384, 39.9003],
-      [116.3861, 39.900917],
-    // [116.384594, 39.901],
-    ],
-  ],
+export const CommonUse: AMapPolygonStory = {
+  name: '一般多边形（Polygon）',
 };
 
-export const MultiPolygon: typeof Template = Template.bind({});
-MultiPolygon.storyName = '复合多边形（MultiPolygon）';
-MultiPolygon.args = {
-  path: [
-    [
+export const PolygonWithHole: AMapPolygonStory = {
+  name: '带洞多边形（PolygonWithHole）',
+  args: {
+    path: [
       [
-        [116.388624, 39.900055],
-        [116.390452, 39.898583],
-        [116.391294, 39.900003],
-        // [116.388624, 39.900055],
+        [116.384595, 39.901321],
+        [116.383526, 39.899865],
+        [116.386284, 39.900917],
+      // [116.384595, 39.901321],
       ],
       [
-        [116.389113, 39.899924],
-        [116.390251, 39.898962],
-        [116.391055, 39.899899],
-        // [116.389113, 39.899924],
-      ],
-    ],
-    [
-      [
-        [116.387884, 39.899645],
-        [116.38796, 39.898347],
-        [116.390175, 39.898394],
-        // [116.387884, 39.899645],
+        [116.384594, 39.901],
+        [116.384, 39.9003],
+        [116.3861, 39.900917],
+      // [116.384594, 39.901],
       ],
     ],
-  ],
+  },
+};
+
+export const MultiPolygon: AMapPolygonStory = {
+  name: '复合多边形（MultiPolygon）',
+  args: {
+    path: [
+      [
+        [
+          [116.388624, 39.900055],
+          [116.390452, 39.898583],
+          [116.391294, 39.900003],
+          // [116.388624, 39.900055],
+        ],
+        [
+          [116.389113, 39.899924],
+          [116.390251, 39.898962],
+          [116.391055, 39.899899],
+          // [116.389113, 39.899924],
+        ],
+      ],
+      [
+        [
+          [116.387884, 39.899645],
+          [116.38796, 39.898347],
+          [116.390175, 39.898394],
+          // [116.387884, 39.899645],
+        ],
+      ],
+    ],
+  },
 };
 
 const { onChange } = actions('onChange');
@@ -460,78 +460,71 @@ const computeTarget: AMapPolygonEditorProps['computeTarget'] = (polygons) => pol
   (polygon) => polygon === $polygon.current,
 );
 
-export const Editable: AMapPolygonStory = (args) => (
-  <>
-    <AMapPolygon {...args} ref={$polygon} />
-    <AMapPolygonEditor computeTarget={computeTarget} onChange={onChange} />
-  </>
-);
-Editable.storyName = '支持编辑';
-Editable.args = {
-  path: [
-    [
-      [
-        [116.388624, 39.900055],
-        [116.390452, 39.898583],
-        [116.391294, 39.900003],
-        // [116.388624, 39.900055],
-      ],
-      [
-        [116.389113, 39.899924],
-        [116.390251, 39.898962],
-        [116.391055, 39.899899],
-        // [116.389113, 39.899924],
-      ],
-    ],
-    [
-      [
-        [116.387884, 39.899645],
-        [116.38796, 39.898347],
-        [116.390175, 39.898394],
-        // [116.387884, 39.899645],
-      ],
-    ],
-  ],
+export const Editable: AMapPolygonStory = {
+  name: '支持编辑',
+  args: {
+    path: MultiPolygon.args!.path,
+  },
+  render: (args) => (
+    <>
+      <AMapPolygon {...args} ref={$polygon} />
+      <AMapPolygonEditor computeTarget={computeTarget} onChange={onChange} />
+    </>
+  ),
 };
 
-export const Draggable: typeof Template = Template.bind({});
-Draggable.storyName = '可拖拽';
-Draggable.args = {
-  draggable: true,
-  onDragstart: eventHandler.onDragstart,
-  onDragging: eventHandler.onDragging,
-  onDragend: eventHandler.onDragend,
+export const Draggable: AMapPolygonStory = {
+  name: '可拖拽',
+  args: {
+    path: MultiPolygon.args!.path,
+    draggable: true,
+    onDragstart: eventHandler.onDragstart,
+    onDragging: eventHandler.onDragging,
+    onDragend: eventHandler.onDragend,
+  },
 };
 
-export const CustomStyle: typeof Template = Template.bind({});
-CustomStyle.storyName = '自定义样式';
-CustomStyle.args = {
-  fillColor: 'yellow',
-  fillOpacity: 0.5,
-  strokeColor: 'red',
-  strokeStyle: 'dashed',
-  strokeOpacity: 0.1,
-  strokeWeight: 20,
-  strokeDasharray: [10, 40],
+export const CustomStyle: AMapPolygonStory = {
+  name: '自定义样式',
+  args: {
+    fillColor: 'yellow',
+    fillOpacity: 0.5,
+    strokeColor: 'red',
+    strokeStyle: 'dashed',
+    strokeOpacity: 0.1,
+    strokeWeight: 20,
+    strokeDasharray: [10, 40],
+  },
 };
 
-export const In3DMode: typeof Template = Template.bind({});
-In3DMode.storyName = '3D 模式';
-In3DMode.args = {
-  extrusionHeight: 300,
-  roofColor: 'red',
-  wallColor: 'yellow',
+export const In3DMode: AMapPolygonStory = {
+  name: '3D 模式',
+  args: {
+    path: MultiPolygon.args!.path,
+    extrusionHeight: 300,
+    roofColor: 'red',
+    wallColor: 'yellow',
+  },
 };
 
-export const ClickEvent: typeof Template = Template.bind({});
-ClickEvent.storyName = '点击事件（左单/左双/右单）';
-ClickEvent.args = {
-  onClick: eventHandler.onClick,
-  onDBLClick: eventHandler.onDBLClick,
-  onRightClick: eventHandler.onRightClick,
+export const ClickEvent: AMapPolygonStory = {
+  name: '点击事件（左单/左双/右单）',
+  args: {
+    onClick: eventHandler.onClick,
+    onDBLClick: eventHandler.onDBLClick,
+    onRightClick: eventHandler.onRightClick,
+  },
 };
 
-export const MouseEvent: typeof Template = Template.bind({});
+export const MouseEvent: AMapPolygonStory = {
+  name: '鼠标事件（按下/抬起/经过/移出）',
+  args: {
+    onMousedown: eventHandler.onMousedown,
+    onMouseup: eventHandler.onMouseup,
+    onMouseover: eventHandler.onMouseover,
+    onMouseout: eventHandler.onMouseout,
+  },
+};
 MouseEvent.storyName = '鼠标事件（按下/抬起/经过/移出）';
 MouseEvent.args = {
   onMousedown: eventHandler.onMousedown,
@@ -540,10 +533,11 @@ MouseEvent.args = {
   onMouseout: eventHandler.onMouseout,
 };
 
-export const TouchEvent: typeof Template = Template.bind({});
-TouchEvent.storyName = '触摸事件（触摸开始/触摸移动/触摸结束）';
-TouchEvent.args = {
-  onTouchstart: eventHandler.onTouchstart,
-  onTouchmove: eventHandler.onTouchmove,
-  onTouchend: eventHandler.onTouchend,
+export const TouchEvent: AMapPolygonStory = {
+  name: '触摸事件（触摸开始/触摸移动/触摸结束）',
+  args: {
+    onTouchstart: eventHandler.onTouchstart,
+    onTouchmove: eventHandler.onTouchmove,
+    onTouchend: eventHandler.onTouchend,
+  },
 };

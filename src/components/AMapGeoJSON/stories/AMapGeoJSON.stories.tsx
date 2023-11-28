@@ -1,7 +1,6 @@
-import React from 'react';
-import type { Meta, Story } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 
-import type { AMapGeoJSONGetOverlayCallback, AMapGeoJSONProps } from '../../../index';
+import type { AMapGeoJSONGetOverlayCallback } from '../../../index';
 import { AMapGeoJSON, coordsOfGeoJSON2AMapPolygonPath } from '../../../index';
 
 import withAutoFitView from '../../../storybook-decorators/withAutoFitView';
@@ -100,6 +99,7 @@ const mockData: GeoJSON.FeatureCollection = {
 
 const meta: Meta<typeof AMapGeoJSON> = {
   title: '组件(Components)/覆盖物(Overlay)/AMapGeoJSON',
+  component: AMapGeoJSON,
   decorators: [
     withAutoFitView,
     withAMap(),
@@ -173,12 +173,11 @@ const meta: Meta<typeof AMapGeoJSON> = {
 
 export default meta;
 
-const Template: Story<AMapGeoJSONProps> = (args) => (
-  <AMapGeoJSON {...args} />
-);
+type AMapGeoJSONStory = StoryObj<typeof AMapGeoJSON>;
 
-export const CommonUse: typeof Template = Template.bind({});
-CommonUse.storyName = '基本使用';
+export const CommonUse: AMapGeoJSONStory = {
+  name: '基本使用',
+};
 
 const getMarker: AMapGeoJSONGetOverlayCallback = (_, lnglat, map, AMap) => {
   const options = {
@@ -212,23 +211,25 @@ const getPolygon: AMapGeoJSONGetOverlayCallback = (_, lnglat, map, AMap) => {
   return polygon;
 };
 
-export const CustomStyle: typeof Template = Template.bind({});
-CustomStyle.storyName = '自定义样式';
-CustomStyle.args = {
-  options: {
-    strokeColor: 'red',
-    strokeWeight: 4,
+export const CustomStyle: AMapGeoJSONStory = {
+  name: '自定义样式',
+  args: {
+    options: {
+      strokeColor: 'red',
+      strokeWeight: 4,
+    },
   },
 };
 
-export const CustomOverlay: typeof Template = Template.bind({});
-CustomOverlay.storyName = '自定义覆盖物';
-CustomOverlay.args = {
-  options: {
-    strokeColor: 'red',
-    strokeWeight: 4,
+export const CustomOverlay: AMapGeoJSONStory = {
+  name: '自定义覆盖物',
+  args: {
+    options: {
+      strokeColor: 'red',
+      strokeWeight: 4,
+    },
+    getMarker,
+    getPolyline,
+    getPolygon,
   },
-  getMarker,
-  getPolyline,
-  getPolygon,
 };

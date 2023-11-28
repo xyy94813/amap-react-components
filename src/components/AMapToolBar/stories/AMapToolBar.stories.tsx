@@ -1,8 +1,7 @@
-import React from 'react';
-import type { Story, Meta } from '@storybook/react';
+import type { StoryObj, Meta } from '@storybook/react';
 import { actions } from '@storybook/addon-actions';
 
-import { AMapToolBar, AMapToolBarProps } from '../../../index';
+import { AMapToolBar } from '../../../index';
 
 import withAMap from '../../../storybook-decorators/withAMap';
 import withAMapContainer from '../../../storybook-decorators/withAMapContainer';
@@ -96,12 +95,16 @@ const meta: Meta<typeof AMapToolBar> = {
 
 export default meta;
 
-const Template: Story<AMapToolBarProps> = (args) => <AMapToolBar {...args} />;
+type AMapToolBarStory = StoryObj<typeof AMapToolBar>;
 
-export const ChangeOffset: typeof Template = Template.bind({});
+export const ChangeOffset: AMapToolBarStory = {
+  name: '设置偏移量',
+  args: { offset: [20, 20] },
+};
 ChangeOffset.storyName = '设置偏移量';
 ChangeOffset.args = { offset: [20, 20] };
 
-export const ChangePosition: typeof Template = Template.bind({});
-ChangePosition.storyName = '指定位置';
-ChangePosition.args = { position: 'RT' };
+export const ChangePosition: AMapToolBarStory = {
+  name: '指定位置',
+  args: { position: 'RT' },
+};

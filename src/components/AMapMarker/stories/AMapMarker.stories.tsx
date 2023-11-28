@@ -1,12 +1,11 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
-import type { Story, Meta } from '@storybook/react';
+import type { StoryObj, Meta } from '@storybook/react';
 import { actions } from '@storybook/addon-actions';
 
 import {
   AMapToolBar,
   AMapMarker,
-  AMapMarkerProps,
 } from '../../../index';
 
 import withAutoFitView from '../../../storybook-decorators/withAutoFitView';
@@ -251,7 +250,7 @@ const meta: Meta<typeof AMapMarker> = {
       type: { required: false, name: 'number' },
       table: {
         type: { summary: 'number' },
-        defaultValue: { summary: 10 },
+        defaultValue: { summary: 12 },
       },
       control: {
         type: 'number',
@@ -445,120 +444,142 @@ const meta: Meta<typeof AMapMarker> = {
 
 export default meta;
 
-const Template: Story<AMapMarkerProps> = (args) => <AMapMarker {...args} />;
+type AMapMarkerStory = StoryObj<typeof AMapMarker>;
 
-export const CommonUse: typeof Template = Template.bind({});
-CommonUse.storyName = '一般使用';
-CommonUse.args = {};
-
-export const CustomIcon: typeof Template = Template.bind({});
-CustomIcon.storyName = '自定义标记图标';
-CustomIcon.args = {
-  icon: '//webapi.amap.com/theme/v1.3/markers/b/mark_r.png',
-  size: [38, 60],
+export const CommonUse: AMapMarkerStory = {
+  name: '一般使用',
 };
 
-export const CustomContent: typeof Template = Template.bind({});
-CustomContent.storyName = '自定义标记内容';
-CustomContent.args = {
-  content: renderToString(
-    <span style={{ color: 'red' }}>点</span>,
-  ),
-  icon: '//webapi.amap.com/theme/v1.3/markers/b/mark_r.png',
-  size: [38, 60],
-};
-
-export const CustomLabel: typeof Template = Template.bind({});
-CustomLabel.storyName = '自定义标签内容';
-CustomLabel.args = {
-  label: {
-    content: renderToString(
-      <span style={{ color: 'red' }}>标签内容</span>,
-    ),
-    offset: [0, 10],
-    direction: 'bottom',
+export const CustomIcon: AMapMarkerStory = {
+  name: '自定义标记图标',
+  args: {
+    icon: '//webapi.amap.com/theme/v1.3/markers/b/mark_r.png',
+    size: [38, 60],
   },
 };
 
-export const CustomZooms: Story<AMapMarkerProps> = (args) => (
-  <>
-    <AMapToolBar />
-    <AMapMarker {...args} />
-  </>
-);
-CustomZooms.storyName = '自定义可显示层级';
-CustomZooms.args = {
-  zooms: [10, 14],
+export const CustomContent: AMapMarkerStory = {
+  name: '自定义标记内容',
+  args: {
+    content: renderToString(
+      <span style={{ color: 'red' }}>点</span>,
+    ),
+    icon: '//webapi.amap.com/theme/v1.3/markers/b/mark_r.png',
+    size: [38, 60],
+  },
 };
 
-export const Draggable: typeof Template = Template.bind({});
-Draggable.storyName = '可拖拽';
-Draggable.args = {
-  draggable: true,
-  onDragstart: eventHandler.onDragstart,
-  onDragging: eventHandler.onDragging,
-  onDragend: eventHandler.onDragend,
+export const CustomLabel: AMapMarkerStory = {
+  name: '自定义标签内容',
+  args: {
+    label: {
+      content: renderToString(
+        <span style={{ color: 'red' }}>标签内容</span>,
+      ),
+      offset: [0, 10],
+      direction: 'bottom',
+    },
+  },
 };
 
-export const CustomAnchor: typeof Template = Template.bind({});
-CustomAnchor.storyName = '自定义点标记锚点';
-CustomAnchor.args = {
-  anchor: 'bottom-center',
+export const CustomZooms: AMapMarkerStory = {
+  name: '自定义可显示层级',
+  args: {
+    zooms: [14, 18],
+  },
+  render: (args) => (
+    <>
+      <AMapToolBar />
+      <AMapMarker {...args} />
+    </>
+  ),
 };
 
-export const CustomOffset: typeof Template = Template.bind({});
+export const Draggable: AMapMarkerStory = {
+  name: '可拖拽',
+  args: {
+    draggable: true,
+    onDragstart: eventHandler.onDragstart,
+    onDragging: eventHandler.onDragging,
+    onDragend: eventHandler.onDragend,
+  },
+};
+
+export const CustomAnchor: AMapMarkerStory = {
+  name: '自定义点标记锚点',
+  args: {
+    anchor: 'bottom-center',
+  },
+};
+
+export const CustomOffset: AMapMarkerStory = {
+  name: '自定义偏移量',
+  args: {
+    offset: [300, 300],
+  },
+};
 CustomOffset.storyName = '自定义偏移量';
 CustomOffset.args = {
   offset: [300, 300],
 };
 
-export const CustomAngle: typeof Template = Template.bind({});
+export const CustomAngle: AMapMarkerStory = {
+  name: '自定义旋转角度',
+  args: {
+    angle: 45,
+  },
+};
 CustomAngle.storyName = '自定义旋转角度';
 CustomAngle.args = {
   angle: 45,
 };
 
-export const SameZIndex: Story<AMapMarkerProps> = ({
-  // eslint-disable-next-line react/prop-types
-  zIndex,
-  ...args
-}) => (
-  <>
-    <AMapMarker
-      {...args}
-      zIndex={zIndex}
-      icon="//webapi.amap.com/theme/v1.3/markers/b/mark_r.png"
-      size={[38, 60]}
-    />
-    <AMapMarker {...args} />
-  </>
-);
-SameZIndex.storyName = '自定义 Marker 层级';
-SameZIndex.args = {
-  zIndex: 13,
+export const SameZIndex: AMapMarkerStory = {
+  name: '自定义 Marker 层级',
+  args: {
+    zIndex: 13,
+  },
+  render: (args) => (
+    <>
+      <AMapMarker {...args} />
+      <AMapMarker
+        position={[116.39, 39.9]}
+        icon="//webapi.amap.com/theme/v1.3/markers/b/mark_r.png"
+        size={[38, 60]}
+        label={{
+          content: '后 render 的 Marker',
+          offset: [0, 10],
+          direction: 'bottom',
+        }}
+      />
+    </>
+  ),
 };
 
-export const ClickEvent: typeof Template = Template.bind({});
-ClickEvent.storyName = '点击事件（左单/左双/右单）';
-ClickEvent.args = {
-  onClick: eventHandler.onClick,
-  onDBLClick: eventHandler.onDBLClick,
-  onRightClick: eventHandler.onRightClick,
+export const ClickEvent: AMapMarkerStory = {
+  name: '点击事件（左单/左双/右单）',
+  args: {
+    onClick: eventHandler.onClick,
+    onDBLClick: eventHandler.onDBLClick,
+    onRightClick: eventHandler.onRightClick,
+  },
 };
 
-export const MouseEvent: typeof Template = Template.bind({});
-MouseEvent.storyName = '鼠标事件（按下/抬起/经过/移出）';
-MouseEvent.args = {
-  onMousedown: eventHandler.onMousedown,
-  onMouseup: eventHandler.onMouseup,
-  onMouseover: eventHandler.onMouseover,
-  onMouseout: eventHandler.onMouseout,
+export const MouseEvent: AMapMarkerStory = {
+  name: '鼠标事件（按下/抬起/经过/移出）',
+  args: {
+    onMousedown: eventHandler.onMousedown,
+    onMouseup: eventHandler.onMouseup,
+    onMouseover: eventHandler.onMouseover,
+    onMouseout: eventHandler.onMouseout,
+  },
 };
 
-export const TouchEvent: typeof Template = Template.bind({});
-TouchEvent.storyName = '触摸事件（触摸开始/触摸移动/触摸结束）';
-TouchEvent.args = {
-  onTouchstart: eventHandler.onTouchstart,
-  onTouchmove: eventHandler.onTouchmove,
-  onTouchend: eventHandler.onTouchend,
+export const TouchEvent: AMapMarkerStory = {
+  name: '触摸事件（触摸开始/触摸移动/触摸结束）',
+  args: {
+    onTouchstart: eventHandler.onTouchstart,
+    onTouchmove: eventHandler.onTouchmove,
+    onTouchend: eventHandler.onTouchend,
+  },
 };

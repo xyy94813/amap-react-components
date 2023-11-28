@@ -1,8 +1,7 @@
-import React from 'react';
-import type { Meta, Story } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 import { actions } from '@storybook/addon-actions';
 
-import { AMapEllipse, AMapEllipseProps } from '../../../index';
+import { AMapEllipse } from '../../../index';
 
 import withAutoFitView from '../../../storybook-decorators/withAutoFitView';
 import withAMap from '../../../storybook-decorators/withAMap';
@@ -28,6 +27,7 @@ const presetColors = ['#ff0000', '#00ff00', '#0000ff'];
 
 const meta: Meta<typeof AMapEllipse> = {
   title: '组件(Components)/覆盖物(Overlay)/AMapEllipse',
+  component: AMapEllipse,
   decorators: [
     withAutoFitView,
     withAMap(),
@@ -303,48 +303,49 @@ const meta: Meta<typeof AMapEllipse> = {
 
 export default meta;
 
-type AMapEllipseStory = Story<AMapEllipseProps>;
-const Template: AMapEllipseStory = (args) => (
-  <AMapEllipse {...args} />
-);
+type AMapEllipseStory = StoryObj<typeof AMapEllipse>;
 
-export const CommonUse: typeof Template = Template.bind({});
-CommonUse.storyName = '基本使用';
-CommonUse.args = {};
-
-export const CustomStyle: typeof Template = Template.bind({});
-CustomStyle.storyName = '自定义样式';
-CustomStyle.args = {
-  fillColor: 'yellow',
-  fillOpacity: 0.5,
-  strokeColor: 'red',
-  strokeStyle: 'dashed',
-  strokeOpacity: 0.1,
-  strokeWeight: 20,
-  strokeDasharray: [10, 40],
+export const CommonUse: AMapEllipseStory = {
+  name: '基本使用',
 };
 
-export const ClickEvent: typeof Template = Template.bind({});
-ClickEvent.storyName = '点击事件（左单/左双/右单）';
-ClickEvent.args = {
-  onClick: eventHandler.onClick,
-  onDBLClick: eventHandler.onDBLClick,
-  onRightClick: eventHandler.onRightClick,
+export const CustomStyle: AMapEllipseStory = {
+  name: '自定义样式',
+  args: {
+    fillColor: 'yellow',
+    fillOpacity: 0.5,
+    strokeColor: 'red',
+    strokeStyle: 'dashed',
+    strokeOpacity: 0.1,
+    strokeWeight: 20,
+    strokeDasharray: [10, 40],
+  },
 };
 
-export const MouseEvent: typeof Template = Template.bind({});
-MouseEvent.storyName = '鼠标事件（按下/抬起/经过/移出）';
-MouseEvent.args = {
-  onMousedown: eventHandler.onMousedown,
-  onMouseup: eventHandler.onMouseup,
-  onMouseover: eventHandler.onMouseover,
-  onMouseout: eventHandler.onMouseout,
+export const ClickEvent: AMapEllipseStory = {
+  name: '点击事件（左单/左双/右单）',
+  args: {
+    onClick: eventHandler.onClick,
+    onDBLClick: eventHandler.onDBLClick,
+    onRightClick: eventHandler.onRightClick,
+  },
 };
 
-export const TouchEvent: typeof Template = Template.bind({});
-TouchEvent.storyName = '触摸事件（触摸开始/触摸移动/触摸结束）';
-TouchEvent.args = {
-  onTouchstart: eventHandler.onTouchstart,
-  onTouchmove: eventHandler.onTouchmove,
-  onTouchend: eventHandler.onTouchend,
+export const MouseEvent: AMapEllipseStory = {
+  name: '鼠标事件（按下/抬起/经过/移出）',
+  args: {
+    onMousedown: eventHandler.onMousedown,
+    onMouseup: eventHandler.onMouseup,
+    onMouseover: eventHandler.onMouseover,
+    onMouseout: eventHandler.onMouseout,
+  },
+};
+
+export const TouchEvent: AMapEllipseStory = {
+  name: '触摸事件（触摸开始/触摸移动/触摸结束）',
+  args: {
+    onTouchstart: eventHandler.onTouchstart,
+    onTouchmove: eventHandler.onTouchmove,
+    onTouchend: eventHandler.onTouchend,
+  },
 };

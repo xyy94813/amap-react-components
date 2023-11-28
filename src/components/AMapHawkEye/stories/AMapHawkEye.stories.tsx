@@ -1,8 +1,7 @@
-import React from 'react';
-import type { Story, Meta } from '@storybook/react';
+import type { StoryObj, Meta } from '@storybook/react';
 import { actions } from '@storybook/addon-actions';
 
-import { AMapHawkEye, AMapHawkEyeProps } from '../../../index';
+import { AMapHawkEye } from '../../../index';
 
 import withAMap from '../../../storybook-decorators/withAMap';
 import withAMapContainer from '../../../storybook-decorators/withAMapContainer';
@@ -171,32 +170,36 @@ export default {
   },
 } as Meta;
 
-const Template: Story<AMapHawkEyeProps> = (args) => <AMapHawkEye {...args} />;
+type AMapHawkEyeStory = StoryObj<typeof AMapHawkEye>;
 
-export const ChangePosition: typeof Template = Template.bind({});
-ChangePosition.args = { offset: [10, 10] };
-ChangePosition.storyName = '设置偏移量';
-
-export const ChangeStyle: typeof Template = Template.bind({});
-ChangeStyle.args = {
-  height: '200px',
-  width: '100px',
-  borderStyle: 'dashed',
-  borderColor: 'red',
-  borderRadius: '4px',
-  borderWidth: '5px',
-  buttonSize: '10px',
+export const ChangePosition: AMapHawkEyeStory = {
+  name: '设置偏移量',
+  args: { offset: [10, 10] },
 };
-ChangeStyle.storyName = '设置样式';
 
-export const ChangeTheme: typeof Template = Template.bind({});
-ChangeTheme.args = {
-  mapStyle: 'amap://styles/dark',
+export const ChangeStyle: AMapHawkEyeStory = {
+  name: '设置样式',
+  args: {
+    height: '200px',
+    width: '100px',
+    borderStyle: 'dashed',
+    borderColor: 'red',
+    borderRadius: '4px',
+    borderWidth: '5px',
+    buttonSize: '10px',
+  },
 };
-ChangeTheme.storyName = '设置主题';
 
-export const NotAutoMove: typeof Template = Template.bind({});
-ChangeTheme.args = {
-  autoMove: false,
+export const ChangeTheme: AMapHawkEyeStory = {
+  name: '设置主题',
+  args: {
+    mapStyle: 'amap://styles/dark',
+  },
 };
-NotAutoMove.storyName = '不随主视图变化';
+
+export const NotAutoMove: AMapHawkEyeStory = {
+  name: '不随主视图变化',
+  args: {
+    autoMove: false,
+  },
+};

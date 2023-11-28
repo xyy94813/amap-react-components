@@ -1,5 +1,5 @@
 import * as React from 'react';
-import type { Story } from '@storybook/react';
+import type { StoryFn } from '@storybook/react';
 
 import { createAMapAPIContainer } from '../index';
 
@@ -13,7 +13,7 @@ const APIContainer = createAMapAPIContainer({
   },
 });
 
-const withAPIContainer = (renderStory: Story, context: any) => (
+const withAPIContainer = (renderStory: StoryFn, context: any) => (
   <APIContainer>
     {renderStory({}, context)}
   </APIContainer>

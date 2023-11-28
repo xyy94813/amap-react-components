@@ -1,8 +1,9 @@
 import React from 'react';
-import type { Meta, Story } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 import { actions } from '@storybook/addon-actions';
 
 import {
+  AMapPolyline,
   AMapGeoJSON,
   AMapPolylineEditor,
   AMapPolylineEditorProps,
@@ -39,6 +40,13 @@ const mockData: GeoJSON.FeatureCollection = {
 
 const meta: Meta<typeof AMapPolylineEditor> = {
   title: '组件(Components)/工具(Tools)/AMapPolylineEditor',
+  component: AMapPolylineEditor,
+  render: (args) => (
+    <>
+      <AMapPolyline path={commonPolyline.coordinates as AMap.LngLatLike[]} />
+      <AMapPolylineEditor {...args} />
+    </>
+  ),
   decorators: [
     withAutoFitView,
     withAMap(),
@@ -80,21 +88,24 @@ const meta: Meta<typeof AMapPolylineEditor> = {
 
 export default meta;
 
-const Template: Story<AMapPolylineEditorProps> = (args) => (
-  <>
-    <AMapGeoJSON geoJSON={mockData} />
-    <AMapPolylineEditor {...args} />
-  </>
-);
+type AMapPolylineEditorStory = StoryObj<typeof AMapPolylineEditor>;
 
-export const WithGeoJSON: typeof Template = Template.bind({});
-WithGeoJSON.storyName = '与AMapGeoJSON一同使用';
-WithGeoJSON.args = {
-  computeTarget: (polylineList) => polylineList[0],
+export const WithGeoJSON: AMapPolylineEditorStory = {
+  name: '与AMapGeoJSON一同使用',
+  args: {
+    computeTarget: (polylineList) => polylineList[0],
+  },
+  render: (args) => (
+    <>
+      <AMapGeoJSON geoJSON={mockData} />
+      <AMapPolylineEditor {...args} />
+    </>
+  ),
 };
 
-export const DisablePolylineEditor: typeof Template = Template.bind({});
-DisablePolylineEditor.storyName = '禁用编辑器';
-DisablePolylineEditor.args = {
-  disabled: true,
+export const DisablePolylineEditor: AMapPolylineEditorStory = {
+  name: '禁用编辑器',
+  args: {
+    disabled: true,
+  },
 };

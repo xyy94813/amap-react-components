@@ -1,8 +1,7 @@
-import React from 'react';
-import type { Story, Meta } from '@storybook/react';
+import type { StoryObj, Meta } from '@storybook/react';
 import { actions } from '@storybook/addon-actions';
 
-import { AMapMapType, AMapMapTypeProps } from '../../../index';
+import { AMapMapType } from '../../../index';
 
 import withAMap from '../../../storybook-decorators/withAMap';
 import withAMapContainer from '../../../storybook-decorators/withAMapContainer';
@@ -88,20 +87,23 @@ const meta: Meta<typeof AMapMapType> = {
 
 export default meta;
 
-const Template: Story<AMapMapTypeProps> = (args) => <AMapMapType {...args} />;
+type AMapMapTypeStory = StoryObj<typeof AMapMapType>;
 
-export const CommonUse: typeof Template = Template.bind({});
-CommonUse.storyName = '一般使用';
-CommonUse.args = {};
+export const CommonUse: AMapMapTypeStory = {
+  name: '一般使用',
+};
 
-export const DefaultType: typeof Template = Template.bind({});
-DefaultType.storyName = '默认卫星图';
-DefaultType.args = { defaultType: 1 };
+export const DefaultType: AMapMapTypeStory = {
+  name: '默认底图',
+  args: { defaultType: 1 },
+};
 
-export const DefaultShowTraffic: typeof Template = Template.bind({});
-DefaultShowTraffic.storyName = '默认开启路况';
-DefaultShowTraffic.args = { showTraffic: true };
+export const DefaultShowTraffic: AMapMapTypeStory = {
+  name: '默认开启路况',
+  args: { showTraffic: true },
+};
 
-export const DefaultShowRoad: typeof Template = Template.bind({});
-DefaultShowRoad.storyName = '默认叠加路网图层';
-DefaultShowRoad.args = { showRoad: true };
+export const DefaultShowRoad: AMapMapTypeStory = {
+  name: '默认开启路网',
+  args: { showRoad: true },
+};

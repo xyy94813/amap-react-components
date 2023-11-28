@@ -1,8 +1,7 @@
-import React from 'react';
-import type { Story, Meta } from '@storybook/react';
+import type { StoryObj, Meta } from '@storybook/react';
 import { actions } from '@storybook/addon-actions';
 
-import { AMapControlBar, AMapControlBarProps } from '../../../index';
+import { AMapControlBar } from '../../../index';
 
 import withAMap from '../../../storybook-decorators/withAMap';
 import withAMapContainer from '../../../storybook-decorators/withAMapContainer';
@@ -106,16 +105,25 @@ const meta: Meta<typeof AMapControlBar> = {
 
 export default meta;
 
-const Template: Story<AMapControlBarProps> = (args) => <AMapControlBar {...args} />;
+type AMapControlBarStory = StoryObj<typeof AMapControlBar>;
 
-export const ChangeOffset: typeof Template = Template.bind({});
-ChangeOffset.storyName = '设置偏移量';
-ChangeOffset.args = { offset: [200, 200] };
+export const ChangeOffset: AMapControlBarStory = {
+  name: '设置偏移量',
+  args: {
+    offset: [200, 200],
+  },
+};
 
-export const ChangePosition: typeof Template = Template.bind({});
-ChangePosition.args = { position: 'RT' };
-ChangePosition.storyName = '指定位置';
+export const ChangePosition: AMapControlBarStory = {
+  name: '指定位置',
+  args: {
+    position: 'RT',
+  },
+};
 
-export const HideControlButton: typeof Template = Template.bind({});
-HideControlButton.args = { showControlButton: false };
-HideControlButton.storyName = '显示/隐藏控制按钮';
+export const HideControlButton: AMapControlBarStory = {
+  name: '显示/隐藏控制按钮',
+  args: {
+    showControlButton: false,
+  },
+};

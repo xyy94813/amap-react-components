@@ -1,10 +1,9 @@
 import React from 'react';
-import type { Meta, Story } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react';
 import { actions } from '@storybook/addon-actions';
 
 import {
   AMapOverlayGroup,
-  AMapOverlayGroupProps,
   AMapGeoJSON,
   AMapCircle,
   AMapEllipse,
@@ -33,6 +32,36 @@ const eventHandler = actions(
 
 const meta: Meta<typeof AMapOverlayGroup> = {
   title: '组件(Components)/覆盖物(Overlay)/AMapOverlayGroup',
+  component: AMapOverlayGroup,
+  render: (args) => (
+    <AMapOverlayGroup {...args}>
+      <AMapGeoJSON geoJSON={{
+        type: 'FeatureCollection',
+        features: [
+          {
+            type: 'Feature',
+            properties: {},
+            geometry: {
+              type: 'Polygon',
+              coordinates: [
+                [
+                  [116.272781, 39.98221],
+                  [116.274904, 39.903107],
+                  [116.481254, 39.907666],
+                  [116.464271, 39.988716],
+                  [116.272781, 39.98221],
+                ],
+              ],
+            },
+          },
+        ],
+      }}
+      />
+      <AMapCircle center={[116.39, 39.9]} radius={10_000} />
+      <AMapEllipse center={[116.39, 39.9]} radius={[10_000, 5_000]} />
+      <AMapMarker position={[116.39, 39.9]} />
+    </AMapOverlayGroup>
+  ),
   decorators: [
     withAutoFitView,
     withAMap(),
@@ -177,90 +206,67 @@ const meta: Meta<typeof AMapOverlayGroup> = {
 
 export default meta;
 
-type AMapOverlayGroupStory = Story<AMapOverlayGroupProps>;
-const Template: AMapOverlayGroupStory = (args) => (
-  <AMapOverlayGroup {...args}>
-    <AMapGeoJSON geoJSON={{
-      type: 'FeatureCollection',
-      features: [
-        {
-          type: 'Feature',
-          properties: {},
-          geometry: {
-            type: 'Polygon',
-            coordinates: [
-              [
-                [116.272781, 39.98221],
-                [116.274904, 39.903107],
-                [116.481254, 39.907666],
-                [116.464271, 39.988716],
-                [116.272781, 39.98221],
-              ],
-            ],
-          },
-        },
-      ],
-    }}
-    />
-    <AMapCircle center={[116.39, 39.9]} radius={10_000} />
-    <AMapEllipse center={[116.39, 39.9]} radius={[10_000, 5_000]} />
-    <AMapMarker position={[116.39, 39.9]} />
-  </AMapOverlayGroup>
-);
+type AMapOverlayGroupStory = StoryObj<typeof AMapOverlayGroup>;
 
-export const CommonUse: typeof Template = Template.bind({});
-CommonUse.storyName = '基本使用';
-CommonUse.args = {};
+export const CommonUse: AMapOverlayGroupStory = {
+  name: '基本使用',
+};
 
-export const CustomStyle: typeof Template = Template.bind({});
-CustomStyle.storyName = '自定义样式';
-CustomStyle.args = {
-  options: {
-    fillColor: 'yellow',
-    fillOpacity: 0.5,
-    strokeColor: 'red',
-    strokeStyle: 'dashed',
-    strokeOpacity: 0.1,
-    strokeWeight: 20,
-    strokeDasharray: [10, 40],
+export const CustomStyle: AMapOverlayGroupStory = {
+  name: '自定义样式',
+  args: {
+    options: {
+      fillColor: 'yellow',
+      fillOpacity: 0.5,
+      strokeColor: 'red',
+      strokeStyle: 'dashed',
+      strokeOpacity: 0.1,
+      strokeWeight: 20,
+      strokeDasharray: [10, 40],
+    },
   },
 };
 
-export const NestedUse: typeof Template = (args) => (
-  <AMapOverlayGroup>
-    <AMapOverlayGroup {...args}>
-      <AMapCircle center={[116.39, 39.9]} radius={10_000} />
+export const NestedUse: AMapOverlayGroupStory = {
+  name: '嵌套使用',
+  args: {
+    options: CustomStyle.args!.options,
+  },
+  render: (args) => (
+    <AMapOverlayGroup>
+      <AMapOverlayGroup {...args}>
+        <AMapCircle center={[116.39, 39.9]} radius={10_000} />
+      </AMapOverlayGroup>
+      <AMapEllipse center={[116.39, 39.9]} radius={[10_000, 5_000]} />
+      <AMapMarker position={[116.39, 39.9]} />
     </AMapOverlayGroup>
-    <AMapEllipse center={[116.39, 39.9]} radius={[10_000, 5_000]} />
-    <AMapMarker position={[116.39, 39.9]} />
-  </AMapOverlayGroup>
-);
-NestedUse.storyName = '嵌套使用';
-NestedUse.args = {
-  options: CustomStyle.args.options,
+  ),
 };
 
-export const ClickEvent: typeof Template = Template.bind({});
-ClickEvent.storyName = '点击事件（左单/左双/右单）';
-ClickEvent.args = {
-  onClick: eventHandler.onClick,
-  onDBLClick: eventHandler.onDBLClick,
-  onRightClick: eventHandler.onRightClick,
+export const ClickEvent: AMapOverlayGroupStory = {
+  name: '点击事件（左单/左双/右单）',
+  args: {
+    onClick: eventHandler.onClick,
+    onDBLClick: eventHandler.onDBLClick,
+    onRightClick: eventHandler.onRightClick,
+  },
 };
 
-export const MouseEvent: typeof Template = Template.bind({});
-MouseEvent.storyName = '鼠标事件（按下/抬起/经过/移出）';
-MouseEvent.args = {
-  onMousedown: eventHandler.onMousedown,
-  onMouseup: eventHandler.onMouseup,
-  onMouseover: eventHandler.onMouseover,
-  onMouseout: eventHandler.onMouseout,
+export const MouseEvent: AMapOverlayGroupStory = {
+  name: '鼠标事件（按下/抬起/经过/移出）',
+  args: {
+    onMousedown: eventHandler.onMousedown,
+    onMouseup: eventHandler.onMouseup,
+    onMouseover: eventHandler.onMouseover,
+    onMouseout: eventHandler.onMouseout,
+  },
 };
 
-export const TouchEvent: typeof Template = Template.bind({});
-TouchEvent.storyName = '触摸事件（触摸开始/触摸移动/触摸结束）';
-TouchEvent.args = {
-  onTouchstart: eventHandler.onTouchstart,
-  onTouchmove: eventHandler.onTouchmove,
-  onTouchend: eventHandler.onTouchend,
+export const TouchEvent: AMapOverlayGroupStory = {
+  name: '触摸事件（触摸开始/触摸移动/触摸结束）',
+  args: {
+    onTouchstart: eventHandler.onTouchstart,
+    onTouchmove: eventHandler.onTouchmove,
+    onTouchend: eventHandler.onTouchend,
+  },
 };

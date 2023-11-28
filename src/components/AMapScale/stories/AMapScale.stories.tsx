@@ -1,8 +1,7 @@
-import React from 'react';
-import type { Story, Meta } from '@storybook/react';
+import type { StoryObj, Meta } from '@storybook/react';
 import { actions } from '@storybook/addon-actions';
 
-import { AMapScale, AMapScaleProps } from '../../../index';
+import { AMapScale } from '../../../index';
 
 import withAMap from '../../../storybook-decorators/withAMap';
 import withAMapContainer from '../../../storybook-decorators/withAMapContainer';
@@ -96,14 +95,18 @@ const meta: Meta<typeof AMapScale> = {
 
 export default meta;
 
-type AMapScaleStory = Story<AMapScaleProps>;
+type AMapScaleStory = StoryObj<typeof AMapScale>;
 
-const Template: AMapScaleStory = (args) => <AMapScale {...args} />;
+export const ChangeOffset: AMapScaleStory = {
+  name: '设置偏移量',
+  args: {
+    offset: [100, 100],
+  },
+};
 
-export const ChangeOffset: AMapScaleStory = Template.bind({});
-ChangeOffset.storyName = '设置偏移量';
-ChangeOffset.args = { offset: [100, 100] };
-
-export const ChangePosition: AMapScaleStory = Template.bind({});
-ChangePosition.storyName = '指定位置';
-ChangePosition.args = { position: 'LT' };
+export const ChangePosition: AMapScaleStory = {
+  name: '指定位置',
+  args: {
+    position: 'LT',
+  },
+};
