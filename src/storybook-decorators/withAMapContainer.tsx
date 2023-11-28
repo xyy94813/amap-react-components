@@ -5,7 +5,7 @@ import type { Story } from '@storybook/react';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { useInView } from 'react-intersection-observer';
 
-const CONTAINER_STYLE = { height: 'calc(100vh - 70px)' };
+const CONTAINER_STYLE = { height: '35vw' };
 
 const AMapContainer: FC = ({ children }) => {
   const { ref, inView } = useInView({
