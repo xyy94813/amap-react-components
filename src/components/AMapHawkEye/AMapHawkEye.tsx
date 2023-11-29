@@ -101,4 +101,8 @@ const AMapHawkEye: FC<AMapHawkEyeProps> = ({
 
 AMapHawkEye.defaultProps = defaultProps;
 
-export default memo(AMapHawkEye);
+const AMapHawkEyeMemo = memo(AMapHawkEye);
+
+AMapHawkEyeMemo.displayName = 'AMapHawkEye'; // for auto-docs
+
+export default AMapHawkEyeMemo;

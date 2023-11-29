@@ -5,8 +5,6 @@ import { AMapMap } from '../../../index';
 import withAMapContainer from '../../../storybook-decorators/withAMapContainer';
 import withAPIContainer from '../../../storybook-decorators/withAPIContainer';
 
-AMapMap.displayName = 'AMapMap';
-
 const meta: Meta<typeof AMapMap> = {
   title: '组件(Components)/基础组件(Basic)/AMapMap',
   component: AMapMap,

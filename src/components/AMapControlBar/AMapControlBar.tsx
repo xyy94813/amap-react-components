@@ -58,4 +58,8 @@ const AMapControlBar: FC<AMapControlBarProps> = ({
 
 AMapControlBar.defaultProps = defaultProps;
 
-export default memo(AMapControlBar);
+const AMapControlBarMemo = memo(AMapControlBar);
+
+AMapControlBarMemo.displayName = 'AMapControlBar'; // for auto-docs
+
+export default AMapControlBarMemo;

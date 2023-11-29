@@ -46,4 +46,8 @@ const AMapToolBar: FC<AMapToolBarProps> = ({
 
 AMapToolBar.defaultProps = defaultProps;
 
-export default memo(AMapToolBar);
+const AMapToolBarMemo = memo(AMapToolBar);
+
+AMapToolBarMemo.displayName = 'AMapToolBar'; // for auto-docs
+
+export default AMapToolBarMemo;

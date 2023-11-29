@@ -136,4 +136,8 @@ const AMapMap = forwardRef<any, PropsWithChildren<AMapMapProps>>(
 
 AMapMap.defaultProps = defaultProps;
 
-export default memo(AMapMap);
+const AMapMapMemo = memo(AMapMap);
+
+AMapMapMemo.displayName = 'AMapMap'; // for auto-docs
+
+export default AMapMapMemo;

@@ -44,4 +44,8 @@ const AMapScale: FC<AMapScaleProps> = ({
 
 AMapScale.defaultProps = defaultProps;
 
-export default memo(AMapScale);
+const AMapScaleMemo = memo(AMapScale);
+
+AMapScaleMemo.displayName = 'AMapScale'; // for auto-docs
+
+export default AMapScaleMemo;
