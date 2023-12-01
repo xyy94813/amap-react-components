@@ -23,7 +23,7 @@ jobs:
         # https://github.blog/2009-12-29-bypassing-jekyll-on-github-pages/
         run: |
           npm ci
-          npm run build-storybook
+          npm run build-storybook -- --docs
           touch ./storybook-static/.nojekyll
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
