@@ -1,4 +1,5 @@
 import withSuspense from './decorators/withSuspense';
+import DocsPage from './docsPage';
 
 
 export const decorators = [withSuspense];
@@ -22,5 +23,9 @@ export const parameters = {
       ],
     },
   },
+  docs: {
+    page: DocsPage
+  }
 };
+
 export const globalTypes = {};
