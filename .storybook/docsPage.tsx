@@ -1,6 +1,6 @@
-import type { FC, ReactElement, PropsWithChildren } from 'react';
-import React from 'react';
-import { NAVIGATE_URL } from '@storybook/core-events';
+import type { FC, ReactElement, PropsWithChildren } from "react";
+import React from "react";
+import { NAVIGATE_URL } from "@storybook/core-events";
 import {
   // DocsPage as DefaultDocsPage,
   DocsContext,
@@ -17,10 +17,10 @@ import {
   Anchor,
   Canvas,
   HeadingProps,
-  HeaderMdx,
-} from '@storybook/blocks';
-import { styled } from '@storybook/theming';
-import { H3 } from '@storybook/components';
+  HeaderMdx
+} from "@storybook/blocks";
+import { styled } from "@storybook/theming";
+import { H3 } from "@storybook/components";
 
 function navigate(context: DocsContextProps, url: string) {
   context.channel.emit(NAVIGATE_URL, url);
@@ -28,22 +28,22 @@ function navigate(context: DocsContextProps, url: string) {
 
 const PageSidebarWrapper = styled.div(
   ({ theme }) => `
-    position: fixed;
-    top: 60px;
-    right: ${theme.layoutMargin * 2}px;
     width: 180px;
+    position: fixed;
+    top: 32px;
+    right: ${theme.layoutMargin * 2}px;
     padding: ${theme.layoutMargin * 2}px;
-    zIndex: 10;
+    z-index: 10;
+    background: ${theme.background.content};
     box-shadow: 
-        -2px 0px 0px 0px rgba(0, 0, 0, 0.05), 
-        0px 0px 0px 1px rgba(0, 0, 0, 0.05);
-  `,
+        -2px 0px 0px 0px rgba(0, 0, 0, 0.05)
+  `
 );
 
 const PageSidebarTitleWrapper = styled.div(
   ({ theme }) => `
     font-size: ${theme.typography.size.s2}px;
-  `,
+  `
 );
 
 const PageSidebarMenuWrapper = styled.ul(
@@ -51,7 +51,7 @@ const PageSidebarMenuWrapper = styled.ul(
     margin: 16px 0 0 0;
     padding: 0;
     list-style: none;
-  `,
+  `
 );
 
 const PageSidebarMenuItemWrapper = styled.li(
@@ -60,114 +60,14 @@ const PageSidebarMenuItemWrapper = styled.li(
     :not(:last-child) {
       border-bottom: 1px solid ${theme.color.border};
     }
-  `,
+  `
 );
 
 const PageSidebarMenuItemContentWrapper = styled.div(
   ({ theme }) => `
     font-size: ${theme.typography.size.s1}px;
-  `,
+  `
 );
-
-const Subheading: FC<PropsWithChildren<HeadingProps>> = ({
-  children,
-  disableAnchor,
-}) => {
-  if (disableAnchor || typeof children !== 'string') {
-    return <H3>{children}</H3>;
-  }
-  const tagID = globalThis.encodeURIComponent(children.toLowerCase());
-  return (
-    <HeaderMdx as="h3" id={tagID}>
-      {children}
-    </HeaderMdx>
-  );
-};
-
-const DocsStory: FC<DocsStoryProps> = ({
-  of,
-  expanded = true,
-  withToolbar: withToolbarProp = false,
-  __forceInitialArgs = false,
-  __primary = false,
-}) => {
-  const { story } = useOf(of || 'story', ['story']);
-
-  // use withToolbar from parameters or default to true in autodocs
-  const withToolbar =
-    story.parameters.docs?.canvas?.withToolbar ?? withToolbarProp;
-
-  return (
-    <Anchor storyId={story.id}>
-      {expanded && (
-        <>
-          <Subheading>{story.name}</Subheading>
-          <Description of={of} />
-        </>
-      )}
-      <Canvas
-        of={of}
-        withToolbar={withToolbar}
-        story={{ __forceInitialArgs, __primary }}
-        source={{ __forceInitialArgs }}
-      />
-    </Anchor>
-  );
-};
-
-const StyledHeading: typeof Heading = styled(Heading)(({ theme }) => ({
-  fontSize: `${theme.typography.size.s2 - 1}px`,
-  fontWeight: theme.typography.weight.bold,
-  lineHeight: '16px',
-  letterSpacing: '0.35em',
-  textTransform: 'uppercase',
-  color: theme.textMutedColor,
-  border: 0,
-  marginBottom: '12px',
-
-  '&:first-of-type': {
-    // specificity issue
-    marginTop: '56px',
-  },
-}));
-
-interface StoriesProps {
-  title?: ReactElement | string;
-  includePrimary?: boolean;
-}
-
-const Stories: FC<StoriesProps> = ({
-  title = 'Stories',
-  includePrimary = true,
-}) => {
-  const { componentStories } = React.useContext(DocsContext);
-
-  let stories = componentStories().filter(
-    (story) => !story.parameters?.docs?.disable,
-  );
-
-  if (!includePrimary) stories = stories.slice(1);
-
-  if (!stories || stories.length === 0) {
-    return null;
-  }
-  return (
-    <>
-      <StyledHeading>{title}</StyledHeading>
-      {stories.map(
-        (story) =>
-          story && (
-            <DocsStory
-              key={story.id}
-              of={story.moduleExport}
-              expanded
-              __forceInitialArgs
-            />
-          ),
-      )}
-    </>
-  );
-};
 
 const PageSidebar = () => {
   const docsCtx = React.useContext(DocsContext);
@@ -196,9 +96,7 @@ const PageSidebar = () => {
                   }
                 }}
               >
-                <PageSidebarMenuItemContentWrapper>
-                  {story.name}
-                </PageSidebarMenuItemContentWrapper>
+                <PageSidebarMenuItemContentWrapper>{story.name}</PageSidebarMenuItemContentWrapper>
               </a>
             </PageSidebarMenuItemWrapper>
           );
@@ -208,24 +106,114 @@ const PageSidebar = () => {
   );
 };
 
+const Subheading: FC<PropsWithChildren<HeadingProps>> = ({ children, disableAnchor }) => {
+  if (disableAnchor || typeof children !== "string") {
+    return <H3>{children}</H3>;
+  }
+  const tagID = globalThis.encodeURIComponent(children.toLowerCase());
+  return (
+    <HeaderMdx as="h3" id={tagID}>
+      {children}
+    </HeaderMdx>
+  );
+};
+
+const DocsStory: FC<DocsStoryProps> = ({
+  of,
+  expanded = true,
+  withToolbar: withToolbarProp = false,
+  __forceInitialArgs = false,
+  __primary = false
+}) => {
+  const { story } = useOf(of || "story", ["story"]);
+
+  // use withToolbar from parameters or default to true in autodocs
+  const withToolbar = story.parameters.docs?.canvas?.withToolbar ?? withToolbarProp;
+
+  return (
+    <Anchor storyId={story.id}>
+      {expanded && (
+        <>
+          <Subheading>{story.name}</Subheading>
+          <Description of={of} />
+        </>
+      )}
+      <Canvas
+        of={of}
+        withToolbar={withToolbar}
+        story={{ __forceInitialArgs, __primary }}
+        source={{ __forceInitialArgs }}
+      />
+    </Anchor>
+  );
+};
+
+const StyledHeading: typeof Heading = styled(Heading)(({ theme }) => ({
+  fontSize: `${theme.typography.size.s2 - 1}px`,
+  fontWeight: theme.typography.weight.bold,
+  lineHeight: "16px",
+  letterSpacing: "0.35em",
+  textTransform: "uppercase",
+  color: theme.textMutedColor,
+  border: 0,
+  marginBottom: "12px",
+
+  "&:first-of-type": {
+    // specificity issue
+    marginTop: "56px"
+  }
+}));
+
+interface StoriesProps {
+  title?: ReactElement | string;
+  includePrimary?: boolean;
+}
+
+const Stories: FC<StoriesProps> = ({ title = "Stories", includePrimary = true }) => {
+  const { componentStories } = React.useContext(DocsContext);
+
+  let stories = componentStories().filter((story) => !story.parameters?.docs?.disable);
+
+  if (!includePrimary) stories = stories.slice(1);
+
+  if (!stories || stories.length === 0) {
+    return null;
+  }
+  return (
+    <>
+      <StyledHeading>{title}</StyledHeading>
+      {stories.map(
+        (story) =>
+          story && <DocsStory key={story.id} of={story.moduleExport} expanded __forceInitialArgs />
+      )}
+    </>
+  );
+};
+
+const StyledPageContentContainer = styled.div<{
+  notOnlyOneStory: boolean;
+}>(({ notOnlyOneStory, theme }) =>
+  notOnlyOneStory ? `margin-right: ${180 + 20 * 2 + theme.layoutMargin * 2}px;` : ""
+);
+
 const DocsPage = () => {
   // https://github.com/storybookjs/storybook/blob/9fecce26c4dd738890784b6971ce822097c62697/code/ui/blocks/src/blocks/Stories.tsx#L30C11-L30C27
   const docsCtx = React.useContext(DocsContext);
 
   const stories = docsCtx.componentStories();
-  const isSingleStory = Object.keys(stories).length === 1;
-
   const notOnlyOneStory = stories.length > 1;
   // https://github.com/storybookjs/storybook/blob/9fecce26c4dd738890784b6971ce822097c62697/code/ui/blocks/src/blocks/Subheading.tsx#L11
   return (
     <>
-      <Title />
-      <Subtitle />
-      <Description of="meta" />
-      {isSingleStory ? <Description of="story" /> : null}
-      <Primary />
-      <Controls />
-      {isSingleStory ? null : <Stories />}
+      <StyledPageContentContainer notOnlyOneStory={notOnlyOneStory}>
+        <Title />
+        <Subtitle />
+        <Description of="meta" />
+        {!notOnlyOneStory ? <Description of="story" /> : null}
+        <Primary />
+        <Controls />
+        {!notOnlyOneStory ? null : <Stories />}
+      </StyledPageContentContainer>
       {notOnlyOneStory && <PageSidebar />}
     </>
   );
