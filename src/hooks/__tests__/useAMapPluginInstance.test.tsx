@@ -1,5 +1,5 @@
 /* eslint-disable no-underscore-dangle */
-import { renderHook } from '@testing-library/react-hooks';
+import { renderHook } from '@testing-library/react';
 
 import useAMapPluginInstance from '../useAMapPluginInstance';
 import createAMapContextWrapper from './createAMapContextWrapper';

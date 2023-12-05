@@ -1,5 +1,5 @@
 /* eslint-disable no-underscore-dangle */
-import { renderHook } from '@testing-library/react-hooks';
+import { renderHook } from '@testing-library/react';
 
 import useControlButtonUpdater from '../useControlButtonUpdater';
 
@@ -18,7 +18,8 @@ describe('useControlButtonUpdater', () => {
     };
 
     const { rerender } = renderHook(
-      (showControlButton) => useControlButtonUpdater(instance as any, showControlButton), {
+      (showControlButton) => useControlButtonUpdater(instance as any, showControlButton),
+      {
         initialProps: false,
       },
     );

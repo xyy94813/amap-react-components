@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { renderHook } from '@testing-library/react-hooks';
+import { renderHook } from '@testing-library/react';
 
 import { AMapOverlayGroupContext } from '../../components/AMapOverlayGroup';
 
@@ -17,10 +17,13 @@ describe('useAMapOverlayBinder', () => {
     // 创建一个 mock 的 overlay 对象
     const mockOverlay = {};
 
-    const wrapper = (props: any) => createAMapContextWrapper({
-      __AMAP_UI__: null,
-      __AMAP__: null,
-    }, null)({
+    const wrapper = (props: any) => createAMapContextWrapper(
+      {
+        __AMAP_UI__: null,
+        __AMAP__: null,
+      },
+      null,
+    )({
       children: (
         <AMapOverlayGroupContext.Provider value={mockOverlayGroup}>
           {props.children}
@@ -55,10 +58,13 @@ describe('useAMapOverlayBinder', () => {
     // 创建一个 mock 的 overlay 对象
     const mockOverlay = {};
 
-    const wrapper = createAMapContextWrapper({
-      __AMAP_UI__: null,
-      __AMAP__: null,
-    }, mockMap);
+    const wrapper = createAMapContextWrapper(
+      {
+        __AMAP_UI__: null,
+        __AMAP__: null,
+      },
+      mockMap,
+    );
 
     // 使用 renderHook 渲染一个包a含 useContext 的自定义 hook
     const { unmount } = renderHook(() => useAMapOverlayBinder(mockOverlay), {
@@ -87,10 +93,13 @@ describe('useAMapOverlayBinder', () => {
     // 创建一个 mock 的 overlay 对象
     const mockOverlay = null;
 
-    const wrapper = createAMapContextWrapper({
-      __AMAP_UI__: null,
-      __AMAP__: null,
-    }, mockMap);
+    const wrapper = createAMapContextWrapper(
+      {
+        __AMAP_UI__: null,
+        __AMAP__: null,
+      },
+      mockMap,
+    );
 
     // 使用 renderHook 渲染一个包a含 useContext 的自定义 hook
     const { unmount } = renderHook(() => useAMapOverlayBinder(mockOverlay), {

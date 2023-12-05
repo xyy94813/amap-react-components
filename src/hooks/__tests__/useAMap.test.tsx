@@ -1,7 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 import * as React from 'react';
-import { cleanup } from '@testing-library/react';
-import { renderHook } from '@testing-library/react-hooks';
+import { cleanup, renderHook } from '@testing-library/react';
 
 import { AMapAPIContext } from '../../components/AMapAPIContainer';
 import { AMapMapContext } from '../../components/AMapMap';
@@ -20,9 +19,7 @@ describe('useAMap', () => {
 
     const wrapper = ({ children }: { children?: React.ReactNode }) => (
       <AMapAPIContext.Provider value={mockAMapAPIContextValue as any}>
-        <AMapMapContext.Provider value={mockMap as any}>
-          {children}
-        </AMapMapContext.Provider>
+        <AMapMapContext.Provider value={mockMap as any}>{children}</AMapMapContext.Provider>
       </AMapAPIContext.Provider>
     );
 
