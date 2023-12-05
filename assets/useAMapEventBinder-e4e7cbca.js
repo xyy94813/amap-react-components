@@ -1,4 +1,4 @@
-import{j as e,a,F as c}from"./jsx-runtime-86dfebf6.js";import{M as s}from"./index-9e341a10.js";import{u as o}from"./index-2ef8b458.js";import"./index-1b03fe98.js";import"./iframe-a8b27b44.js";import"../sb-preview/runtime.js";import"./index-6fd5a17b.js";import"./index-d7bb098e.js";import"./index-356e4a49.js";function i(t){const n=Object.assign({h1:"h1",p:"p",code:"code",pre:"pre"},o(),t.components);return a(c,{children:[e(s,{title:"Hooks/useAMapEventBinder"}),`
+import{j as e,a,F as c}from"./jsx-runtime-86dfebf6.js";import{M as s}from"./index-bcd5fbf1.js";import{u as o}from"./index-2ef8b458.js";import"./index-1b03fe98.js";import"./iframe-2b15f8b0.js";import"../sb-preview/runtime.js";import"./index-6fd5a17b.js";import"./index-d7bb098e.js";import"./index-356e4a49.js";function i(t){const n=Object.assign({h1:"h1",p:"p",code:"code",pre:"pre"},o(),t.components);return a(c,{children:[e(s,{title:"Hooks/useAMapEventBinder"}),`
 `,e(n.h1,{id:"useamapeventbinder",children:"useAMapEventBinder"}),`
 `,a(n.p,{children:[e(n.code,{children:"useAMapEventBinder"})," 是能够辅助你更好的进行对 AMap jsapi 下的实例进行事件绑定和解绑。"]}),`
 `,e(n.p,{children:"类型声明："}),`
