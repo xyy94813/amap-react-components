@@ -1,4 +1,4 @@
-import{j as e,a,F as p}from"./jsx-runtime-86dfebf6.js";import{M as c}from"./index-bcd5fbf1.js";import{u as r}from"./index-2ef8b458.js";import"./index-1b03fe98.js";import"./iframe-2b15f8b0.js";import"../sb-preview/runtime.js";import"./index-6fd5a17b.js";import"./index-d7bb098e.js";import"./index-356e4a49.js";function o(t){const n=Object.assign({h1:"h1",p:"p",code:"code",pre:"pre"},r(),t.components);return a(p,{children:[e(c,{title:"Hooks/useAMap"}),`
+import{j as e,a,F as p}from"./jsx-runtime-86dfebf6.js";import{M as c}from"./index-5ea6c6f9.js";import{u as r}from"./index-2ef8b458.js";import"./index-1b03fe98.js";import"./iframe-a550d042.js";import"../sb-preview/runtime.js";import"./index-6fd5a17b.js";import"./index-d7bb098e.js";import"./index-356e4a49.js";function o(t){const n=Object.assign({h1:"h1",p:"p",code:"code",pre:"pre"},r(),t.components);return a(p,{children:[e(c,{title:"Hooks/useAMap"}),`
 `,e(n.h1,{id:"useamap",children:"useAMap"}),`
 `,a(n.p,{children:["你可以在函数组件内使用 ",e(n.code,{children:"useAMap"})," 从上下文中获取以及 ",e(n.code,{children:"map"}),` 实例。
 以便于自定义当前库未提供的组件。`]}),`

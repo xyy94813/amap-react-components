@@ -1,4 +1,4 @@
-import{M as o,d as m}from"./index-bcd5fbf1.js";import{j as c,a as p,F as s}from"./jsx-runtime-86dfebf6.js";import{u as b}from"./index-2ef8b458.js";import"./iframe-2b15f8b0.js";import"../sb-preview/runtime.js";import"./index-1b03fe98.js";import"./index-6fd5a17b.js";import"./index-d7bb098e.js";import"./index-356e4a49.js";const d=`# Changelog
+import{M as o,d as m}from"./index-5ea6c6f9.js";import{j as c,a as p,F as s}from"./jsx-runtime-86dfebf6.js";import{u as b}from"./index-2ef8b458.js";import"./iframe-a550d042.js";import"../sb-preview/runtime.js";import"./index-1b03fe98.js";import"./index-6fd5a17b.js";import"./index-d7bb098e.js";import"./index-356e4a49.js";const d=`# Changelog
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
@@ -155,5 +155,5 @@ All notable changes to this project will be documented in this file. See [standa
 - new component AMapGeoJson ([fb694a9](https://github.com/xyy94813/amap-react-components/commit/fb694a98494b153c8bad5d12245531709c292bd3))
 - new component AMapMap ([3645a88](https://github.com/xyy94813/amap-react-components/commit/3645a88ac4f61d1a000bcee950b2ff69f78343ab))
 - support offical control components ([a6e2591](https://github.com/xyy94813/amap-react-components/commit/a6e25913e4739d104b6fb9317612cc23ed8a7743))
-`;function n(t){return p(s,{children:[c(o,{title:"变更日志"}),`
-`,c(m,{children:d})]})}function i(t={}){const{wrapper:a}=Object.assign({},b(),t.components);return a?c(a,{...t,children:c(n,{...t})}):n()}const r=()=>{throw new Error("Docs-only story")};r.parameters={docsOnly:!0};const e={title:"变更日志",tags:["stories-mdx"],includeStories:["__page"]};e.parameters=e.parameters||{};e.parameters.docs={...e.parameters.docs||{},page:i};const v=["__page"];export{v as __namedExportsOrder,r as __page,e as default};
+`;function n(t){return p(s,{children:[c(o,{title:"指南/变更日志"}),`
+`,c(m,{children:d})]})}function i(t={}){const{wrapper:a}=Object.assign({},b(),t.components);return a?c(a,{...t,children:c(n,{...t})}):n()}const r=()=>{throw new Error("Docs-only story")};r.parameters={docsOnly:!0};const e={title:"指南/变更日志",tags:["stories-mdx"],includeStories:["__page"]};e.parameters=e.parameters||{};e.parameters.docs={...e.parameters.docs||{},page:i};const v=["__page"];export{v as __namedExportsOrder,r as __page,e as default};
