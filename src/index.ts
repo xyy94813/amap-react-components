@@ -41,7 +41,8 @@ export { default as AMapPolylineEditor } from './components/AMapPolylineEditor';
 
 export type { AMapMouseToolProps } from './components/AMapMouseTool';
 export { default as AMapMouseTool } from './components/AMapMouseTool';
-
+export type { AMapRangingToolProps } from './components/AMapRangingTool';
+export { default as AMapRangingTool } from './components/AMapRangingTool';
 // helpers
 export { default as coordsOfGeoJSON2AMapPolygonPath } from './helpers/coordsOfGeoJSON2AMapPolygonPath';
 export { default as amapPolygonPath2GeoJSONCoords } from './helpers/amapPolygonPath2GeoJSONCoords';
