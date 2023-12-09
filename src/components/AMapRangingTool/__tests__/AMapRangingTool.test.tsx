@@ -67,4 +67,10 @@ describe('AMapRangingTool', () => {
     expect(mockInstance.off).toBeCalledWith('removenode', onNodeRemoved);
     expect(mockInstance.off).toBeCalledWith('end', onEnd);
   });
+
+  test('disabled component', () => {
+    render(<AMapRangingTool disabled />);
+
+    expect(mockInstance.turnOff).toBeCalled();
+  });
 });
