@@ -1,6 +1,13 @@
-import{M as o,d as m}from"./index-e66f2514.js";import{j as c,a as p,F as s}from"./jsx-runtime-86dfebf6.js";import{u as b}from"./index-2ef8b458.js";import"./iframe-b8c9ab75.js";import"../sb-preview/runtime.js";import"./index-1b03fe98.js";import"./index-6fd5a17b.js";import"./index-d7bb098e.js";import"./index-356e4a49.js";const d=`# Changelog
+import{M as o,d as m}from"./index-4d23e8ba.js";import{j as c,a as p,F as s}from"./jsx-runtime-86dfebf6.js";import{u as b}from"./index-2ef8b458.js";import"./iframe-1ec524bb.js";import"../sb-preview/runtime.js";import"./index-1b03fe98.js";import"./index-6fd5a17b.js";import"./index-d7bb098e.js";import"./index-356e4a49.js";const d=`# Changelog
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+## [0.7.0](https://github.com/xyy94813/amap-react-components/compare/v0.6.0...v0.7.0) (2023-12-09)
+
+
+### Features
+
+* 新增工具组件 AMapRangingTool ([343cdf7](https://github.com/xyy94813/amap-react-components/commit/343cdf7dfddb2e7867a9e62475db83faf5fdabf6))
 
 ## [0.6.0](https://github.com/xyy94813/amap-react-components/compare/v0.5.0...v0.6.0) (2023-11-11)
 
@@ -156,4 +163,4 @@ All notable changes to this project will be documented in this file. See [standa
 - new component AMapMap ([3645a88](https://github.com/xyy94813/amap-react-components/commit/3645a88ac4f61d1a000bcee950b2ff69f78343ab))
 - support offical control components ([a6e2591](https://github.com/xyy94813/amap-react-components/commit/a6e25913e4739d104b6fb9317612cc23ed8a7743))
 `;function n(t){return p(s,{children:[c(o,{title:"指南/变更日志"}),`
-`,c(m,{children:d})]})}function i(t={}){const{wrapper:a}=Object.assign({},b(),t.components);return a?c(a,{...t,children:c(n,{...t})}):n()}const r=()=>{throw new Error("Docs-only story")};r.parameters={docsOnly:!0};const e={title:"指南/变更日志",tags:["stories-mdx"],includeStories:["__page"]};e.parameters=e.parameters||{};e.parameters.docs={...e.parameters.docs||{},page:i};const v=["__page"];export{v as __namedExportsOrder,r as __page,e as default};
+`,c(m,{children:d})]})}function i(t={}){const{wrapper:e}=Object.assign({},b(),t.components);return e?c(e,{...t,children:c(n,{...t})}):n()}const r=()=>{throw new Error("Docs-only story")};r.parameters={docsOnly:!0};const a={title:"指南/变更日志",tags:["stories-mdx"],includeStories:["__page"]};a.parameters=a.parameters||{};a.parameters.docs={...a.parameters.docs||{},page:i};const v=["__page"];export{v as __namedExportsOrder,r as __page,a as default};

@@ -1,4 +1,4 @@
-import{j as t,a as r,F as s}from"./jsx-runtime-86dfebf6.js";import{M as m,d as i}from"./index-e66f2514.js";import{u as a}from"./index-2ef8b458.js";import"./index-1b03fe98.js";import"./iframe-b8c9ab75.js";import"../sb-preview/runtime.js";import"./index-6fd5a17b.js";import"./index-d7bb098e.js";import"./index-356e4a49.js";const p=`# 贡献指南
+import{j as t,a as r,F as s}from"./jsx-runtime-86dfebf6.js";import{M as m,d as i}from"./index-4d23e8ba.js";import{u as a}from"./index-2ef8b458.js";import"./index-1b03fe98.js";import"./iframe-1ec524bb.js";import"../sb-preview/runtime.js";import"./index-6fd5a17b.js";import"./index-d7bb098e.js";import"./index-356e4a49.js";const p=`# 贡献指南
 
 👏👏 欢迎参与贡献该项目 👏👏。
 

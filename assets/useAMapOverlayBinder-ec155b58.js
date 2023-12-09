@@ -1,4 +1,4 @@
-import{j as e,a as r,F as o}from"./jsx-runtime-86dfebf6.js";import{M as c}from"./index-e66f2514.js";import{u as p}from"./index-2ef8b458.js";import"./index-1b03fe98.js";import"./iframe-b8c9ab75.js";import"../sb-preview/runtime.js";import"./index-6fd5a17b.js";import"./index-d7bb098e.js";import"./index-356e4a49.js";function t(a){const n=Object.assign({h1:"h1",p:"p",code:"code",pre:"pre"},p(),a.components);return r(o,{children:[e(c,{title:"Hooks/useAMapOverlayBinder"}),`
+import{j as e,a as r,F as o}from"./jsx-runtime-86dfebf6.js";import{M as c}from"./index-4d23e8ba.js";import{u as p}from"./index-2ef8b458.js";import"./index-1b03fe98.js";import"./iframe-1ec524bb.js";import"../sb-preview/runtime.js";import"./index-6fd5a17b.js";import"./index-d7bb098e.js";import"./index-356e4a49.js";function t(a){const n=Object.assign({h1:"h1",p:"p",code:"code",pre:"pre"},p(),a.components);return r(o,{children:[e(c,{title:"Hooks/useAMapOverlayBinder"}),`
 `,e(n.h1,{id:"useamapoverlaybinder",children:"useAMapOverlayBinder"}),`
 `,r(n.p,{children:[e(n.code,{children:"useAMapOverlayBinder"})," 用于绑定 Overlay 至最近的容器上。"]}),`
 `,e(n.p,{children:"类型声明："}),`
