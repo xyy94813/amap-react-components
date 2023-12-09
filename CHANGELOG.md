@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.7.0](https://github.com/xyy94813/amap-react-components/compare/v0.6.0...v0.7.0) (2023-12-09)
+
+
+### Features
+
+* 新增工具组件 AMapRangingTool ([343cdf7](https://github.com/xyy94813/amap-react-components/commit/343cdf7dfddb2e7867a9e62475db83faf5fdabf6))
+
 ## [0.6.0](https://github.com/xyy94813/amap-react-components/compare/v0.5.0...v0.6.0) (2023-11-11)
 
 
