@@ -69,7 +69,7 @@ describe('AMapMap', () => {
 
   test('set city name', () => {
     render(<AMapMap cityName="深圳" />);
-    expect(mockMapInstance.setCity).toBeCalledWith('深圳', expect.any(Function));
+    expect(mockMapInstance.setCity).toBeCalledWith('深圳');
   });
 
   test('set zoom', () => {

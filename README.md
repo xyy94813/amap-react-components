@@ -62,20 +62,17 @@ https://cdn.jsdelivr.net/npm/amap-react-components@0.0.1/dist/amap-react-compone
 
 ### Typescript
 
-安装官方的 jsapi 的 ts 声明
+安装 jsapi 的 ts 声明
 
 ```shell
-npm install @amap/amap-jsapi-types
+npm install amap-jsapi-v2-types -D
 ```
 
-由于官方 ts 声明存在声明错误、缺漏，以及缺少 AMapUI 相关接口声明等问题，
-本项目在官方声明上对接口声明做了改动。
+由于官方 ts 声明存在声明错误、缺漏，以及缺少 AMapUI 相关接口声明，甚至官方文档存在错误等问题
 
-因此，需要将此[声明文件](./src/@types/AMap.d.ts) 复制进您的项目。
-当使用了本项目暂时不支持的组件，您需要自定义组件时，可以在您的项目自行维护。
+自定义组件时，可以参考[此文件](https://github.com/xyy94813/amap-react-components/blob/main/src/%40types/AMap.d.ts) 对其类型扩展
 
-> 如过，有人知道如何将这部分声明文件在构建时一同打包进最终的输出中，麻烦告知我。
-> 如果能看到您的 PR 那就更好了。
+并及时给 `amap-jsapi-v2-types` 提 PR。
 
 ### Polyfill
 

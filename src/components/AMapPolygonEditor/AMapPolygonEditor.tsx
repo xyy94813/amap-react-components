@@ -29,7 +29,8 @@ const AMapPolygonEditor: FC<AMapPolygonEditorProps> = ({
     if (!map) return;
     if (!curInstance) return;
     const allPolygons: AMap.Polygon[] = map.getAllOverlays('polygon') || [];
-    const newTarget = computeTarget(allPolygons) ?? null;
+    // 为了通过 ts 检查统一为 undefined。实际运行 undefined 和 null 的行为一致
+    const newTarget = computeTarget(allPolygons) ?? undefined;
     curInstance.setTarget(newTarget);
   }, [map, computeTarget, curInstance]);
 
@@ -56,11 +57,11 @@ const AMapPolygonEditor: FC<AMapPolygonEditorProps> = ({
     };
 
     clearEffect = () => {
-      map.off('overlaysRemoved' as AMap.EventType, handleOverlayChanged);
-      map.off('overlaysAdded' as AMap.EventType, handleOverlayChanged);
+      map.off('overlaysRemoved', handleOverlayChanged);
+      map.off('overlaysAdded', handleOverlayChanged);
     };
-    map.on('overlaysRemoved' as AMap.EventType, handleOverlayChanged);
-    map.on('overlaysAdded' as AMap.EventType, handleOverlayChanged);
+    map.on('overlaysRemoved', handleOverlayChanged);
+    map.on('overlaysAdded', handleOverlayChanged);
 
     return clearEffect;
   }, [map, reSetTarget]);
@@ -100,11 +101,11 @@ const AMapPolygonEditor: FC<AMapPolygonEditorProps> = ({
     };
 
     clearEffect = () => {
-      map.off('overlaysRemoved' as AMap.EventType, handleOverlayChanged);
-      map.off('overlaysAdded' as AMap.EventType, handleOverlayChanged);
+      map.off('overlaysRemoved', handleOverlayChanged);
+      map.off('overlaysAdded', handleOverlayChanged);
     };
-    map.on('overlaysRemoved' as AMap.EventType, handleOverlayChanged);
-    map.on('overlaysAdded' as AMap.EventType, handleOverlayChanged);
+    map.on('overlaysRemoved', handleOverlayChanged);
+    map.on('overlaysAdded', handleOverlayChanged);
 
     return clearEffect;
   }, [map, reSetAdsorbPolygons]);

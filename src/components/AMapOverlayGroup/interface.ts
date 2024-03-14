@@ -1,5 +1,5 @@
 export type AMapOverlayGroupProps = {
-  options?: AMap.PolygonSharedOptions;
+  options?: Parameters<AMap.OverlayGroup['setOptions']>[0];
   visible?: Boolean;
   onShow?: (event?: any) => void;
   onHide?: (event?: any) => void;

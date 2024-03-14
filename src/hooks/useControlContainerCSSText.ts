@@ -1,7 +1,7 @@
 const formatPX = (val: number | string) => `${encodeURIComponent(val)}px`;
 
 const useControlContainerCSSText = (
-  position: AMap.ControlConfig['position'],
+  position: AMap.CommonControlConfig['position'],
   offset = [10, 10],
 ) => {
   if (position === 'LT') {

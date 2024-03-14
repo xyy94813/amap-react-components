@@ -75,7 +75,7 @@ describe('AMapMarker Component', () => {
       offset: [0, 10],
       direction: 'center',
     };
-    render(<AMapMarker position={mockPosition} label={label} />);
+    render(<AMapMarker position={mockPosition} label={label as AMap.MarkerOptions['label']} />);
 
     expect(mockInstance.setLabel).toHaveBeenCalledWith(label);
   });

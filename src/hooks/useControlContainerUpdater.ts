@@ -5,7 +5,7 @@ import useControlContainerCSSText from './useControlContainerCSSText';
 
 const useControlContainerUpdater = <T = any>(
   instance: T,
-  position: AMap.ControlConfig['position'],
+  position: AMap.CommonControlConfig['position'],
   offset = [10, 10],
 ) => {
   const containerCSSText = useControlContainerCSSText(position, offset);

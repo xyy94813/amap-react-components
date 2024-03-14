@@ -19,7 +19,7 @@ const CONTAINER_STYLE = { width: '100%', height: '100%' };
 
 const defaultProps = {
   // eslint-disable-next-line react/default-props-match-prop-types
-  viewMode: '2D',
+  viewMode: '2D' as AMap.MapOptions['viewMode'],
   // eslint-disable-next-line react/default-props-match-prop-types
   features: ['bg', 'point', 'road', 'building'],
 };
@@ -58,7 +58,7 @@ const AMapMap = forwardRef<any, PropsWithChildren<AMapMapProps>>(
             if (p === 'add') {
               const newAddFunc: typeof target.add = (overlays) => {
                 const result = target.add(overlays);
-                newInstance.emit('overlaysAdded' as AMap.EventType, overlays);
+                newInstance.emit('overlaysAdded', overlays);
                 return result;
               };
               return newAddFunc;
@@ -67,7 +67,7 @@ const AMapMap = forwardRef<any, PropsWithChildren<AMapMapProps>>(
             if (p === 'remove') {
               const newRemoveFunc: typeof target.remove = (overlays) => {
                 const result = target.remove(overlays);
-                newInstance.emit('overlaysRemoved' as AMap.EventType, overlays);
+                newInstance.emit('overlaysRemoved', overlays);
                 return result;
               };
               return newRemoveFunc;
@@ -105,7 +105,7 @@ const AMapMap = forwardRef<any, PropsWithChildren<AMapMapProps>>(
     // set city
     useEffect(() => {
       if (cityName) {
-        curMap?.setCity(cityName, () => {});
+        curMap?.setCity(cityName);
       }
     }, [cityName, curMap]);
 

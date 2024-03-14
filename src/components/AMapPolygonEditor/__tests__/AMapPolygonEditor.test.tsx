@@ -91,7 +91,7 @@ describe('AMapPolygonEditor', () => {
     expect(mockMapInstance.getAllOverlays).toBeCalledWith('polygon');
     expect(computeTarget).toBeCalledWith([]);
     expect(computeAdsorbPolygons).toBeCalledWith([]);
-    expect(mockInstance.setTarget).toBeCalledWith(null);
+    expect(mockInstance.setTarget).toBeCalledWith(undefined);
   });
 
   test('sets target correctly when map.getAllOverlays returns null', () => {
@@ -105,7 +105,7 @@ describe('AMapPolygonEditor', () => {
     expect(mockMapInstance.getAllOverlays).toBeCalledWith('polygon');
     expect(computeTarget).toBeCalledWith([]);
     expect(computeAdsorbPolygons).toBeCalledWith([]);
-    expect(mockInstance.setTarget).toBeCalledWith(null);
+    expect(mockInstance.setTarget).toBeCalledWith(undefined);
   });
 
   test('triggers onChange correctly', () => {

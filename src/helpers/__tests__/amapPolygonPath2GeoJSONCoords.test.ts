@@ -2,18 +2,50 @@ import amapPolygonPath2GeoJSONCoords from '../amapPolygonPath2GeoJSONCoords';
 
 // mock LngLat class
 class LngLat {
+  public className: string;
+
   public lat: number;
 
   public lng: number;
+
+  pos: [number, number];
 
   constructor(lng: number, lat: number) {
     this.lat = lat;
     this.lng = lng;
   }
 
-  public toArray() {
+  public toArray(): [number, number] {
     return [this.lng, this.lat];
   }
+
+  setLng = jest.fn();
+
+  setLat = jest.fn();
+
+  getLng = jest.fn();
+
+  getLat = jest.fn();
+
+  equals = jest.fn();
+
+  add = jest.fn();
+
+  subtract = jest.fn();
+
+  divideBy = jest.fn();
+
+  multiplyBy = jest.fn();
+
+  offset = jest.fn();
+
+  toString = jest.fn();
+
+  toJSON = jest.fn();
+
+  distance = jest.fn();
+
+  distanceTo = jest.fn();
 }
 
 // mock AMap api
@@ -23,12 +55,12 @@ const AMap = {
 
 describe('amapPolygonPath2GeoJSONCoords', () => {
   test('should convert AMap polygon path to GeoJSON coordinates', () => {
-    const amapPath: ReturnType<AMap.Polygon['getPath']> = [
+    const amapPath: AMap.LngLat[] = [
       new AMap.LngLat(1, 2),
       new AMap.LngLat(3, 4),
       new AMap.LngLat(5, 6),
     ];
-    const expectedCoords: typeof amapPath = [
+    const expectedCoords: [number, number][] = [
       [1, 2],
       [3, 4],
       [5, 6],
@@ -39,7 +71,7 @@ describe('amapPolygonPath2GeoJSONCoords', () => {
   });
 
   test('should convert correctly if it is a Polygon that has a hole', () => {
-    const amapPolygonWithHolePath: ReturnType<AMap.Polygon['getPath']>[] = [
+    const amapPolygonWithHolePath: AMap.LngLat[][] = [
       // outer-line
       [
         new AMap.LngLat(0, 0),
@@ -53,7 +85,7 @@ describe('amapPolygonPath2GeoJSONCoords', () => {
         new AMap.LngLat(2, 1),
       ],
     ];
-    const expectedCoords: typeof amapPolygonWithHolePath = [
+    const expectedCoords: [number, number][][] = [
       [
         [0, 0],
         [0, 10],
@@ -72,7 +104,7 @@ describe('amapPolygonPath2GeoJSONCoords', () => {
   });
 
   test('should convert correctly if it is a MultiPolygon that has a hole', () => {
-    const amapMultiPolygonPath: ReturnType<AMap.Polygon['getPath']>[] = [
+    const amapMultiPolygonPath: AMap.LngLat[][][] = [
       // polygon 1
       [
         [
@@ -101,7 +133,7 @@ describe('amapPolygonPath2GeoJSONCoords', () => {
       ],
 
     ];
-    const expectedCoords: typeof amapMultiPolygonPath = [
+    const expectedCoords: [number, number][][][] = [
       // polygon 1
       [
         [
@@ -132,6 +164,6 @@ describe('amapPolygonPath2GeoJSONCoords', () => {
   });
 
   test('should throw an error if the input is not an array', () => {
-    expect(() => amapPolygonPath2GeoJSONCoords(undefined)).toThrowError('invalid path');
+    expect(() => amapPolygonPath2GeoJSONCoords(undefined as any)).toThrowError('invalid path');
   });
 });

@@ -4,9 +4,6 @@ import {
   useEffect,
   useRef,
 } from 'react';
-import type {
-  _PolylineEditor as PolylineEditor,
-} from '@amap/amap-jsapi-types/plugins/PolylineEditor';
 
 import useAMap from '../../hooks/useAMap';
 import useAMapPluginInstance from '../../hooks/useAMapPluginInstance';
@@ -25,7 +22,7 @@ const AMapPolylineEditor: FC<AMapPolylineEditorProps> = ({
 
   const initInstance = useCallback((AMap, map) => new AMap!.PolylineEditor(map), []);
   // why PolylineEditor2, see: https://github.com/AMap-Web/amap-jsapi-types/pull/22
-  const curInstance = useAMapPluginInstance<PolylineEditor>('PolylineEditor', initInstance);
+  const curInstance = useAMapPluginInstance<AMap.PolylineEditor>('PolylineEditor', initInstance);
   const { map } = useAMap();
 
   const reSetTarget = useCallback(() => {
@@ -59,11 +56,11 @@ const AMapPolylineEditor: FC<AMapPolylineEditorProps> = ({
     };
 
     clearEffect = () => {
-      map.off('overlaysRemoved' as AMap.EventType, handleOverlayChanged);
-      map.off('overlaysAdded' as AMap.EventType, handleOverlayChanged);
+      map.off('overlaysRemoved', handleOverlayChanged);
+      map.off('overlaysAdded', handleOverlayChanged);
     };
-    map.on('overlaysRemoved' as AMap.EventType, handleOverlayChanged);
-    map.on('overlaysAdded' as AMap.EventType, handleOverlayChanged);
+    map.on('overlaysRemoved', handleOverlayChanged);
+    map.on('overlaysAdded', handleOverlayChanged);
 
     return clearEffect;
   }, [map, reSetTarget]);
