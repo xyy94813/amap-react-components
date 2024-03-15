@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.8.0](https://github.com/xyy94813/amap-react-components/compare/v0.7.0...v0.8.0) (2024-03-15)
+
+
+### Features
+
+* 新增覆盖物组件 AMapRectangle ([be3b9d8](https://github.com/xyy94813/amap-react-components/commit/be3b9d846c2afa8504c90c53f13c190a1152f297))
+* 替换了高德 jsapi 的类型声明库 ([492b909](https://github.com/xyy94813/amap-react-components/commit/492b909d6cd53916896e4edcd7a22fdae46f1b20))
+
 ## [0.7.0](https://github.com/xyy94813/amap-react-components/compare/v0.6.0...v0.7.0) (2023-12-09)
 
 
