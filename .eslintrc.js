@@ -8,12 +8,17 @@ module.exports = {
   extends: ['plugin:react/recommended', 'airbnb', 'plugin:storybook/recommended'],
   plugins: ['react', 'react-hooks'],
   rules: {
+    'no-restricted-exports': 'off',
     'import/extensions': ['error', 'never'],
     'import/no-extraneous-dependencies': ['error', { peerDependencies: true }],
     // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-unused-expressions.md
     'no-unused-expressions': 'off',
     '@typescript-eslint/no-unused-expressions': 'error',
     'react/state-in-constructor': ['error', 'never'],
+    'react/function-component-definition': ['error', {
+      namedComponents: 'arrow-function',
+      unnamedComponents: 'arrow-function',
+    }],
     'react-hooks/rules-of-hooks': 'error', // check hook's rule
     'react-hooks/exhaustive-deps': 'warn', // check effect's dependencies
   },

@@ -61,12 +61,13 @@ export const createAMapAPIContainer = (options: CreateAMapApiContainerOptions) =
       await Promise.all(promises);
     }
 
+    const APICtx = {
+      __AMAP__: AMap,
+      __AMAP_UI__: AMapUI,
+    };
+
     const AMapAPIContainer: FC = ({ children }) => (
-      <AMapAPIContext.Provider value={{
-        __AMAP__: AMap,
-        __AMAP_UI__: AMapUI,
-      }}
-      >
+      <AMapAPIContext.Provider value={APICtx}>
         {children}
       </AMapAPIContext.Provider>
     );
