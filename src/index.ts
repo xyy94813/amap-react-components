@@ -34,6 +34,9 @@ export type { AMapPolylineProps } from './components/AMapPolyline';
 export { default as AMapPolyline } from './components/AMapPolyline';
 export type { AMapMarkerProps } from './components/AMapMarker';
 export { default as AMapMarker } from './components/AMapMarker';
+export type { AMapRectangleProps } from './components/AMapRectangle';
+export { default as AMapRectangle } from './components/AMapRectangle';
+
 export type { AMapPolygonEditorProps } from './components/AMapPolygonEditor';
 export { default as AMapPolygonEditor } from './components/AMapPolygonEditor';
 export type { AMapPolylineEditorProps } from './components/AMapPolylineEditor';
