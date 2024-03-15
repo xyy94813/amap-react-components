@@ -36,6 +36,8 @@ export type { AMapMarkerProps } from './components/AMapMarker';
 export { default as AMapMarker } from './components/AMapMarker';
 export type { AMapRectangleProps } from './components/AMapRectangle';
 export { default as AMapRectangle } from './components/AMapRectangle';
+export type { AMapBezierCurveProps } from './components/AMapBezierCurve';
+export { default as AMapBezierCurve } from './components/AMapBezierCurve';
 
 export type { AMapPolygonEditorProps } from './components/AMapPolygonEditor';
 export { default as AMapPolygonEditor } from './components/AMapPolygonEditor';
