@@ -1,4 +1,4 @@
-import{R as t,r as p}from"./index-BBkUAzwr.js";import{n as o,e as s,f as l}from"./index-BvxrX_qJ.js";import"./iframe-BA5XgpKf.js";import"../sb-preview/runtime.js";import"./index-PqR-_bA4.js";import"./index-DboEQVPH.js";import"./index-DrFu-skq.js";const i=(e,n)=>t.createElement(p.Suspense,{fallback:"loading"},e({},n));i.__docgenInfo={description:"",methods:[],displayName:"withSuspense"};const{NAVIGATE_URL:d}=__STORYBOOK_MODULE_CORE_EVENTS__;function m(e,n){e.channel.emit(d,n)}const g=o.div(({theme:e})=>`
+import{R as t,r as p}from"./index-BBkUAzwr.js";import{n as o,e as s,f as l}from"./index-DqcY8M14.js";import"./iframe-DPsVgYgF.js";import"../sb-preview/runtime.js";import"./index-PqR-_bA4.js";import"./index-DboEQVPH.js";import"./index-DrFu-skq.js";const i=(e,n)=>t.createElement(p.Suspense,{fallback:"loading"},e({},n));i.__docgenInfo={description:"",methods:[],displayName:"withSuspense"};const{NAVIGATE_URL:d}=__STORYBOOK_MODULE_CORE_EVENTS__;function m(e,n){e.channel.emit(d,n)}const g=o.div(({theme:e})=>`
     width: 180px;
     position: fixed;
     top: 32px;
