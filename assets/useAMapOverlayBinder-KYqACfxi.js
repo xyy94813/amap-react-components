@@ -1,4 +1,4 @@
-import{j as n}from"./jsx-runtime-DRTy3Uxn.js";import{useMDXComponents as t}from"./index-z5U8iC57.js";import{M as p}from"./index-DqcY8M14.js";import"./index-BBkUAzwr.js";import"./iframe-DPsVgYgF.js";import"../sb-preview/runtime.js";import"./index-PqR-_bA4.js";import"./index-DboEQVPH.js";import"./index-DrFu-skq.js";function r(a){const e={code:"code",h1:"h1",p:"p",pre:"pre",...t(),...a.components};return n.jsxs(n.Fragment,{children:[n.jsx(p,{title:"Hooks/useAMapOverlayBinder"}),`
+import{j as n}from"./jsx-runtime-DRTy3Uxn.js";import{useMDXComponents as t}from"./index-z5U8iC57.js";import{M as p}from"./index-viunWb5q.js";import"./index-BBkUAzwr.js";import"./iframe-DKg2R-3x.js";import"../sb-preview/runtime.js";import"./index-PqR-_bA4.js";import"./index-DboEQVPH.js";import"./index-DrFu-skq.js";function r(a){const e={code:"code",h1:"h1",p:"p",pre:"pre",...t(),...a.components};return n.jsxs(n.Fragment,{children:[n.jsx(p,{title:"Hooks/useAMapOverlayBinder"}),`
 `,n.jsx(e.h1,{id:"useamapoverlaybinder",children:"useAMapOverlayBinder"}),`
 `,n.jsxs(e.p,{children:[n.jsx(e.code,{children:"useAMapOverlayBinder"})," 用于绑定 Overlay 至最近的容器上。"]}),`
 `,n.jsx(e.p,{children:"类型声明："}),`
