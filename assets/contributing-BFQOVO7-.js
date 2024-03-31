@@ -1,4 +1,4 @@
-import{j as n}from"./jsx-runtime-DRTy3Uxn.js";import{useMDXComponents as e}from"./index-z5U8iC57.js";import{M as m,d as s}from"./index--av_cvHU.js";import"./index-BBkUAzwr.js";import"./iframe-Dg7UVaNd.js";import"../sb-preview/runtime.js";import"./index-PqR-_bA4.js";import"./index-DboEQVPH.js";import"./index-DrFu-skq.js";const i=`# 贡献指南
+import{j as n}from"./jsx-runtime-DRTy3Uxn.js";import{useMDXComponents as e}from"./index-z5U8iC57.js";import{M as m,d as s}from"./index-CpgBytn8.js";import"./index-BBkUAzwr.js";import"./iframe-DrIo5-KL.js";import"../sb-preview/runtime.js";import"./index-PqR-_bA4.js";import"./index-DboEQVPH.js";import"./index-DrFu-skq.js";const i=`# 贡献指南
 
 👏👏 欢迎参与贡献该项目 👏👏。
 
