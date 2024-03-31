@@ -21,7 +21,9 @@ export const parameters = {
     },
   },
   docs: {
-    toc: true,
+    toc: {
+      headingSelector: "h2:not(#stories),h3",
+    },
   },
 };
 
