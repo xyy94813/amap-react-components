@@ -1,5 +1,4 @@
 import withSuspense from "./decorators/withSuspense";
-import DocsPage from "./docsPage";
 
 export const decorators = [withSuspense];
 
@@ -10,15 +9,20 @@ export const parameters = {
         "指南",
         ["快速了解", "变更日志", "参与贡献"],
         "组件(Components)",
-        ["基础组件(Basic)", "地图控件(Control)", "覆盖物(Overlay)", "工具(Tools)"],
+        [
+          "基础组件(Basic)",
+          "地图控件(Control)",
+          "覆盖物(Overlay)",
+          "工具(Tools)",
+        ],
         "Hooks",
-        ["useAMapAPI", "useAMap"]
-      ]
-    }
+        ["useAMapAPI", "useAMap"],
+      ],
+    },
   },
   docs: {
-    page: DocsPage
-  }
+    toc: true,
+  },
 };
 
 export const globalTypes = {};
