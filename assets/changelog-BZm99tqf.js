@@ -1,4 +1,4 @@
-import{j as t}from"./jsx-runtime-DRTy3Uxn.js";import{useMDXComponents as o}from"./index-z5U8iC57.js";import{M as n,d as m}from"./index-CpgBytn8.js";import"./index-BBkUAzwr.js";import"./iframe-DrIo5-KL.js";import"../sb-preview/runtime.js";import"./index-PqR-_bA4.js";import"./index-DboEQVPH.js";import"./index-DrFu-skq.js";const p=`# Changelog
+import{j as t}from"./jsx-runtime-DRTy3Uxn.js";import{useMDXComponents as o}from"./index-z5U8iC57.js";import{M as n,d as m}from"./index-DRkGJ6QO.js";import"./index-BBkUAzwr.js";import"./iframe-acsRKGOS.js";import"../sb-preview/runtime.js";import"./index-PqR-_bA4.js";import"./index-DboEQVPH.js";import"./index-DrFu-skq.js";const p=`# Changelog
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 

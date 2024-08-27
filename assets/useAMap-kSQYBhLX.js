@@ -1,4 +1,4 @@
-import{j as n}from"./jsx-runtime-DRTy3Uxn.js";import{useMDXComponents as a}from"./index-z5U8iC57.js";import{M as s}from"./index-CpgBytn8.js";import"./index-BBkUAzwr.js";import"./iframe-DrIo5-KL.js";import"../sb-preview/runtime.js";import"./index-PqR-_bA4.js";import"./index-DboEQVPH.js";import"./index-DrFu-skq.js";function o(t){const e={code:"code",h1:"h1",p:"p",pre:"pre",...a(),...t.components};return n.jsxs(n.Fragment,{children:[n.jsx(s,{title:"Hooks/useAMap"}),`
+import{j as n}from"./jsx-runtime-DRTy3Uxn.js";import{useMDXComponents as a}from"./index-z5U8iC57.js";import{M as s}from"./index-DRkGJ6QO.js";import"./index-BBkUAzwr.js";import"./iframe-acsRKGOS.js";import"../sb-preview/runtime.js";import"./index-PqR-_bA4.js";import"./index-DboEQVPH.js";import"./index-DrFu-skq.js";function o(t){const e={code:"code",h1:"h1",p:"p",pre:"pre",...a(),...t.components};return n.jsxs(n.Fragment,{children:[n.jsx(s,{title:"Hooks/useAMap"}),`
 `,n.jsx(e.h1,{id:"useamap",children:"useAMap"}),`
 `,n.jsxs(e.p,{children:["你可以在函数组件内使用 ",n.jsx(e.code,{children:"useAMap"})," 从上下文中获取以及 ",n.jsx(e.code,{children:"map"}),` 实例。
 以便于自定义当前库未提供的组件。`]}),`
