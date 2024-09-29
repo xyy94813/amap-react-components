@@ -1,19 +1,28 @@
-import type { StorybookConfig } from '@storybook/react-vite';
+import type { StorybookConfig } from "@storybook/react-vite";
 
 const config: StorybookConfig = {
-  logLevel: 'debug',
-  stories: ['../docs/**/*.mdx', '../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
-  addons: ['@storybook/addon-essentials', '@storybook/addon-mdx-gfm'],
+  logLevel: "debug",
+  stories: [
+    "../docs/**/*.mdx",
+    "../src/**/*.mdx",
+    "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)",
+  ],
+  addons: [
+    "@storybook/addon-essentials",
+    "@storybook/addon-mdx-gfm",
+    "@chromatic-com/storybook",
+  ],
   /**
    * storybook with typescript
    * see https://storybook.js.org/docs/configurations/typescript-config/
    */
   framework: {
-    name: '@storybook/react-vite',
+    name: "@storybook/react-vite",
     options: {},
   },
-  docs: {
-    autodocs: true,
+  docs: {},
+  typescript: {
+    reactDocgen: "react-docgen-typescript",
   },
 };
 
