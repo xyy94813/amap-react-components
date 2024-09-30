@@ -18,20 +18,20 @@
 
 ## 对比其他库
 
-|                  | amap-react-components | @amap/amap-react   | react-amap         |
-| ---------------- | --------------------- | ------------------ | ------------------ |
-| 官方             | :x:                   | :white_check_mark: | :x: （饿了么团队） |
-| 开源             | :white_check_mark:    | :x:                | :white_check_mark: |
-| 活跃度           | 较高                  | 低                 | 低                 |
-| 使用文档         | :white_check_mark:    | :white_check_mark: | :white_check_mark: |
-| 单元测试覆盖率   | 高                    | :question:         | :x:                |
-| 基于 React Hooks | :white_check_mark:    | :question:         | :x:                |
-| 支持 amap v2     | :white_check_mark:    | :white_check_mark: | :x:                |
-| 支持 amap ui     | :white_check_mark:    | :white_check_mark: | :white_check_mark: |
-| 支持 TS          | :white_check_mark:    | :white_check_mark: | :white_check_mark: |
-| 支持 Vite        | :white_check_mark:    | :question:         | :question:         |
-| 自定义组件       | :white_check_mark:    | :white_check_mark: | :white_check_mark: |
-| UMD 模块         | :white_check_mark:    | :question:         | :white_check_mark: |
+|                  | amap-react-components | @amap/amap-react | react-amap        |
+| ---------------- | --------------------- | ---------------- | ----------------- |
+| 官方             | ❌                    | ✅               | ❌ （饿了么团队） |
+| 开源             | ✅                    | ❌               | ✅                |
+| 活跃度           | 较高                  | 低               | 低                |
+| 使用文档         | ✅                    | ✅               | ✅                |
+| 单元测试覆盖率   | 高                    | ❓               | ❌                |
+| 基于 React Hooks | ✅                    | ❓               | ❌                |
+| 支持 amap v2     | ✅                    | ✅               | ❌                |
+| 支持 amap ui     | ✅                    | ✅               | ✅                |
+| 支持 TS          | ✅                    | ✅               | ✅                |
+| 支持 Vite        | ✅                    | ❓               | ❓                |
+| 自定义组件       | ✅                    | ✅               | ✅                |
+| UMD 模块         | ✅                    | ❓               | ✅                |
 
 - [@amap/amap-react](https://www.npmjs.com/package/@amap/amap-react) （高德官方 react 组件 ）
 - [react-amap](https://github.com/elemefe/react-amap)
