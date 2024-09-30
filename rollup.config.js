@@ -1,6 +1,6 @@
 import path from 'path';
-import typescript from 'rollup-plugin-typescript2';
-import { terser } from 'rollup-plugin-terser';
+import typescript from '@rollup/plugin-typescript';
+import terser from '@rollup/plugin-terser';
 import filesize from 'rollup-plugin-filesize';
 
 // eslint-disable-next-line import/extensions
@@ -42,23 +42,20 @@ const getConf = (env, moduleType) => {
 
   const plugins = [
     typescript({
-      useTsconfigDeclarationDir: outputDeclaration,
-      tsconfigOverride: {
-        compilerOptions: {
-          declaration: outputDeclaration, // only es format output declaration
-          declarationDir: path.join(OUTPUT_DIR, 'types'),
-        },
-        exclude: [
-          // exclude test files
-          '**/__tests__/**',
-          '**/*.test.*',
-          '**/*.spec.*',
-          // exclude stories files
-          '**/stories/**',
-          '**/*.stories.*',
-          '**/storybook-decorators/**',
-        ],
+      compilerOptions: {
+        declaration: outputDeclaration, // only es format output declaration
+        declarationDir: outputDeclaration ? path.join(OUTPUT_DIR, 'types') : undefined,
       },
+      exclude: [
+        // exclude test files
+        '**/__tests__/**',
+        '**/*.test.*',
+        '**/*.spec.*',
+        // exclude stories files
+        '**/stories/**',
+        '**/*.stories.*',
+        '**/storybook-decorators/**',
+      ],
     }),
     filesize(),
   ];
