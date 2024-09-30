@@ -16,8 +16,7 @@
     "lint:fix": "eslint -c .eslintrc.js 'src/**/*.{ts,tsx,js,jsx}' --fix",
     "loadenv": "dotenv-load",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "dotenv-load storybook build",
-    "deploy-storybook": "storybook-to-ghpages -o storybook-static"
+    "build-storybook": "dotenv-load storybook build"
   },
   "repository": {
     "type": "git",
@@ -53,7 +52,6 @@
     "@storybook/addon-mdx-gfm": "^8.3.4",
     "@storybook/react": "^8.3.4",
     "@storybook/react-vite": "^8.3.4",
-    "@storybook/storybook-deployer": "^2.8.16",
     "@testing-library/react": "^14.1.2",
     "@types/geojson": "^7946.0.7",
     "@types/jest": "^26.0.3",
