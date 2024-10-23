@@ -33,7 +33,7 @@ const AMapMapType: FC<AMapMapTypeProps> = ({
   onHide,
   onShow,
 }) => {
-  const initInstance = useCallback((AMap) => new AMap!.MapType({
+  const initInstance = useCallback((AMap: typeof global.AMap) => new AMap!.MapType({
     defaultType,
     showTraffic,
     showRoad,

@@ -20,7 +20,10 @@ const AMapPolylineEditor: FC<AMapPolylineEditorProps> = ({
   const $lastOnChange = useRef<AMapPolylineEditorProps['onChange']>(onChange);
   $lastOnChange.current = onChange;
 
-  const initInstance = useCallback((AMap, map) => new AMap!.PolylineEditor(map), []);
+  const initInstance = useCallback(
+    (AMap: typeof global.AMap, map: AMap.Map) => new AMap!.PolylineEditor(map),
+    [],
+  );
   // why PolylineEditor2, see: https://github.com/AMap-Web/amap-jsapi-types/pull/22
   const curInstance = useAMapPluginInstance<AMap.PolylineEditor>('PolylineEditor', initInstance);
   const { map } = useAMap();

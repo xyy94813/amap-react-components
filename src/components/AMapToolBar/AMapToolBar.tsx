@@ -27,7 +27,7 @@ const defaultProps = {
 const AMapToolBar: FC<AMapToolBarProps> = ({
   position, offset, visible, onShow, onHide,
 }) => {
-  const initInstance = useCallback((AMap) => new AMap.ToolBar(), []);
+  const initInstance = useCallback((AMap: typeof global.AMap) => new AMap.ToolBar(), []);
   const curInstance = useAMapPluginInstance<AMap.ToolBar>('ToolBar', initInstance);
 
   // 自行控制 Control container dom

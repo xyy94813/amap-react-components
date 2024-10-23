@@ -37,7 +37,7 @@ const AMapOverlayGroup = forwardRef<AMap.OverlayGroup, PropsWithChildren<AMapOve
     },
     ref,
   ) => {
-    const initInstance = useCallback((AMap) => new AMap!.OverlayGroup(), []);
+    const initInstance = useCallback((AMap: typeof global.AMap) => new AMap!.OverlayGroup(), []);
     const curInstance = useAMapPluginInstance<AMap.OverlayGroup>('OverlayGroup', initInstance);
 
     useImperativeHandle(ref, () => curInstance!, [curInstance]);

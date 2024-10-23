@@ -1,10 +1,7 @@
 /* eslint-disable react/default-props-match-prop-types */
 import type { FC } from 'react';
 import {
-  useEffect,
-  useMemo,
-  useCallback,
-  memo,
+  useEffect, useMemo, useCallback, memo,
 } from 'react';
 
 import useAMapPluginInstance from '../../hooks/useAMapPluginInstance';
@@ -77,8 +74,14 @@ const AMapHawkEye: FC<AMapHawkEyeProps> = ({
     buttonSize,
   ]);
 
-  const initInstance = useCallback((AMap) => new AMap!.HawkEye(initConfig), [initConfig]);
-  const curInstance = useAMapPluginInstance<AMap.HawkEye>('HawkEye', initInstance);
+  const initInstance = useCallback(
+    (AMap: typeof global.AMap) => new AMap!.HawkEye(initConfig),
+    [initConfig],
+  );
+  const curInstance = useAMapPluginInstance<AMap.HawkEye>(
+    'HawkEye',
+    initInstance,
+  );
 
   // 是否展开
   useEffect(() => {

@@ -57,7 +57,7 @@ const AMapEllipse: FC<AMapEllipseProps> = ({
   onTouchmove,
   onTouchend,
 }) => {
-  const initInstance = useCallback((AMap) => new AMap!.Ellipse(), []);
+  const initInstance = useCallback((AMap: typeof global.AMap) => new AMap!.Ellipse(), []);
   const curInstance = useAMapPluginInstance<AMap.Ellipse>('Ellipse', initInstance);
 
   useSetter<Parameters<AMap.Ellipse['setCenter']>>(curInstance, 'setCenter', center!);
@@ -80,7 +80,7 @@ const AMapEllipse: FC<AMapEllipseProps> = ({
       draggable,
     })
       .filter(([,val]) => val !== undefined && val !== null)
-      .reduce((finallyObj, [key, val]) => {
+      .reduce((finallyObj: Record<string, any>, [key, val]) => {
         // eslint-disable-next-line no-param-reassign
         finallyObj[key] = val;
         return finallyObj;

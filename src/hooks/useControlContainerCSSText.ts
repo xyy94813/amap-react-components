@@ -19,7 +19,7 @@ const useControlContainerCSSText = (
   if (typeof position === 'object') {
     // 保证了 position 中的 key 顺序不相同也有同样的结果，避免重复更新
     return ['top', 'right', 'bottom', 'left'].reduce((result, key) => {
-      const value = position[key];
+      const value = (position as Record<string, any>)[key];
       if (!value) return result;
       return `${result}${key}:${formatPX(value!)};`;
     }, '');

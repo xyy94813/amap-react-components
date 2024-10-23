@@ -66,7 +66,7 @@ const AMapPolyline = forwardRef<AMap.Polyline, AMapPolylineProps>(({
   onTouchmove,
   onTouchend,
 }, ref) => {
-  const initInstance = useCallback((AMap) => new AMap!.Polyline(), []);
+  const initInstance = useCallback((AMap: typeof global.AMap) => new AMap!.Polyline(), []);
   const curInstance = useAMapPluginInstance<AMap.Polyline>('Polyline', initInstance);
 
   useImperativeHandle(ref, () => curInstance!, [curInstance]);
@@ -98,7 +98,7 @@ const AMapPolyline = forwardRef<AMap.Polyline, AMapPolylineProps>(({
       zooms,
     })
       .filter(([,val]) => val !== undefined && val !== null)
-      .reduce((finallyObj, [key, val]) => {
+      .reduce((finallyObj: Record<string, any>, [key, val]) => {
         // eslint-disable-next-line no-param-reassign
         finallyObj[key] = val;
         return finallyObj;

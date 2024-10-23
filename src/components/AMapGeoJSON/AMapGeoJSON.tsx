@@ -38,7 +38,7 @@ const AMapGeoJSON: FC<AMapGeoJSONProps> = ({
   visible,
   options,
 }) => {
-  const initInstance = useCallback((AMap) => new AMap!.GeoJSON({}), []);
+  const initInstance = useCallback((AMap: typeof global.AMap) => new AMap!.GeoJSON({}), []);
   const curInstance = useAMapPluginInstance<AMap.GeoJSON>('GeoJSON', initInstance);
   const withMap = useWithAMap();
 

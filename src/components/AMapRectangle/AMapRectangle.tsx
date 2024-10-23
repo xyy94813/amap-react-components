@@ -55,7 +55,7 @@ const AMapRectangle = forwardRef<AMap.Rectangle, AMapRectangleProps>(({
   onTouchmove,
   onTouchend,
 }, ref) => {
-  const initInstance = useCallback((AMap) => new AMap!.Rectangle(), []);
+  const initInstance = useCallback((AMap: typeof global.AMap) => new AMap!.Rectangle(), []);
   const curInstance = useAMapPluginInstance<AMap.Rectangle>(
     'Rectangle',
     initInstance,
@@ -86,7 +86,7 @@ const AMapRectangle = forwardRef<AMap.Rectangle, AMapRectangleProps>(({
       bubble,
     })
       .filter(([, val]) => val !== undefined && val !== null)
-      .reduce((finallyObj, [key, val]) => {
+      .reduce((finallyObj: Record<string, any>, [key, val]) => {
         // eslint-disable-next-line no-param-reassign
         finallyObj[key] = val;
         return finallyObj;

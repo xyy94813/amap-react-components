@@ -19,7 +19,7 @@ const useAMapPluginInstance = <T = any>(
       setInstance(instance);
     };
 
-    if (AMap[pluginName]) {
+    if ((AMap as any)[pluginName]) {
       init();
     } else {
       AMap.plugin([`AMap.${pluginName}`], init);

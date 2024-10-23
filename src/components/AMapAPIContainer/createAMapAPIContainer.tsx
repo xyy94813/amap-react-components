@@ -1,4 +1,4 @@
-import type { FC } from 'react';
+import type { FC, ReactNode } from 'react';
 import React, { lazy } from 'react';
 import AMapLoader from '@amap/amap-jsapi-loader';
 
@@ -66,7 +66,9 @@ export const createAMapAPIContainer = (options: CreateAMapApiContainerOptions) =
       __AMAP_UI__: AMapUI,
     };
 
-    const AMapAPIContainer: FC = ({ children }) => (
+    const AMapAPIContainer: FC<{
+      children: ReactNode
+    }> = ({ children }) => (
       <AMapAPIContext.Provider value={APICtx}>
         {children}
       </AMapAPIContext.Provider>

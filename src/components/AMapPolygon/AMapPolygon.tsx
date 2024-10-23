@@ -62,7 +62,7 @@ const AMapPolygon = forwardRef<AMap.Polygon, AMapPolygonProps>(({
   onTouchmove,
   onTouchend,
 }, ref) => {
-  const initInstance = useCallback((AMap) => new AMap!.Polygon(), []);
+  const initInstance = useCallback((AMap: typeof global.AMap) => new AMap!.Polygon(), []);
   const curInstance = useAMapPluginInstance<AMap.Polygon>('Polygon', initInstance);
 
   useImperativeHandle(ref, () => curInstance!, [curInstance]);
@@ -87,7 +87,7 @@ const AMapPolygon = forwardRef<AMap.Polygon, AMapPolygonProps>(({
       wallColor,
     })
       .filter(([,val]) => val !== undefined && val !== null)
-      .reduce((finallyObj, [key, val]) => {
+      .reduce((finallyObj: Record<string, any>, [key, val]) => {
         // eslint-disable-next-line no-param-reassign
         finallyObj[key] = val;
         return finallyObj;

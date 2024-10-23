@@ -21,7 +21,10 @@ const AMapPolygonEditor: FC<AMapPolygonEditorProps> = ({
   const $lastOnChange = useRef<AMapPolygonEditorProps['onChange']>(onChange);
   $lastOnChange.current = onChange;
 
-  const initInstance = useCallback((AMap, map) => new AMap!.PolygonEditor(map), []);
+  const initInstance = useCallback(
+    (AMap: typeof global.AMap, map: AMap.Map) => new AMap!.PolygonEditor(map),
+    [],
+  );
   const curInstance = useAMapPluginInstance<AMap.PolygonEditor>('PolygonEditor', initInstance);
   const { map } = useAMap();
 

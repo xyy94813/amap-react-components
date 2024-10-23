@@ -71,7 +71,10 @@ const AMapMarker: FC<AMapMarkerProps> = ({
   onMoveEnd,
   onMoveAlong,
 }) => {
-  const initInstance = useCallback((AMap) => new AMap!.Marker({ zooms }), [zooms]);
+  const initInstance = useCallback(
+    (AMap: typeof global.AMap) => new AMap!.Marker({ zooms }),
+    [zooms],
+  );
   const curInstance = useAMapPluginInstance<AMap.Marker>('Marker', initInstance);
 
   useVisible(curInstance, !!visible);

@@ -35,7 +35,7 @@ const AMapControlBar: FC<AMapControlBarProps> = ({
   onHide,
   onShow,
 }) => {
-  const initInstance = useCallback((AMap) => new AMap!.ControlBar(), []);
+  const initInstance = useCallback((AMap: typeof global.AMap) => new AMap!.ControlBar(), []);
   const curInstance = useAMapPluginInstance<AMap.ControlBar>('ControlBar', initInstance);
 
   // 避免重新创建 ControlBar 实例，自行修改 dom 节点

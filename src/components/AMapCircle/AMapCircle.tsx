@@ -69,7 +69,7 @@ const AMapCircle = forwardRef<AMap.Circle, AMapCircleProps>(
         draggable,
       })
         .filter(([,val]) => val !== undefined && val !== null)
-        .reduce((finallyObj, [key, val]) => {
+        .reduce((finallyObj: Record<string, any>, [key, val]) => {
           // eslint-disable-next-line no-param-reassign
           finallyObj[key] = val;
           return finallyObj;

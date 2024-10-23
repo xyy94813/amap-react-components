@@ -72,7 +72,7 @@ const AMapMap = forwardRef<any, PropsWithChildren<AMapMapProps>>(
               };
               return newRemoveFunc;
             }
-            return target[p];
+            return (target as any)[p];
           },
         });
 
