@@ -1,4 +1,4 @@
-import{ae as n,af as r,ak as s}from"./index-EQ17eXEj.js";import{useMDXComponents as m}from"./index-CcnH5Kt0.js";import"./iframe-DmMjjNrW.js";import"../sb-preview/runtime.js";import"./index-RYns6xqu.js";import"./index-DAfSkmQi.js";import"./index-ar2LJKLv.js";import"./index-DrFu-skq.js";const i=`# 贡献指南
+import{ae as n,af as r,ak as s}from"./index-BiBozqwV.js";import{useMDXComponents as m}from"./index-CcnH5Kt0.js";import"./iframe-CE0mw6F_.js";import"../sb-preview/runtime.js";import"./index-RYns6xqu.js";import"./index-DAfSkmQi.js";import"./index-ar2LJKLv.js";import"./index-DrFu-skq.js";const i=`# 贡献指南
 
 👏👏 欢迎参与贡献该项目 👏👏。
 

@@ -1,4 +1,4 @@
-import{ae as n,af as c}from"./index-EQ17eXEj.js";import{useMDXComponents as a}from"./index-CcnH5Kt0.js";import"./iframe-DmMjjNrW.js";import"../sb-preview/runtime.js";import"./index-RYns6xqu.js";import"./index-DAfSkmQi.js";import"./index-ar2LJKLv.js";import"./index-DrFu-skq.js";function s(t){const e={code:"code",h1:"h1",p:"p",pre:"pre",...a(),...t.components};return n.jsxs(n.Fragment,{children:[n.jsx(c,{title:"Hooks/useAMapPluginInstance"}),`
+import{ae as n,af as c}from"./index-BiBozqwV.js";import{useMDXComponents as a}from"./index-CcnH5Kt0.js";import"./iframe-CE0mw6F_.js";import"../sb-preview/runtime.js";import"./index-RYns6xqu.js";import"./index-DAfSkmQi.js";import"./index-ar2LJKLv.js";import"./index-DrFu-skq.js";function s(t){const e={code:"code",h1:"h1",p:"p",pre:"pre",...a(),...t.components};return n.jsxs(n.Fragment,{children:[n.jsx(c,{title:"Hooks/useAMapPluginInstance"}),`
 `,n.jsx(e.h1,{id:"useamapplugininstance",children:"useAMapPluginInstance"}),`
 `,n.jsxs(e.p,{children:[n.jsx(e.code,{children:"useAMapPluginInstance"})," 是能够帮助你更好的管理 AMap Plugin 实例，以便更好的创建自定 AMap 组件。"]}),`
 `,n.jsx(e.p,{children:"类型声明："}),`

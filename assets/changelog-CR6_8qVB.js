@@ -1,6 +1,13 @@
-import{ae as t,af as o,ak as n}from"./index-EQ17eXEj.js";import{useMDXComponents as m}from"./index-CcnH5Kt0.js";import"./iframe-DmMjjNrW.js";import"../sb-preview/runtime.js";import"./index-RYns6xqu.js";import"./index-DAfSkmQi.js";import"./index-ar2LJKLv.js";import"./index-DrFu-skq.js";const p=`# Changelog
+import{ae as t,af as n,ak as o}from"./index-BiBozqwV.js";import{useMDXComponents as m}from"./index-CcnH5Kt0.js";import"./iframe-CE0mw6F_.js";import"../sb-preview/runtime.js";import"./index-RYns6xqu.js";import"./index-DAfSkmQi.js";import"./index-ar2LJKLv.js";import"./index-DrFu-skq.js";const p=`# Changelog
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+## [0.8.1](https://github.com/xyy94813/amap-react-components/compare/v0.8.0...v0.8.1) (2024-10-23)
+
+
+### Bug Fixes
+
+* 调整类型声明，解决 TS 报错 ([139db84](https://github.com/xyy94813/amap-react-components/commit/139db840d148c93afd04acb4f07bb5053b08fab7))
 
 ## [0.8.0](https://github.com/xyy94813/amap-react-components/compare/v0.7.0...v0.8.0) (2024-03-15)
 
@@ -149,5 +156,5 @@ All notable changes to this project will be documented in this file. See [standa
 - new component AMapGeoJson ([fb694a9](https://github.com/xyy94813/amap-react-components/commit/fb694a98494b153c8bad5d12245531709c292bd3))
 - new component AMapMap ([3645a88](https://github.com/xyy94813/amap-react-components/commit/3645a88ac4f61d1a000bcee950b2ff69f78343ab))
 - support offical control components ([a6e2591](https://github.com/xyy94813/amap-react-components/commit/a6e25913e4739d104b6fb9317612cc23ed8a7743))
-`;function e(c){return t.jsxs(t.Fragment,{children:[t.jsx(o,{title:"指南/变更日志"}),`
-`,t.jsx(n,{children:p})]})}function u(c={}){const{wrapper:a}={...m(),...c.components};return a?t.jsx(a,{...c,children:t.jsx(e,{...c})}):e()}export{u as default};
+`;function e(c){return t.jsxs(t.Fragment,{children:[t.jsx(n,{title:"指南/变更日志"}),`
+`,t.jsx(o,{children:p})]})}function u(c={}){const{wrapper:a}={...m(),...c.components};return a?t.jsx(a,{...c,children:t.jsx(e,{...c})}):e()}export{u as default};

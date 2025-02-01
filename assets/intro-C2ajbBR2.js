@@ -1,4 +1,4 @@
-import{ae as n,af as e,ak as p}from"./index-EQ17eXEj.js";import{useMDXComponents as s}from"./index-CcnH5Kt0.js";import"./iframe-DmMjjNrW.js";import"../sb-preview/runtime.js";import"./index-RYns6xqu.js";import"./index-DAfSkmQi.js";import"./index-ar2LJKLv.js";import"./index-DrFu-skq.js";const m=`# amap-react-components
+import{ae as n,af as e,ak as p}from"./index-BiBozqwV.js";import{useMDXComponents as s}from"./index-CcnH5Kt0.js";import"./iframe-CE0mw6F_.js";import"../sb-preview/runtime.js";import"./index-RYns6xqu.js";import"./index-DAfSkmQi.js";import"./index-ar2LJKLv.js";import"./index-DrFu-skq.js";const m=`# amap-react-components
 
 [![latest version](https://img.shields.io/npm/v/amap-react-components.svg?label=latest%20%20version)](https://www.npmjs.org/package/amap-react-components)
 [![License](https://img.shields.io/npm/l/amap-react-components?label=latest%20%20version%20%20license)](https://www.npmjs.org/package/amap-react-components)
